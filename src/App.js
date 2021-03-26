@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import './App.scss';
 import Search from './components/Search';
-import { Route, Switch, Link, Redirect } from "react-router-dom";
+import { Route, Switch, Link, Redirect, Router } from "react-router-dom";
 import TvSearch from './components/tvSearch';
 import TrendingSearch from './components/TrendingSearch';
+import Details from './components/Details';
+import MovieDetails from './components/MovieDetails';
 
 function App() {
 
@@ -36,10 +38,12 @@ function App() {
           <Route path='/home' >
             <TrendingSearch category={category} searchStatus={searchStatus} /> 
           </Route>
-        </Switch>
+        </Switch>        
 
+        <Route path={`/details/:name`} component={Details} />
+
+        <Route path={`/moviedetails/:title`} component={MovieDetails} />
         
-
         <Route exact path="/">
           <Redirect to='/home' />
         </Route>    

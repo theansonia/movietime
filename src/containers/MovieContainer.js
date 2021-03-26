@@ -2,7 +2,6 @@ import React from 'react';
 import Movie from '../components/Movie'
 import '../App.scss';
 import Show from '../components/Show';
-import { Route } from "react-router-dom";
 
 const MovieContainer = ( {movieResults, tvResults, category } ) => {
 
@@ -29,15 +28,13 @@ const MovieContainer = ( {movieResults, tvResults, category } ) => {
       { tvResults.length === 0 && movieResults.length === 0 && category === 'TV' ? null : ( 
           tvResults.map((show) => {
             return (
-              <Route path={`/details/:${show.id}`} >
-              </Route>,
               <Show
               key={`key-${show.id}`}
-              id={`id-${show.id}`}
+              id={show.id}
               name={show.name}
               poster={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
               overview={show.overview}
-              release={show.release_date === undefined ? null : show.release_date.split('-')[0]}
+              release={show.first_air_date === undefined ? null : show.first_air_date.split('-')[0]}
               rating={Math.round(show.vote_average/2)}
               reviews={show.vote_count}
             />    

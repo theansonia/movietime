@@ -263,6 +263,42 @@ img{
   }
 }
 
+#detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#detailposter{
+  width: 24em;
+  margin-left: -.1em;
+  margin-top: .5em;
+}
+
+#detaildetails{
+  font-size: 1.5em;
+  text-align: justify;
+  margin: .75em;
+  text-decoration: none;
+}
+
+#detailtitle{
+  font-size: 1.6em;
+  margin-bottom: .5em;
+  font-weight: bold;
+  margin-top: .5em;
+}
+
+#detailoverview{
+  margin-bottom: .5em;
+}
+
+#detailrelease{
+  color: darken(#ADB5BD, 5%);
+  margin-bottom: .5em;
+}
+
 
 @media (min-width: 600px) {
   .footer{
