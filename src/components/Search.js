@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import apiKey from '../apiKey.js';
+import apiKey from '../apiKey.js';
 import MovieContainer from '../containers/MovieContainer';
 // import { Route, Switch, Link } from "react-router-dom";
 
 const Search = ( {category, searchStatus} ) => {
-  const apiKey = '20dd97d63497c0f0a8adb9bd9c547033';
   const [title, updateTitle] = useState("");
   const [movieResults, updateMovieResults] = useState([])
   // eslint-disable-next-line no-unused-vars
