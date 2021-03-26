@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import apiKey from '../apiKey.js';
+// import apiKey from '../apiKey.js';
 import MovieContainer from '../containers/MovieContainer';
 // import { Route, Switch, Link } from "react-router-dom";
 
