@@ -8,14 +8,14 @@ import TrendingSearch from './components/TrendingSearch';
 
 function App() {
 
-  const [searchStatus, updateSearchStatus] = useState(false);
+  const [searchStatus, updateSearchStatus] = useState(true);
   const [category, updateCategory] = useState(null);
 
   return (
     
       <div id='app'>
         <div id='navbar'>
-        <a href='/home' ><div id='homebtn' onClick={() => {updateSearchStatus(false); updateCategory(null)}}><img id='homebtn' src='../home.png' alt='home button' /></div></a>
+        <Link to='/home' ><div id='homebtn' onClick={() => {updateSearchStatus(true); updateCategory(null)}}><img id='homebtn' src='../home.png' alt='home button' /></div></Link>
           
           <div id='categories'>
             <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} >Film</Link>
@@ -40,18 +40,21 @@ function App() {
           </Route>
         </Switch>
 
-        <Switch>
+        {/* <Switch>
           <Route path='/multi' >
             <MultiSearch category={category} searchStatus={searchStatus} /> 
           </Route>
-        </Switch>
+        </Switch> */}
 
         <Route exact path="/">
           <Redirect to='/home' />
         </Route>    
 
         <div className="footer" >
-           <img alt='search button' id='searchbtn' onClick={() => {updateSearchStatus(true); updateCategory(null); }} src='../Search.png' />
+          <Link to='/home'>
+              <img alt='search button' id='searchbtn' onClick={() => {updateSearchStatus(true); updateCategory(null); }} src='../Search.png' />
+          </Link>
+           
         </div>
       </div>
       

@@ -32,6 +32,7 @@ const Search = ( {category, searchStatus} ) => {
 
   useEffect(() => {
 
+    if (title.length > 0) return;
     if (title.length === 0) updateMovieResults([]);
     
       const URL = `https://api.themoviedb.org/3/movie/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
