@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)http://localhost:3000/home -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <title>Movie Search App</title>
+  <style>@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700;1,900&display=swap);</style><style>canvasa {
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.moviecontainer {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s;
+  flex: 1 1 auto;
+  min-height: 100vh;
+  grid-gap: 1em;
+  gap: 1em;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+  overflow: hidden;
+  width: 100%;
+}
+
+#navbar {
+  background-color: #212529;
+  position: fixed;
+  height: 5em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5em;
+  z-index: 14;
+}
+
+#trending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: center;
+  width: 100%;
+}
+
+#option {
+  margin: 3em;
+  font-size: 2em;
+  color: #F8F9FA;
+  text-decoration: none;
+}
+#option:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#categories {
+  height: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-left: 5em;
+}
+
+#searchbar {
+  flex: 1 0 auto;
+  width: 100%;
+  font-size: 1rem;
+  -webkit-text-size-adjust: 100%;
+  background-color: #212529;
+  margin-bottom: 1em;
+}
+#searchbar:after, #searchbar :before {
+  box-sizing: border-box;
+}
+
+input {
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: auto;
+          appearance: auto;
+  cursor: text;
+}
+
+::placeholder {
+  color: #CED4DA;
+  width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#search {
+  position: relative;
+  color: #F8F9FA;
+  width: 100%;
+  font-size: 1rem;
+  -webkit-text-size-adjust: 100%;
+  height: 3rem;
+  padding: 0 26px;
+  background-color: #212529;
+  height: 4.125rem;
+  line-height: 1.5rem;
+  border: none;
+}
+#search:after, #search :before {
+  box-sizing: border-box;
+  border-bottom: 2px solid #F8F9FA;
+}
+
+#movies {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+img {
+  width: 16em;
+  margin-left: 1em;
+  margin-right: 2em;
+}
+
+#poster {
+  align-items: center;
+  justify-content: center;
+}
+
+#details {
+  display: flex;
+  font-size: 1.05em;
+  flex-direction: column;
+  padding-right: 0.65em;
+  margin: 0;
+  justify-content: space-evenly;
+  max-height: 600px;
+  padding-top: 0.5em;
+}
+
+#title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.15em;
+}
+
+#release {
+  color: #9fa8b2;
+  margin-bottom: 0.25em;
+}
+
+#overview {
+  overflow: scroll;
+  margin-bottom: 0.15em;
+}
+
+#rating {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.25em;
+}
+
+#star {
+  width: 0.5em;
+  margin: 0;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: none;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 35%;
+  width: 50%;
+  display: flex;
+  flex: 1 1;
+}
+
+#searchbtn {
+  width: 8em;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: relative;
+  transition: top 0.2s;
+  pointer-events: all;
+  z-index: 18;
+  overflow: visible;
+  -webkit-appearance: button;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+}
+#searchbtn:hover {
+  cursor: pointer;
+}
+
+#homebtn {
+  width: 3em;
+  margin-right: 5em;
+  margin-left: 3em;
+}
+#homebtn:hover {
+  cursor: pointer;
+}
+
+#more {
+  color: #4cc9f0;
+  text-decoration: underline;
+}
+#more:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .footer {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: none;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 35%;
+    width: 50%;
+    display: flex;
+    flex: 1 1;
+  }
+
+  #searchbtn {
+    width: 3em;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    position: relative;
+    transition: top 0.2s;
+    pointer-events: all;
+    z-index: 18;
+    overflow: visible;
+    -webkit-appearance: button;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+  }
+  #searchbtn:hover {
+    cursor: pointer;
+  }
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zcmMvQXBwLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBYUE7RUFDRSxXQUFBO0FBWEY7O0FBYUE7RUFDRSxZQUFBO0VBQ0EsMENBaEJXO0VBaUJYLGVBQUE7RUFJQSxpQkFBQTtFQUNBLFVBQUE7RUFDQSxTQUFBO0FBYkY7O0FBaUJBO0VBQ0UsYUFBQTtFQUNBLHNCQUFBO0VBRUEsb0JBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxhQUFBO0VBQUEsUUFBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0VBQ0EsV0FBQTtBQWZGOztBQW1CQTtFQUNFLHlCQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxvQkFBQTtFQUNBLFdBQUE7QUFoQkY7O0FBb0JBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxzQkFBQTtFQUNBLFdBQUE7QUFqQkY7O0FBeUJBO0VBQ0UsV0FBQTtFQUNBLGNBQUE7RUFDQSxjQUFBO0VBQ0EscUJBQUE7QUF0QkY7QUF3Qkk7RUFDRSwwQkFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQXRCTjs7QUEwQkE7RUFDRSxXQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLGdCQUFBO0FBdkJGOztBQTBCQTtFQUNFLGNBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLDhCQUFBO0VBQ0EseUJBQUE7RUFDQSxrQkFBQTtBQXZCRjtBQXlCSTtFQUNFLHNCQUFBO0FBdkJOOztBQTZCQTtFQUNFLG9CQUFBO0VBQ0Esc0JBQUE7RUFDQSxvQkFBQTtFQUNBLHFCQUFBO0VBQ0EsaUJBQUE7RUFDQSx3QkFBQTtVQUFBLGdCQUFBO0VBQ0EsWUFBQTtBQTFCRjs7QUE2QkE7RUFDRSxjQUFBO0VBQ0EsVUFBQTtFQUNBLGdCQUFBO0VBQ0EsdUJBQUE7QUExQkY7O0FBK0JBO0VBQ0Usa0JBQUE7RUFDQSxjQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7RUFDQSw4QkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0VBQ0EseUJBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtBQTVCRjtBQStCSTtFQUNBLHNCQUFBO0VBQ0EsZ0NBQUE7QUE3Qko7O0FBaUNBO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSx1QkFBQTtBQTlCRjs7QUFrQ0E7RUFDRSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtBQS9CRjs7QUFtQ0E7RUFDRSxtQkFBQTtFQUNBLHVCQUFBO0FBaENGOztBQW1DQTtFQUNFLGFBQUE7RUFDQSxpQkFBQTtFQUNBLHNCQUFBO0VBQ0EscUJBQUE7RUFDQSxTQUFBO0VBQ0EsNkJBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FBaENGOztBQW1DQTtFQUNFLGNBQUE7RUFDQSxpQkFBQTtFQUNBLHFCQUFBO0FBaENGOztBQW1DQTtFQUNFLGNBQUE7RUFDQSxxQkFBQTtBQWhDRjs7QUFxQ0E7RUFDRSxnQkFBQTtFQUNBLHFCQUFBO0FBbENGOztBQXNDQTtFQUNFLGFBQUE7RUFDQSwyQkFBQTtFQUNBLGtCQUFBO0FBbkNGOztBQXNDQTtFQUNFLFlBQUE7RUFDQSxTQUFBO0FBbkNGOztBQXVDQTtFQUNFLGdCQUFBO0VBQ0EsYUFBQTtFQUNBLHNCQUFBO0VBQ0EsZUFBQTtFQUNBLFVBQUE7RUFDQSxTQUFBO0VBQ0EsU0FBQTtFQUNBLFVBQUE7RUFDQSxhQUFBO0VBQ0EsU0FBQTtBQXBDRjs7QUF1Q0E7RUFDRSxVQUFBO0VBQ0EsNEJBQUE7RUFDQSx3QkFBQTtFQUNBLGtCQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxpQkFBQTtFQUNBLDBCQUFBO0VBQ0EscUJBQUE7RUFDQSxrQkFBQTtFQUNBLHVCQUFBO0FBcENGO0FBc0NFO0VBQ0UsZUFBQTtBQXBDSjs7QUF3Q0E7RUFDRSxVQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtBQXJDRjtBQXNDRTtFQUNFLGVBQUE7QUFwQ0o7O0FBd0NBO0VBQ0UsY0FBQTtFQUNBLDBCQUFBO0FBckNGO0FBc0NFO0VBQ0UsZUFBQTtBQXBDSjs7QUF5Q0E7RUFDRTtJQUNFLGdCQUFBO0lBQ0EsYUFBQTtJQUNBLHNCQUFBO0lBQ0EsZUFBQTtJQUNBLFVBQUE7SUFDQSxTQUFBO0lBQ0EsU0FBQTtJQUNBLFVBQUE7SUFDQSxhQUFBO0lBQ0EsU0FBQTtFQXRDRjs7RUF5Q0E7SUFDRSxVQUFBO0lBQ0EsNEJBQUE7SUFDQSx3QkFBQTtJQUNBLGtCQUFBO0lBQ0Esb0JBQUE7SUFDQSxtQkFBQTtJQUNBLFdBQUE7SUFDQSxpQkFBQTtJQUNBLDBCQUFBO0lBQ0EscUJBQUE7SUFDQSxrQkFBQTtJQUNBLHVCQUFBO0VBdENGO0VBd0NFO0lBQ0UsZUFBQTtFQXRDSjtBQUNGIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9U291cmNlK1NhbnMrUHJvOml0YWwsd2dodEAwLDIwMDswLDMwMDswLDQwMDswLDYwMDswLDcwMDsxLDIwMDsxLDMwMDsxLDQwMDsxLDYwMDsxLDcwMDsxLDkwMCZkaXNwbGF5PXN3YXAnKTtcblxuJGZvbnQtc3RhY2s6ICdTb3VyY2UgU2FucyBQcm8nLCBzYW5zLXNlcmlmO1xuJGJhY2tncm91bmQ6ICNGOEY5RkE7XG4kcHJpbWFyeS1mb250OiAjMjEyNTI5O1xuXG4vLyAjcm9vdCB7XG4vLyAgIGhlaWdodDogMTAwJTtcbi8vICAgd2lkdGg6IDIwMHZoO1xuLy8gICBvdmVyZmxvdzogc2Nyb2xsO1xuXG4vLyB9XG5cbmNhbnZhc2F7XG4gIHdpZHRoOiAxMDAlO1xufVxuaHRtbCwgYm9keSB7XG4gIGhlaWdodDoxMDAlO1xuICBmb250LWZhbWlseTogJGZvbnQtc3RhY2s7XG4gIGZvbnQtc2l6ZTogMXJlbTtcbiAgLy8gZGlzcGxheTogZmxleDtcbiAgLy8gbWFyZ2luOiAwIGF1dG87XG5cbiAgbWluLWhlaWdodDoxMDB2aDtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwO1xuXG59XG5cbi5tb3ZpZWNvbnRhaW5lcntcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgLy8gZmxleC1mbG93OiBjb2x1bW4gbm93cmFwO1xuICB0cmFuc2l0aW9uOiBhbGwgLjJzO1xuICBmbGV4OiAxIDEgYXV0bztcbiAgbWluLWhlaWdodDogMTAwdmg7XG4gIGdhcDogMWVtO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBtYXJnaW4tdG9wOiAxZW07XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHdpZHRoOiAxMDAlO1xuXG59XG5cbiNuYXZiYXJ7XG4gIGJhY2tncm91bmQtY29sb3I6IzIxMjUyOTtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBoZWlnaHQ6IDVlbTtcbiAgd2lkdGg6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7IFxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgbWFyZ2luLWJvdHRvbTogMS41ZW07XG4gIHotaW5kZXg6IDE0O1xuICBcbn1cblxuI3RyZW5kaW5ne1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZmxleC1kaXJlY3Rpb246IGNlbnRlcjtcbiAgd2lkdGg6IDEwMCU7XG4gIC8vIG1hcmdpbi1sZWZ0OiAxZW07XG4gIC8vIG1hcmdpbi1yaWdodDogMWVtO1xuICBcblxufVxuXG5cbiNvcHRpb257XG4gIG1hcmdpbjogM2VtO1xuICBmb250LXNpemU6IDJlbTtcbiAgY29sb3I6ICNGOEY5RkE7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcblxuICAgICY6aG92ZXJ7XG4gICAgICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTtcbiAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgfVxufVxuXG4jY2F0ZWdvcmllc3tcbiAgaGVpZ2h0OiA1ZW07XG4gIGRpc3BsYXk6IGZsZXg7IFxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgbWFyZ2luLWxlZnQ6IDVlbTtcbn1cblxuI3NlYXJjaGJhcntcbiAgZmxleDogMSAwIGF1dG87XG4gIHdpZHRoOiAxMDAlO1xuICBmb250LXNpemU6IDFyZW07XG4gIC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogMTAwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzIxMjUyOTtcbiAgbWFyZ2luLWJvdHRvbTogMWVtO1xuXG4gICAgJjphZnRlciwgOmJlZm9yZXtcbiAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgfVxuICAgIFxuICBcbn1cblxuaW5wdXR7XG4gIHRleHQtcmVuZGVyaW5nOiBhdXRvO1xuICBsZXR0ZXItc3BhY2luZzogbm9ybWFsO1xuICB3b3JkLXNwYWNpbmc6IG5vcm1hbDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB0ZXh0LWFsaWduOiBzdGFydDtcbiAgYXBwZWFyYW5jZTogYXV0bztcbiAgY3Vyc29yOiB0ZXh0O1xufVxuXG46OnBsYWNlaG9sZGVye1xuICBjb2xvcjogI0NFRDREQTtcbiAgd2lkdGg6IDk1JTtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XG4gIC8vIHBhZGRpbmctbGVmdDogMmVtO1xufVxuXG5cbiNzZWFyY2gge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGNvbG9yOiAjRjhGOUZBO1xuICB3aWR0aDogMTAwJTtcbiAgZm9udC1zaXplOiAxcmVtO1xuICAtd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6IDEwMCU7XG4gIGhlaWdodDogM3JlbTtcbiAgcGFkZGluZzogMCAyNnB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjEyNTI5O1xuICBoZWlnaHQ6IDQuMTI1cmVtO1xuICBsaW5lLWhlaWdodDogMS41cmVtO1xuICBib3JkZXI6IG5vbmU7XG4gXG5cbiAgICAmOmFmdGVyLCA6YmVmb3Jle1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNGOEY5RkE7XG4gIH1cbn1cblxuI21vdmllc3tcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB3aWR0aDogMTAwJTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuXG59XG5cbmltZ3tcbiAgd2lkdGg6IDE2ZW07XG4gIG1hcmdpbi1sZWZ0OiAxZW07XG4gIG1hcmdpbi1yaWdodDogMmVtO1xuXG59XG5cbiNwb3N0ZXJ7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4jZGV0YWlsc3tcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOiAxLjA1ZW07XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHBhZGRpbmctcmlnaHQ6IC42NWVtO1xuICBtYXJnaW46IDA7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtZXZlbmx5O1xuICBtYXgtaGVpZ2h0OiA2MDBweDtcbiAgcGFkZGluZy10b3A6IC41ZW07XG59XG5cbiN0aXRsZXtcbiAgZm9udC1zaXplOiAyZW07XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBtYXJnaW4tYm90dG9tOiAuMTVlbTtcbn1cblxuI3JlbGVhc2V7XG4gIGNvbG9yOiBkYXJrZW4oI0FEQjVCRCwgNSUpO1xuICBtYXJnaW4tYm90dG9tOiAuMjVlbTtcblxuXG59XG5cbiNvdmVydmlld3tcbiAgb3ZlcmZsb3c6IHNjcm9sbDtcbiAgbWFyZ2luLWJvdHRvbTogLjE1ZW07XG5cbn1cblxuI3JhdGluZ3tcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICBtYXJnaW4tdG9wOiAuMjVlbTtcbn1cblxuI3N0YXJ7XG4gIHdpZHRoOiAuNWVtO1xuICBtYXJnaW46IDA7XG59XG5cblxuLmZvb3RlcntcbiAgbWFyZ2luLXRvcDogMXJlbTtcbiAgcGFkZGluZzogMXJlbTtcbiAgYmFja2dyb3VuZC1jb2xvcjogbm9uZTtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB6LWluZGV4OiAxO1xuICBib3R0b206IDA7XG4gIGxlZnQ6IDM1JTtcbiAgd2lkdGg6IDUwJTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleDogMTtcbn1cblxuI3NlYXJjaGJ0bntcbiAgd2lkdGg6IDhlbTtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogNTAlO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRyYW5zaXRpb246IHRvcCAuMnM7XG4gIHBvaW50ZXItZXZlbnRzOiBhbGw7XG4gIHotaW5kZXg6IDE4O1xuICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgLXdlYmtpdC1hcHBlYXJhbmNlOiBidXR0b247XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBhbGlnbi1pdGVtczogZmxleC1zdGFydDtcblxuICAmOmhvdmVye1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxufVxuXG4jaG9tZWJ0bntcbiAgd2lkdGg6IDNlbTtcbiAgbWFyZ2luLXJpZ2h0OiA1ZW07XG4gIG1hcmdpbi1sZWZ0OiAzZW07XG4gICY6aG92ZXJ7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICB9XG59XG5cbiNtb3Jle1xuICBjb2xvcjogIzRjYzlmMDtcbiAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7XG4gICY6aG92ZXJ7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICB9XG59XG5cblxuQG1lZGlhIChtaW4td2lkdGg6IDYwMHB4KSB7XG4gIC5mb290ZXJ7XG4gICAgbWFyZ2luLXRvcDogMXJlbTtcbiAgICBwYWRkaW5nOiAxcmVtO1xuICAgIGJhY2tncm91bmQtY29sb3I6IG5vbmU7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHotaW5kZXg6IDE7XG4gICAgYm90dG9tOiAwO1xuICAgIGxlZnQ6IDM1JTtcbiAgICB3aWR0aDogNTAlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleDogMTtcbiAgfVxuICBcbiAgI3NlYXJjaGJ0bntcbiAgICB3aWR0aDogM2VtO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogNTAlO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB0cmFuc2l0aW9uOiB0b3AgLjJzO1xuICAgIHBvaW50ZXItZXZlbnRzOiBhbGw7XG4gICAgei1pbmRleDogMTg7XG4gICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgLXdlYmtpdC1hcHBlYXJhbmNlOiBidXR0b247XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogZmxleC1zdGFydDtcbiAgXG4gICAgJjpob3ZlcntcbiAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICB9XG4gIH1cbiAgXG59XG5cblxuXG4gICJdLCJzb3VyY2VSb290IjoiIn0= */</style><script charset="utf-8" src="./Movie Search App_files/main.33c7e202660b29336f1b.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.fb42e165a8115082b42b.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.9936aacf420134fc3059.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.c26ebb844bb216a3bf04.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.90443238b8f290333618.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.a7787956714df66fb8e0.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.9f3035770d175883f461.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.689feaa6ab4d0dddb078.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.d65a3ff4d4336b538e8d.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.09aa4cc7ea8688648b0c.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.050115ef9f35df73087e.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.7263ec3e8a5bc6ae009f.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.51a58935d35c7ed77cae.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.aa0dea082de65b16d435.hot-update.js"></script><script charset="utf-8" src="./Movie Search App_files/main.788d236cc843da27dad3.hot-update.js"></script></head>
+  <body>
+    
+    <div id="root"><div id="app"><div id="navbar"><a href="http://localhost:3000/home"><div id="homebtn"><img id="homebtn" src="./Movie Search App_files/home.png" alt="home button"></div></a><div id="categories"><a id="option" href="http://localhost:3000/movies">Film</a><a id="option" href="http://localhost:3000/shows">TV</a></div></div><div><div id="searchbar"><form><input id="search" list="movie" placeholder="Search for Movies and TV Shows" value=""></form></div><div id="trending">Featured Movies and TV Shows</div><div class="moviecontainer"><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" alt="Movie poster for Zack Snyder&#39;s Justice League"></div><div id="details"><div id="title">Zack Snyder's Justice League</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Determined to ensure Superman's</span><br><span>ultimate sacrifice was not in vain, Bruce</span><br><span>Wayne aligns forces with Diana Prince with</span><br><span>plans to recruit a team of metahumans to</span><br><span>protect the world from an approaching</span><br><span>threat of catastrophic proportions.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 3529</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/6kbAMLteGO8yyewYau6bJ683sw7.jpg" alt="Movie poster for The Falcon and the Winter Soldier"></div><div id="details"><div id="title">The Falcon and the Winter Soldier</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Following the events of “Avengers:</span><br><span>Endgame”, the Falcon, Sam Wilson and the</span><br><span>Winter Soldier, Bucky Barnes team up in a</span><br><span>global adventure that tests their abilities,</span><br><span>and their patience.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 1690</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg" alt="Movie poster for Godzilla vs. Kong"></div><div id="details"><div id="title">Godzilla vs. Kong</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>In a time when monsters walk the Earth,</span><br><span>humanity’s fight for its future sets Godzilla</span><br><span>and Kong on a collision course that will</span><br><span>see the two most powerful forces of nature</span><br><span>on the planet collide in a spectacular</span><br><span>battle for the ages.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 49</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/s1wP1YeQS9fgSHiXZ3yJb2ufB2D.jpg" alt="Movie poster for DOTA: Dragon&#39;s Blood"></div><div id="details"><div id="title">DOTA: Dragon's Blood</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>After encounters with a dragon and a</span><br><span>princess on her own mission, a Dragon</span><br><span>Knight becomes embroiled in events</span><br><span>larger than he could have ever imagined.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 3</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/4ZSzEDVdxWVMVO4oZDvoodQOEfr.jpg" alt="Movie poster for Secret Magic Control Agency"></div><div id="details"><div id="title">Secret Magic Control Agency</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>The Secret Magic Control Agency sends its</span><br><span>two best agents, Hansel and Gretel, to</span><br><span>fight against the witch of the Gingerbread</span><br><span>House.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 7</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/qN6HCKR3ZRqbpGBWFctVlSTKR2k.jpg" alt="Movie poster for The Irregulars"></div><div id="details"><div id="title">The Irregulars</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>In Victorian London, a gang of troubled</span><br><span>street teens are manipulated into solving</span><br><span>crimes for the sinister Doctor Watson and</span><br><span>his mysterious business partner, the</span><br><span>elusive Sherlock Holmes. As the crimes</span><br><span>take on a horrifying supernatural edge and</span><br><span>a dark power emerges, it'll be up to the</span><br><span>Irregulars to come together to save not</span><br><span>only London but the entire world.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/yDWJYRAwMNKbIYT8ZB33qy84uzO.jpg" alt="Movie poster for Invincible"></div><div id="details"><div id="title">Invincible</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Mark Grayson is a normal teenager except</span><br><span>for the fact that his father is the most</span><br><span>powerful superhero on the planet. Shortly</span><br><span>after his seventeenth birthday, Mark</span><br><span>begins to develop powers of his own and</span><br><span>enters into his father’s tutelage.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><span> 1</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/j9O2WXJqF45ynkng4SAsZ1h0OCt.jpg" alt="Movie poster for Caught by a Wave"></div><div id="details"><div id="title">Caught by a Wave</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>A summer fling born under the Sicilian sun</span><br><span>quickly develops into a heartbreaking love</span><br><span>story that forces a boy and girl to grow up</span><br><span>too quickly.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 11</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/lPsD10PP4rgUGiGR4CCXA6iY0QQ.jpg" alt="Movie poster for Raya and the Last Dragon"></div><div id="details"><div id="title">Raya and the Last Dragon</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Long ago, in the fantasy world of</span><br><span>Kumandra, humans and dragons lived</span><br><span>together in harmony. But when an evil</span><br><span>force threatened the land, the dragons</span><br><span>sacrificed themselves to save humanity.</span><br><span>Now, 500 years later, that same evil has</span><br><span>returned and it’s up to a lone warrior,</span><br><span>Raya, to track down the legendary last</span><br><span><span>dragon to restore th<span>...<div id="more">click to scroll for more</div></span></span></span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 1654</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/1UCOF11QCw8kcqvce8LKOO6pimh.jpg" alt="Movie poster for Monster Hunter"></div><div id="details"><div id="title">Monster Hunter</div><div id="release">2020</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>A portal transports Cpt. Artemis and an</span><br><span>elite unit of soldiers to a strange world</span><br><span>where powerful monsters rule with deadly</span><br><span>ferocity. Faced with relentless danger, the</span><br><span>team encounters a mysterious hunter who</span><br><span>may be their only hope to find a way</span><br><span>home.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 1238</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/okhrkHYF94K4kLXLwZkQMhWZ0fL.jpg" alt="Movie poster for The Father"></div><div id="details"><div id="title">The Father</div><div id="release">2020</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>A man refuses all assistance from his</span><br><span>daughter as he ages. As he tries to make</span><br><span>sense of his changing circumstances, he</span><br><span>begins to doubt his loved ones, his own</span><br><span>mind and even the fabric of his reality.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 33</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/o7uk5ChRt3quPIv8PcvPfzyXdMw.jpg" alt="Movie poster for Who Killed Sara?"></div><div id="details"><div id="title">Who Killed Sara?</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Hell-bent on exacting revenge and proving</span><br><span>he was framed for his sister's murder, Álex</span><br><span>sets out to unearth much more than the</span><br><span>crime's real culprit.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 4</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/htTS07IvYv3rv57ftzNEprefwSq.jpg" alt="Movie poster for A Week Away"></div><div id="details"><div id="title">A Week Away</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Troubled teen Will Hawkins has a run-in</span><br><span>with the law that puts him at an important</span><br><span>crossroad: go to juvenile detention or</span><br><span>attend a Christian summer camp. At first a</span><br><span>fish-out-of-water, Will opens his heart,</span><br><span>discovers love with a camp regular, and</span><br><span>sense of belonging in the last place he</span><br><span>expected to find it.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><span> 1</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/A1Gy5HX3DKGaNW1Ay30NTIVJqJ6.jpg" alt="Movie poster for Bad Trip"></div><div id="details"><div id="title">Bad Trip</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Two pals embark on a road trip full of</span><br><span>funny pranks that pull real people into</span><br><span>mayhem.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 31</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/6KErczPBROQty7QoIsaa6wJYXZi.jpg" alt="Movie poster for Tom &amp; Jerry"></div><div id="details"><div id="title">Tom &amp; Jerry</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Tom the cat and Jerry the mouse get</span><br><span>kicked out of their home and relocate to a</span><br><span>fancy New York hotel, where a scrappy</span><br><span>employee named Kayla will lose her job if</span><br><span>she can’t evict Jerry before a high-class</span><br><span>wedding at the hotel. Her solution? Hiring</span><br><span>Tom to get rid of the pesky mouse.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 965</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg" alt="Movie poster for Wonder Woman 1984"></div><div id="details"><div id="title">Wonder Woman 1984</div><div id="release">2020</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>A botched store robbery places Wonder</span><br><span>Woman in a global battle against a</span><br><span>powerful and mysterious ancient force</span><br><span>that puts her powers in jeopardy.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 4456</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/wRbjVBdDo5qHAEOVYoMWpM58FSA.jpg" alt="Movie poster for Riverdale"></div><div id="details"><div id="title">Riverdale</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Set in the present, the series offers a bold,</span><br><span>subversive take on Archie, Betty, Veronica</span><br><span>and their friends, exploring the surreality</span><br><span>of small-town life, the darkness and</span><br><span>weirdness bubbling beneath Riverdale’s</span><br><span>wholesome facade.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 10678</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/pGPUXyhQTOqskKdDOD3Fmicqfc0.jpg" alt="Movie poster for Doors"></div><div id="details"><div id="title">Doors</div><div id="release">2021</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Without warning, millions of mysterious</span><br><span>alien “doors” suddenly appear around the</span><br><span>globe. In a rush to determine the reason</span><br><span>for their arrival, mankind must work</span><br><span>together to understand the purpose of</span><br><span>these cosmic anomalies.</span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 13</span> reviews</div></div></div></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/625YZePh2KoSX61xVXt3JwuSq4m.jpg" alt="Movie poster for The Mighty Ducks: Game Changers"></div><div id="details"><div id="title">The Mighty Ducks: Game Changers</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>In present day Minnesota, the Mighty</span><br><span>Ducks have evolved from scrappy</span><br><span>underdogs to an ultra-competitive,</span><br><span>powerhouse youth hockey team. After</span><br><span>12-year-old Evan is unceremoniously cut</span><br><span>from the Ducks, he and his mom Alex set</span><br><span>out to build their own ragtag team of</span><br><span>misfits to challenge the cutthroat,</span><br><span><span>win-at-all-costs cult<span>...<div id="more">click to scroll for more</div></span></span></span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span></div></div><div id="movies"><div id="poster"><img id="poster" src="./Movie Search App_files/hm58Jw4Lw8OIeECIq5qyPYhAeRJ.jpg" alt="Movie poster for Soul"></div><div id="details"><div id="title">Soul</div><div id="release">2020</div><span width="0" style="overflow: hidden; color: inherit;"><span><span>Joe Gardner is a middle school teacher</span><br><span>with a love for jazz music. After a</span><br><span>successful gig at the Half Note Club, he</span><br><span>suddenly gets into an accident that</span><br><span>separates his soul from his body and is</span><br><span>transported to the You Seminar, a center in</span><br><span>which souls develop and gain passions</span><br><span>before being transported to a newborn</span><br><span><span>child. Joe must enlis<span>...<div id="more">click to scroll for more</div></span></span></span></span><span style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span>...<div id="more">click to scroll for more</div></span></span></span><div id="rating"><div class="container"><div class="stars"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="filled review star" src="./Movie Search App_files/star--v1.png"><img id="star" alt="unfilled review star" src="./Movie Search App_files/star--v1(1).png"><span> 5403</span> reviews</div></div></div></div></div></div></div><div class="footer"><a href="http://localhost:3000/home"><img alt="search button" id="searchbtn" src="./Movie Search App_files/Search.png"></a></div></div></div>
+  <script src="./Movie Search App_files/bundle.js"></script><script src="./Movie Search App_files/vendors_main.chunk.js"></script><script src="./Movie Search App_files/main.chunk.js"></script>
+
+</body></html>

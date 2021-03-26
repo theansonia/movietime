@@ -6,14 +6,11 @@ import { Route } from "react-router-dom";
 
 const MovieContainer = ( {movieResults, tvResults, category } ) => {
 
-  const filteredResults = movieResults.filter((results) => {
-    if (results.media_type === 'tv' || results.media_type === 'movie') return results;
-  })
   return ( 
     <div className='moviecontainer'>
       
-      { tvResults.length === 0 && filteredResults.length === 0 ? null : ( 
-          filteredResults.map((movie) => {
+      { tvResults.length === 0 && movieResults.length === 0 ? null : ( 
+          movieResults.map((movie) => {
             return (
               <Movie
               key={movie.id}
@@ -29,7 +26,7 @@ const MovieContainer = ( {movieResults, tvResults, category } ) => {
           }
       ))}
       
-      { tvResults.length === 0 && filteredResults.length === 0 && category === 'TV' ? null : ( 
+      { tvResults.length === 0 && movieResults.length === 0 && category === 'TV' ? null : ( 
           tvResults.map((show) => {
             return (
               <Route path={`/details/:${show.id}`} >
