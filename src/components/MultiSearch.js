@@ -15,7 +15,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
   } else {
     apiKey= process.env.apiKey;
   }
-  
+
   if (category === null) category = 'a Movie or TV'
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
       .then((data) => updateMovieResults(data.results))
       .catch((error) => console.log(error)) 
 
-  },[title]);
+  },[title, apiKey]);
 
 
   return ( 

@@ -27,7 +27,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
       .catch((error) => console.log(error))
     }
 
-  },[title]);
+  },[title, apiKey]);
 
   useEffect(() => {
  
@@ -44,7 +44,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
       .then((data) => updateMovieResults(data.results))
       .catch((error) => console.log(error)) 
 
-  }, [title, category]);
+  }, [title, category, apiKey]);
 
 
 

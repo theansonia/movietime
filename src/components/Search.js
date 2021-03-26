@@ -16,7 +16,7 @@ const Search = ( {category, searchStatus} ) => {
   } else {
     apiKey= process.env.apiKey;
   }
-  
+
   if (category === null) category = 'a Movie or TV'
   
   useEffect(() => {
@@ -32,7 +32,7 @@ const Search = ( {category, searchStatus} ) => {
     .then((data) => updateMovieResults(data.results))
     .catch((error) => console.log(error))
 
-  }, [title, category]);
+  }, [title, category, apiKey]);
 
 
   useEffect(() => {

@@ -32,7 +32,7 @@ const TvSearch = ( {category, searchStatus} ) => {
     .then((data) => updateTvResults(data.results))
     .catch((error) => console.log(error))
 
-  }, [title, category]);
+  }, [title, category, apiKey]);
 
   useEffect(() => {
 
@@ -44,7 +44,7 @@ const TvSearch = ( {category, searchStatus} ) => {
       .then((data) => updateTvResults(data.results))
       .catch((error) => console.log(error))
 
-  },[title]);
+  },[title, apiKey]);
   
   return ( 
     <div>
