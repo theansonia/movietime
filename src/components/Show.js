@@ -25,7 +25,7 @@ return (
           </Link>
           {release ? <div id='release'>{release}</div>: null}
 
-         {overview ? <Truncate style={{overflow: `${expanded? 'scroll' : 'hidden'}`, color: `${expanded ? '#ADB5BD' : 'inherit'}`}} lines={expanded ? 20 : 6} ellipsis={<span >...<div id='more' onClick={(e) => {toggleExpand(!expanded)} } >click to scroll for more</div></span>}>{overview}</Truncate> : null}  
+         {overview ? <Truncate style={{overflow: `${expanded? 'scroll' : 'hidden'}`, color: `${expanded ? '#ADB5BD' : 'inherit'}`}} lines={expanded ? 30 : 4} ellipsis={<span >...<div id='more' onClick={(e) => {toggleExpand(!expanded)} } >click to scroll for more</div></span>}>{overview}</Truncate> : null}  
           {rating ? <div id='rating'>{rating ? <Stars rating={rating} reviews={reviews} /> : 'No Rating'}</div>: null}
         </div>
         
