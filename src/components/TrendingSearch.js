@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import apiKey from '../apiKey.js';
 import MovieContainer from '../containers/MovieContainer';
 
 const TrendingSearch = ( {category, searchStatus} ) => {
@@ -10,6 +9,14 @@ const TrendingSearch = ( {category, searchStatus} ) => {
 
   if (category === null) category = 'a Movie or TV'
 
+  let apiKey;
+
+  if (process.env.NODE_ENV === 'development') {
+    const settings = require('../apiKey.js');
+    apiKey= settings.apiKey;
+  } else {
+    apiKey= process.env.apiKey;
+  }
   useEffect(() => {
 
     if (title.length === 0) {

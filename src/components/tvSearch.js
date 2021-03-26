@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import apiKey from '../apiKey.js';
 import MovieContainer from '../containers/MovieContainer';
 // import { Route, Switch, Link } from "react-router-dom";
 
@@ -8,6 +7,15 @@ const TvSearch = ( {category, searchStatus} ) => {
   // eslint-disable-next-line no-unused-vars
   const [movieResults, updateMovieResults] = useState([])
   const [tvResults, updateTvResults] = useState([])
+
+  let apiKey;
+
+  if (process.env.NODE_ENV === 'development') {
+    const settings = require('../apiKey.js');
+    apiKey= settings.apiKey;
+  } else {
+    apiKey= process.env.apiKey;
+  }
 
   if (category === null) category = 'a Movie or TV'
 

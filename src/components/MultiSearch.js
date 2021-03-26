@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import apiKey from '../apiKey.js';
 import MovieContainer from '../containers/MovieContainer';
 
 const TrendingSearch = ( {category, searchStatus} ) => {
@@ -8,6 +7,15 @@ const TrendingSearch = ( {category, searchStatus} ) => {
   // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([])
 
+  let apiKey;
+
+  if (process.env.NODE_ENV === 'development') {
+    const settings = require('../apiKey.js');
+    apiKey= settings.apiKey;
+  } else {
+    apiKey= process.env.apiKey;
+  }
+  
   if (category === null) category = 'a Movie or TV'
 
   useEffect(() => {
