@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import Truncate from 'react-truncate';
+import React from 'react';
 import Stars from './Stars';
 import { Link  } from "react-router-dom";
 // import Details from './Details';
 
 const Show = ( props ) => {
-  const [expanded, toggleExpand] = useState(false);
   
   const { name, poster, overview, release, rating, reviews} = props;
 
@@ -24,13 +22,10 @@ return (
           {name ? <div id='title'  >{name}</div>: null}
           </Link>
           {release ? <div id='release'>{release}</div>: null}
-
-         {overview ? <Truncate style={{overflow: `${expanded? 'scroll' : 'hidden'}`, color: `${expanded ? '#ADB5BD' : 'inherit'}`}} lines={expanded ? 30 : 4} ellipsis={<span >...
-          <Link style={{ textDecoration: 'none' }} to={`/Details/${name}`} >
-
-           <div id='more' onClick={(e) => {toggleExpand(!expanded)} } >more</div>
-           </Link>
-           </span>}>{overview}</Truncate> : null}  
+          <Link style={{ textDecoration: 'none', fontSize: "1.4em",
+  marginBottom: '.5em', fontWeight: 'normal', color: '#212529' }} to={`/Details/${name}`} >
+          <div id='overview'>{overview}</div>
+          </Link>
           {rating ? <div id='rating'>{rating ? <Stars rating={rating} reviews={reviews} /> : 'No Rating'}</div>: null}
         </div>
         

@@ -47,7 +47,7 @@ const Search = ( {category, searchStatus} ) => {
   return ( 
     <div>
       <div id='searchbar'>
-        {searchStatus ? <form >
+        {searchStatus ? <form onSubmit={(e) => e.preventDefault()}>
         <input
           id='search'
           list="movie"

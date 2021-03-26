@@ -21,7 +21,6 @@ html, body {
   overscroll-behavior-y: none;
   display: block;
   font-size: 1rem;
-
 }
 
 #app{
@@ -67,6 +66,7 @@ html, body {
   border-radius: 1.2em;
   max-width: 100%;
   margin-left: 1em;  
+
 
 }
 
@@ -175,14 +175,14 @@ img{
   padding-right: .65em;
   margin: 0;
   justify-content: flex-start;
-  // max-height: 600px;
-  // padding-top: .5em;
+  
 }
 
 #title{
   font-size: 2em;
   font-weight: bold;
   margin-bottom: .15em;
+  line-height: 2rem;
 }
 
 #release{
@@ -195,8 +195,15 @@ img{
 #overview{
   overflow: scroll;
   margin-bottom: .15em;
-  text-align: center;
-
+  text-align: justify;
+  --max-lines: 5;
+  position: relative;
+  max-height: calc(var(--lh) * var(--max-lines));
+  overflow: hidden;
+  padding-right: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical; 
 }
 
 #rating{
@@ -295,7 +302,6 @@ img{
   color: darken(#ADB5BD, 5%);
   margin-bottom: .5em;
 }
-
 
 @media (min-width: 600px) {
   .footer{

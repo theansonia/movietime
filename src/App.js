@@ -11,7 +11,7 @@ function App() {
 
   const [searchStatus, updateSearchStatus] = useState(true);
   const [category, updateCategory] = useState(null);
-
+  
   return (
     
       <div id='app'>
@@ -23,7 +23,10 @@ function App() {
             <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} >TV</Link>
           </div>
         </div>
+        
 
+        
+        
         <Switch>
           <Route path='/movies' >
             <Search category={category} searchStatus={searchStatus} /> 
@@ -40,9 +43,15 @@ function App() {
           </Route>
         </Switch>        
 
-        <Route path={`/details/:name`} component={Details} />
+        <Switch >
+          <Route path={`/details/:name`} component={Details} />
+        </Switch>
+        
 
-        <Route path={`/moviedetails/:title`} component={MovieDetails} />
+        <Switch >
+          <Route path={`/moviedetails/:title`} component={MovieDetails} />
+        </Switch>
+        
         
         <Route exact path="/">
           <Redirect to='/home' />
