@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './App.scss';
 import Search from './components/Search';
 import { Route, Switch, Link, Redirect } from "react-router-dom";
-import MultiSearch from './components/MultiSearch';
 import TvSearch from './components/tvSearch';
 import TrendingSearch from './components/TrendingSearch';
 
@@ -23,7 +22,6 @@ function App() {
           </div>
         </div>
 
-           {/* {!category && !searchStatus ? <div id='trending'>Trending Movies and TV Shows</div> : null} */}
         <Switch>
           <Route path='/movies' >
             <Search category={category} searchStatus={searchStatus} /> 
@@ -40,11 +38,7 @@ function App() {
           </Route>
         </Switch>
 
-        {/* <Switch>
-          <Route path='/multi' >
-            <MultiSearch category={category} searchStatus={searchStatus} /> 
-          </Route>
-        </Switch> */}
+        
 
         <Route exact path="/">
           <Redirect to='/home' />

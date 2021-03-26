@@ -51,7 +51,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
         <input
           id='search'
           list="movie"
-          placeholder={`Enter ${category} Title`}
+          placeholder={`Search for Movies and TV Shows`}
           autoFocus
           onChange={e => updateTitle(e.target.value)}
           value={title}
@@ -61,7 +61,8 @@ const TrendingSearch = ( {category, searchStatus} ) => {
         }
         
       </div>
-        
+      {!title ? <div id='trending'>Featured Movies and TV Shows</div> : <div id='trending'>Results</div> }
+      
         <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} />    
 
     </div>

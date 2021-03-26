@@ -51,17 +51,21 @@ const Search = ( {category, searchStatus} ) => {
         <input
           id='search'
           list="movie"
-          placeholder={`Enter ${category} Title`}
+          placeholder={`Search for a Movie`}
           autoFocus
           onChange={e => updateTitle(e.target.value)}
           value={title}
         /> 
+
+
         </form> 
+        
         : null
         }
         
       </div>
-        
+      {!title ? <div id='trending'>Featured {category}s</div> : <div id='trending'>Results</div> }
+      
         <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} />    
     
     </div>
