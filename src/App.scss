@@ -21,7 +21,6 @@ html, body {
   overscroll-behavior-y: none;
   display: block;
   font-size: 1rem;
-  // overflow: scroll;
 
 }
 
@@ -36,7 +35,6 @@ html, body {
 .moviecontainer{
   display: flex;
   flex-direction: column;
-  // flex-flow: column nowrap;
   flex: 1 1 auto;
   min-height: 100vh;
   gap: 1em;
@@ -51,7 +49,6 @@ html, body {
 
 #navbar{
   background-color:#212529;
-  // position: fixed;
   height: 5em;
   width: 100%;
   display: flex; 
@@ -69,9 +66,7 @@ html, body {
   flex-direction: center;
   border-radius: 1.2em;
   max-width: 100%;
-  margin-left: 1em;
-  // margin-right: 1em;
-  
+  margin-left: 1em;  
 
 }
 
@@ -157,6 +152,7 @@ input{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 
 }
 
@@ -174,13 +170,13 @@ img{
 
 #details{
   display: flex;
-  font-size: 1.25em;
+  // font-size: 1.25em;
   flex-direction: column;
   padding-right: .65em;
   margin: 0;
-  justify-content: space-evenly;
-  max-height: 400px;
-  padding-top: .5em;
+  justify-content: flex-start;
+  // max-height: 600px;
+  // padding-top: .5em;
 }
 
 #title{
@@ -199,6 +195,7 @@ img{
 #overview{
   overflow: scroll;
   margin-bottom: .15em;
+  text-align: center;
 
 }
 
@@ -278,7 +275,7 @@ img{
 
 #detaildetails{
   font-size: 1.5em;
-  text-align: justify;
+  text-align: start;
   margin: .75em;
   text-decoration: none;
 }
