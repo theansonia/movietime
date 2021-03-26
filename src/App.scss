@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+$font-stack: 'Source Sans Pro', sans-serif;
+$background: #F8F9FA;
+$primary-font: #212529;
+
+#root {
+  height: 100%;
+  width: 200vh;
+  overflow: scroll;
+
+}
+
+html, body {
+  height: 100%;
+  font-family: $font-stack;
+  margin: 0;
+  width: 100%;
+  overflow: scroll;
+
+}
+
+#trending{
+  display: flex;
+  font-size: 2em;
+  align-items: center;
+  justify-content: center;
+  flex-direction: center;
+  border-radius: 1.2em;
+  box-shadow: 0 4px 6px -1px #212529, 0 2px 4px -1px #212529, 0px 0px 16px 0px #212529;
+  max-width: 100%;
+  margin-left: 1em;
+  margin-right: 1em;
+
+}
+#navbar{
+  background-color:#212529;
+  height: 5em;
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 1.5em;
+  
+}
+
+#option{
+  margin: 3em;
+  font-size: 2em;
+  color: #F8F9FA;
+  text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+}
+
+#categories{
+  height: 5em;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-left: 5em;
+}
+
+#searchbar{
+  max-width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 1.5em;
+  flex-direction: column;
+  padding-right: 2em;  
+}
+
+#search {
+  font-size: 2em;
+  color:$primary-font;
+  background-color: #495057;
+  border-radius: 2em;
+  height: 1em;
+  max-width: 100%;
+  padding: .5em;
+  margin-top: .25em;
+  margin-right: 1em;
+  box-shadow: inset 2px 2px 0px #262f6e;
+
+  &:focus{
+      background-color: #262f6e;
+  }
+
+  ::placeholder{
+      color: $primary-font;
+  }
+}
+
+.moviecontainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#poster{
+  align-items: center;
+  justify-content: center;
+}
+
+#movies{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  max-height: 500px;
+  align-items: flex-start;
+  justify-content: center;
+
+}
+
+img{
+  width: 12em;
+  margin-left: 1em;
+  margin-right: 2em;
+
+}
+
+#details{
+  position: top;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  justify-content: space-evenly;
+  width: 20em;
+  max-height: 475px;
+}
+
+#title{
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: .15em;
+}
+
+#release{
+  color: darken(#ADB5BD, 5%);
+  margin-bottom: .25em;
+
+
+}
+
+#overview{
+  font-size: .75em;
+  max-height: 50%;
+  overflow: scroll;
+  margin-bottom: .15em;
+
+  
+    &:hover{
+      overflow: visible;
+    }
+
+}
+
+#rating{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: .25em;
+}
+
+#star{
+  width: .5em;
+  margin: 0;
+}
+
+
+.footer{
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: none;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 40%;
+  width: 50%;
+  display: flex;
+  flex: 1;
+}
+
+#searchbtn{
+  width: 6em;
+
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+#homebtn{
+  width: 3em;
+  margin-right: 5em;
+  margin-left: 3em;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+#more{
+  color: #4cc9f0;
+  text-decoration: underline;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+
+@media (min-width: 600px) {
+  
+  html, body {
+    height: 100%;
+    font-family: $font-stack;
+    min-height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: scroll;
+  }
+  
+  #navbar{
+    background-color:#343A40;
+    height: 6em;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+  
+  }
+  
+  .footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: none;
+    position: fixed;
+    z-index: 0;
+    bottom: 0;
+    left: 40%;
+    width: 15%;
+    display: flex;
+  }
+
+
+
+  #search {
+    font-size: 2em;
+    color:$primary-font;
+    background-color: #ADB5BD;
+    border-radius: 2em;
+    height: 1em;
+    width: 100%;
+    padding: .5em;
+    box-shadow: inset 2px 2px 0px #262f6e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  
+    &:focus{
+        background-color: #ADB5BD;
+    }
+  
+    ::placeholder{
+        color: $primary-font;
+    }
+  }
+
+  #searchbar{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1.5em;
+    
+  }
+  
+  
+}
