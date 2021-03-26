@@ -20,7 +20,7 @@ return (
           {name ? <div id='title'  >{name}</div>: null}
           {release ? <div id='release'>{release}</div>: null}
   
-         {overview ? <Truncate style={{overflow: `${expanded? 'scroll' : 'hidden'}`, color: `${expanded ? '#ADB5BD' : 'inherit'}`}} lines={expanded ? 20 : 9} ellipsis={<span >...<div to={{
+         {overview ? <Truncate style={{overflow: `${expanded? 'scroll' : 'hidden'}`, color: `${expanded ? '#ADB5BD' : 'inherit'}`}} lines={expanded ? 20 : 6} ellipsis={<span >...<div to={{
             pathname: `/details/`,
             state: props
          }

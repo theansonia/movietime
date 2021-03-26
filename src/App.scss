@@ -12,7 +12,6 @@ $primary-font: #212529;
 // }
 
 html, body {
-  -webkit-text-size-adjust: 100%;
   height:100%;
   width:100%;
   margin:0;
@@ -38,7 +37,6 @@ html, body {
   display: flex;
   flex-direction: column;
   // flex-flow: column nowrap;
-  transition: all .2s;
   flex: 1 1 auto;
   min-height: 100vh;
   gap: 1em;
@@ -47,8 +45,6 @@ html, body {
   justify-content: center;
   margin-top: 1em;
   overflow: hidden;
-  // padding-left: 1rem;
-  // padding-right: 1rem;
   width: 100%;
 
 }
@@ -157,11 +153,9 @@ input{
 }
 
 #movies{
-  position: relative;
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: center;
 
 }
@@ -169,7 +163,7 @@ input{
 img{
   width: 16em;
   margin-left: 1em;
-  margin-right: 2em;
+  margin-right: 1em;
 
 }
 
@@ -180,7 +174,7 @@ img{
 
 #details{
   display: flex;
-  font-size: 1.05em;
+  font-size: 1.25em;
   flex-direction: column;
   padding-right: .65em;
   margin: 0;
