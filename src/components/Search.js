@@ -46,7 +46,7 @@ const Search = ( {category, searchStatus} ) => {
       .catch((error) => console.log(error))
     
 
-  },[title]);
+  },[title, apiKey]);
   
   return ( 
     <div>
