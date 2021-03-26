@@ -12,33 +12,16 @@ const TrendingSearch = ( {category, searchStatus} ) => {
 
   useEffect(() => {
 
-    if (title.length === 0) {
-      const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`;
-      fetch(URL)
-      .then((res) => res.json())
-      .then((data) => updateMovieResults(data.results))
-      .catch((error) => console.log(error))
-    }
-
-  },[title]);
-
-  useEffect(() => {
- 
-    if (title.length === 0) {
-      updateMovieResults([])
-      return;
-    };
-
-
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${title}&page=1&include_adult=false`;
+    if (title.length === 0) return;
+    
+      const URL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&page=1&include_adult=false`;
       
       fetch(URL)
       .then((res) => res.json())
       .then((data) => updateMovieResults(data.results))
       .catch((error) => console.log(error)) 
 
-  }, [title, category]);
-
+  },[title]);
 
 
   return ( 

@@ -15,7 +15,7 @@ const MovieContainer = ( {movieResults, tvResults, category } ) => {
               <Movie
               key={movie.id}
               id={movie.id}
-              title={movie.title || movie.name}
+              title={movie.title}
               poster={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               overview={movie.overview}
               release={movie.release_date === undefined ? null : movie.release_date.split('-')[0]}
