@@ -10,7 +10,7 @@ const Search = ( {category, searchStatus} ) => {
   // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([])
 
-  const api_key = process.env.apiKey;
+  // const api_key = process.env.apiKey;
 
   if (category === null) category = 'a Movie or TV'
   
@@ -21,7 +21,7 @@ const Search = ( {category, searchStatus} ) => {
       return;
     };
 
-    const URL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/movie?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
     fetch(URL)
     .then((res) => res.json())
     .then((data) => updateMovieResults(data.results))
@@ -34,7 +34,7 @@ const Search = ( {category, searchStatus} ) => {
 
     if (title.length === 0) updateMovieResults([]);
     
-      const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=en-US&page=1`;
+      const URL = `https://api.themoviedb.org/3/movie/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
       fetch(URL)
       .then((res) => res.json())
       .then((data) => updateMovieResults(data.results))

@@ -11,12 +11,12 @@ const TrendingSearch = ( {category, searchStatus} ) => {
 
   if (category === null) category = 'a Movie or TV'
 
-  const api_key = process.env.apiKey;
+  // const api_key = process.env.apiKey;
 
   useEffect(() => {
 
     if (title.length === 0) {
-      const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=${api_key }`;
+      const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
       fetch(URL)
       .then((res) => res.json())
       .then((data) => updateMovieResults(data.results))
@@ -33,7 +33,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
     };
 
 
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
       
       fetch(URL)
       .then((res) => res.json())
