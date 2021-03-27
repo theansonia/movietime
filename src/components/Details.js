@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react';
 import Stars from './Stars';
 import TVRecs from './TVRecs';
