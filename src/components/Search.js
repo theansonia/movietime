@@ -48,9 +48,10 @@ const Search = ( {category, searchStatus} ) => {
   },[title]);
   
   return ( 
+    
     <div>
       <div id='searchbar'>
-        {searchStatus ? <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()}>
         <input
           id='search'
           list="movie"
@@ -58,14 +59,12 @@ const Search = ( {category, searchStatus} ) => {
           autoFocus
           onChange={e => updateTitle(e.target.value)}
           value={title}
+          data-testid="search"
         /> 
 
 
         </form> 
-        
-        : null
-        }
-        
+  
       </div>
       {!title ? <div id='trending'>Featured {category}s</div> : <div id='trending'>Results</div> }
       

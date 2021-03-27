@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`change value on input change 1`] = `
+<div>
+  <div
+    id="searchbar"
+  >
+    <form>
+      <input
+        data-testid="search"
+        id="search"
+        list="movie"
+        placeholder="Search for a Movie"
+        value=""
+      />
+    </form>
+  </div>
+  <div
+    id="trending"
+  >
+    Featured 
+    s
+  </div>
+  <div
+    class="moviecontainer"
+  />
+</div>
+`;
+
+exports[`change value on input change trending search 1`] = `
+<div>
+  <div
+    id="searchbar"
+  >
+    <form>
+      <input
+        id="search"
+        list="movie"
+        placeholder="Search for Movies and TV Shows"
+        value=""
+      />
+    </form>
+  </div>
+  <div
+    id="trending"
+  >
+    Featured Movies and TV Shows
+  </div>
+  <div
+    class="moviecontainer"
+  />
+</div>
+`;
+
+exports[`change value on input change tv search 1`] = `
+<div>
+  <div
+    id="searchbar"
+  >
+    <form>
+      <input
+        id="search"
+        list="movie"
+        placeholder="Search for a TV Show"
+        value=""
+      />
+    </form>
+  </div>
+  <div
+    id="trending"
+  >
+    Featured TV Shows
+  </div>
+  <div
+    class="moviecontainer"
+  />
+</div>
+`;

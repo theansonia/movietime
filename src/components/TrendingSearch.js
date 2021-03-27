@@ -47,7 +47,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
   return ( 
     <div>
       <div id='searchbar'>
-        {searchStatus ? <form onSubmit={(e) => {
+        <form onSubmit={(e) => {
           e.preventDefault();
           }}>
         <input
@@ -59,8 +59,7 @@ const TrendingSearch = ( {category, searchStatus} ) => {
           value={title}
         /> 
         </form> 
-        : null
-        }
+        
         
       </div>
       {!title ? <div id='trending'>Featured Movies and TV Shows</div> : <div id='trending'>Results</div> }

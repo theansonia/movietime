@@ -2,10 +2,8 @@
 import React, { useState } from 'react';
 
 const Stars = ( {rating, reviews} ) => {
-  
   const [stars, updateStars] = useState(Array(rating).fill(''));
   const [blankStars, updateBlankStars] = useState(Array(5 - rating).fill(''));
-
 
     return (
       <div className="container">

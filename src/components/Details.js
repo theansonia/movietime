@@ -6,6 +6,8 @@ import TVRecs from './TVRecs';
 
 const Details = ({match}) => {
 
+  // comment out for testing
+
   const { params: {name}} = match;
 
   const [details, updateDetails] = useState([])

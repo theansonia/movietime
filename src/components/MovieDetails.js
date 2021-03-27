@@ -6,6 +6,7 @@ import Stars from './Stars';
 
 const MovieDetails = ({match}) => {
 
+  // comment out for testing
   const { params: {title}} = match;
 
   
