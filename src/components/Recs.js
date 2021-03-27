@@ -6,7 +6,7 @@ const Recs = ( {title, pic} ) => {
   return ( 
     <div id='recs'  >
       <Link style={{ textDecoration: 'none', fontSize: "1em",
-           marginBottom: '.5em', fontWeight: 'bold', marginTop: '.5em', color: 'inherit' }} to={`/moviedetails/${title}`} >
+           marginBottom: '.5em', fontWeight: 'bold', marginTop: '.5em', color: 'inherit', zIndex: '100000000000'}} to={`/moviedetails/${title}`} >
           {title ? <div id='rectitle'  >{title}</div>: null}
       </Link>
       <Link style={{ textDecoration: 'none' }} to={`/moviedetails/${title}`} >

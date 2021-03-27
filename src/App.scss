@@ -308,13 +308,20 @@ input{
   
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin: 0 auto;
+
+  
 }
 
-#rectitle{
-  text-align: center;
-  margin-top: .5em;
-  margin-bottom: .5em;
-  font-size: 1.5rem;
+#tvrecs{
+  
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 0 auto;
+
+  
 }
 
 #recposter{
@@ -323,33 +330,107 @@ input{
   margin: auto;
   border-radius: 3px;
   
-  &:hover{
-    box-shadow: 3px 3px 5px 6px #ccc;
-  }
+
 }
 
 #tvrecposter{
   width: 14rem;
-  margin: auto;
-  margin-left: 5.5%;
+  margin: 0 auto;
+  margin-left: 15.5%;
+  border-radius: 3px;
 
-  &:hover{
-    box-shadow: 3px 3px 5px 6px #ccc;
-  }
+}
+
+#rectitle{
+  color: white;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-size: 1.5rem;
+  z-index: 1000000;
+}
+
+#tvrectitle{
+  color: white;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-size: 1.5rem;
+  z-index: 1000000;
 }
 
 @media (min-width: 600px) {
 
-  #tvrecposter{
-    width: 28em;
-    margin-left: 19.5%;
-    // margin: auto;
+
+  #recs{
+    display: inline-grid;
+    justify-content: center;
+  }
+
+  #tvrecs{
+  
+    display: inline-grid;
+    justify-content: center;
+  
+    
   }
   
   #recposter{
-    width: 28em;
-    // margin-left: 19.5%;
-    margin: auto;
+    width: 8em;
+    padding: .25rem;
+    justify-items: center;
+    &:hover{
+      box-shadow: 3px 3px 5px 6px #ccc;
+    }
+  }
+
+  #tvrecposter{
+    width: 8em;
+    padding: .25rem;
+    justify-items: center;
+    margin-left: 10.5%;
+    // margin: 0 auto;
+    &:hover{
+      box-shadow: 3px 3px 5px 6px #ccc;
+    }
+  }
+
+  #rectitle{
+    margin: 0;
+    margin-top: .5em;
+    font-size: .75rem;
+    text-align: center;
+    z-index: 1000000000;
+
+    &:hover{
+      z-index: 1000;
+    }
+  }
+
+  #tvrectitle{
+    margin: 0;
+    font-size: .75rem;
+    text-align: center;
+    margin-left: .8rem;
+    z-index: 1000000000;
+
+    &:hover{
+      z-index: 1000;
+    }
   }
 
   .moviecontainer{
