@@ -1,12 +1,12 @@
 import React from 'react';
 import Stars from './Stars';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Movie = ( {title, poster, overview, release, rating, reviews} ) => {
 
   return ( 
     <div id='movies'>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
           <Link style={{ textDecoration: 'none' }} to={`/moviedetails/${title}`} >
             <div id='poster' >
               {poster !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='poster' src={poster} alt={`Movie poster for ${title}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg' alt='back up movie poster cinema pardiso' /> }
@@ -25,7 +25,7 @@ const Movie = ( {title, poster, overview, release, rating, reviews} ) => {
         
         {rating ? <div id='rating'>{rating ? <Stars rating={rating} reviews={reviews} /> : 'No Rating'}</div>: null}
         </div>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
   </div>
    );
 }
