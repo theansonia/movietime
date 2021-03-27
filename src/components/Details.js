@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Stars from './Stars';
+import TVRecs from './TVRecs';
 
 
 const Details = ({match}) => {
@@ -7,6 +8,7 @@ const Details = ({match}) => {
   const { params: {name}} = match;
 
   const [details, updateDetails] = useState([])
+  const [recommendations, updateRecommendations] = useState([])
 
   useEffect(() => {
 
@@ -18,6 +20,18 @@ const Details = ({match}) => {
       .catch((error) => console.log(error)) 
 
   }, [name]);
+
+  useEffect(() => {
+
+    if (details.length === 0) return;
+
+    const URL = `https://api.themoviedb.org/3/tv/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
+      
+      fetch(URL)
+      .then((res) => res.json())
+      .then((data) => updateRecommendations(data.results))
+      .catch((error) => console.log(error)) 
+  }, [details]);
 
   return ( 
       <div >
@@ -35,6 +49,25 @@ const Details = ({match}) => {
           </div>
       </div>)
       }
+
+          <div id='likethis'> More Like This</div>
+            {recommendations ? 
+            <div>
+              {
+                recommendations.map((rec, i) => {
+                  if (i < 5)
+                  return (
+                    <TVRecs
+                      key={rec.id}
+                      id={rec.id}
+                      name={rec.name || rec.name}
+                      pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
+              />
+                  )
+                })
+              }
+
+          </div> : null }
         
       </div>
    );

@@ -303,6 +303,41 @@ img{
   margin-bottom: .5em;
 }
 
+#likethis{
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: left;
+  align-self: flex-start;
+  margin-left: 1em;
+
+}
+
+#recs{
+  
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+#rectitle{
+  text-align: center;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-size: 2em;
+}
+
+#recposter{
+  width: 28em;
+  position: relative;
+  margin-right: 1.9em;
+
+}
+
+#tvrecposter{
+  width: 28em;
+  margin-left: 7.5%;
+}
 @media (min-width: 600px) {
   .footer{
     margin-top: 1rem;

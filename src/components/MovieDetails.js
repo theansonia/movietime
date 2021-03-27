@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Recs from './Recs';
 import Stars from './Stars';
 
 
@@ -8,6 +9,8 @@ const MovieDetails = ({match}) => {
 
   
   const [details, updateDetails] = useState([])
+  const [recommendations, updateRecommendations] = useState([])
+
 
   useEffect(() => {
 
@@ -18,6 +21,19 @@ const MovieDetails = ({match}) => {
       .then((data) => updateDetails(data.results[0]))
       .catch((error) => console.log(error)) 
   }, [title]);
+  
+  useEffect(() => {
+
+    if (details.length === 0) return;
+
+    const URL = `https://api.themoviedb.org/3/movie/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
+      
+      fetch(URL)
+      .then((res) => res.json())
+      .then((data) => updateRecommendations(data.results))
+      .catch((error) => console.log(error)) 
+  }, [details]);
+  
   
   return ( 
       <div >
@@ -33,9 +49,27 @@ const MovieDetails = ({match}) => {
             {details.overview ? <div id='detailoverview'>{details.overview}</div> : null}  
             {Math.round(details.vote_average/2) ? <div id='detailrating'>{Math.round(details.vote_average/2) ? <Stars rating={Math.round(details.vote_average/2)} reviews={details.vote_count} /> : 'No Rating'}</div>: null}
           </div>
+          
+          <div id='likethis'> More Like This</div>
+          {recommendations ? 
+          <div>
+            {
+              recommendations.map((rec, i) => {
+                if (i < 5)
+                return (
+                  <Recs
+                    key={rec.id}
+                    id={rec.id}
+                    title={rec.title || rec.name}
+                    pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
+            />
+                )
+              })
+            }
+            
+             </div> : null }
       </div>)
       }
-        
       </div>
    );
 
