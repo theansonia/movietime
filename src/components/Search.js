@@ -21,6 +21,9 @@ const Search = ( {category, searchStatus} ) => {
       return;
     };
 
+    // eslint-disable-next-line no-useless-escape
+    // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    
     const URL = `https://api.themoviedb.org/3/search/movie?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
     fetch(URL)
     .then((res) => res.json())
