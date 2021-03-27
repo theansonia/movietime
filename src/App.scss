@@ -321,21 +321,28 @@ input{
   width: 14rem;
   position: relative;
   margin: auto;
+  border-radius: 3px;
   
+  &:hover{
+    box-shadow: 3px 3px 5px 6px #ccc;
+  }
 }
 
 #tvrecposter{
   width: 14rem;
   margin: auto;
 
+  &:hover{
+    box-shadow: 3px 3px 5px 6px #ccc;
+  }
 }
 
 @media (min-width: 600px) {
 
   #tvrecposter{
     width: 28em;
-    // margin-left: 19.5%;
-    margin: auto;
+    margin-left: 19.5%;
+    // margin: auto;
   }
   
   #recposter{
@@ -343,6 +350,7 @@ input{
     // margin-left: 19.5%;
     margin: auto;
   }
+
   .moviecontainer{
     width: 75%;
     margin: auto;
@@ -360,6 +368,7 @@ input{
   #poster{
     width: 12em;
     margin-right: 1rem;
+
   }
 
   #title{
@@ -377,6 +386,7 @@ input{
     display: -webkit-box;
     -webkit-line-clamp: 8;
     -webkit-box-orient: vertical; 
+
   }
 
   #detailposter{
