@@ -15,6 +15,7 @@ const TVRecs = ( {name, pic} ) => {
         </div>
     </Link>
 
+
   </div>
    );
 }
