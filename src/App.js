@@ -18,10 +18,10 @@ function App() {
         <div id='navbar'>
         <Link to='/home' ><div id='homebtn' onClick={() => {updateSearchStatus(true); updateCategory(null)}}><img id='homebtn' src='../home.png' alt='home button' /></div></Link>
           
-          <div id='categories'>
-            <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} >Film</Link>
-            <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} >TV</Link>
-          </div>
+          {/* <div id='categories'> */}
+            <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Film</div></Link>
+            <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV</div></Link>
+          {/* </div> */}
         </div>
         
 
