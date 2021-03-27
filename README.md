@@ -68,17 +68,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-Step 1 Go to /node_modules/history/esm/history.js:87
-
-Step 2 Comment this snippet
-
-try {
-location.pathname = decodeURI(location.pathname);
-} catch (e) {
-if (e instanceof URIError) {
-  throw new URIError('Pathname "' + location.pathname + '" could not be 
-  decoded. ' + 'This is likely caused by an invalid percent-encoding.');
-} else {
-  throw e;
-}}
