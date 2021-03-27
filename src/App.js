@@ -73,7 +73,7 @@ function App() {
 
         <Switch >
           <Route path="*">
-            <Redirect to='home'/>
+            <Redirect to='/home'/>
 
             {/* Uncomment below for testing  */}
             {/* <NoMatch /> */}

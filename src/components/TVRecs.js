@@ -6,8 +6,8 @@ const TVRecs = ( {name, pic} ) => {
   return ( 
     <div id='tvrecs'  >
     
-        <Link style={{ textDecoration: 'none',
-            fontWeight: 'bold' , zIndex: '100000000000'}} to={`/details/${name}`} >
+        <Link style={{ textDecoration: 'none', fontSize: "1em",
+            marginBottom: '.5em', fontWeight: 'bold', marginTop: '.5em', color: 'inherit', zIndex: '100000000000'}} to={`/details/${name}`} >
             {name ? <div id='tvrectitle'  >{name}</div>: null}
         </Link>
         <Link style={{ textDecoration: 'none' }} to={`/details/${name}`} >
