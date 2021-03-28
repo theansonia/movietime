@@ -37,43 +37,44 @@ const Details = ({match}) => {
   }, [details]);
 
   return ( 
-      <div >
-        {!details ? null :
-        (<div id='detail' >
+    <div >
 
-          <div id='detailposter' >
-            {`https://image.tmdb.org/t/p/w500/${details.poster_path}` !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='detailposter' src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`} alt={`Movie poster for ${name}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg' alt='back up movie poster cinema pardiso' /> }
-          </div>
-          <div id='detaildetails'>
-            {details.name ? <div id='detailtitle'  >{details.name}</div>: null}
-            {details.first_air_date ? <div id='detailrelease'>{`${details.first_air_date.split('-')[0]}`}</div>: null}
-            {details.overview ? <div id='detailoverview'>{details.overview}</div> : null}  
-            {Math.round(details.vote_average/2) ? <div id='detailrating'>{Math.round(details.vote_average/2) ? <Stars rating={Math.round(details.vote_average/2)} reviews={details.vote_count} /> : 'No Rating'}</div>: null}
-          </div>
-      </div>)
-      }
+      {!details ? null :
+      (<div id='detail' >
 
-          <div id='likethis'> More Like This</div>
-            {recommendations ? 
-            <div>
-              {
-                recommendations.map((rec, i) => {
-                  if (i < 5)
-                  return (
-                    <TVRecs
-                      key={rec.id}
-                      id={rec.id}
-                      name={rec.name || rec.name}
-                      pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
-              />
-                  )
-                })
-              }
-
-          </div> : null }
+        <div id='detailposter' >
+          {`https://image.tmdb.org/t/p/w500/${details.poster_path}` !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='detailposter' src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`} alt={`Movie poster for ${name}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg' alt='back up movie poster cinema pardiso' /> }
+        </div>
+        <div id='detaildetails'>
+          {details.name ? <div id='detailtitle'  >{details.name}</div>: null}
+          {details.first_air_date  ? <div id='detailrelease'>{`${details.first_air_date.split('-')[0]}`}</div>: null}
+          {details.overview ? <div id='detailoverview'>{details.overview}</div> : null}  
+          {Math.round(details.vote_average/2) ? <div id='detailrating'>{Math.round(details.vote_average/2) ? <Stars rating={Math.round(details.vote_average/2)} reviews={details.vote_count} /> : 'No Rating'}</div>: null}
+        </div>
         
-      </div>
-   );
+        <div id='likethis'> More Like This</div>
+        {recommendations ? 
+        <div>
+          {
+            recommendations.map((rec, i) => {
+              if (i < 5)
+              return (
+                <TVRecs
+                  key={rec.id}
+                  id={rec.id}
+                  name={rec.title || rec.name}
+                  pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
+          />
+              )
+            })
+          }
+          
+           </div> : null }
+    </div>)
+    }
+    
+    </div>
+ );
 
 }
  
