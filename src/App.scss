@@ -509,7 +509,7 @@ input{
     top: 90%;
   }
 }
-@media (min-width: 768px) {
+@media screen and (min-width: 600px)  and (orientation: landscape) {
 
   #searchbtn{
     top: 80%;
@@ -559,8 +559,8 @@ input{
   }
 
   #tvrectitle{
-    font-size: 3rem;
-    width: 90%;
+    font-size: 1.6rem;
+    width: 70%;
   }
 
   .moviecontainer{
