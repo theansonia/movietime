@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.scss';
 import Search from './components/Search';
-import { Route, Switch, Link, Redirect, Router} from "react-router-dom";
+import { Route, Switch, Link, Redirect} from "react-router-dom";
 import TvSearch from './components/tvSearch';
 import TrendingSearch from './components/TrendingSearch';
 import Details from './components/Details';
