@@ -536,7 +536,7 @@ input{
 
   #tvrecs{
   
-    display: grid;
+    display: flex;
     // justify-content: center;
   
     
@@ -595,8 +595,6 @@ input{
   
   }
 
-
-  
 }
 
 @media only screen 

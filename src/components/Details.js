@@ -55,7 +55,7 @@ const Details = ({match}) => {
 
           <div id='likethis'> More Like This</div>
             {recommendations ? 
-            <>
+            <div>
               {
                 recommendations.map((rec, i) => {
                   if (i < 5)
@@ -70,7 +70,7 @@ const Details = ({match}) => {
                 })
               }
 
-          </> : null }
+          </div> : null }
         
       </div>
    );
