@@ -31,7 +31,6 @@ function App() {
   const [searchStatus, updateSearchStatus] = useState(false);
   const [category, updateCategory] = useState(null);
 
-  console.log(searchStatus)
   return (
 
       <div id='app'>

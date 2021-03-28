@@ -35,6 +35,7 @@ const MovieDetails = ({match}) => {
       .then((res) => res.json())
       .then((data) => updateRecommendations(data.results))
       .catch((error) => console.log(error)) 
+      console.log(details)
   }, [details]);
   
   

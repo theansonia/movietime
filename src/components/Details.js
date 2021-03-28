@@ -27,7 +27,7 @@ const Details = ({match}) => {
   useEffect(() => {
 
     if (details.length === 0) return;
-
+    
     const URL = `https://api.themoviedb.org/3/tv/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
       
       fetch(URL)
