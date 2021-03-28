@@ -10,6 +10,7 @@ $primary-font: #212529;
 //   overflow: scroll;
 
 // }
+@media (min-width: 600px) {
 
 html, body {
   height:100%;
@@ -97,20 +98,6 @@ html, body {
       font-size: 1.15rem;
     }
 }
-
-// path{
-//   &:hover{
-//     fill: #ADB5BD;
-//   }
-// }
-
-// svg:hover {
-//   width: 50px;
-//   height: 50px;
-//   fill: #ADB5BD;
-// }
-  
-
 
 #searchbar{
   flex: 1 0 auto;
@@ -252,7 +239,7 @@ input{
   background-position: 50%;
   position: fixed;
   transition: top .2s;
-  top: 80%;
+  top: 85%;
   left: 40%;
   pointer-events: all;
   z-index: 18;
@@ -413,7 +400,8 @@ input{
   width: .3rem;
 }
 
-@media (min-width: 1000px) {
+}
+@media (min-width: 992px) {
 
   #star{
     width: .75rem;
@@ -518,10 +506,17 @@ input{
     width: 18rem;
 
   }
-  
+  #searchbtn{
+    top: 90%;
+  }
 }
-@media (min-width: 600px) {
+@media (min-width: 768px) {
 
+  #searchbtn{
+    top: 80%;
+    left: 47%;
+  }
+      
   #star{
     width: .75rem;
   }
