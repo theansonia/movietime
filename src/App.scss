@@ -46,6 +46,11 @@ html, body {
 
 }
 
+#searchpath{
+  &:hover{
+    fill: darken(#6C757D, 15%);
+  }
+}
 #navbar{
   background-color:#212529;
   height: 6rem;
@@ -162,7 +167,7 @@ input{
 }
 
 #movies{
-  width: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -242,13 +247,13 @@ input{
 }
 
 #searchbtn{
-  width: 2em;
+  width: 3.5em;
   background-repeat: no-repeat;
   background-position: 50%;
   position: fixed;
   transition: top .2s;
-  top: 78%;
-  left: 50%;
+  top: 80%;
+  left: 40%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
@@ -260,7 +265,7 @@ input{
   }
 
   @media (min-width: 600px) {
-
+    left: 50%;
 
   }
 
@@ -275,6 +280,12 @@ input{
   }
 }
 
+#homepath{
+  &:hover{
+    fill: darken(#ADB5BD, 18%);
+  }
+  
+}
 #more{
   color: #4cc9f0;
   text-decoration: underline;
@@ -402,7 +413,7 @@ input{
   width: .3rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1000px) {
 
   #star{
     width: .75rem;
@@ -465,10 +476,10 @@ input{
   }
 
   .moviecontainer{
-    width: 75%;
-    margin: auto;
+    width: 100%;
+    margin: 0;
     margin-top: 1rem;
-
+    
   }
 
   #movies{
@@ -481,6 +492,7 @@ input{
   #poster{
     width: 12em;
     margin-right: 1rem;
+    margin-left: .5rem;
 
   }
 
@@ -506,23 +518,81 @@ input{
     width: 18rem;
 
   }
-  // #searchbtn{
-  //   width: 3em;
-  //   background-repeat: no-repeat;
-  //   background-position: 50%;
-  //   position: relative;
-  //   transition: top .2s;
-  //   pointer-events: all;
-  //   z-index: 18;
-  //   overflow: visible;
-  //   -webkit-appearance: button;
-  //   display: inline-block;
-  //   text-align: center;
-  //   align-items: flex-start;
-  
-  //   &:hover{
-  //     cursor: pointer;
-  //   }
-  // }
   
 }
+@media (min-width: 600px) {
+
+  #star{
+    width: .75rem;
+  }
+  #recs{
+    display: flex;
+    // flex-direction: row;
+    // justify-content: center;
+  }
+
+  #tvrecs{
+  
+    display: grid;
+    // justify-content: center;
+  
+    
+  }
+  
+  #poster{
+    width: 12rem;
+  }
+
+  #recposter{
+    width: 28em;
+    padding: .25rem;
+    &:hover{
+      box-shadow: 3px 3px 5px 6px #ccc;
+    }
+  }
+
+  #tvrecposter{
+    width: 28rem;
+    padding: .25rem;
+    justify-items: center;
+    margin: 0 auto;
+    margin-left: .5rem;
+  }
+
+  #rectitle{
+    font-size: 3rem;
+    width: 90%;
+  }
+
+  #tvrectitle{
+    font-size: 3rem;
+    width: 90%;
+  }
+
+  .moviecontainer{
+    width: 100%;
+    margin: 0;
+    margin-top: 1rem;
+
+  }
+
+  #overview{
+    font-size: 1.5rem;
+    padding-right: .5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical; 
+  }
+
+  #movies{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  
+  }
+
+
+  
+}
+
