@@ -55,10 +55,12 @@ html, body {
   align-items: center;
   margin-bottom: 1.5rem;
   z-index: 14;
-  padding-right: .5rem;
-  padding-left: .5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 
-  
+  @media (min-width: 600px) {
+    height: 4rem;
+  }
 }
 
 #trending{
@@ -77,16 +79,32 @@ html, body {
 
 
 #option{
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #F8F9FA;
   text-decoration: none;
   // margin-right: .5em;
     &:hover{
       text-decoration: underline;
       cursor: pointer;
-      font-weight: 600;
+      color: #ADB5BD;
+    }
+    @media (min-width: 600px) {
+      font-size: 1.15rem;
     }
 }
+
+// path{
+//   &:hover{
+//     fill: #ADB5BD;
+//   }
+// }
+
+// svg:hover {
+//   width: 50px;
+//   height: 50px;
+//   fill: #ADB5BD;
+// }
+  
 
 
 #searchbar{
@@ -224,18 +242,19 @@ input{
 }
 
 #searchbtn{
-  width: 8em;
+  margin-top: .3rem;
+  width: 2em;
   background-repeat: no-repeat;
   background-position: 50%;
-  position: relative;
+  position: fixed;
   transition: top .2s;
+  top: 85%;
+  left: 50%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
-  -webkit-appearance: button;
-  display: inline-block;
-  text-align: center;
-  align-items: flex-start;
+  // -webkit-appearance: button;
+ 
 
   &:hover{
     cursor: pointer;

@@ -39,6 +39,7 @@ const MovieDetails = ({match}) => {
   
   return ( 
       <div >
+
         {!details ? null :
         (<div id='detail' >
 
@@ -72,6 +73,7 @@ const MovieDetails = ({match}) => {
              </div> : null }
       </div>)
       }
+      
       </div>
    );
 

@@ -7,6 +7,7 @@ import TrendingSearch from './components/TrendingSearch';
 import Details from './components/Details';
 import MovieDetails from './components/MovieDetails';
 
+
 // export const LocationDisplay = () => {
 //   const location = useLocation()
 
@@ -27,23 +28,60 @@ import MovieDetails from './components/MovieDetails';
 
 function App() {
 
-  const [searchStatus, updateSearchStatus] = useState(true);
+  const [searchStatus, updateSearchStatus] = useState(false);
   const [category, updateCategory] = useState(null);
 
-  
+  console.log(searchStatus)
   return (
 
       <div id='app'>
         <div id='navbar'>
-        <Link to='/home' ><div id='homebtn' onClick={() => {updateSearchStatus(true); updateCategory(null)}}><img id='homebtn' src='../home.png' alt='home button' /></div></Link>
+        <Link to='/home' ><div id='homebtn' onClick={() => {updateSearchStatus(true); updateCategory(null)}}><svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g  clipPath="url(#clip0)">
+                            <rect width="24" height="24" fill="#212529"/>
+                            <path fillRule="evenodd" clipRule="evenodd" d="M22 11.414V24H2V11.414L0.707 12.707L0 12L12 0L24 12L23.293 12.707L22 11.414ZM16 23H21V10.414L12 1.414L3 10.414V23H8V14H16V23ZM15 15.111H9V22.889H15V15.111Z" fill="#F8F9FA"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
 
-            <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Film</div></Link>
-            <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV</div></Link>
+</div></Link>
+
+            <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Movies</div></Link>
+            <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV Shows</div></Link>
+           
+
             
-
         </div>
-
         
+        <Link to={'/home'}> <div id="searchbtn" onClick={() => {updateCategory(null); updateSearchStatus(true)}} ><svg id="searchbtn" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d)">
+                    <path d="M52 24C52 37.2548 41.2548 48 28 48C14.7452 48 4 37.2548 4 24C4 10.7452 14.7452 0 28 0C41.2548 0 52 10.7452 52 24Z" fill="#343A40"/>
+                    <path d="M52 24C52 37.2548 41.2548 48 28 48C14.7452 48 4 37.2548 4 24C4 10.7452 14.7452 0 28 0C41.2548 0 52 10.7452 52 24Z" fill="url(#paint0_linear)"/>
+                    </g>
+                    <path d="M32.6064 20.7273C32.6064 24.7002 29.599 27.8636 25.9574 27.8636C22.3159 27.8636 19.3085 24.7002 19.3085 20.7273C19.3085 16.7544 22.3159 13.5909 25.9574 13.5909C29.599 13.5909 32.6064 16.7544 32.6064 20.7273Z" stroke="#F8F9FA"/>
+                    <line y1="-0.5" x2="10.6353" y2="-0.5" transform="matrix(0.608077 0.793878 -0.752962 0.658064 30.5532 26.1818)" stroke="#F8F9FA"/>
+                    <defs>
+                    <filter id="filter0_d" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                    <feOffset dy="4"/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                    </filter>
+                    <linearGradient id="paint0_linear" x1="28" y1="0" x2="28" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#6C757D"/>
+                    <stop offset="1" stopColor="white" stopOpacity="0"/>
+                    </linearGradient>
+                    </defs>
+                    </svg>
+
+            </div></Link> 
         
         <Switch>
           <Route path='/movies' >
@@ -83,7 +121,7 @@ function App() {
         <Route exact path="/">
           <Redirect to='/home' />
         </Route>    
-
+ 
         {/* <LocationDisplay /> */}
 
       </div>

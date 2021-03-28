@@ -3,7 +3,7 @@ import Movie from '../components/Movie'
 import '../App.scss';
 import Show from '../components/Show';
 
-const MovieContainer = ( {movieResults, tvResults, category } ) => {
+const MovieContainer = ( {movieResults, tvResults, category, searchStatus } ) => {
 
   return ( 
     <div className='moviecontainer'>
@@ -20,6 +20,7 @@ const MovieContainer = ( {movieResults, tvResults, category } ) => {
               release={movie.release_date === undefined ? null : movie.release_date.split('-')[0]}
               rating={Math.round(movie.vote_average/2)}
               reviews={movie.vote_count}
+              searchStatus={searchStatus}
             />
             )
           }
@@ -37,6 +38,7 @@ const MovieContainer = ( {movieResults, tvResults, category } ) => {
               release={show.first_air_date === undefined ? null : show.first_air_date.split('-')[0]}
               rating={Math.round(show.vote_average/2)}
               reviews={show.vote_count}
+              searchStatus={searchStatus}
             />    
             
             )

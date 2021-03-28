@@ -50,7 +50,7 @@ const Search = ( {category, searchStatus} ) => {
   return ( 
     
     <div>
-      <div id='searchbar'>
+      {searchStatus ? <div id='searchbar'>
         <form onSubmit={(e) => e.preventDefault()}>
         <input
           id='search'
@@ -65,10 +65,11 @@ const Search = ( {category, searchStatus} ) => {
 
         </form> 
   
-      </div>
+      </div> : null}
+      
       {!title ? <div id='trending'>Featured {category}s</div> : <div id='trending'>Results</div> }
       
-        <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} />    
+        <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} searchStatus={searchStatus} />    
     
     </div>
    );
