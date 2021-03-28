@@ -605,11 +605,14 @@ input{
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
 
- 
+ #recposter{
+   width: 18rem;
+ }
 
   #tvrecposter{
     padding: .25rem;
-    margin-left: 18%;
+    width: 18rem;
+    margin-left: 25%;
   }
   #searchbtn{
     top: 65%;

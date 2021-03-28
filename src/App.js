@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.scss';
 import Search from './components/Search';
-import { Route, Switch, Link, Redirect} from "react-router-dom";
+import { Route, Switch, Link, Redirect, Router} from "react-router-dom";
 import TvSearch from './components/tvSearch';
 import TrendingSearch from './components/TrendingSearch';
 import Details from './components/Details';
@@ -35,6 +35,7 @@ function App() {
   return (
 
       <div id='app'>
+        
         <div id='navbar'>
         <Link to='/home' ><div onClick={() => {updateSearchStatus(true); updateCategory(null)}}><svg id='homebtn'  width="48" height="48" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
                             <g  clipPath="url(#clip0)">
@@ -48,15 +49,14 @@ function App() {
                             </defs>
                             </svg>
 
-</div></Link>
+        </div></Link>
+        
 
             <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Movies</div></Link>
             <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV Shows</div></Link>
-           
 
             
         </div>
-        
         <Link to={'/home'}> 
         <div onClick={() => {updateCategory(null); updateSearchStatus(true)}} >
         <svg id="searchbtn" width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,9 @@ function App() {
 
 
             </div></Link> 
-        
+    
+            
+
         <Switch>
           <Route path='/movies' >
             <Search category={category} searchStatus={searchStatus} /> 

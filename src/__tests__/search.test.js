@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 import Search from '../components/Search'
 import ReactDOM from 'react-dom';
 import Details from '../components/Details';
@@ -11,6 +11,10 @@ import Show from '../components/Show';
 import Stars from '../components/Stars';
 import TrendingSearch from '../components/TrendingSearch';
 import TvSearch from '../components/tvSearch';
+import App from '../App';
+
+afterEach(cleanup)
+
 
 
 xtest('change values via the fireEvent.change method', () => {
