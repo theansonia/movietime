@@ -242,13 +242,12 @@ input{
 }
 
 #searchbtn{
-  margin-top: .3rem;
   width: 2em;
   background-repeat: no-repeat;
   background-position: 50%;
   position: fixed;
   transition: top .2s;
-  top: 85%;
+  top: 78%;
   left: 50%;
   pointer-events: all;
   z-index: 18;
@@ -259,6 +258,12 @@ input{
   &:hover{
     cursor: pointer;
   }
+
+  @media (min-width: 600px) {
+
+
+  }
+
 }
 
 #homebtn{
