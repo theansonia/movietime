@@ -43,10 +43,13 @@ const TrendingSearch = ( {category, searchStatus, updateCategory} ) => {
 
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
       
-      fetch(URL)
-      .then((res) => res.json())
-      .then((data) => updateMovieResults(data.results))
-      .catch((error) => console.log(error)) 
+    fetch(URL)
+    .then((res) => res.json())
+    // eslint-disable-next-line array-callback-return
+    .then((data) => {updateMovieResults(data.results.filter((movie) => {
+      if (movie.media_type === 'tv' || movie.media_type === 'movie') return movie;
+    }))})
+    .catch((error) => console.log(error)) 
 
   }, [title, category]);
 
