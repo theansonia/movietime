@@ -100,7 +100,7 @@ html, body {
 }
 #x{
   z-index: 9999999999;
-  left: 85%;
+  // left: 75%;
   position: fixed;
   &:hover{
     cursor: pointer;
@@ -150,7 +150,7 @@ form{
   
 }
 
-input[type='text']{
+input{
   text-rendering: auto;
   letter-spacing: normal;
   word-spacing: normal;
@@ -159,7 +159,7 @@ input[type='text']{
   appearance: auto;
   cursor: text;
   font-size: 2rem;
-  
+  caret-color: #F8F9FA;
   
 }
 
@@ -479,10 +479,9 @@ input[type='text']{
     
   }
   
-  input[type='text']{
+  input{
     font-size: 1.5rem;
     padding-left: 1rem;
-    content: ' '
 
   }
   
@@ -492,8 +491,8 @@ input[type='text']{
   }
   
   #x{
-    left: 78%;
-    top: 30%;
+    left: 75%;
+    // top: 30%;
   }
 
   #search {
