@@ -511,7 +511,7 @@ input{
 }
 // tablet?
 @media only screen 
-  and (min-device-width: 600px) 
+  and (min-device-width: 800px) 
   // and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
@@ -547,17 +547,68 @@ input{
 // was meant for tablet but seems to be affecting laptop
 
 @media only screen 
-  and (max-device-width: 750px) 
-  // and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
 
+    #recs{
+  
+      display: inline-grid;
+      justify-content: center;
+      align-items: center;    
+      
+    }
+    
+    #recposter{
+      width: 7rem;
+      position: relative;
+      margin: auto;
+      border-radius: 3px;
+      padding: .25rem;
+    
+    }
+
+    #rectitle{
+      font-size: 1rem;
+      text-align: center;
+    }
   #searchbtn{
     left: 45%;
-    top: 70%;
+    top: 80%;
   }
+}
 
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    #recs{
   
+      display: flex;
+      // justify-content: center;
+      // align-items: center;    
+      
+    }
+    
+    #recposter{
+      width: 20rem;
+      position: relative;
+      margin: auto;
+      border-radius: 3px;
+      // padding: .25rem;
+    
+    }
+
+    #rectitle{
+      width: 16rem;
+    }
+  #searchbtn{
+    left: 45%;
+    top: 80%;
+  }
 }
 
 // extra large screens
