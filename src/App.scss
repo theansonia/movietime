@@ -140,8 +140,7 @@ form{
   -webkit-text-size-adjust: 100%;
   // background-color: darken(#6C757D, 15%);
   margin-bottom: 1rem;
-  width: 80%;
-  border-radius: 30px;
+  width: 95%;
 
     &:after, :before{
       box-sizing: border-box;
@@ -171,7 +170,7 @@ input{
   color: #F8F9FA;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1rem;
+  font-size: .5rem;
   text-indent: .4rem;
 }
 
@@ -186,9 +185,11 @@ input{
   line-height: 1.5rem;
   // border: none;
   height: 4rem;
-  width: 100%;
+  // width: 100%;
   border-radius: 30px;
   font-size: 1.8rem;
+  // margin: 0 auto;
+  // margin-right: .5rem;
   box-shadow: 0 10px 40px #212529, 0 0 0 20px #F8F9FA;
   
  
@@ -478,27 +479,28 @@ input{
   }
 
   #searchbar{
-    width: 80%;
+    // width: 90%;
     // margin-left: 2rem;
-    margin: 0 auto;
+    // margin: 0 auto;
     
     
   }
   
   input{
     font-size: 1.5rem;
-    padding-left: 1rem;
+    // margin: 5rem;
+    // margin-left: 1rem;
 
   }
   
   ::placeholder{
-    font-size: 1rem;
+    font-size: .75rem;
     padding-left: .5rem;
   }
   
   #x{
     position: relative;
-    left: 81%;
+    left: 87%;
     background-color: none;
     // top: 1%;
   }
@@ -514,6 +516,7 @@ input{
     height: 4rem;
     width: 100%;
     font-size: 1.6rem;
+    // margin: 0 auto;
     border: none;
     // padding-left: .5rem;
  
