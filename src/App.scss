@@ -190,6 +190,7 @@ input{
   border-radius: 30px;
   font-size: 1.8rem;
   box-shadow: 0 10px 40px #212529, 0 0 0 20px #F8F9FA;
+  border: none;
   
  
 
@@ -282,6 +283,7 @@ input{
   width: 2em;
   // margin-right: 5em;
   // margin-right: 1.5em;
+  margin-top: .35rem;
   &:hover{
     cursor: pointer;
   }
