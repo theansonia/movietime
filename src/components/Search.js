@@ -4,7 +4,7 @@ import MovieContainer from '../containers/MovieContainer';
 // import { Route, Switch, Link } from "react-router-dom";
 // import api_key from '../apiKey';
 
-const Search = ( {category, searchStatus} ) => {
+const Search = ( {category, searchStatus, updateCategory} ) => {
   const [title, updateTitle] = useState("");
   const [movieResults, updateMovieResults] = useState([])
   // eslint-disable-next-line no-unused-vars
@@ -72,7 +72,7 @@ const Search = ( {category, searchStatus} ) => {
       
       {!title ? <div id='trending'>Featured {category}s</div> : <div id='trending'>Results</div> }
       
-        <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} searchStatus={searchStatus} />    
+        <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} updateCategory={updateCategory} searchStatus={searchStatus} />    
     
     </div>
    );

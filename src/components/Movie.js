@@ -2,18 +2,18 @@ import React from 'react';
 import Stars from './Stars';
 import { Link } from 'react-router-dom';
 
-const Movie = ( {title, poster, overview, release, rating, reviews, type, aired} ) => {
+const Movie = ( {title, poster, overview, release, rating, reviews, type, aired, updateCategory} ) => {
 
   return ( 
     <div id='movies'>
       {/* <Router> */}
-          <Link style={{ textDecoration: 'none' }} to={`/moviedetails/${title}`} >
+          <Link onClick={() => updateCategory(null)} style={{ textDecoration: 'none' }} to={`/moviedetails/${title}`} >
             <div id='poster' >
               {poster !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='poster' src={poster} alt={`Movie poster for ${title}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg' alt='back up movie poster cinema pardiso' /> }
             </div>
           </Link>
           <div  id='details'>
-          <Link style={{ textDecoration: 'none', fontSize: "1em",
+          <Link onClick={() => updateCategory(null)} style={{ textDecoration: 'none', fontSize: "1em",
               marginBottom: '.5em', fontWeight: 'bold', marginTop: '.5em', color: 'inherit' }} to={`/moviedetails/${title}`} >
               {title ? <div id='title'  >{title}</div>: null}
               <div id='type'>{type && type.length === 2 ?  type.toUpperCase() : null}</div>
@@ -22,7 +22,7 @@ const Movie = ( {title, poster, overview, release, rating, reviews, type, aired}
           
           {release ? <div id='release'>Premiered {release}</div>: null}
           {aired ? <div id='release'>First Aired {aired}</div>: null}
-          <Link style={{ textDecoration: 'none', fontSize: "1.4em",
+          <Link onClick={() => updateCategory(null)} style={{ textDecoration: 'none', fontSize: "1.4em",
               marginBottom: '.5em', fontWeight: 'normal', color: '#212529' }} to={`/moviedetails/${title}`} >
               <div id='overview'>{overview}</div>
           </Link>

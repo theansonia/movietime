@@ -3,7 +3,7 @@ import Movie from '../components/Movie'
 import '../App.scss';
 import Show from '../components/Show';
 
-const MovieContainer = ( {movieResults, tvResults, category, searchStatus } ) => {
+const MovieContainer = ( {movieResults, tvResults, category, searchStatus, updateCategory } ) => {
 
   return ( 
     <div className='moviecontainer'>
@@ -23,6 +23,8 @@ const MovieContainer = ( {movieResults, tvResults, category, searchStatus } ) =>
               reviews={movie.vote_count}
               searchStatus={searchStatus}
               type={movie.media_type}
+              category={category}
+              updateCategory={updateCategory}
             />
             )
           }
@@ -41,6 +43,8 @@ const MovieContainer = ( {movieResults, tvResults, category, searchStatus } ) =>
               rating={Math.round(show.vote_average/2)}
               reviews={show.vote_count}
               searchStatus={searchStatus}
+              category={category}
+              updateCategory={updateCategory}
             />    
             
             )

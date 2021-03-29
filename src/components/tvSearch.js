@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import MovieContainer from '../containers/MovieContainer';
 // import api_key from '../apiKey';
 
-const TvSearch = ( {category, searchStatus} ) => {
+const TvSearch = ( {category, searchStatus, updateCategory} ) => {
   const [title, updateTitle] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [movieResults, updateMovieResults] = useState([])
@@ -68,7 +68,7 @@ const TvSearch = ( {category, searchStatus} ) => {
 
       {!title ? <div id='trending'>Featured TV Shows</div> : <div id='trending'>Results</div> }
       
-        <MovieContainer movieResults={movieResults} tvResults={tvResults} category={category} />    
+        <MovieContainer movieResults={movieResults} tvResults={tvResults} updateCategory={updateCategory} category={category} />    
     
     </div>
    );

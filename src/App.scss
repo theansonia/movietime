@@ -482,6 +482,7 @@ input[type='text']{
   input[type='text']{
     font-size: 1.5rem;
     padding-left: 1rem;
+    content: ' '
 
   }
   
@@ -491,7 +492,8 @@ input[type='text']{
   }
   
   #x{
-    left: 83%;
+    left: 82%;
+    top: 32%;
   }
 
   #search {
@@ -581,20 +583,22 @@ input[type='text']{
   
       display: inline-grid;
       justify-content: center;
-      align-items: center;    
+      align-items: center;  
+      margin: 0 auto;  
       
     }
     
     #recposter{
       width: 8.2rem;
       position: relative;
-      margin: auto;
       border-radius: 3px;
       padding: .25rem;
       
     
     }
-    
+    #rectitle{
+      width: 95%;
+    }
 
   #searchbtn{
     left: 46.25%;
@@ -630,7 +634,7 @@ input[type='text']{
     }
 
     #rectitle{
-      font-size: 1rem;
+      font-size: 90%;
       text-align: center;
     }
   #searchbtn{
