@@ -160,6 +160,9 @@ input{
   cursor: text;
   font-size: 2rem;
   caret-color: #F8F9FA;
+    &:focus{
+      outline-color: #ADB5BD;
+    }
   
 }
 
@@ -491,7 +494,7 @@ input{
   }
   
   #x{
-    left: 75%;
+    left: 76%;
     // top: 30%;
   }
 
