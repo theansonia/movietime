@@ -476,20 +476,22 @@ input[type='text']{
     // margin-left: 2rem;
     margin: 0 auto;
     
+    
   }
   
   input[type='text']{
     font-size: 1.5rem;
-    
+    padding-left: 1rem;
+
   }
   
   ::placeholder{
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding-left: .5rem;
   }
   
   #x{
-    left: 80%;
+    left: 83%;
   }
 
   #search {
@@ -500,11 +502,11 @@ input[type='text']{
     // padding-left: 48px;
     height: 4.125rem;
     line-height: 1.5rem;
-    // border: none;
     height: 4rem;
     width: 100%;
     font-size: 1.6rem;
-   
+    // padding-left: .5rem;
+ 
   }
 
 
