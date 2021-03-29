@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import MovieContainer from '../containers/MovieContainer';
-// import { Route, Switch, Link } from "react-router-dom";
 // import api_key from '../apiKey';
 
 const TvSearch = ( {category, searchStatus} ) => {
@@ -44,8 +43,13 @@ const TvSearch = ( {category, searchStatus} ) => {
   },[title]);
   
   return ( 
-    <div>
+    <div id='searcher'>
+      
       <div id='searchbar'>
+      <div id='x' onClick={() => updateTitle('')}>
+      <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path  fill-rule="evenodd" clip-rule="evenodd" d="M12 0C18.623 0 24 5.377 24 12C24 18.623 18.623 24 12 24C5.377 24 0 18.623 0 12C0 5.377 5.377 0 12 0ZM12 1C18.071 1 23 5.929 23 12C23 18.071 18.071 23 12 23C5.929 23 1 18.071 1 12C1 5.929 5.929 1 12 1ZM12 11.293L17.293 6L18 6.707L12.707 12L18 17.293L17.293 18L12 12.707L6.707 18L6 17.293L11.293 12L6 6.707L6.707 6L12 11.293Z" fill="#F8F9FA"/>
+</svg></div>
         <form onSubmit={(e) => e.preventDefault()}>
         <input
           id='search'
@@ -54,7 +58,10 @@ const TvSearch = ( {category, searchStatus} ) => {
           autoFocus
           onChange={e => updateTitle(e.target.value)}
           value={title}
+          
         /> 
+        
+        
         </form> 
         
       </div>

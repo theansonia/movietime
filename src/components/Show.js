@@ -1,7 +1,8 @@
 import React from 'react';
 import Stars from './Stars';
 import { Link  } from "react-router-dom";
-// import Details from './Details';
+// import { useLocation } from "react-router-dom";
+
 
 const Show = ( props ) => {
   
@@ -10,7 +11,7 @@ const Show = ( props ) => {
 return ( 
    
       <div id='movies' >
-        {/* <BrowserRouter> */}
+        {/* <Router> */}
           <Link style={{ textDecoration: 'none' }} to={`/Details/${name}`} >
           <div id='poster' >
             {poster !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='poster' src={poster} alt={`Movie poster for ${name}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//aCw8ONfyz3AhngVQa1E2Ss4KSUQ.jpg' alt='back up tv poster of seinfeld' /> }
@@ -29,7 +30,7 @@ return (
             </Link>
             {rating ? <div id='rating'>{rating ? <Stars rating={rating} reviews={reviews} /> : 'No Rating'}</div>: null}
           </div>
-          {/* </BrowserRouter> */}
+          {/* </Router> */}
       </div>
     
    );

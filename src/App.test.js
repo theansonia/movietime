@@ -33,6 +33,20 @@ xtest('rendering a component that uses useLocation', () => {
 
 })
 
+xtest('rendering a Movies route', () => {
+  const history = createMemoryHistory()
+  const route = '/Details'
+  history.push(route)
+  render(
+    <Router history={history}>
+      <LocationDisplay />
+    </Router>
+  )
+
+  expect(screen.getByTestId('location-display')).toHaveTextContent(route)
+
+})
+
 xtest('full app rendering/navigating', () => {
   renderWithRouter(<App />, { wrapper: MemoryRouter })
 

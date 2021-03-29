@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './App.scss';
 import Search from './components/Search';
-import { Route, Switch, Link, Redirect} from "react-router-dom";
+import { Route, Switch, Link, Redirect, BrowserRouter} from "react-router-dom";
 import TvSearch from './components/tvSearch';
 import TrendingSearch from './components/TrendingSearch';
 import Details from './components/Details';
 import MovieDetails from './components/MovieDetails';
-
+// import { useLocation } from "react-router-dom";
 
 // export const LocationDisplay = () => {
 //   const location = useLocation()
@@ -14,17 +14,7 @@ import MovieDetails from './components/MovieDetails';
 //   return <div data-testid="location-display">{location.pathname}</div>
 // }
 
-// function NoMatch() {
-//   let location = useLocation();
 
-//   return (
-//     <div>
-//       <h3>
-//         No match
-//       </h3>
-//     </div>
-//   );
-// }
 
 function App() {
 
@@ -35,8 +25,10 @@ function App() {
 
       <div id='app'>
         <header></header>
+        
         <div id='navbar'>
-        <Link to='/home' id="homebutton"><div  onClick={() => {updateSearchStatus(true); updateCategory(null)}}><svg id='homebtn'  width="48" height="48" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+          
+        <Link to='/home' id="homebutton"><div data-testid='homebtn' onClick={() => {updateSearchStatus(true); updateCategory(null)}}><svg id='homebtn'  width="48" height="48" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
                             <g  clipPath="url(#clip0)">
                             <rect width="24" height="24" fill="#212529"/>
                             <path id='homepath' fillRule="evenodd" clipRule="evenodd" d="M22 11.414V24H2V11.414L0.707 12.707L0 12L12 0L24 12L23.293 12.707L22 11.414ZM16 23H21V10.414L12 1.414L3 10.414V23H8V14H16V23ZM15 15.111H9V22.889H15V15.111Z" fill="#F8F9FA"/>
@@ -49,12 +41,8 @@ function App() {
                             </svg>
 
         </div></Link>
-        
-
             <Link id="filmbutton" to={`/movies`} className='option'  onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Movies</div></Link>
             <Link id="tvbutton"  to={`/shows`} className='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV Shows</div></Link>
-
-            
         </div>
         <Link to={'/home'}> 
         <div onClick={() => {updateCategory(null); updateSearchStatus(true)}} >
@@ -87,48 +75,35 @@ function App() {
             </div></Link> 
     
             
-
+        {/* <Router> */}
         <Switch>
           <Route path='/movies' >
             <Search category={category} searchStatus={searchStatus} /> 
           </Route>
-        </Switch>
-        <Switch>
           <Route path='/shows' >
             <TvSearch category={category} searchStatus={searchStatus} /> 
           </Route>
-        </Switch>
-        <Switch>
           <Route path='/home' >
             <TrendingSearch category={category} searchStatus={searchStatus} /> 
           </Route>
-        </Switch>        
-
-        <Switch >
           <Route path={`/details/:name`} component={Details} />
-        </Switch>
-        
-
-        <Switch >
           <Route path={`/moviedetails/:title`} component={MovieDetails} />
 
         </Switch>
 
-        <Switch >
-          <Route path="*">
+          {/* <Route path="*">
             <Redirect to='/home'/>
 
             {/* Uncomment below for testing  */}
             {/* <NoMatch /> */}
-          </Route>
-        </Switch>
+          {/* </Route> */}
         
         <Route exact path="/">
           <Redirect to='/home' />
         </Route>    
- 
-        {/* <LocationDisplay /> */}
-
+        {/* </Router> */}
+        {/* <div data-testid="location-display">{location.pathname}</div>  */}
+        
       </div>
  
     );

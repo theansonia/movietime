@@ -97,14 +97,55 @@ html, body {
       font-size: 1.15rem;
     }
 }
+#x{
+  z-index: 9999999999;
+  left: 85%;
+  position: fixed;
+  &:hover{
+    cursor: pointer;
+  }
+}
+#searchbtn{
+  width: 3.5em;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: fixed;
+  transition: top .2s;
+  top: 80%;
+  left: 42.25%;
+  pointer-events: all;
+  z-index: 18;
+  overflow: visible;
+  // -webkit-appearance: button;
+ 
+
+  &:hover{
+    cursor: pointer;
+  }
+
+}
+
+form{
+  width: 100%;
+  // margin-top: 1rem;
+  font-size: 2rem;
+}
 
 #searchbar{
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   flex: 1 0 auto;
-  width: 100%;
-  font-size: 1rem;
-  -webkit-text-size-adjust: 100%;
-  background-color: #212529;
+  // -webkit-text-size-adjust: 100%;
+  background-color: darken(#6C757D, 15%);
   margin-bottom: 1rem;
+  width: 70%;
+  border-radius: 30px;
+  font-size: 2rem;
+ 
+  
 
     &:after, :before{
       box-sizing: border-box;
@@ -113,7 +154,7 @@ html, body {
   
 }
 
-input{
+input[type='text']{
   text-rendering: auto;
   letter-spacing: normal;
   word-spacing: normal;
@@ -121,29 +162,34 @@ input{
   text-align: start;
   appearance: auto;
   cursor: text;
+  font-size: 2rem;
+  
+  
 }
 
 ::placeholder{
-  color: #CED4DA;
-  width: 95%;
+  color: #F8F9FA;
   overflow: hidden;
   text-overflow: ellipsis;
-  // padding-left: 2em;
+  font-size: 1.6rem;
+  margin-top: 1rem;
 }
-
 
 #search {
   position: relative;
   color: #F8F9FA;
-  width: 100%;
-  font-size: 1rem;
-  -webkit-text-size-adjust: 100%;
-  height: 3rem;
+  // font-size: 1rem;
   padding: 0 26px;
-  background-color: #212529;
+  background-color: darken(#6C757D, 15%);
   height: 4.125rem;
   line-height: 1.5rem;
-  border: none;
+  // border: none;
+  height: 4rem;
+  width: 100%;
+  border-radius: 30px;
+  font-size: 2rem;
+  box-shadow: 0 10px 40px #212529, 0 0 0 20px #F8F9FA;
+  
  
 
     &:after, :before{
@@ -151,6 +197,7 @@ input{
     border-bottom: 2px solid #F8F9FA;
   }
 }
+
 
 #movies{
   min-width: 100%;
@@ -228,25 +275,7 @@ input{
   flex: 1;
 }
 
-#searchbtn{
-  width: 3.5em;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  position: fixed;
-  transition: top .2s;
-  top: 80%;
-  left: 42.25%;
-  pointer-events: all;
-  z-index: 18;
-  overflow: visible;
-  // -webkit-appearance: button;
- 
 
-  &:hover{
-    cursor: pointer;
-  }
-
-}
 
 #homebtn{
   width: 2em;

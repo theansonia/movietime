@@ -2,16 +2,18 @@
 import React, { useEffect, useState } from 'react';
 import Stars from './Stars';
 import TVRecs from './TVRecs';
-
+// import { useLocation } from "react-router-dom";
 
 const Details = ({match}) => {
-
+  // const location = useLocation()
   // comment out for testing
-
+  
   const { params: {name}} = match;
 
   const [details, updateDetails] = useState([])
   const [recommendations, updateRecommendations] = useState([])
+
+
 
   useEffect(() => {
 
@@ -72,7 +74,7 @@ const Details = ({match}) => {
            </div> : null }
     </div>)
     }
-    
+
     </div>
  );
 

@@ -12,9 +12,10 @@ import Stars from '../components/Stars';
 import TrendingSearch from '../components/TrendingSearch';
 import TvSearch from '../components/tvSearch';
 import App from '../App';
+import '@testing-library/jest-dom/extend-expect'
+
 
 afterEach(cleanup)
-
 
 
 xtest('change values via the fireEvent.change method', () => {
