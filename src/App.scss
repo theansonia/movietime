@@ -353,9 +353,10 @@ input{
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  justify-content: center;
   text-align: center;
-  margin-top: .5em;
-  margin-bottom: .5em;
+  // margin-top: .25em;
+  // margin-bottom: .5em;
   font-size: 1.5rem;
     z-index: 1000000;
   
@@ -447,7 +448,7 @@ input{
   }
   #searchbtn{
     top: 80%;
-    left: 42.%;
+    left: 42.5%;
 
   }
 
