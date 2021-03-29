@@ -327,7 +327,7 @@ input{
 }
 
 #recposter{
-  width: 14rem;
+  width: 95%;
   position: relative;
   margin: auto;
   border-radius: 3px;
@@ -581,7 +581,7 @@ input{
   and (-webkit-min-device-pixel-ratio: 1)
   and (orientation: landscape) { 
     #recposter{
-      width: 32rem;
+      width: 95%;
     }
     #rectitle{
       width: 28rem;
