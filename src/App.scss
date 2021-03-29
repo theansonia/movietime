@@ -464,10 +464,6 @@ input{
   #star{
     width: .75rem;
   }
-//  #recs{
-//       display: inline-grid;
-//       justify-content: center;
-//     }
   
   #poster{
     width: 12rem;
@@ -513,7 +509,7 @@ input{
   }
 
 }
-
+// tablet?
 @media only screen 
   and (min-device-width: 600px) 
   // and (max-device-width: 480px)
@@ -548,6 +544,7 @@ input{
   
 }
 
+// was meant for tablet but seems to be affecting laptop
 
 @media only screen 
   and (max-device-width: 750px) 
@@ -562,6 +559,8 @@ input{
 
   
 }
+
+// extra large screens
 @media only screen
   and (min-width: 1600px)
   and (-webkit-min-device-pixel-ratio: 2) {
@@ -584,5 +583,8 @@ input{
     #searchbtn{
       left: 48%;
       top: 90%;
+    }
+    #star{
+      width: .75rem;
     }
   }

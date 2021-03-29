@@ -22,7 +22,7 @@ return (
              marginBottom: '.5em', fontWeight: 'bold', marginTop: '.5em', color: 'inherit' }} to={`/Details/${name}`} >
             {name ? <div id='title'  >{name}</div>: null}
             </Link>
-            {release ? <div id='release'>{release}</div>: null}
+            {release ? <div id='release'>First Aired {release}</div>: null}
             <Link style={{ textDecoration: 'none', fontSize: "1.4em",
               marginBottom: '.5em', fontWeight: 'normal', color: '#212529' }} to={`/Details/${name}`} >
             <div id='overview'>{overview}</div>
