@@ -14,7 +14,7 @@ return (
         {/* <BrowserRouter> */}
           <Link style={{ textDecoration: 'none' }} to={`/Details/${name}`} >
           <div id='poster' >
-            {poster !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='poster' src={poster} alt={`Movie poster for ${name}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg' alt='back up movie poster cinema pardiso' /> }
+            {poster !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='poster' src={poster} alt={`Movie poster for ${name}`} /> : <img id='poster' src='https://image.tmdb.org/t/p/w500//aCw8ONfyz3AhngVQa1E2Ss4KSUQ.jpg' alt='back up tv poster of seinfeld' /> }
           </div>
           </Link>
           

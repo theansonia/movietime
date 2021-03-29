@@ -2,7 +2,7 @@ import React from 'react';
 import Stars from './Stars';
 import { Link } from 'react-router-dom';
 
-const Movie = ( {title, poster, overview, release, rating, reviews} ) => {
+const Movie = ( {title, poster, overview, release, rating, reviews, type, aired} ) => {
 
   return ( 
     <div id='movies'>
@@ -16,8 +16,12 @@ const Movie = ( {title, poster, overview, release, rating, reviews} ) => {
           <Link style={{ textDecoration: 'none', fontSize: "1em",
               marginBottom: '.5em', fontWeight: 'bold', marginTop: '.5em', color: 'inherit' }} to={`/moviedetails/${title}`} >
               {title ? <div id='title'  >{title}</div>: null}
+              <div id='type'>{type && type.length === 2 ?  type.toUpperCase() : null}</div>
+          <div id='type'>{type && type.length > 2 ?  type[0].toUpperCase() + type.substring(1) : null}</div>
           </Link>
-          {release ? <div id='release'>{release}</div>: null}
+          
+          {release ? <div id='release'>Premiered {release}</div>: null}
+          {aired ? <div id='release'>First Aired {aired}</div>: null}
           <Link style={{ textDecoration: 'none', fontSize: "1.4em",
               marginBottom: '.5em', fontWeight: 'normal', color: '#212529' }} to={`/moviedetails/${title}`} >
               <div id='overview'>{overview}</div>

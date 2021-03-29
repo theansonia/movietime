@@ -18,9 +18,11 @@ const MovieContainer = ( {movieResults, tvResults, category, searchStatus } ) =>
               poster={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               overview={movie.overview}
               release={movie.release_date === undefined ? null : movie.release_date.split('-')[0]}
+              aired={movie.first_air_date === undefined ? null : movie.first_air_date.split('-')[0]}
               rating={Math.round(movie.vote_average/2)}
               reviews={movie.vote_count}
               searchStatus={searchStatus}
+              type={movie.media_type}
             />
             )
           }

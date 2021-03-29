@@ -361,6 +361,11 @@ input{
   
 }
 
+#type{
+  text-decoration: underline;
+  margin-bottom: .25rem;
+  font-weight: 300;
+}
 
 #star{
   width: .3rem;
@@ -409,12 +414,6 @@ input{
     margin-top: 1rem;
     
   }
-
-  #movies{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   
   }
   #poster{
@@ -451,7 +450,7 @@ input{
     left: 45%;
 
   }
-}
+
 
 
 
