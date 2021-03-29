@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import MovieContainer from '../containers/MovieContainer';
-// import API_KEY from '../apiKey';
+import API_KEY from '../apiKey';
 
 const TrendingSearch = ( {category, searchStatus, updateCategory} ) => {
   const [title, updateTitle] = useState("");
@@ -11,12 +11,12 @@ const TrendingSearch = ( {category, searchStatus, updateCategory} ) => {
 
   if (category === null) category = 'a Movie or TV'
 
-  const API_KEY = process.env.API_KEY;
+  // const API_KEY = process.env.API_KEY;
 
   useEffect(() => {
 
     if (title.length === 0) {
-      const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
+      const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
       fetch(URL)
       .then((res) => res.json())
       .then((data) => updateMovieResults(data.results))
@@ -33,7 +33,7 @@ const TrendingSearch = ( {category, searchStatus, updateCategory} ) => {
     };
 
 
-    const URL = `https://api.themoviedb.org/3/search/multi?${API_KEY}=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${title}&page=1&include_adult=false`;
       
       fetch(URL)
       .then((res) => res.json())

@@ -160,6 +160,7 @@ input{
   cursor: text;
   font-size: 2rem;
   caret-color: #F8F9FA;
+  text-indent: .35rem;
     &:focus{
       outline-color: #ADB5BD;
     }
@@ -171,6 +172,7 @@ input{
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
+  text-indent: -.1rem;
 }
 
 #search {
@@ -495,7 +497,7 @@ input{
   
   #x{
     left: 79%;
-    // top: 32%;
+    // top: 1%;
   }
 
   #search {
