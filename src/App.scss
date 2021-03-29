@@ -239,7 +239,7 @@ input{
   position: fixed;
   transition: top .2s;
   top: 80%;
-  left: 42.5%;
+  left: 42.25%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
@@ -448,7 +448,7 @@ input{
   }
   #searchbtn{
     top: 80%;
-    left: 42.5%;
+    // left: 42.5%;
 
   }
 
@@ -463,7 +463,7 @@ input{
 
   #searchbtn{
     top: 77%;
-    left: 42.5%;
+    // left: 42.5%;
   }
       
   #star{
@@ -532,7 +532,7 @@ input{
  }
 
   #searchbtn{
-    left: 42.5%;
+    left: 48.25%;
     top: 80%;
   }
  
@@ -540,3 +540,16 @@ input{
 }
 
 
+@media only screen 
+  and (max-device-width: 750px) 
+  // and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+  #searchbtn{
+    // left: 48.25%;
+    top: 75%;
+  }
+ 
+  
+}
