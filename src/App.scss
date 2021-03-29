@@ -203,7 +203,7 @@ input{
   overflow: hidden;
   padding-right: .1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical; 
 }
 
@@ -213,10 +213,6 @@ input{
   margin-top: .25em;
 }
 
-#star{
-  width: .5em;
-  margin: 0;
-}
 
 
 .footer{
@@ -364,7 +360,7 @@ input{
 }
 
 #star{
-  width: .3rem;
+  width: .5rem;
 }
 
 
@@ -383,7 +379,7 @@ input{
   // }
   
   #recposter{
-    width: 8em;
+    width: 14em;
     padding: .25rem;
     justify-items: center;
     border-radius: 3px;
@@ -561,7 +557,7 @@ input{
     }
     
     #recposter{
-      width: 7rem;
+      width: 14rem;
       position: relative;
       margin: auto;
       border-radius: 3px;
@@ -614,7 +610,7 @@ input{
 // extra large screens
 @media only screen
   and (min-width: 1600px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+  and (-webkit-min-device-pixel-ratio: 1) {
     #recs{
   
       display: inline-grid;
@@ -635,7 +631,22 @@ input{
       left: 48%;
       top: 90%;
     }
+
     #star{
-      width: .75rem;
+      width: .5rem;
     }
+    #overview{
+      overflow: scroll;
+      margin-bottom: .15em;
+      text-align: left;
+      --max-lines: 5;
+      position: relative;
+      max-height: calc(var(--lh) * var(--max-lines));
+      overflow: hidden;
+      padding-right: .1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 9;
+      -webkit-box-orient: vertical; 
+    }
+    
   }
