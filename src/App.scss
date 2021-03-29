@@ -142,9 +142,7 @@ form{
   margin-bottom: 1rem;
   width: 80%;
   border-radius: 30px;
-  // font-size: 1rem;
-  // margin-left: .4rem;
- 
+
     &:after, :before{
       box-sizing: border-box;
     }
@@ -160,7 +158,7 @@ input[type='text']{
   text-align: start;
   appearance: auto;
   cursor: text;
-  font-size: 1rem;
+  font-size: 2rem;
   
   
 }
@@ -169,7 +167,7 @@ input[type='text']{
   color: #F8F9FA;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: .65rem;
+  font-size: 1rem;
 }
 
 #search {
@@ -185,7 +183,7 @@ input[type='text']{
   height: 4rem;
   width: 100%;
   border-radius: 30px;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   box-shadow: 0 10px 40px #212529, 0 0 0 20px #F8F9FA;
   
  
@@ -481,12 +479,12 @@ input[type='text']{
   }
   
   input[type='text']{
-    font-size: .5rem;
+    font-size: 1.5rem;
     
   }
   
   ::placeholder{
-    font-size: .25rem;
+    font-size: 1.2rem;
     padding-left: .5rem;
   }
   
@@ -505,7 +503,7 @@ input[type='text']{
     // border: none;
     height: 4rem;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.6rem;
    
   }
 
