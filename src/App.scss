@@ -385,6 +385,7 @@ input{
     width: 8em;
     padding: .25rem;
     justify-items: center;
+    border-radius: 3px;
     &:hover{
       box-shadow: 3px 3px 5px 6px #ccc;
     }
@@ -480,6 +481,7 @@ input{
   #recposter{
     width: 24rem;
     padding: .25rem;
+    border-radius: 3px;
     &:hover{
       box-shadow: 3px 3px 5px 6px #ccc;
     }
@@ -526,6 +528,7 @@ input{
     
  #recposter{
    width: 22rem;
+   border-radius: 3px;
  }
 
   #searchbtn{

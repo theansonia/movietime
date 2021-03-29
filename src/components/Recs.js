@@ -12,7 +12,7 @@ const Recs = ( {title, pic} ) => {
             {title ? <div id='rectitle'  >{title}</div>: null}
         </Link>
         <Link style={{ textDecoration: 'none' }} to={`/moviedetails/${title}`} >
-            {pic !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='recposter' style={{borderRadius: '30px'}}src={pic} alt={`Movie poster for ${title}`} /> : <img id='recposter' src='https://image.tmdb.org/t/p/w500///tfNuePdHrP9fp6K2VTJwHKKJf8C.jpg' alt='back up movie poster cinema pardiso' /> }
+            {pic !== 'https://image.tmdb.org/t/p/w500/null' ? <img id='recposter' style={{borderRadius: '30px'}}src={pic} alt={`Movie poster for ${title}`} /> : <img id='recposter' style={{borderRadius: '30px'}} src='https://image.tmdb.org/t/p/w500///tfNuePdHrP9fp6K2VTJwHKKJf8C.jpg' alt='back up movie poster cinema pardiso' /> }
        </Link>
 
   </div>

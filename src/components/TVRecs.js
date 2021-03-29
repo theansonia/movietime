@@ -11,7 +11,7 @@ const TVRecs = ( {name, pic} ) => {
             {name ? <div id='rectitle'  >{name}</div>: null}
         </Link>
         <Link style={{ textDecoration: 'none' }} to={`/details/${name}`} >
-            {pic !== 'https://image.tmdb.org/t/p/w500/null' ? <img style={{borderRadius: '30px'}} id='recposter' src={pic} alt={`Movie poster for ${name}`} /> : <img id='recposter' src='https://image.tmdb.org/t/p/w500///lyTCCuymqg8egIaQXZAY5vE4MB0.jpg' alt='back up movie poster cinema pardiso' /> }
+            {pic !== 'https://image.tmdb.org/t/p/w500/null' ? <img style={{borderRadius: '30px'}} id='recposter' src={pic} alt={`Movie poster for ${name}`} /> : <img id='recposter' style={{borderRadius: '30px'}} src='https://image.tmdb.org/t/p/w500///lyTCCuymqg8egIaQXZAY5vE4MB0.jpg' alt='back up movie poster cinema pardiso' /> }
         </Link>
 
 
