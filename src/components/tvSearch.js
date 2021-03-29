@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import MovieContainer from '../containers/MovieContainer';
-import API_KEY from '../apiKey';
+// import API_KEY from '../apiKey';
 
 const TvSearch = ( {category, searchStatus, updateCategory} ) => {
   const [title, updateTitle] = useState("");
@@ -9,7 +9,7 @@ const TvSearch = ( {category, searchStatus, updateCategory} ) => {
   const [movieResults, updateMovieResults] = useState([])
   const [tvResults, updateTvResults] = useState([])
 
-  // const API_KEY = process.env.API_KEY;
+  const API_KEY = process.env.API_KEY;
 
   if (category === null) category = 'a Movie or TV'
 
