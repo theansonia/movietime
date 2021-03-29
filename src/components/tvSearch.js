@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import MovieContainer from '../containers/MovieContainer';
-// import api_key from '../apiKey';
+// import API_KEYfrom '../apiKey';
 
 const TvSearch = ( {category, searchStatus, updateCategory} ) => {
   const [title, updateTitle] = useState("");
@@ -9,7 +9,7 @@ const TvSearch = ( {category, searchStatus, updateCategory} ) => {
   const [movieResults, updateMovieResults] = useState([])
   const [tvResults, updateTvResults] = useState([])
 
-  // const api_key = process.env.apiKey;
+  const API_KEY = process.env.API_KEY;
 
   if (category === null) category = 'a Movie or TV'
 
@@ -20,7 +20,7 @@ const TvSearch = ( {category, searchStatus, updateCategory} ) => {
       return;
     };
 
-    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/tv?${API_KEY}=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
     fetch(URL)
     .then((res) => res.json())
     .then((data) => updateTvResults(data.results))

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import MovieContainer from '../containers/MovieContainer';
 // import { Route, Switch, Link } from "react-router-dom";
-// import api_key from '../apiKey';
+// import API_KEY from '../apiKey';
 
 const Search = ( {category, searchStatus, updateCategory} ) => {
   const [title, updateTitle] = useState("");
@@ -10,7 +10,8 @@ const Search = ( {category, searchStatus, updateCategory} ) => {
   // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([])
 
-  // const api_key = process.env.apiKey;
+  const API_KEY = process.env.API_KEY;
+
   console.log(searchStatus)
   if (category === null) category = 'a Movie or TV'
   
@@ -24,7 +25,7 @@ const Search = ( {category, searchStatus, updateCategory} ) => {
     // eslint-disable-next-line no-useless-escape
     // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
     
-    const URL = `https://api.themoviedb.org/3/search/movie?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/movie?${API_KEY}=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
     fetch(URL)
     .then((res) => res.json())
     .then((data) => updateMovieResults(data.results))
