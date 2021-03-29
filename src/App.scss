@@ -321,7 +321,9 @@ input{
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 0 auto;
+  // margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 
   
 }
