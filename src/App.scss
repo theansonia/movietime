@@ -579,9 +579,12 @@ input{
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 1)
-  and (orientation: portrait) { 
+  and (orientation: landscape) { 
     #recposter{
-      width: 1rem;
+      width: 18rem;
+    }
+    #rectitle{
+      width: 90%;
     }
 }
 
