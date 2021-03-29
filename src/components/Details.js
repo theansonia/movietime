@@ -52,9 +52,9 @@ const Details = ({match}) => {
           {Math.round(details.vote_average/2) ? <div id='detailrating'>{Math.round(details.vote_average/2) ? <Stars rating={Math.round(details.vote_average/2)} reviews={details.vote_count} /> : 'No Rating'}</div>: null}
         </div>
         
-        <div id='likethis'> More Like This</div>
+        
         {recommendations ? 
-        <div>
+        <div ><div id='likethis'>More Like This</div>
           {
             recommendations.map((rec, i) => {
               if (i < 5)

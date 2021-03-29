@@ -315,7 +315,7 @@ input{
   font-weight: bold;
   text-align: left;
   align-self: flex-start;
-  margin-left: .65rem;
+  margin-left: -10rem;
   text-decoration: underline;
 
 }
@@ -542,7 +542,7 @@ input{
   and (orientation: landscape) {
 
   #searchbtn{
-    // left: 48.25%;
+    left: 45%;
     top: 70%;
   }
  
