@@ -21,7 +21,7 @@ const Details = ({match}) => {
       .then((res) => res.json())
       .then((data) => updateDetails(data.results[0]))
       .catch((error) => console.log(error)) 
-
+      return () => updateDetails([])
   }, [name]);
 
   useEffect(() => {
