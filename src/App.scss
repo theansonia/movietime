@@ -480,12 +480,13 @@ input{
   }
 
   #searchbar{
-    // width: 90%;
-    // margin-left: 2rem;
+    width: 90%;
+    margin-left: 1.65rem;
     // margin: 0 auto;
     
     
   }
+
   
   input{
     font-size: 1.5rem;
@@ -501,7 +502,7 @@ input{
   
   #x{
     position: relative;
-    left: 87%;
+    left: 90%;
     background-color: none;
     // top: 1%;
   }
@@ -517,9 +518,10 @@ input{
     height: 4rem;
     width: 100%;
     font-size: 1.6rem;
-    // margin: 0 auto;
+    margin: 0 auto;
     border: none;
     // padding-left: .5rem;
+    // margin-left: 1rem;
  
   }
 
