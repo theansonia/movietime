@@ -239,7 +239,7 @@ input{
   position: fixed;
   transition: top .2s;
   top: 80%;
-  left: 45%;
+  left: 42.5%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
@@ -447,7 +447,7 @@ input{
   }
   #searchbtn{
     top: 80%;
-    left: 45%;
+    left: 42.%;
 
   }
 
@@ -456,13 +456,13 @@ input{
 
 
 @media only screen 
-  and (min-device-width: 750px) 
+  and (min-device-width: 770px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1){
 
   #searchbtn{
-    top: 80%;
-    left: 45%;
+    top: 77%;
+    left: 42.5%;
   }
       
   #star{
@@ -531,7 +531,7 @@ input{
  }
 
   #searchbtn{
-    left: 45%;
+    left: 42.5%;
     top: 80%;
   }
  
