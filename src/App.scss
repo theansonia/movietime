@@ -202,10 +202,10 @@ input{
 
 
 #movies{
-  min-width: 100%;
+  // min-width: 8rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  // justify-content: flex-start;
   align-items: center;
 
 }
@@ -225,11 +225,12 @@ input{
   // padding-right: .65em;
   margin: 0;
   justify-content: flex-start;
+  max-height: 450px;
   
 }
 
 #title{
-  font-size: 1rem;
+  // font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: .1rem;
   // line-height: 2rem;
@@ -383,7 +384,7 @@ input{
   text-align: center;
   // margin-top: .25em;
   // margin-bottom: .5em;
-  font-size: 1.5rem;
+  // font-size: 2.5rem;
     z-index: 1000000;
   
 }
@@ -451,7 +452,7 @@ input{
   }
 
   #title{
-    font-size: 1.5rem;
+    font-size: 1rem;
 
   }
 
@@ -463,7 +464,7 @@ input{
     overflow: hidden;
     padding-right: .1rem;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical; 
 
   }
@@ -569,7 +570,7 @@ input{
     font-size: 1.5rem;
     padding-right: .5rem;
     display: -webkit-box;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical; 
   }
 
@@ -577,7 +578,7 @@ input{
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+
   
   }
 
