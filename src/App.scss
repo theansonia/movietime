@@ -160,7 +160,7 @@ input{
   cursor: text;
   font-size: 2rem;
   caret-color: #F8F9FA;
-  text-indent: .35rem;
+  text-indent: .75rem;
     &:focus{
       outline-color: #ADB5BD;
     }
@@ -172,7 +172,7 @@ input{
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
-  text-indent: -.1rem;
+  text-indent: .4rem;
 }
 
 #search {
@@ -190,7 +190,6 @@ input{
   border-radius: 30px;
   font-size: 1.8rem;
   box-shadow: 0 10px 40px #212529, 0 0 0 20px #F8F9FA;
-  border: none;
   
  
 
@@ -281,9 +280,9 @@ input{
 
 #homebtn{
   width: 2em;
+  margin-top: .3rem;
   // margin-right: 5em;
   // margin-right: 1.5em;
-  margin-top: .35rem;
   &:hover{
     cursor: pointer;
   }
@@ -513,6 +512,7 @@ input{
     height: 4rem;
     width: 100%;
     font-size: 1.6rem;
+    border: none;
     // padding-left: .5rem;
  
   }

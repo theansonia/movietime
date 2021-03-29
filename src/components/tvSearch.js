@@ -19,6 +19,10 @@ const TvSearch = ( {category, searchStatus, updateCategory} ) => {
       updateTvResults([]);
       return;
     };
+    if (title === ' ') {
+      updateTitle('')
+      return;
+    }
 
     const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
     fetch(URL)
@@ -32,6 +36,11 @@ const TvSearch = ( {category, searchStatus, updateCategory} ) => {
 
     if (title.length > 0) return;
     if (title.length === 0) updateTvResults([])
+
+    if (title === ' ') {
+      updateTitle('')
+      return;
+    }
 
       const URL = `https://api.themoviedb.org/3/tv/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
       fetch(URL)

@@ -21,6 +21,10 @@ const Search = ( {category, searchStatus, updateCategory} ) => {
       return;
     };
 
+    if (title === ' ') {
+      updateTitle('')
+      return;
+    }
     // eslint-disable-next-line no-useless-escape
     // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
     
@@ -38,6 +42,10 @@ const Search = ( {category, searchStatus, updateCategory} ) => {
     if (title.length > 0) return;
     if (title.length === 0) updateMovieResults([]);
     
+    if (title === ' ') {
+      updateTitle('')
+      return;
+    }
       const URL = `https://api.themoviedb.org/3/movie/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
       fetch(URL)
       .then((res) => res.json())

@@ -15,6 +15,11 @@ const TrendingSearch = ( {category, searchStatus, updateCategory} ) => {
 
   useEffect(() => {
 
+    if (title === ' ') {
+      updateTitle('')
+      return;
+    }
+
     if (title.length === 0) {
       const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
       fetch(URL)
@@ -31,7 +36,10 @@ const TrendingSearch = ( {category, searchStatus, updateCategory} ) => {
       updateMovieResults([])
       return;
     };
-
+    if (title === ' ') {
+      updateTitle('')
+      return;
+    }
 
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
       
