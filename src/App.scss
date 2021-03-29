@@ -238,7 +238,7 @@ input{
   background-position: 50%;
   position: fixed;
   transition: top .2s;
-  top: 85%;
+  top: 1%;
   left: 38%;
   pointer-events: all;
   z-index: 18;
@@ -462,7 +462,7 @@ input{
 
   #searchbtn{
     top: 80%;
-    left: 47%;
+    left: 48%;
   }
       
   #star{
@@ -519,7 +519,7 @@ input{
 }
 
 @media only screen 
-  and (min-device-width: 320px) 
+  and (min-device-width: 600px) 
   // and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
@@ -532,7 +532,7 @@ input{
 
   #searchbtn{
     left: 45%;
-    top: 90%;
+    top: 80%;
   }
  
   
