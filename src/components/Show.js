@@ -8,8 +8,7 @@ const Show = ( props ) => {
   const { name, poster, overview, release, rating, reviews} = props;
 
 return ( 
-    <div>
-        
+   
       <div id='movies' >
         {/* <BrowserRouter> */}
           <Link style={{ textDecoration: 'none' }} to={`/Details/${name}`} >
@@ -32,8 +31,7 @@ return (
           </div>
           {/* </BrowserRouter> */}
       </div>
-      
-      </div>
+    
    );
 }
  

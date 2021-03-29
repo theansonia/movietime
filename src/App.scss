@@ -156,7 +156,7 @@ input{
   min-width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
 }
@@ -315,7 +315,7 @@ input{
   font-weight: bold;
   text-align: left;
   align-self: flex-start;
-  margin-left: -10rem;
+  // margin-left: -10rem;
   text-decoration: underline;
 
 }
@@ -521,13 +521,27 @@ input{
   and (orientation: landscape) {
 
     
- #recposter{
-   width: 22rem;
-   border-radius: 3px;
- }
+    #recs{
+  
+      display: inline-grid;
+      justify-content: center;
+      align-items: center;    
+      
+    }
+    
+    #recposter{
+      width: 8.2rem;
+      position: relative;
+      margin: auto;
+      border-radius: 3px;
+      padding: .25rem;
+      
+    
+    }
+    
 
   #searchbtn{
-    left: 48.25%;
+    left: 46.25%;
     top: 80%;
   }
  
@@ -545,6 +559,30 @@ input{
     left: 45%;
     top: 70%;
   }
- 
+
   
 }
+@media only screen
+  and (min-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #recs{
+  
+      display: inline-grid;
+      justify-content: center;
+      align-items: center;    
+      
+    }
+    
+    #recposter{
+      width: 13.2rem;
+      position: relative;
+      margin: auto;
+      border-radius: 3px;
+    
+    }
+
+    #searchbtn{
+      left: 48%;
+      top: 90%;
+    }
+  }
