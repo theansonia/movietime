@@ -34,9 +34,9 @@ function App() {
   return (
 
       <div id='app'>
-        
+        <header></header>
         <div id='navbar'>
-        <Link to='/home' ><div onClick={() => {updateSearchStatus(true); updateCategory(null)}}><svg id='homebtn'  width="48" height="48" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+        <Link to='/home' id="homebutton"><div  onClick={() => {updateSearchStatus(true); updateCategory(null)}}><svg id='homebtn'  width="48" height="48" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
                             <g  clipPath="url(#clip0)">
                             <rect width="24" height="24" fill="#212529"/>
                             <path id='homepath' fillRule="evenodd" clipRule="evenodd" d="M22 11.414V24H2V11.414L0.707 12.707L0 12L12 0L24 12L23.293 12.707L22 11.414ZM16 23H21V10.414L12 1.414L3 10.414V23H8V14H16V23ZM15 15.111H9V22.889H15V15.111Z" fill="#F8F9FA"/>
@@ -51,8 +51,8 @@ function App() {
         </div></Link>
         
 
-            <Link to={`/movies`} id='option' onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Movies</div></Link>
-            <Link to={`/shows`} id='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV Shows</div></Link>
+            <Link id="filmbutton" to={`/movies`} className='option'  onClick={() => {updateCategory('Movie'); updateSearchStatus(true)}} ><div>Movies</div></Link>
+            <Link id="tvbutton"  to={`/shows`} className='option' onClick={() => {updateCategory('TV'); updateSearchStatus(true)}} ><div>TV Shows</div></Link>
 
             
         </div>
