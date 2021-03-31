@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import MovieContainer from "../containers/MovieContainer";
 // import { Route, Switch, Link } from "react-router-dom";
 // import API_KEY from "../apiKey";
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const Search = ({
   category,
@@ -18,7 +18,7 @@ const Search = ({
   // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([]);
   const { lightTheme } = useContext(ThemeContext);
-	const theme = !lightTheme ? 'darkmode' : '';
+  const theme = !lightTheme ? "darkmode" : "";
 
   // const API_KEY = process.env.API_KEY;
 
@@ -62,9 +62,8 @@ const Search = ({
   }, [title]);
 
   return (
-    <div className={'' + theme}>
-
-<MovieContainer
+    <div className={"" + theme}>
+      <MovieContainer
         movieResults={movieResults}
         tvResults={tvResults}
         updateCategory={updateCategory}

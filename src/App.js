@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./App.scss";
 import Search from "./components/Search";
 import { Route, Switch, Link, Redirect } from "react-router-dom";
@@ -8,7 +8,7 @@ import Details from "./components/Details";
 import MovieDetails from "./components/MovieDetails";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import ToggleTheme from "./components/ToggleTheme";
-import SearchButton from './components/SearchButton';
+import SearchButton from "./components/SearchButton";
 // export const LocationDisplay = () => {
 //   const location = useLocation()
 
@@ -18,24 +18,23 @@ import SearchButton from './components/SearchButton';
 function App() {
   const [searchStatus, updateSearchStatus] = useState(false);
   const [category, updateCategory] = useState(null);
-  const [title, updateTitle] = useState(""); 
-
-  
+  const [title, updateTitle] = useState("");
 
   return (
     <ThemeContextProvider>
-    <div >
-      <header></header>
-    
-        <div id="navbar">
-          
+      <div>
+        <header></header>
 
-          <Link to="/home" id="homebutton"
-          onClick={() => {
-            updateSearchStatus(false);
-            updateTitle("")
-            updateCategory(null)
-          }}>
+        <div id="navbar">
+          <Link
+            to="/home"
+            id="homebutton"
+            onClick={() => {
+              updateSearchStatus(false);
+              updateTitle("");
+              updateCategory(null);
+            }}
+          >
             <div
               data-testid="homebtn"
               onClick={() => {
@@ -43,7 +42,6 @@ function App() {
                 updateCategory(null);
               }}
             >
-              
               <svg
                 id="homebtn"
                 width="48"
@@ -77,7 +75,7 @@ function App() {
             onClick={() => {
               updateSearchStatus(false);
               updateCategory("Movie");
-              updateTitle("")
+              updateTitle("");
             }}
           >
             <div>Movies</div>
@@ -89,72 +87,72 @@ function App() {
             onClick={() => {
               updateSearchStatus(false);
               updateCategory("TV");
-              updateTitle("")
+              updateTitle("");
             }}
           >
             <div>TV Shows</div>
           </Link>
           <ToggleTheme />
-
         </div>
-        
-        
 
-          
-          {/* <Link to={'/home'}>  */}
-          {/* </Link>  */}
-          {/* <Router> */}
-        
-          <Switch>
-            <Route path="/movies">
-              <Search
-                category={category}
-                updateCategory={updateCategory}
-                searchStatus={searchStatus}
-                title={title}
-                updateTitle={updateTitle}
-                updateSearchStatus={updateSearchStatus}
-              />
-            </Route>
-            <Route path="/shows">
-              <TvSearch
-                category={category}
-                updateCategory={updateCategory}
-                searchStatus={searchStatus}
-                title={title}
-                updateTitle={updateTitle}
-                updateSearchStatus={updateSearchStatus}
-              />
-            </Route>
-            <Route path="/home">
-              <TrendingSearch
-                category={category}
-                updateCategory={updateCategory}
-                searchStatus={searchStatus}
-                title={title}
-                updateTitle={updateTitle}
-                updateSearchStatus={updateSearchStatus}
-              />
-            </Route>
-            <Route path={`/details/:name`} component={Details} />
-            <Route path={`/moviedetails/:title`} component={MovieDetails} />
-          </Switch>
-          {/* <Route path="*">
+        {/* <Link to={'/home'}>  */}
+        {/* </Link>  */}
+        {/* <Router> */}
+
+        <Switch>
+          <Route path="/movies">
+            <Search
+              category={category}
+              updateCategory={updateCategory}
+              searchStatus={searchStatus}
+              title={title}
+              updateTitle={updateTitle}
+              updateSearchStatus={updateSearchStatus}
+            />
+          </Route>
+          <Route path="/shows">
+            <TvSearch
+              category={category}
+              updateCategory={updateCategory}
+              searchStatus={searchStatus}
+              title={title}
+              updateTitle={updateTitle}
+              updateSearchStatus={updateSearchStatus}
+            />
+          </Route>
+          <Route path="/home">
+            <TrendingSearch
+              category={category}
+              updateCategory={updateCategory}
+              searchStatus={searchStatus}
+              title={title}
+              updateTitle={updateTitle}
+              updateSearchStatus={updateSearchStatus}
+            />
+          </Route>
+          <Route path={`/details/:name`} component={Details} />
+          <Route path={`/moviedetails/:title`} component={MovieDetails} />
+        </Switch>
+        {/* <Route path="*">
             <Redirect to='/home'/>
 
             {/* Uncomment below for testing  */}
-          {/* <NoMatch /> */}
-          {/* </Route> */}
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          {/* </Router> */}
-          {/* <div data-testid="location-display">{location.pathname}</div>  */}
-          <SearchButton category={category} searchStatus={searchStatus} updateSearchStatus={updateSearchStatus} updateCategory={updateCategory} updateTitle={updateTitle} />
-
-          </div>
+        {/* <NoMatch /> */}
+        {/* </Route> */}
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        {/* </Router> */}
+        {/* <div data-testid="location-display">{location.pathname}</div>  */}
+        <SearchButton
+          category={category}
+          searchStatus={searchStatus}
+          updateSearchStatus={updateSearchStatus}
+          updateCategory={updateCategory}
+          updateTitle={updateTitle}
+        />
+      </div>
     </ThemeContextProvider>
-    
   );
 }
 

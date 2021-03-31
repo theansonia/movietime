@@ -27,8 +27,8 @@ const Show = (props) => {
         to={`/Details/${name}`}
       >
         <div id="poster">
-          {poster !== "https://image.tmdb.org/t/p/w500/null" && poster !==
-            "https://image.tmdb.org/t/p/w500/undefined" ? (
+          {poster !== "https://image.tmdb.org/t/p/w500/null" &&
+          poster !== "https://image.tmdb.org/t/p/w500/undefined" ? (
             <img id="poster" src={poster} alt={`Movie poster for ${name}`} />
           ) : (
             <img

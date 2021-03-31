@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import MovieContainer from "../containers/MovieContainer";
 // import API_KEY from "../apiKey";
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const TrendingSearch = ({
   category,
@@ -17,7 +17,7 @@ const TrendingSearch = ({
   // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([]);
   const { lightTheme } = useContext(ThemeContext);
-	const theme = !lightTheme ? 'darkmode' : '';
+  const theme = !lightTheme ? "darkmode" : "";
 
   if (category === null) category = "a Movie or TV";
 
@@ -64,8 +64,7 @@ const TrendingSearch = ({
   }, [title, category]);
 
   return (
-    <div className={'' + theme}>
-
+    <div className={"" + theme}>
       <MovieContainer
         movieResults={movieResults}
         tvResults={tvResults}

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import MovieContainer from "../containers/MovieContainer";
 // import API_KEY from "../apiKey";
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const TvSearch = ({
   category,
@@ -18,7 +18,7 @@ const TvSearch = ({
   const [tvResults, updateTvResults] = useState([]);
 
   const { lightTheme } = useContext(ThemeContext);
-	const theme = !lightTheme ? 'darkmode' : '';
+  const theme = !lightTheme ? "darkmode" : "";
   // const API_KEY = process.env.API_KEY;
 
   if (category === null) category = "a Movie or TV";
@@ -60,8 +60,7 @@ const TvSearch = ({
   }, [title]);
 
   return (
-    <div className={'' + theme}>
-
+    <div className={"" + theme}>
       <MovieContainer
         movieResults={movieResults}
         tvResults={tvResults}
