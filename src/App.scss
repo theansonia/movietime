@@ -61,8 +61,8 @@ body{
 .toggle__btn {
   padding: 0;
   position: relative;
-  width: 2.4rem;
-  height: 1rem;
+  width: 2.5rem;
+  height: 1.2rem;
   margin: 0 .9rem 0 .45rem;
 }
 
@@ -101,10 +101,10 @@ body{
 .toggle__btn .circle:before {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 20px;
-  height: 20px;
+  top: .27rem;
+  left: .15rem;
+  width: .75rem;
+  height: .75rem;
   color: $background;
   font-weight: bold;
   text-align: center;
@@ -173,7 +173,7 @@ body{
   align-items: center;
   // margin-bottom: 1.5rem;
   z-index: 14;
-  padding-right: 1rem;
+  padding-right: .5rem;
   padding-left: 1rem;
 
   @media (min-width: 600px) {
