@@ -123,9 +123,7 @@ body{
   transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-.toggle__box{
-  transform: scale(.75);
-}
+
 .toggle__btn .checkbox:checked + .circle:before {
   content: "";
   left: 1.5rem;
@@ -185,9 +183,9 @@ body{
   align-items: center;
   // margin-bottom: 1.5rem;
   z-index: 14;
-  padding-right: .5rem;
+  padding-right: .75rem;
   padding-left: 1rem;
-  font-size: .5rem;
+  font-size: .75rem;
   @media (min-width: 600px) {
     height: 4rem;
 
@@ -314,7 +312,7 @@ input {
   border-radius: 30px;
   font-size: 1.8rem;
   margin: 0 auto;
-  margin-right: 0.5rem;
+  // margin-right: 0.5rem;
   box-shadow: 0 10px 40px #343A40, 0 0 0 20px #F8F9FA;  
 
 
