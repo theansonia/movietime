@@ -24,7 +24,9 @@ const Details = ({ match }) => {
   const theme = !lightTheme ? "darkmode" : "";
 
   useEffect(() => {
-
+    if (name === " " || name === "." || name === "/" || name === "$"  || name === "%" || name === '#' || name === "&"  || name === "+" || name === '#' || name === "?"  || name === "+" || name === '#' ) {
+      return;
+    }
     const query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
@@ -37,6 +39,7 @@ const Details = ({ match }) => {
   }, [name]);
 
   useEffect(() => {
+    if (details === undefined) return;
     if (details.length === 0) return;
 
     const URL = `https://api.themoviedb.org/3/tv/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;

@@ -20,6 +20,9 @@ const MovieDetails = ({ match }) => {
   const theme = !lightTheme ? "darkmode" : "";
 
   useEffect(() => {
+    if (title === " " || title === "." || title === "/" || title === "$"  || title === "%" || title === '#' || title === "&"  || title === "+" || title === '#' || title === "?"  || title === "+" || title === '#' ) {
+      return;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // eslint-disable-next-line no-useless-escape
     const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
@@ -34,6 +37,8 @@ const MovieDetails = ({ match }) => {
   }, [title]);
 
   useEffect(() => {
+    if (details === undefined) return
+    
     if (details.length === 0) return;
 
     const URL = `https://api.themoviedb.org/3/movie/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;

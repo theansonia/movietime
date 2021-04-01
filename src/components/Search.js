@@ -36,7 +36,7 @@ const Search = ({
   }, [title])
 
   useEffect(() => {
-    if (title === " ") {
+    if (title === " " || title === "." || title === "/" || title === "$"  || title === "%" || title === '#' || title === "&"  || title === "+" || title === '#' || title === "?"  || title === "+" || title === '#' ) {
       updateTitle("");
       return;
     }

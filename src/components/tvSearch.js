@@ -35,15 +35,16 @@ const TvSearch = ({
   }, [title])
 
   useEffect(() => {
-    if (title === " ") {
+    if (title === " " || title === "." || title === "/" || title === "$"  || title === "%" || title === '#' || title === "&"  || title === "+" || title === '#' || title === "?"  || title === "+" || title === '#' ) {
       updateTitle("");
       return;
     }
-
+    
     if (title === "`") {
       updateTitle("'");
       return;
     }
+
 
     if (title.length === 0) {
       updateTvResults([]);
@@ -51,10 +52,12 @@ const TvSearch = ({
     }
     updateLoading(true)
     // eslint-disable-next-line no-useless-escape
-    title = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    // const query = title.replace(regex, ' ');
 
-    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=${pages}&include_adult=false`;
+   
     console.log(title)
+    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=${pages}&include_adult=false`;
+    
     fetch(URL)
       .then((res) => res.json())
       .then(data => {
