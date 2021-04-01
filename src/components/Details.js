@@ -27,7 +27,10 @@ const Details = ({ match }) => {
     if (name === " " || name === "." || name === "/" || name === "$"  || name === "%" || name === '#' || name === "&"  || name === "+" || name === '#' || name === "?"  || name === "+" || name === '#' ) {
       return;
     }
-    const query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+     // let query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+     let query = name.replace('%20', ' ')
+     query = name.replace('%%20', ' ')
 
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 

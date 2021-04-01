@@ -27,6 +27,31 @@ body {
   background-color: $primary-font;
   color: #f8f9fa;
 
+  canvas{
+    background-color: #212529;
+  }
+  #searchbtn{
+    background-color: #212529;
+  }
+
+  html{
+    background-color: #212529;
+  }
+  body{
+    background-color: #212529;
+
+  }
+
+  #root {
+    background-color:#212529;
+  }
+  #somediv{
+    background-color: #212529;
+  }
+
+  #randomdiv{
+    background-color: #212529;
+  }
   #blackstars {
     fill: #f8f9fa;
   }
@@ -385,18 +410,7 @@ input {
   margin-left: 0.5rem;
   // min-width: 100px;
 }
-.footer {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: none;
-  position: fixed;
-  z-index: 1;
-  bottom: 0;
-  left: 35%;
-  width: 50%;
-  display: flex;
-  flex: 1;
-}
+
 
 #homebtn {
   width: 2em;
@@ -593,7 +607,7 @@ input {
   width: 18rem;
 }
 #searchbtn {
-  left: 45.5%;
+  left: 46.25%;
   top: 80%;
 }
 
