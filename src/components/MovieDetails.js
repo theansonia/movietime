@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Recs from "./Recs";
 import Stars from "./Stars";
 import { ThemeContext } from "../contexts/ThemeContext";
+import API_KEY from "../apiKey";
 
 const MovieDetails = ({ match }) => {
   // comment out for testing
@@ -17,7 +18,7 @@ const MovieDetails = ({ match }) => {
   const theme = !lightTheme ? "darkmode" : "";
 
   useEffect(() => {
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${title}&page=1&include_adult=false`;
 
     fetch(URL)
       .then((res) => res.json())
@@ -29,7 +30,7 @@ const MovieDetails = ({ match }) => {
   useEffect(() => {
     if (details.length === 0) return;
 
-    const URL = `https://api.themoviedb.org/3/movie/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
+    const URL = `https://api.themoviedb.org/3/movie/${details.id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`;
 
     fetch(URL)
       .then((res) => res.json())
