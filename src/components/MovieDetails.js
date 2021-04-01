@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 import React, { useContext, useEffect, useState } from "react";
 import Recs from "./Recs";
@@ -10,6 +11,7 @@ const MovieDetails = ({ match }) => {
   const {
     params: { title },
   } = match;
+  console.log(match)
 
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
@@ -18,7 +20,11 @@ const MovieDetails = ({ match }) => {
   const theme = !lightTheme ? "darkmode" : "";
 
   useEffect(() => {
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line no-useless-escape
+    const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 
     fetch(URL)
       .then((res) => res.json())

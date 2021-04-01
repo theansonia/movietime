@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable array-callback-return */
 import React, { useContext, useEffect, useState } from "react";
 import Stars from "./Stars";
@@ -14,6 +15,8 @@ const Details = ({ match }) => {
     params: { name },
   } = match;
 
+
+
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
 
@@ -21,7 +24,10 @@ const Details = ({ match }) => {
   const theme = !lightTheme ? "darkmode" : "";
 
   useEffect(() => {
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${name}&page=1&include_adult=false`;
+
+    const query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 
     fetch(URL)
       .then((res) => res.json())
