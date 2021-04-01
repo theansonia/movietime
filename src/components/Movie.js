@@ -52,7 +52,7 @@ const Movie = ({
             marginTop: ".5em",
             color: "inherit",
           }}
-          to={`/moviedetails/${title}`}
+          to={`/moviedetails/${encodeURI(title)}`}
         >
           {title ? <div id="title">{title}</div> : null}
           <div id="type">
