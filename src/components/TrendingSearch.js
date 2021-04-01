@@ -56,7 +56,10 @@ const TrendingSearch = ({
       .then(data => {
         updateMovieResults(prevResults => {
           
-          return [...prevResults, ...data.results];
+          // eslint-disable-next-line array-callback-return
+          return [...prevResults, ...data.results.filter((res) => {
+            if (res.media_type === 'tv' || res.media_type === 'movie') return res;
+          }) ]
 
         })
         updateHasMore(data.results.length > 0)
