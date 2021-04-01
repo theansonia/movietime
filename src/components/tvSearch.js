@@ -46,7 +46,7 @@ const TvSearch = ({
     }
     updateLoading(true)
     // eslint-disable-next-line no-useless-escape
-    // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    title = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
     const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=${pages}&include_adult=false`;
     console.log(title)
