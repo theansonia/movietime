@@ -14,8 +14,8 @@ const Stars = ({ rating, reviews }) => {
             key={`starkey-${key}`}
             id="star"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
           >
             <path
@@ -29,8 +29,8 @@ const Stars = ({ rating, reviews }) => {
           <svg
             key={`blankstarskey-${i}`}
             id="star"
-            width="24"
-            height="24"
+            width="18"
+            height="18"
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
             clipRule="evenodd"
