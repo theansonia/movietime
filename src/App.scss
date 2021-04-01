@@ -37,6 +37,8 @@ body {
   #search {
     background-color: $primary-font;
     box-shadow: 0 10px 40px #adb5bd, 0 0 0 20px #212529;
+    -webkit-box-shadow:0 10px 40px #adb5bd, 0 0 0 20px #212529;
+    -moz-box-shadow: 0 10px 40px #adb5bd, 0 0 0 20px #212529;
     color: $background;
     border: 3px solid #adb5bd;
   }
@@ -217,7 +219,7 @@ body {
 
 #x {
   z-index: 9999999999;
-  left: 91%;
+  left: 90%;
   position: relative;
   &:hover {
     cursor: pointer;
@@ -249,6 +251,7 @@ form {
   width: 100%;
   // margin-top: 1rem;
   font-size: 2rem;
+  padding-right: 1rem;
 }
 
 #searchbar {
@@ -258,9 +261,10 @@ form {
   -webkit-text-size-adjust: 100%;
   // margin-bottom: 12rem;
   margin: 0 auto;
-  padding-right: 1.25rem;
+  // padding-right: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  // margin-right: 1rem;
   width: 95%;
   // background-color: blue;
   &:after,
@@ -309,6 +313,8 @@ input {
   margin: 0 auto;
   // margin-right: 0.5rem;
   box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
+  -webkit-box-shadow:0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
+    -moz-box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
 
   &:after,
   :before {
@@ -502,25 +508,9 @@ input {
   font-weight: 300;
 }
 
-// #blackstars{
-//   width: 16px;
-// }
-
-// #blankstars{
-//   width: 16px;
-// }
-
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-  // #blackstars{
-  //   width: 0.75rem;
-  // }
 
-  // #blankstars{
-  //   width: 0.75rem;
-  // }
   #searchbar {
-    // width: 90%;
-    // margin-left: 0.5rem;
     margin: 0 auto;
   }
 
@@ -620,7 +610,7 @@ input {
 
 #x {
   position: relative;
-  // left: 95%;
+  left: 87%;
   background-color: none;
 }
 
@@ -643,16 +633,9 @@ input {
 @media only screen and (min-device-width: 770px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   #searchbtn {
     top: 77%;
-    // left: 42.5%;
+
   }
 
-  // #blankstars{
-  //   width: 0.75rem;
-  // }
-
-  // #blackstars{
-  //   width: 0.75rem;
-  // }
   #poster {
     width: 12rem;
   }
@@ -756,8 +739,7 @@ input {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
   #recs {
     display: flex;
-    // justify-content: center;
-    // align-items: center;
+
   }
 
   #recposter {
@@ -765,7 +747,7 @@ input {
     position: relative;
     margin: auto;
     border-radius: 3px;
-    // padding: .25rem;
+   
   }
 
   #rectitle {
@@ -814,6 +796,9 @@ input {
     top: 90%;
   }
 
+  #x{
+    left: 98%;
+  }
   #overview {
     overflow: scroll;
     margin-bottom: 0.15em;
