@@ -9,6 +9,8 @@ import MovieDetails from "./components/MovieDetails";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import ToggleTheme from "./components/ToggleTheme";
 import SearchButton from "./components/SearchButton";
+// import PageContextProvider from "./contexts/PageContext";
+
 // export const LocationDisplay = () => {
 //   const location = useLocation()
 
@@ -19,11 +21,16 @@ function App() {
   const [searchStatus, updateSearchStatus] = useState(false);
   const [category, updateCategory] = useState(null);
   const [title, updateTitle] = useState("");
+  const [pages, updatePages] = useState(1)
+  // const { resetPages, pages } = useContext(PageContext);
+
 
   return (
     <ThemeContextProvider>
+      {/* <PageContextProvider > */}
       <div>
         <header></header>
+
 
         <div id="navbar">
           <Link
@@ -32,7 +39,8 @@ function App() {
             onClick={() => {
               updateSearchStatus(false);
               updateTitle("");
-              updateCategory(null);
+              // updateCategory(null);
+              updatePages(1);
             }}
           >
             <div
@@ -40,6 +48,8 @@ function App() {
               onClick={() => {
                 updateSearchStatus(false);
                 updateCategory(null);
+                updatePages(1);
+
               }}
             >
               <svg
@@ -76,6 +86,8 @@ function App() {
               updateSearchStatus(false);
               updateCategory("Movie");
               updateTitle("");
+              updatePages(1);
+            
             }}
           >
             <div>Movies</div>
@@ -88,13 +100,13 @@ function App() {
               updateSearchStatus(false);
               updateCategory("TV");
               updateTitle("");
+              updatePages(1);
             }}
           >
             <div>TV Shows</div>
           </Link>
           <ToggleTheme />
         </div>
-
         {/* <Link to={'/home'}>  */}
         {/* </Link>  */}
         {/* <Router> */}
@@ -108,6 +120,8 @@ function App() {
               title={title}
               updateTitle={updateTitle}
               updateSearchStatus={updateSearchStatus}
+              updatePages={updatePages}
+              pages={pages}
             />
           </Route>
           <Route path="/shows">
@@ -118,6 +132,8 @@ function App() {
               title={title}
               updateTitle={updateTitle}
               updateSearchStatus={updateSearchStatus}
+              updatePages={updatePages}
+              pages={pages}
             />
           </Route>
           <Route path="/home">
@@ -128,6 +144,8 @@ function App() {
               title={title}
               updateTitle={updateTitle}
               updateSearchStatus={updateSearchStatus}
+              updatePages={updatePages}
+              pages={pages}
             />
           </Route>
           <Route path={`/details/:name`} component={Details} />
@@ -144,14 +162,20 @@ function App() {
         </Route>
         {/* </Router> */}
         {/* <div data-testid="location-display">{location.pathname}</div>  */}
+        
         <SearchButton
           category={category}
           searchStatus={searchStatus}
           updateSearchStatus={updateSearchStatus}
           updateCategory={updateCategory}
           updateTitle={updateTitle}
+          updatePages={updatePages}
+          pages={pages}
+          
         />
+        
       </div>
+      {/* </PageContextProvider> */}
     </ThemeContextProvider>
   );
 }

@@ -1,30 +1,27 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
-import Movie from "../components/Movie";
+import React, { useCallback, useRef } from "react";
 import "../App.scss";
-
+import Show from "../components/Show";
 import SearchBar from "../components/SearchBar";
 
 import BeatLoader from "react-spinners/BeatLoader";
 import { css } from "@emotion/core";
-import { ThemeContext } from "../contexts/ThemeContext";
 
 const override = css`
   display: flex;
   margin: 0 auto;
+  border-color: red;
   position: fixed;
   bottom: 1%;
   color: #6c757d;
   z-index: 100000;
-  background: transparent;
-  background-color: transparent;
   
 `;
 
-const MovieContainer = ({
+const TVContainer = ({
   movieResults,
+  tvResults,
   category,
   searchStatus,
   updateCategory,
@@ -39,12 +36,8 @@ const MovieContainer = ({
 }) => {
 
   const observer = useRef();
-  const [color, updateColor] = useState('#6c757d');
 
-  const { lightTheme } = useContext(ThemeContext);
-  const theme = !lightTheme ? "darkmode" : "";
-
-  const lastMovie = useCallback(node => {
+  const lastShow = useCallback(node => {
     if (isLoading) return;
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries => {
@@ -54,7 +47,6 @@ const MovieContainer = ({
     })
     if (node) observer.current.observe(node);
   }, [isLoading, hasMore])
- 
   let tempCategory;
   if (category === "a Movie or TV") {
     tempCategory = "Movies and TV Shows";
@@ -64,16 +56,7 @@ const MovieContainer = ({
     tempCategory = "Movies";
   }
 
-  // useEffect(() => {
-  //   if (theme === 'darkmode') updateColor('white')
-  // })
-
-  useEffect(() => {
-
-    movieResults.sort((a, b) => (a.popularity > b.popularity) ? 1 : -1)
-
-  }, [title])
-
+  
   return (
     <div>
       <SearchBar
@@ -95,27 +78,29 @@ const MovieContainer = ({
     
       <div className="moviecontainer">
 
-        {movieResults.length === 0
+
+
+              {tvResults.length  === 0
           ? null
           : 
-          movieResults.map((movie, index) => {
-            if (movieResults.length === index + 1) {
+          tvResults.map((movie, index) => {
+            if (tvResults.length === index + 1) {
               return (
-                <div key={`moviekey-${index}`}
-                id='movies' ref={lastMovie}>
-                <Movie
-                  key={`moviekeyinner-${movie.id}`}
+                <div key={`showkey-${index}`}
+                id='movies' ref={lastShow}>
+                <Show
+                  key={`showkeyinner-${movie.id}`}
                   id={movie.id}
-                  title={movie.title || movie.name}
+                  name={movie.name}
                   poster={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   overview={movie.overview}
                   release={
                     movie.release_date === undefined
                       ? null
-                      : movie.release_date.split("-")[0]
+                      : movie.first_air_date.split("-")[0]
                   }
                   aired={
-                    movie.first_air_date === undefined
+                    movie.first_air_date=== undefined
                       ? null
                       : movie.first_air_date.split("-")[0]
                   }
@@ -126,26 +111,24 @@ const MovieContainer = ({
                   type={movie.media_type}
                   category={category}
                   updateCategory={updateCategory}
-                  
                 />
-
                 </div>
               );
             } else {
               
               return (
-                <div key={`moviekeyagain-${index}`}
+                <div key={`keyout--${index}`}
                 id='movies'>
-                <Movie
+                <Show
                   key={movie.id + 'moviekeyinnerbutouter'}
                   id={movie.id}
-                  title={movie.title || movie.name}
+                  name={movie.name}
                   poster={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   overview={movie.overview}
                   release={
-                    movie.release_date === undefined
+                    movie.first_air_date === undefined
                       ? null
-                      : movie.release_date.split("-")[0]
+                      : movie.first_air_date.split("-")[0]
                   }
                   aired={
                     movie.first_air_date === undefined
@@ -160,17 +143,13 @@ const MovieContainer = ({
                   category={category}
                   updateCategory={updateCategory}
                 />
-
                 </div>
               );
             }
-            
+              
             })}
-                         
-            
-            {isLoading ? <BeatLoader id='beat' color={color} loading={isLoading} css={override} size={100} /> : null}
-
                           
+          {isLoading ? <BeatLoader id='beat' loading={isLoading} css={override} size={100} /> : null}
         
       </div>
       
@@ -181,4 +160,4 @@ const MovieContainer = ({
   );
 };
 
-export default MovieContainer;
+export default TVContainer;

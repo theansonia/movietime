@@ -11,11 +11,11 @@ const Stars = ({ rating, reviews }) => {
       <div className="stars">
         {stars.map((curr, key) => (
           <svg
-            key={key}
+            key={`starkey-${key}`}
             id="star"
             xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
           >
             <path
@@ -27,12 +27,11 @@ const Stars = ({ rating, reviews }) => {
         ))}
         {blankStars.map((curr, i) => (
           <svg
-            key={i}
+            key={`blankstarskey-${i}`}
             id="star"
-            width="16"
-            height="16"
+            width="24"
+            height="24"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
             fillRule="evenodd"
             clipRule="evenodd"
           >

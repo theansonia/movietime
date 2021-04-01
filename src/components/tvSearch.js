@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
-import MovieContainer from "../containers/MovieContainer";
+import TVContainer from "../containers/TVContainer";
 // import API_KEY from "../apiKey";
 import { ThemeContext } from "../contexts/ThemeContext";
+
+
+// import { PageContext } from "../contexts/PageContext";
 
 const TvSearch = ({
   category,
@@ -11,12 +14,16 @@ const TvSearch = ({
   updateCategory,
   title,
   updateTitle,
+  pages,
+  updatePages
 }) => {
   // const [title, updateTitle] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [movieResults, updateMovieResults] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([]);
-
+  const [hasMore, updateHasMore] = useState(false)
+  const[isLoading, updateLoading] = useState(true)
+  // const [hasMore, updateMore] = useState(true)
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
   // const API_KEY = process.env.API_KEY;
@@ -24,45 +31,71 @@ const TvSearch = ({
   if (category === null) category = "a Movie or TV";
 
   useEffect(() => {
-    if (title.length === 0 || category === "Movie") {
+    updateTvResults([])
+  }, [title])
+
+  useEffect(() => {
+    if (title === " ") {
+      updateTitle("");
+      return;
+    }
+
+    if (title.length === 0) {
       updateTvResults([]);
       return;
     }
+    updateLoading(true)
+    // eslint-disable-next-line no-useless-escape
+    // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
-    if (title === " ") {
-      updateTitle("");
-      return;
-    }
-
-    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=${pages}&include_adult=false`;
+    console.log(title)
     fetch(URL)
       .then((res) => res.json())
-      .then((data) => updateTvResults(data.results))
+      .then(data => {
+        updateTvResults(prevResults => {
+          return [...prevResults, ...data.results];
+
+        })
+        updateHasMore(data.results.length > 0)
+        updateLoading(false);
+      })
       .catch((error) => console.log(error));
-  }, [title, category]);
+
+  }, [title, category, pages]);
 
   useEffect(() => {
-    if (title.length > 0) return;
-    if (title.length === 0) updateTvResults([]);
-
     if (title === " ") {
       updateTitle("");
       return;
     }
 
-    const URL = `https://api.themoviedb.org/3/tv/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => updateTvResults(data.results))
-      .catch((error) => console.log(error));
+    updateLoading(true)
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title]);
+    if (title.length > 0) return;
+   
+
+    const URL = `https://api.themoviedb.org/3/tv/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=${pages}`;
+    fetch(URL)
+    .then((res) => res.json())
+    .then(data => {
+      updateTvResults(prevResults => {
+        console.log('trending', prevResults)
+        return [...prevResults, ...data.results]
+      })
+      updateHasMore(data.results.length > 0)
+      updateLoading(false);
+    })
+    .catch((error) => console.log(error));
+
+}, [title, pages]);
+
+  
 
   return (
-    <div className={"" + theme}>
-      <MovieContainer
-        movieResults={movieResults}
+    <div id='scrollablediv' className={"" + theme}>
+     
+      <TVContainer
         tvResults={tvResults}
         updateCategory={updateCategory}
         category={category}
@@ -70,7 +103,15 @@ const TvSearch = ({
         updateTitle={updateTitle}
         title={title}
         searchStatus={searchStatus}
+        updatePages={updatePages}
+        pages={pages}
+        hasMore={hasMore}
+        isLoading={isLoading}
+        updateLoading={updateLoading}
+        updateHasMore={updateHasMore}
       />
+
+
     </div>
   );
 };

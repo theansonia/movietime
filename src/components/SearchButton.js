@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-const SearchButton = ({ category, updateSearchStatus, updateTitle }) => {
+const SearchButton = ({ category, updateSearchStatus, updateTitle, updatePages, pages }) => {
   return (
     <div>
       {category === null ? (
         <Link to={"/home"}>
-          <div
+          <div id='somediv' 
             onClick={() => {
               updateSearchStatus(true);
               updateTitle("");
+              updatePages(1)
+              
+              
             }}
           >
             <svg
@@ -96,6 +99,8 @@ const SearchButton = ({ category, updateSearchStatus, updateTitle }) => {
         <div
           onClick={() => {
             updateSearchStatus(true);
+            updateTitle("");
+            updatePages(1)
           }}
         >
           <svg

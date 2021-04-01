@@ -6,15 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import ThemeContextProvider from "./contexts/ThemeContext";
+// import PageContextProvider from "./contexts/PageContext";
 
 ReactDOM.render(
   <Router>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <ScrollToTop />
       <ThemeContextProvider>
+      {/* <PageContextProvider> */}
+
         <App />
+      {/* </PageContextProvider> */}
       </ThemeContextProvider>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </Router>,
   document.getElementById("root")
 );

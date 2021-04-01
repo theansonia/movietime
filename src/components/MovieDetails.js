@@ -94,7 +94,7 @@ const MovieDetails = ({ match }) => {
                   if (i < 5)
                     return (
                       <Recs
-                        key={rec.id}
+                        key={`recskey-${i}`}
                         id={rec.id}
                         title={rec.title || rec.name}
                         pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
