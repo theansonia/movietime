@@ -81,7 +81,7 @@ const Search = ({
       .then((res) => res.json())
       .then(data => {
         updateMovieResults(prevResults => {
-          return [...prevResults.concat(data.results)]
+          return [...prevResults, ...data.results]
         })
         updateHasMore(data.results.length > 0)
         updateLoading(false);

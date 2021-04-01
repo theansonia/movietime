@@ -81,7 +81,6 @@ const TrendingSearch = ({
       .then((res) => res.json())
       .then(data => {
         updateMovieResults(prevResults => {
-          console.log('trending', prevResults)
           return [...prevResults, ...data.results]
         })
         updateHasMore(data.results.length > 0)
