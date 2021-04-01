@@ -41,6 +41,11 @@ const Search = ({
       return;
     }
 
+    if (title === "`") {
+      updateTitle("'");
+      return;
+    }
+
     if (title.length === 0 || category === "TV") {
       updateMovieResults([]);
       return;

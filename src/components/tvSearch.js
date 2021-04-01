@@ -40,6 +40,11 @@ const TvSearch = ({
       return;
     }
 
+    if (title === "`") {
+      updateTitle("'");
+      return;
+    }
+
     if (title.length === 0) {
       updateTvResults([]);
       return;
