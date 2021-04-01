@@ -151,9 +151,9 @@ function App() {
           <Route path={`/details/:name`} component={Details} />
           <Route path={`/moviedetails/:title`} component={MovieDetails} />
         </Switch>
-        <Route path="*"> 
+        {/* <Route path="*"> 
             <Redirect to='/home'/>
-        </Route>
+        </Route> */}
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
