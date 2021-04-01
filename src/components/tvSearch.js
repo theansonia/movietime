@@ -54,9 +54,10 @@ const TvSearch = ({
     // eslint-disable-next-line no-useless-escape
     // const query = title.replace(regex, ' ');
 
-   
-    console.log(title)
-    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=${pages}&include_adult=false`;
+    // eslint-disable-next-line no-useless-escape
+    const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=${pages}&include_adult=false`;
     
     fetch(URL)
       .then((res) => res.json())
@@ -88,7 +89,6 @@ const TvSearch = ({
     .then((res) => res.json())
     .then(data => {
       updateTvResults(prevResults => {
-        console.log('trending', prevResults)
         return [...prevResults, ...data.results]
       })
       updateHasMore(data.results.length > 0)

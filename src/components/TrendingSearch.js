@@ -53,9 +53,9 @@ const TrendingSearch = ({
     updateLoading(true)
     
     // eslint-disable-next-line no-useless-escape
-    title = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${title}&page=${pages}`;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=${pages}`;
     fetch(URL)
       .then((res) => res.json())
       .then(data => {
