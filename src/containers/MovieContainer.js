@@ -12,14 +12,10 @@ import { css } from "@emotion/core";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const override = css`
-  display: flex;
-  margin: 0 auto;
-  position: fixed;
-  bottom: 1%;
-  color: #6c757d;
-  z-index: 100000;
-  background: transparent;
-  background-color: transparent;
+display: flex;
+margin: 0 auto;
+position: fixed;
+z-index: 100000; 
   
 `;
 
@@ -166,9 +162,12 @@ const MovieContainer = ({
             }
             
             })}
-                         
+                        <div id='beat'>
+
+                        {isLoading ? <BeatLoader id='beat' color={color} loading={isLoading} css={override} size={60} /> : null}
+                        </div>
             
-            {isLoading ? <BeatLoader id='beat' color={color} loading={isLoading} css={override} size={100} /> : null}
+            
 
                           
         

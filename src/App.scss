@@ -18,9 +18,22 @@ body {
   background-color: $background;
 }
 
-#root{
-  height: 100%;
+#beat{
+  display: flex;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 50%;
+  z-index: 100000;  
+  left: 25%;
 }
+
+@media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+  #beat{
+    left: 46%;
+  }
+}
+
+
 #searchdiv {
   margin: 0 auto;
   // margin-right: 1.9rem;
@@ -76,12 +89,6 @@ body {
   #xpath {
     fill: #f8f9fa;
   }
-}
-
-#somediv{
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 #stars {
   min-width: 100%;
@@ -269,8 +276,8 @@ body {
   background-position: 50%;
   position: fixed;
   transition: top 0.2s;
-  left: 40.25%;
   top: 80%;
+  left: 40.25%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
@@ -295,7 +302,7 @@ form {
   -webkit-text-size-adjust: 100%;
   // margin-bottom: 12rem;
   margin: 0 auto;
-  padding-right: .3rem;
+  padding-right: .5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   // margin-right: 1rem;
@@ -436,12 +443,13 @@ input {
     fill: darken(#adb5bd, 18%);
   }
 }
-#more {
+#providers {
   color: #4cc9f0;
   text-decoration: underline;
   &:hover {
     cursor: pointer;
   }
+  margin-top: .5rem;
 }
 
 #detail {
@@ -531,12 +539,19 @@ input {
   font-weight: 300;
 }
 
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-
+@media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  
   #searchbar {
     margin: 0 auto;
+    padding-right: 0;
   }
 
+  #beat{
+    left: 40.5%;
+  }
+  #searchbtn{
+    left: 45.5%;
+  }
   .toggle__box {
     transform: scale(1);
   }
@@ -616,7 +631,6 @@ input {
   width: 18rem;
 }
 
-
 input {
   font-size: 1.5rem;
   // margin: 5rem;
@@ -653,7 +667,6 @@ input {
 @media only screen and (min-device-width: 770px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   #searchbtn {
     top: 77%;
-
   }
 
   #poster {
@@ -714,7 +727,7 @@ input {
   }
 
   #searchbtn {
-    left: 46.25%;
+    // left: 46.25%;
     top: 80%;
   }
 }
@@ -742,25 +755,12 @@ input {
     text-align: center;
   }
   #searchbtn {
-    left: 45%;
+    // left: 45%;
     top: 80%;
   }
 }
 
-@media only screen and (min-width: 414px) and (-webkit-min-device-pixel-ratio: 2) and (max-width: 767px)  and (orientation: portrait) { 
-  #searchbtn {
-    left: 41.75%;
-  }
-
-  #searchbar {
-
-    padding-right: .6rem;
-
-}
-
-}
-
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 4) and (orientation: landscape) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
   #recposter {
     width: 95%;
   }
@@ -769,13 +769,12 @@ input {
   }
 }
 
-
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
   #recs {
     display: flex;
 
   }
-  
+
   #recposter {
     width: 20rem;
     position: relative;
@@ -788,7 +787,7 @@ input {
     width: 16rem;
   }
   #searchbtn {
-    left: 44%;
+    // left: 45%;
     top: 80%;
   }
 }
@@ -845,16 +844,5 @@ input {
     display: -webkit-box;
     -webkit-line-clamp: 9;
     -webkit-box-orient: vertical;
-  }
-}
-
-@media screen 
-  and (min-device-width: 1200px) 
-  and (max-device-width: 1600px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (min-resolution: 192dpi)   {
-
-  #searchbtn{
-    left: 45%;
   }
 }

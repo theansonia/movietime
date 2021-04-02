@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import "../App.scss";
 import Show from "../components/Show";
 import SearchBar from "../components/SearchBar";
@@ -9,13 +9,10 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { css } from "@emotion/core";
 
 const override = css`
-  display: flex;
-  margin: 0 auto;
-  border-color: red;
-  position: fixed;
-  bottom: 1%;
-  color: #6c757d;
-  z-index: 100000;
+display: flex;
+margin: 0 auto;
+position: fixed;
+z-index: 100000;  
   
 `;
 
@@ -36,6 +33,8 @@ const TVContainer = ({
 }) => {
 
   const observer = useRef();
+  // eslint-disable-next-line no-unused-vars
+  const [color, updateColor] = useState('#6c757d');
 
   const lastShow = useCallback(node => {
     if (isLoading) return;
@@ -149,7 +148,10 @@ const TVContainer = ({
               
             })}
                           
-          {isLoading ? <BeatLoader id='beat' loading={isLoading} css={override} size={100} /> : null}
+                          <div id='beat'>
+
+{isLoading ? <BeatLoader id='beat' color={color} loading={isLoading} css={override} size={60} /> : null}
+</div>
         
       </div>
       

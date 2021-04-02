@@ -19,6 +19,7 @@ const Details = ({ match }) => {
 
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
+  const [watch, updateWatch] = useState('');
 
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
@@ -51,6 +52,14 @@ const Details = ({ match }) => {
       .then((res) => res.json())
       .then((data) => updateRecommendations(data.results))
       .catch((error) => console.log(error));
+
+      const providerURL = `https://api.themoviedb.org/3/tv/${details.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`
+
+      fetch(providerURL)
+      .then((res) => res.json())
+      .then((data) => updateWatch(data.results.US.link))
+      .catch((error) => console.log(error));
+
   }, [details]);
 
   return (
@@ -98,6 +107,7 @@ const Details = ({ match }) => {
                   )}
                 </div>
               ) : null}
+               <a id='providers' alt='link to the internet movie database to get links of where to stream in us' rel='noreferrer' href={`${watch}`} target='_blank'>Where to Watch</a>
             </div>
 
             {recommendations ? (
@@ -116,6 +126,8 @@ const Details = ({ match }) => {
                 })}
               </div>
             ) : null}
+           
+
           </div>
         )}
       </div>
