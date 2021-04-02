@@ -18,6 +18,9 @@ body {
   background-color: $background;
 }
 
+#root{
+  height: 100%;
+}
 #searchdiv {
   margin: 0 auto;
   // margin-right: 1.9rem;
@@ -266,8 +269,8 @@ body {
   background-position: 50%;
   position: fixed;
   transition: top 0.2s;
+  left: 40.25%;
   top: 80%;
-  left: 42.25%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
@@ -292,8 +295,8 @@ form {
   -webkit-text-size-adjust: 100%;
   // margin-bottom: 12rem;
   margin: 0 auto;
-  // padding-right: .2rem;
-  // padding-top: 1rem;
+  padding-right: .3rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
   // margin-right: 1rem;
   width: 95%;
@@ -612,10 +615,7 @@ input {
 #detailposter {
   width: 18rem;
 }
-#searchbtn {
-  left: 46.25%;
-  top: 80%;
-}
+
 
 input {
   font-size: 1.5rem;
@@ -761,7 +761,7 @@ input {
     display: flex;
 
   }
-
+  
   #recposter {
     width: 20rem;
     position: relative;
@@ -774,7 +774,7 @@ input {
     width: 16rem;
   }
   #searchbtn {
-    left: 45%;
+    left: 44%;
     top: 80%;
   }
 }
@@ -833,3 +833,12 @@ input {
     -webkit-box-orient: vertical;
   }
 }
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi)   {
+  #searchbtn{
+    left: 45%;
+  }
+  }
