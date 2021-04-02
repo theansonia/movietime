@@ -11,7 +11,7 @@ const SearchBar = ({ updateTitle, searchStatus, title, category, updatePages }) 
   }
 
   return (
-    <div>
+    <>
       {searchStatus ? (
         <div id="searchbar">
           <div id="x" onClick={() => {updateTitle(""); updatePages(1)}}>
@@ -47,7 +47,7 @@ const SearchBar = ({ updateTitle, searchStatus, title, category, updatePages }) 
           </form>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

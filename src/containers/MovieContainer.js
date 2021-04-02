@@ -75,7 +75,7 @@ const MovieContainer = ({
   }, [title])
 
   return (
-    <div>
+    <>
       <SearchBar
         category={category}
         searchStatus={searchStatus}
@@ -177,7 +177,7 @@ const MovieContainer = ({
 
 
 
-    </div>
+    </>
   );
 };
 

@@ -74,6 +74,12 @@ body {
     fill: #f8f9fa;
   }
 }
+
+#somediv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #stars {
   min-width: 100%;
   margin: 0;
@@ -286,8 +292,8 @@ form {
   -webkit-text-size-adjust: 100%;
   // margin-bottom: 12rem;
   margin: 0 auto;
-  padding-right: .2rem;
-  padding-top: 1rem;
+  // padding-right: .2rem;
+  // padding-top: 1rem;
   padding-bottom: 1rem;
   // margin-right: 1rem;
   width: 95%;

@@ -28,7 +28,7 @@ function App() {
   return (
     <ThemeContextProvider>
       {/* <PageContextProvider > */}
-      <div>
+      <>
         <header></header>
 
 
@@ -171,7 +171,7 @@ function App() {
           
         />
         
-      </div>
+      </>
       {/* </PageContextProvider> */}
     </ThemeContextProvider>
   );

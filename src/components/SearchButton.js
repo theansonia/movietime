@@ -3,10 +3,19 @@ import React from "react";
 
 const SearchButton = ({ category, updateSearchStatus, updateTitle, updatePages, pages }) => {
   return (
-    <div>
+    <>
       {category === null ? (
-        <Link to={"/home"}>
+        <Link to={"/home"}  style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
           <div id='somediv' 
+           style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
             onClick={() => {
               updateSearchStatus(true);
               updateTitle("");
@@ -101,6 +110,12 @@ const SearchButton = ({ category, updateSearchStatus, updateTitle, updatePages, 
             updateSearchStatus(true);
             updateTitle("");
             updatePages(1)
+            
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}
         >
           <svg
@@ -183,7 +198,7 @@ const SearchButton = ({ category, updateSearchStatus, updateTitle, updatePages, 
           </svg>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
