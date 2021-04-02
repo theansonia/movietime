@@ -747,7 +747,20 @@ input {
   }
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 414px) and (-webkit-min-device-pixel-ratio: 2) and (max-width: 767px)  and (orientation: portrait) { 
+  #searchbtn {
+    left: 41.75%;
+  }
+
+  #searchbar {
+
+    padding-right: .6rem;
+
+}
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 4) and (orientation: landscape) {
   #recposter {
     width: 95%;
   }
@@ -755,6 +768,7 @@ input {
     width: 28rem;
   }
 }
+
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
   #recs {
@@ -833,12 +847,14 @@ input {
     -webkit-box-orient: vertical;
   }
 }
+
 @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi)   {
+
   #searchbtn{
     left: 45%;
   }
-  }
+}
