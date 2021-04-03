@@ -272,8 +272,9 @@ body {
 
 #x {
   z-index: 9999999999;
-  left: 90%;
+  left: 87%;
   position: relative;
+  top: 3%;
   &:hover {
     cursor: pointer;
   }
@@ -840,7 +841,7 @@ input {
   }
 
   #x {
-    left: 95%;
+    left: 97%;
     padding-bottom: .5%;
   }
   #overview {
