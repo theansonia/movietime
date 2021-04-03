@@ -71,6 +71,7 @@ body {
   animation-delay: .3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  z-index: 99999999999999999999;
   background: linear-gradient(
       to right, 
       rgba(255, 255, 255, 0.13) 0%,
