@@ -31,11 +31,21 @@ body {
   display: flex;
   gap: .25rem;
   padding-top: .5rem;
-  overflow: scroll;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  #logo{
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 auto;
+    -webkit-overflow-scrolling: touch;
+  
+  }
 }
 #logo{
   width: 2.5rem;
   height: 2.5rem;
+  flex: 0 0 auto;
 
 }
 @media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -651,7 +661,8 @@ input {
 
 #x {
   position: relative;
-  left: 87%;
+  left: 93%;
+  padding-top: 1%;
   background-color: none;
 }
 
@@ -835,7 +846,8 @@ input {
   }
 
   #x {
-    left: 98%;
+    left: 97%;
+    padding-bottom: .5%;
   }
   #overview {
     overflow: scroll;
