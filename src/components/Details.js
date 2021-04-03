@@ -197,8 +197,9 @@ const Details = ({ match }) => {
 
             {recommendations ? (
               <div>
-                <div id="likethis">More Like This</div>
+                
                 {recommendations.map((rec, i) => {
+                  <div id="likethis">More Like This</div>
                   if (i < 5)
                     return (
                       <TVRecs
@@ -210,7 +211,7 @@ const Details = ({ match }) => {
                     );
                 })}
               </div>
-            ) : null}
+            ) : <div id="likethis">No recommendations available</div>}
           </div>
         )}
       </div>

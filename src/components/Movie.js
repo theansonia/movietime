@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React from "react";
 import Stars from "./Stars";
 import { Link } from "react-router-dom";
@@ -13,6 +14,7 @@ const Movie = ({
   aired,
   updateCategory,
   updateSearchStatus,
+  id
 }) => {
   return (
     <div id="movies">
@@ -24,7 +26,12 @@ const Movie = ({
         }}
         style={{ textDecoration: "none" }}
         // eslint-disable-next-line no-useless-escape
-        to={`/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`}
+        to={{ 
+          pathname: `/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`, 
+          state: { id: id } 
+        }}
+      //   to={{pathname: `/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`},
+      // state: {}}
       >
         <div id="poster">
           {poster !== "https://image.tmdb.org/t/p/w500/null" &&

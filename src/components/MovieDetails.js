@@ -6,20 +6,44 @@ import Stars from "./Stars";
 import { ThemeContext } from "../contexts/ThemeContext";
 // import API_KEY from "../apiKey";
 
-const MovieDetails = ({ match }) => {
+const MovieDetails = (props) => {
   // comment out for testing
   const {
     params: { title },
-  } = match;
+  } = props.match;
+  
 
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
+  const [actualDetails, updateActualDetails] = useState('')
   // eslint-disable-next-line no-unused-vars
   const [watch, updateWatch] = useState(null);
   const [providers, updateProviders] = useState([]);
 
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
+
+  useEffect(() => {
+    if (details === undefined) return;
+
+    if (details.length === 0) return;
+
+    const URL = `https://api.themoviedb.org/3/movie/${props.location.state.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
+
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => updateRecommendations(data.results))
+      .catch((error) => console.log(error));
+
+    const providerURL = `https://api.themoviedb.org/3/movie/${props.location.state.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
+
+    fetch(providerURL)
+      .then((res) => res.json())
+      .then((data) => updateWatch(data.results.US))
+      .catch((error) => console.log(error));
+      
+  });
+
   useEffect(() => {
     if (
       title === " " ||
@@ -49,28 +73,21 @@ const MovieDetails = ({ match }) => {
       .then((res) => res.json())
       .then((data) => updateDetails(data.results[0]))
       .catch((error) => console.log(error));
+      
+
+      const posterURL = `https://api.themoviedb.org/3/movie/${props.location.state.id}?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US`;
+
+    fetch(posterURL)
+      .then((res) => res.json())
+      .then((data) => updateActualDetails(data))
+      .catch((error) => console.log(error));
+      
     return () => updateDetails([]);
-  }, [title]);
 
-  useEffect(() => {
-    if (details === undefined) return;
+    
+  }, [title, props.location.state.id]);
 
-    if (details.length === 0) return;
-
-    const URL = `https://api.themoviedb.org/3/movie/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => updateRecommendations(data.results))
-      .catch((error) => console.log(error));
-
-    const providerURL = `https://api.themoviedb.org/3/movie/${details.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
-
-    fetch(providerURL)
-      .then((res) => res.json())
-      .then((data) => updateWatch(data.results.US))
-      .catch((error) => console.log(error));
-  }, [details]);
+ 
 
   useEffect(() => {
     if (!watch) return;
@@ -116,13 +133,13 @@ const MovieDetails = ({ match }) => {
         {!details ? null : (
           <div id="detail">
             <div id="detailposter">
-              {`https://image.tmdb.org/t/p/w500/${details.poster_path}` !==
+              {`https://image.tmdb.org/t/p/w500/${actualDetails.poster_path}` !==
                 "https://image.tmdb.org/t/p/w500/null" &&
-              `https://image.tmdb.org/t/p/w500/${details.poster_path}` !==
+              `https://image.tmdb.org/t/p/w500/${actualDetails.poster_path}` !==
                 "https://image.tmdb.org/t/p/w500/undefined" ? (
                 <img
                   id="detailposter"
-                  src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500/${actualDetails.poster_path}`}
                   alt={`Movie poster for ${title}`}
                 />
               ) : (
@@ -137,20 +154,20 @@ const MovieDetails = ({ match }) => {
               {details.title ? (
                 <div id="detailtitle">{details.title}</div>
               ) : null}
-              {details.release_date ? (
+              {actualDetails.release_date ? (
                 <div id="detailrelease">{`${
-                  details.release_date.split("-")[0]
+                  actualDetails.release_date.split("-")[0]
                 }`}</div>
               ) : null}
               {details.overview ? (
                 <div id="detailoverview">{details.overview}</div>
               ) : null}
-              {Math.round(details.vote_average / 2) ? (
+              {Math.round(actualDetails.vote_average / 2) ? (
                 <div id="detailrating">
-                  {Math.round(details.vote_average / 2) ? (
+                  {Math.round(actualDetails.vote_average / 2) ? (
                     <Stars
-                      rating={Math.round(details.vote_average / 2)}
-                      reviews={details.vote_count}
+                      rating={Math.round(actualDetails.vote_average / 2)}
+                      reviews={actualDetails.vote_count}
                     />
                   ) : (
                     "No Rating"
@@ -193,11 +210,12 @@ const MovieDetails = ({ match }) => {
               ) : null}
             </div>
 
-            {recommendations ? (
+            {recommendations && recommendations.length > 0 ? (
               <div>
                 {" "}
-                <div id="likethis">More Like This</div>
+                
                 {recommendations.map((rec, i) => {
+                  <div id="likethis">More Like This</div>
                   if (i < 5)
                     return (
                       <Recs
@@ -209,7 +227,7 @@ const MovieDetails = ({ match }) => {
                     );
                 })}
               </div>
-            ) : null}
+            ) : <div id="likethis">No recommendations available</div>}
           </div>
         )}
       </div>
