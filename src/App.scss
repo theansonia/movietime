@@ -29,13 +29,16 @@ body {
 
 #logos{
   display: flex;
+  // flex-wrap: wrap;
   gap: .25rem;
   padding-top: .5rem;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 }
 #logo{
   width: 2.5rem;
   height: 2.5rem;
-  flex: 0 0 auto;
+  // flex: 0 0 auto;
 
 }
 @media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -477,6 +480,7 @@ input {
   text-align: start;
   margin: 0.75em;
   text-decoration: none;
+  max-width: 97%;
 }
 
 #detailtitle {
