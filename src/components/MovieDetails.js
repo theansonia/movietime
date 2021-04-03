@@ -12,7 +12,7 @@ const MovieDetails = (props) => {
     params: { title },
   } = props.match;
   
-
+console.log(props)
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
   const [actualDetails, updateActualDetails] = useState('')
@@ -23,26 +23,7 @@ const MovieDetails = (props) => {
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
 
-  useEffect(() => {
-    if (details === undefined) return;
 
-    if (details.length === 0) return;
-
-    const URL = `https://api.themoviedb.org/3/movie/${props.location.state.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => updateRecommendations(data.results))
-      .catch((error) => console.log(error));
-
-    const providerURL = `https://api.themoviedb.org/3/movie/${props.location.state.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
-
-    fetch(providerURL)
-      .then((res) => res.json())
-      .then((data) => updateWatch(data.results.US))
-      .catch((error) => console.log(error));
-      
-  });
 
   useEffect(() => {
     if (
@@ -75,7 +56,7 @@ const MovieDetails = (props) => {
       .catch((error) => console.log(error));
       
 
-      const posterURL = `https://api.themoviedb.org/3/movie/${props.location.state.id}?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US`;
+      const posterURL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US`;
 
     fetch(posterURL)
       .then((res) => res.json())
@@ -85,8 +66,27 @@ const MovieDetails = (props) => {
     return () => updateDetails([]);
 
     
-  }, [title, props.location.state.id]);
+  }, [title]);
+  useEffect(() => {
+    if (details === undefined) return;
 
+    if (details.length === 0) return;
+
+    const URL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
+
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => updateRecommendations(data.results))
+      .catch((error) => console.log(error));
+
+    const providerURL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
+
+    fetch(providerURL)
+      .then((res) => res.json())
+      .then((data) => updateWatch(data.results.US))
+      .catch((error) => console.log(error));
+      
+  }, [details.id]);
  
 
   useEffect(() => {
