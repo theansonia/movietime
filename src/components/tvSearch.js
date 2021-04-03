@@ -75,8 +75,8 @@ const TvSearch = ({
       .then((data) => {
         updateTvResults((prevResults) => {
           const newResults = data.results.filter((result) => {
-            if (result.title.includes("%")) {
-              result.name = result.title.replaceAll("%", " ");
+            if (result.name.includes("%")) {
+              result.name = result.name.replaceAll("%", " ");
             }
             return result;
           });
@@ -86,7 +86,7 @@ const TvSearch = ({
         updateLoading(false);
       })
       .catch((error) => console.log(error));
-  }, [title, category, pages]);
+  }, [category, title, pages]);
 
   useEffect(() => {
     if (title === " ") {
