@@ -20,7 +20,6 @@ const MovieDetails = ({ match }) => {
 
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
-
   useEffect(() => {
     if (
       title === " " ||
@@ -43,7 +42,6 @@ const MovieDetails = ({ match }) => {
 
     let query = title.replace("%20", " ");
     query = title.replace("%%20", " ");
-
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 
     fetch(URL)
@@ -78,12 +76,29 @@ const MovieDetails = ({ match }) => {
     const options = Object.keys(watch).filter((key) => {
       if (key !== 'link') return key;
     })
-    updateProviders( [...new Set(options.map((medium) => {
-      if (watch[medium] && medium !== 'link') {
-        return [watch[medium][0].logo_path, `http://www.${watch[medium][0].provider_name.replace(' ', '')}.com`]
-      }
-    }))]  )
 
+    const something = [...new Set(options.map((medium, i) => {
+      if (watch[medium] && medium !== 'link') {
+        return watch[medium].map((provider,i) => {
+          return [provider.logo_path, `http://www.${provider.provider_name.replace(' ', '')}.com`]
+        })
+        
+      }
+    }).flat())]
+
+    const cache = {}
+    something.filter((provider, i, self) => {
+      if (!cache[provider])
+      cache[provider] = i;
+      
+    })
+
+  
+    
+    updateProviders(Object.keys(cache).map((pair) => {
+      const temp = pair.split(',')
+      return [temp[0], temp[1]]
+    }))  
   }, [watch])
 
 
@@ -134,15 +149,15 @@ const MovieDetails = ({ match }) => {
                   )}
                 </div>
               ) : null}
-              <a
+               {!watch ? null : (<a
                 id="providers"
                 alt="link to the internet movie database to get links of where to stream in us"
                 rel="noreferrer"
-                href={`${watch}`}
+                href={`${watch.link}`}
                 target="_blank"
               >
                 Where to Watch
-              </a>
+              </a>) }
                   {providers ? (
                    <div id='logos'>
                     {providers.map((logo, i) => {
@@ -150,9 +165,9 @@ const MovieDetails = ({ match }) => {
                     return (
 
                       
-                      <a href={logo[1]} key={`logoid - ${logo} + ${i+1} `}rel='noreferrer' target='_blank'>
+                      <a href={logo[1]} key={`logoid - ${logo} + ${i + 1} `}rel='noreferrer' target='_blank'>
                       <img
-                        key={`logoid - ${logo} + ${i} `}
+                        key={`logoid - ${i}`}
                         id="logo"
                         src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
                         alt="thumbnail for current provider"

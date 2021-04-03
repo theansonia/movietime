@@ -78,12 +78,29 @@ const Details = ({ match }) => {
     const options = Object.keys(watch).filter((key) => {
       if (key !== 'link') return key;
     })
-    updateProviders( [...new Set(options.map((medium) => {
-      if (watch[medium] && medium !== 'link') {
-        return [watch[medium][0].logo_path, `http://www.${watch[medium][0].provider_name.replace(' ', '')}.com`]
-      }
-    }))]  )
 
+    const something = [...new Set(options.map((medium, i) => {
+      if (watch[medium] && medium !== 'link') {
+        return watch[medium].map((provider,i) => {
+          return [provider.logo_path, `http://www.${provider.provider_name.replace(' ', '')}.com`]
+        })
+        
+      }
+    }).flat())]
+
+    const cache = {}
+    something.filter((provider, i, self) => {
+      if (!cache[provider])
+      cache[provider] = i;
+      
+    })
+
+  
+    
+    updateProviders(Object.keys(cache).map((pair) => {
+      const temp = pair.split(',')
+      return [temp[0], temp[1]]
+    }))  
   }, [watch])
 
   return (
@@ -147,7 +164,7 @@ const Details = ({ match }) => {
                    <div id='logos'>
                     {providers.map((logo, i) => {
                     return (
-                      <a href={logo[1]} rel='noreferrer' target='_blank'>
+                      <a href={logo[1]} key={`${logo} + ${i}`}rel='noreferrer' target='_blank'>
                       <img
                         key={`logoid - ${logo} + ${i} `}
                         id="logo"
