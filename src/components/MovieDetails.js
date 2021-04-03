@@ -39,7 +39,6 @@ const MovieDetails = ({ match }) => {
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // eslint-disable-next-line no-useless-escape
     // let query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
     let query = title.replace("%20", " ");
