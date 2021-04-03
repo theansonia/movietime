@@ -32,12 +32,15 @@ body {
   // flex-wrap: wrap;
   gap: 0.25rem;
   padding-top: 0.5rem;
-  overflow-y: scroll; /* has to be scroll, not auto */
- 
+  overflow-y: scroll; 
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
   -webkit-overflow-scrolling: touch;
-  ::-webkit-scrollbar{
-    display: none;
-  }
+  
+}
+
+#logo::-webkit-scrollbar{
+  display: none;
 }
 
 #shinediv{
