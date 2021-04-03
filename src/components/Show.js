@@ -25,7 +25,7 @@ const Show = (props) => {
         }}
         style={{ textDecoration: "none" }}
         // eslint-disable-next-line no-useless-escape
-        to={`/Details/${name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"")}`}
+        to={`/Details/${name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`}
       >
         <div id="poster">
           {poster !== "https://image.tmdb.org/t/p/w500/null" &&

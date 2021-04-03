@@ -18,21 +18,30 @@ body {
   background-color: $background;
 }
 
-#beat{
+#beat {
   display: flex;
   margin: 0 auto;
   position: fixed;
   bottom: 50%;
-  z-index: 100000;  
+  z-index: 100000;
   left: 25%;
 }
 
+#logos{
+  display: flex;
+  gap: .25rem;
+  padding-top: .5rem;
+}
+#logo{
+  width: 1.5rem;
+  height: 1.5rem;
+
+}
 @media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-  #beat{
+  #beat {
     left: 46%;
   }
 }
-
 
 #searchdiv {
   margin: 0 auto;
@@ -43,29 +52,28 @@ body {
   background-color: $primary-font;
   color: #f8f9fa;
 
-  canvas{
+  canvas {
     background-color: #212529;
   }
-  #searchbtn{
+  #searchbtn {
     background-color: #212529;
   }
 
-  html{
+  html {
     background-color: #212529;
   }
-  body{
+  body {
     background-color: #212529;
-
   }
 
   #root {
-    background-color:#212529;
+    background-color: #212529;
   }
-  #somediv{
+  #somediv {
     background-color: #212529;
   }
 
-  #randomdiv{
+  #randomdiv {
     background-color: #212529;
   }
   #blackstars {
@@ -78,7 +86,7 @@ body {
   #search {
     background-color: $primary-font;
     box-shadow: 0 10px 40px #adb5bd, 0 0 0 20px #212529;
-    -webkit-box-shadow:0 10px 40px #adb5bd, 0 0 0 20px #212529;
+    -webkit-box-shadow: 0 10px 40px #adb5bd, 0 0 0 20px #212529;
     -moz-box-shadow: 0 10px 40px #adb5bd, 0 0 0 20px #212529;
     color: $background;
     border: 3px solid #adb5bd;
@@ -302,7 +310,7 @@ form {
   -webkit-text-size-adjust: 100%;
   // margin-bottom: 12rem;
   margin: 0 auto;
-  padding-right: .5rem;
+  padding-right: 0.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   // margin-right: 1rem;
@@ -354,8 +362,8 @@ input {
   margin: 0 auto;
   // margin-right: 0.5rem;
   box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
-  -webkit-box-shadow:0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
-    -moz-box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
+  -webkit-box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
+  -moz-box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
 
   &:after,
   :before {
@@ -427,7 +435,6 @@ input {
   // min-width: 100px;
 }
 
-
 #homebtn {
   width: 2em;
   margin-top: 0.3rem;
@@ -449,7 +456,7 @@ input {
   &:hover {
     cursor: pointer;
   }
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 #detail {
@@ -540,16 +547,15 @@ input {
 }
 
 @media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-  
   #searchbar {
     margin: 0 auto;
     padding-right: 0;
   }
 
-  #beat{
+  #beat {
     left: 40.5%;
   }
-  #searchbtn{
+  #searchbtn {
     left: 45.5%;
   }
   .toggle__box {
@@ -772,7 +778,6 @@ input {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
   #recs {
     display: flex;
-
   }
 
   #recposter {
@@ -780,7 +785,6 @@ input {
     position: relative;
     margin: auto;
     border-radius: 3px;
-   
   }
 
   #rectitle {
@@ -829,7 +833,7 @@ input {
     top: 90%;
   }
 
-  #x{
+  #x {
     left: 98%;
   }
   #overview {

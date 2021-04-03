@@ -14,7 +14,6 @@ const Movie = ({
   updateCategory,
   updateSearchStatus,
 }) => {
-
   return (
     <div id="movies">
       {/* <Router> */}
@@ -25,7 +24,7 @@ const Movie = ({
         }}
         style={{ textDecoration: "none" }}
         // eslint-disable-next-line no-useless-escape
-        to={`/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"")}`}
+        to={`/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`}
       >
         <div id="poster">
           {poster !== "https://image.tmdb.org/t/p/w500/null" &&

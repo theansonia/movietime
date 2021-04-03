@@ -11,13 +11,13 @@ import ThemeContextProvider from "./contexts/ThemeContext";
 ReactDOM.render(
   <Router>
     {/* <React.StrictMode> */}
-      <ScrollToTop />
-      <ThemeContextProvider>
+    <ScrollToTop />
+    <ThemeContextProvider>
       {/* <PageContextProvider> */}
 
-        <App />
+      <App />
       {/* </PageContextProvider> */}
-      </ThemeContextProvider>
+    </ThemeContextProvider>
     {/* </React.StrictMode> */}
   </Router>,
   document.getElementById("root")

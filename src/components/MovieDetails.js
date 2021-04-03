@@ -11,27 +11,39 @@ const MovieDetails = ({ match }) => {
   const {
     params: { title },
   } = match;
-  console.log(match)
 
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
   // eslint-disable-next-line no-unused-vars
-  const [watch, updateWatch] = useState('');
-
+  const [watch, updateWatch] = useState(null);
+  const [providers, updateProviders] = useState([])
 
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
 
   useEffect(() => {
-    if (title === " " || title === "." || title === "/" || title === "$"  || title === "%" || title === '#' || title === "&"  || title === "+" || title === '#' || title === "?"  || title === "+" || title === '#' ) {
+    if (
+      title === " " ||
+      title === "." ||
+      title === "/" ||
+      title === "$" ||
+      title === "%" ||
+      title === "#" ||
+      title === "&" ||
+      title === "+" ||
+      title === "#" ||
+      title === "?" ||
+      title === "+" ||
+      title === "#"
+    ) {
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // eslint-disable-next-line no-useless-escape
     // let query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
-    let query = title.replace('%20', ' ')
-    query = title.replace('%%20', ' ')
+    let query = title.replace("%20", " ");
+    query = title.replace("%%20", " ");
 
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 
@@ -43,8 +55,8 @@ const MovieDetails = ({ match }) => {
   }, [title]);
 
   useEffect(() => {
-    if (details === undefined) return
-    
+    if (details === undefined) return;
+
     if (details.length === 0) return;
 
     const URL = `https://api.themoviedb.org/3/movie/${details.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
@@ -54,13 +66,27 @@ const MovieDetails = ({ match }) => {
       .then((data) => updateRecommendations(data.results))
       .catch((error) => console.log(error));
 
-      const providerURL = `https://api.themoviedb.org/3/movie/${details.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`
+    const providerURL = `https://api.themoviedb.org/3/movie/${details.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
 
-      fetch(providerURL)
+    fetch(providerURL)
       .then((res) => res.json())
-      .then((data) => updateWatch(data.results.US.link))
+      .then((data) => updateWatch(data.results.US))
       .catch((error) => console.log(error));
   }, [details]);
+
+  useEffect(() => {
+    if (!watch) return;
+    const options = Object.keys(watch).filter((key) => {
+      if (key !== 'link') return key;
+    })
+    updateProviders( [...new Set(options.map((medium) => {
+      if (watch[medium] && medium !== 'link') {
+        return [watch[medium][0].logo_path, `http://www.${watch[medium][0].provider_name.replace(' ', '')}.com`]
+      }
+    }))]  )
+
+  }, [watch])
+
 
   return (
     <div className={"" + theme}>
@@ -109,9 +135,39 @@ const MovieDetails = ({ match }) => {
                   )}
                 </div>
               ) : null}
-                             <a id='providers' alt='link to the internet movie database to get links of where to stream in us' rel='noreferrer' href={`${watch}`} target='_blank'>Where to Watch</a>
+              <a
+                id="providers"
+                alt="link to the internet movie database to get links of where to stream in us"
+                rel="noreferrer"
+                href={`${watch}`}
+                target="_blank"
+              >
+                Where to Watch
+              </a>
+                  {providers ? (
+                   <div id='logos'>
+                    {providers.map((logo, i) => {
+                      
+                    return (
 
+                      
+                      <a href={logo[1]} key={`logoid - ${logo} + ${i+1} `}rel='noreferrer' target='_blank'>
+                      <img
+                        key={`logoid - ${logo} + ${i} `}
+                        id="logo"
+                        src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
+                        alt="thumbnail for current provider"
+                      />
+                      </a>
+                    );
+                })}
+                   </div>
+                   )
+                
+                : null}
             </div>
+
+           
 
             {recommendations ? (
               <div>

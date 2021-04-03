@@ -4,7 +4,6 @@ import TVContainer from "../containers/TVContainer";
 // import API_KEY from "../apiKey";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-
 // import { PageContext } from "../contexts/PageContext";
 
 const TvSearch = ({
@@ -15,14 +14,14 @@ const TvSearch = ({
   title,
   updateTitle,
   pages,
-  updatePages
+  updatePages,
 }) => {
   // const [title, updateTitle] = useState("");
   // eslint-disable-next-line no-unused-vars
   // eslint-disable-next-line no-unused-vars
   const [tvResults, updateTvResults] = useState([]);
-  const [hasMore, updateHasMore] = useState(false)
-  const[isLoading, updateLoading] = useState(true)
+  const [hasMore, updateHasMore] = useState(false);
+  const [isLoading, updateLoading] = useState(true);
   // const [hasMore, updateMore] = useState(true)
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
@@ -31,46 +30,56 @@ const TvSearch = ({
   if (category === null) category = "a Movie or TV";
 
   useEffect(() => {
-    updateTvResults([])
-  }, [title])
+    updateTvResults([]);
+  }, [title]);
 
   useEffect(() => {
-    if (title === " " || title === "." || title === "/" || title === "$"  || title === "%" || title === '#' || title === "&"  || title === "+" || title === '#' || title === "?"  || title === "+" || title === '#' ) {
+    if (
+      title === " " ||
+      title === "." ||
+      title === "/" ||
+      title === "$" ||
+      title === "%" ||
+      title === "#" ||
+      title === "&" ||
+      title === "+" ||
+      title === "#" ||
+      title === "?" ||
+      title === "+" ||
+      title === "#"
+    ) {
       updateTitle("");
       return;
     }
-    
+
     if (title === "`") {
       updateTitle("'");
       return;
     }
 
-
     if (title.length === 0) {
       updateTvResults([]);
       return;
     }
-    updateLoading(true)
+    updateLoading(true);
     // eslint-disable-next-line no-useless-escape
     // const query = title.replace(regex, ' ');
 
     // eslint-disable-next-line no-useless-escape
-    const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "");
 
     const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=${pages}&include_adult=false`;
-    
+
     fetch(URL)
       .then((res) => res.json())
-      .then(data => {
-        updateTvResults(prevResults => {
+      .then((data) => {
+        updateTvResults((prevResults) => {
           return [...prevResults, ...data.results];
-
-        })
-        updateHasMore(data.results.length > 0)
+        });
+        updateHasMore(data.results.length > 0);
         updateLoading(false);
       })
       .catch((error) => console.log(error));
-
   }, [title, category, pages]);
 
   useEffect(() => {
@@ -79,30 +88,25 @@ const TvSearch = ({
       return;
     }
 
-    updateLoading(true)
+    updateLoading(true);
 
     if (title.length > 0) return;
-   
 
     const URL = `https://api.themoviedb.org/3/tv/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=${pages}`;
     fetch(URL)
-    .then((res) => res.json())
-    .then(data => {
-      updateTvResults(prevResults => {
-        return [...prevResults, ...data.results]
+      .then((res) => res.json())
+      .then((data) => {
+        updateTvResults((prevResults) => {
+          return [...prevResults, ...data.results];
+        });
+        updateHasMore(data.results.length > 0);
+        updateLoading(false);
       })
-      updateHasMore(data.results.length > 0)
-      updateLoading(false);
-    })
-    .catch((error) => console.log(error));
-
-}, [title, pages]);
-
-  
+      .catch((error) => console.log(error));
+  }, [title, pages]);
 
   return (
-    <div id='scrollablediv' className={"" + theme}>
-     
+    <div id="scrollablediv" className={"" + theme}>
       <TVContainer
         tvResults={tvResults}
         updateCategory={updateCategory}
@@ -118,8 +122,6 @@ const TvSearch = ({
         updateLoading={updateLoading}
         updateHasMore={updateHasMore}
       />
-
-
     </div>
   );
 };

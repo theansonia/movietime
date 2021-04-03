@@ -21,16 +21,14 @@ function App() {
   const [searchStatus, updateSearchStatus] = useState(false);
   const [category, updateCategory] = useState(null);
   const [title, updateTitle] = useState("");
-  const [pages, updatePages] = useState(1)
+  const [pages, updatePages] = useState(1);
   // const { resetPages, pages } = useContext(PageContext);
-
 
   return (
     <ThemeContextProvider>
       {/* <PageContextProvider > */}
       <>
         <header></header>
-
 
         <div id="navbar">
           <Link
@@ -49,7 +47,6 @@ function App() {
                 updateSearchStatus(false);
                 updateCategory(null);
                 updatePages(1);
-
               }}
             >
               <svg
@@ -87,7 +84,6 @@ function App() {
               updateCategory("Movie");
               updateTitle("");
               updatePages(1);
-            
             }}
           >
             <div>Movies</div>
@@ -159,7 +155,7 @@ function App() {
         </Route>
         {/* </Router> */}
         {/* <div data-testid="location-display">{location.pathname}</div>  */}
-        
+
         <SearchButton
           category={category}
           searchStatus={searchStatus}
@@ -168,9 +164,7 @@ function App() {
           updateTitle={updateTitle}
           updatePages={updatePages}
           pages={pages}
-          
         />
-        
       </>
       {/* </PageContextProvider> */}
     </ThemeContextProvider>

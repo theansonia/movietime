@@ -1,6 +1,12 @@
 import React from "react";
 
-const SearchBar = ({ updateTitle, searchStatus, title, category, updatePages }) => {
+const SearchBar = ({
+  updateTitle,
+  searchStatus,
+  title,
+  category,
+  updatePages,
+}) => {
   let tempCategory;
   if (category === "a Movie or TV") {
     tempCategory = "Movies and TV Shows";
@@ -14,7 +20,13 @@ const SearchBar = ({ updateTitle, searchStatus, title, category, updatePages }) 
     <>
       {searchStatus ? (
         <div id="searchbar">
-          <div id="x" onClick={() => {updateTitle(""); updatePages(1)}}>
+          <div
+            id="x"
+            onClick={() => {
+              updateTitle("");
+              updatePages(1);
+            }}
+          >
             <svg
               width="24"
               height="24"
