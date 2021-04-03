@@ -74,7 +74,11 @@ const TvSearch = ({
       .then((res) => res.json())
       .then((data) => {
         updateTvResults((prevResults) => {
-          return [...prevResults, ...data.results];
+          const newResults = data.results.filter((result) => {
+            if (result.title.includes('%')) {result.name = result.title.replaceAll("%", " ")}
+            return result;
+          })
+          return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);
         updateLoading(false);
@@ -97,7 +101,11 @@ const TvSearch = ({
       .then((res) => res.json())
       .then((data) => {
         updateTvResults((prevResults) => {
-          return [...prevResults, ...data.results];
+          const newResults = data.results.filter((result) => {
+            if (result.name.includes('%')) {result.name = result.title.replaceAll("%", " ")}
+            return result;
+          })
+          return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);
         updateLoading(false);

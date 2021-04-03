@@ -40,8 +40,9 @@ const MovieDetails = ({ match }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // let query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
-    let query = title.replace("%20", " ");
-    query = title.replace("%%20", " ");
+    let query = title.replaceAll("%20", " ");
+    query = title.replaceAll("%%20", " ");
+    
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 
     fetch(URL)

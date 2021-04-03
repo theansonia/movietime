@@ -39,10 +39,11 @@ const Details = ({ match }) => {
     ) {
       return;
     }
-    // let query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    // console.log(name, 'before')
+    // let query = name.replaceAll(/[.,/#!$%\^&\*;:{}=\-_`~()]/g," ");
 
-    let query = name.replace("%20", " ");
-    query = name.replace("%%20", " ");
+    let query = name.replaceAll("%20", " ");
+    query = name.replaceAll("%%20", " ");
 
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 

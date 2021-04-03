@@ -75,9 +75,18 @@ const TrendingSearch = ({
       .then((data) => {
         updateMovieResults((prevResults) => {
           // eslint-disable-next-line array-callback-return
+          const newResults = data.results.filter((result) => {
+
+            if (result.media_type === 'movie' && result.title.includes('%')) {
+              result.title = result.title.replaceAll("%", " ")
+          } else if (result.media_type === 'tv' && result.name.includes('%')) {
+              result.name = result.title.replaceAll("%", " ")
+          }
+            return result;
+          })
           return [
             ...prevResults,
-            ...data.results.filter((res) => {
+            ...newResults.filter((res) => {
               if (res.media_type === "tv" || res.media_type === "movie")
                 return res;
             }),
@@ -104,7 +113,16 @@ const TrendingSearch = ({
       .then((res) => res.json())
       .then((data) => {
         updateMovieResults((prevResults) => {
-          return [...prevResults, ...data.results];
+          const newResults = data.results.filter((result) => {
+
+            if (result.media_type === 'movie' && result.title.includes('%')) {
+              result.title = result.title.replaceAll("%", " ")
+          } else if (result.media_type === 'tv' && result.name.includes('%')) {
+              result.name = result.title.replaceAll("%", " ")
+          }
+            return result;
+          })
+          return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);
         updateLoading(false);
