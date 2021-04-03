@@ -48,7 +48,7 @@ console.log(props)
     let query = title.replaceAll("%20", " ");
     query = title.replaceAll("%%20", " ");
 
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=true`;
 
     fetch(URL)
       .then((res) => res.json())
