@@ -75,9 +75,11 @@ const TvSearch = ({
       .then((data) => {
         updateTvResults((prevResults) => {
           const newResults = data.results.filter((result) => {
-            if (result.title.includes('%')) {result.name = result.title.replaceAll("%", " ")}
+            if (result.title.includes("%")) {
+              result.name = result.title.replaceAll("%", " ");
+            }
             return result;
-          })
+          });
           return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);
@@ -102,9 +104,11 @@ const TvSearch = ({
       .then((data) => {
         updateTvResults((prevResults) => {
           const newResults = data.results.filter((result) => {
-            if (result.name.includes('%')) {result.name = result.title.replaceAll("%", " ")}
+            if (result.name.includes("%")) {
+              result.name = result.title.replaceAll("%", " ");
+            }
             return result;
-          })
+          });
           return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);

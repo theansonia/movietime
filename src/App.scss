@@ -27,19 +27,18 @@ body {
   left: 25%;
 }
 
-#logos{
+#logos {
   display: flex;
   // flex-wrap: wrap;
-  gap: .25rem;
-  padding-top: .5rem;
+  gap: 0.25rem;
+  padding-top: 0.5rem;
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
 }
-#logo{
+#logo {
   width: 2.5rem;
   height: 2.5rem;
   // flex: 0 0 auto;
-
 }
 @media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   #beat {
@@ -842,7 +841,7 @@ input {
 
   #x {
     left: 97%;
-    padding-bottom: .5%;
+    padding-bottom: 0.5%;
   }
   #overview {
     overflow: scroll;

@@ -18,7 +18,7 @@ const Details = ({ match }) => {
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
   const [watch, updateWatch] = useState(null);
-  const [providers, updateProviders] = useState([])
+  const [providers, updateProviders] = useState([]);
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
 
@@ -69,40 +69,48 @@ const Details = ({ match }) => {
     fetch(providerURL)
       .then((res) => res.json())
       .then((data) => {
-        updateWatch(data.results.US)})
+        updateWatch(data.results.US);
+      })
       .catch((error) => console.log(error));
-
   }, [details]);
 
   useEffect(() => {
     if (!watch) return;
     const options = Object.keys(watch).filter((key) => {
-      if (key !== 'link') return key;
-    })
+      if (key !== "link") return key;
+    });
 
-    const something = [...new Set(options.map((medium, i) => {
-      if (watch[medium] && medium !== 'link') {
-        return watch[medium].map((provider,i) => {
-          return [provider.logo_path, `http://www.${provider.provider_name.replace(' ', '')}.com`]
-        })
-        
-      }
-    }).flat())]
+    const something = [
+      ...new Set(
+        options
+          .map((medium, i) => {
+            if (watch[medium] && medium !== "link") {
+              return watch[medium].map((provider, i) => {
+                if (provider.provider_name.includes("Google"))
+                  provider.provider_name = "googleplay";
+                return [
+                  provider.logo_path,
+                  `http://www.${provider.provider_name.replace(" ", "")}.com`,
+                ];
+              });
+            }
+          })
+          .flat()
+      ),
+    ];
 
-    const cache = {}
+    const cache = {};
     something.filter((provider, i, self) => {
-      if (!cache[provider])
-      cache[provider] = i;
-      
-    })
+      if (!cache[provider]) cache[provider] = i;
+    });
 
-  
-    
-    updateProviders(Object.keys(cache).map((pair) => {
-      const temp = pair.split(',')
-      return [temp[0], temp[1]]
-    }))  
-  }, [watch])
+    updateProviders(
+      Object.keys(cache).map((pair) => {
+        const temp = pair.split(",");
+        return [temp[0], temp[1]];
+      })
+    );
+  }, [watch]);
 
   return (
     <div className={"" + theme}>
@@ -150,36 +158,39 @@ const Details = ({ match }) => {
                 </div>
               ) : null}
 
-              {!watch ? null : (<a
-                id="providers"
-                alt="link to the internet movie database to get links of where to stream in us"
-                rel="noreferrer"
-                href={`${watch.link}`}
-                target="_blank"
-              >
-                Where to Watch
-              </a>) }
+              {!watch ? null : (
+                <a
+                  id="providers"
+                  alt="link to the internet movie database to get links of where to stream in us"
+                  rel="noreferrer"
+                  href={`${watch.link}`}
+                  target="_blank"
+                >
+                  Where to Watch
+                </a>
+              )}
 
-
-                 {providers ? (
-                   <div id='logos'>
-                    {providers.map((logo, i) => {
+              {providers ? (
+                <div id="logos">
+                  {providers.map((logo, i) => {
                     return (
-                      <a href={logo[1]} key={`${logo} + ${i}`}rel='noreferrer' target='_blank'>
-                      <img
-                        key={`logoid - ${logo} + ${i} `}
-                        id="logo"
-                        src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
-                        alt="thumbnail for current provider"
-                      />
+                      <a
+                        href={logo[1]}
+                        key={`${logo} + ${i}`}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <img
+                          key={`logoid - ${logo} + ${i} `}
+                          id="logo"
+                          src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
+                          alt="thumbnail for current provider"
+                        />
                       </a>
                     );
-                })}
-                   </div>
-                   )
-                
-                : null}
-             
+                  })}
+                </div>
+              ) : null}
             </div>
 
             {recommendations ? (
@@ -198,7 +209,6 @@ const Details = ({ match }) => {
                 })}
               </div>
             ) : null}
-
           </div>
         )}
       </div>

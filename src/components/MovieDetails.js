@@ -16,7 +16,7 @@ const MovieDetails = ({ match }) => {
   const [recommendations, updateRecommendations] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [watch, updateWatch] = useState(null);
-  const [providers, updateProviders] = useState([])
+  const [providers, updateProviders] = useState([]);
 
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
@@ -42,7 +42,7 @@ const MovieDetails = ({ match }) => {
 
     let query = title.replaceAll("%20", " ");
     query = title.replaceAll("%%20", " ");
-    
+
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
 
     fetch(URL)
@@ -75,33 +75,40 @@ const MovieDetails = ({ match }) => {
   useEffect(() => {
     if (!watch) return;
     const options = Object.keys(watch).filter((key) => {
-      if (key !== 'link') return key;
-    })
+      if (key !== "link") return key;
+    });
 
-    const something = [...new Set(options.map((medium, i) => {
-      if (watch[medium] && medium !== 'link') {
-        return watch[medium].map((provider,i) => {
-          return [provider.logo_path, `http://www.${provider.provider_name.replace(' ', '')}.com`]
-        })
-        
-      }
-    }).flat())]
+    const something = [
+      ...new Set(
+        options
+          .map((medium, i) => {
+            if (watch[medium] && medium !== "link") {
+              return watch[medium].map((provider, i) => {
+                if (provider.provider_name.includes("Google"))
+                  provider.provider_name = "googleplay";
+                return [
+                  provider.logo_path,
+                  `http://www.${provider.provider_name.replace(" ", "")}.com`,
+                ];
+              });
+            }
+          })
+          .flat()
+      ),
+    ];
 
-    const cache = {}
+    const cache = {};
     something.filter((provider, i, self) => {
-      if (!cache[provider])
-      cache[provider] = i;
-      
-    })
+      if (!cache[provider]) cache[provider] = i;
+    });
 
-  
-    
-    updateProviders(Object.keys(cache).map((pair) => {
-      const temp = pair.split(',')
-      return [temp[0], temp[1]]
-    }))  
-  }, [watch])
-
+    updateProviders(
+      Object.keys(cache).map((pair) => {
+        const temp = pair.split(",");
+        return [temp[0], temp[1]];
+      })
+    );
+  }, [watch]);
 
   return (
     <div className={"" + theme}>
@@ -150,39 +157,39 @@ const MovieDetails = ({ match }) => {
                   )}
                 </div>
               ) : null}
-               {!watch ? null : (<a
-                id="providers"
-                alt="link to the internet movie database to get links of where to stream in us"
-                rel="noreferrer"
-                href={`${watch.link}`}
-                target="_blank"
-              >
-                Where to Watch
-              </a>) }
-                  {providers ? (
-                   <div id='logos'>
-                    {providers.map((logo, i) => {
-                      
+              {!watch ? null : (
+                <a
+                  id="providers"
+                  alt="link to the internet movie database to get links of where to stream in us"
+                  rel="noreferrer"
+                  href={`${watch.link}`}
+                  target="_blank"
+                >
+                  Where to Watch
+                </a>
+              )}
+              {providers ? (
+                <div id="logos">
+                  {providers.map((logo, i) => {
                     return (
-
-                      
-                      <a href={logo[1]} key={`logoid - ${logo} + ${i + 1} `}rel='noreferrer' target='_blank'>
-                      <img
-                        key={`logoid - ${i}`}
-                        id="logo"
-                        src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
-                        alt="thumbnail for current provider"
-                      />
+                      <a
+                        href={logo[1]}
+                        key={`logoid - ${logo} + ${i + 1} `}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <img
+                          key={`logoid - ${i}`}
+                          id="logo"
+                          src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
+                          alt="thumbnail for current provider"
+                        />
                       </a>
                     );
-                })}
-                   </div>
-                   )
-                
-                : null}
+                  })}
+                </div>
+              ) : null}
             </div>
-
-           
 
             {recommendations ? (
               <div>

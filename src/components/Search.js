@@ -67,7 +67,6 @@ const Search = ({
 
     // let query = title.replaceAll("%20", " ");
     // query = title.replaceAll("%%20", " ");
-  
 
     const URL = `https://api.themoviedb.org/3/search/movie?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=${pages}`;
     fetch(URL)
@@ -75,9 +74,11 @@ const Search = ({
       .then((data) => {
         updateMovieResults((prevResults) => {
           const newResults = data.results.filter((result) => {
-            if (result.title.includes('%')) {result.title = result.title.replaceAll("%", " ")}
+            if (result.title.includes("%")) {
+              result.title = result.title.replaceAll("%", " ");
+            }
             return result;
-          })
+          });
           return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);
@@ -102,9 +103,11 @@ const Search = ({
       .then((data) => {
         updateMovieResults((prevResults) => {
           const newResults = data.results.filter((result) => {
-            if (result.title.includes('%')) {result.title = result.title.replaceAll("%", " ")}
+            if (result.title.includes("%")) {
+              result.title = result.title.replaceAll("%", " ");
+            }
             return result;
-          })
+          });
           return [...prevResults, ...newResults];
         });
         updateHasMore(data.results.length > 0);
