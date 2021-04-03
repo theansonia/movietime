@@ -180,12 +180,14 @@ const Details = ({ match }) => {
                         rel="noreferrer"
                         target="_blank"
                       >
+                        <div id='shinediv'>
                         <img
                           key={`logoid - ${logo} + ${i} `}
                           id="logo"
                           src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
                           alt="thumbnail for current provider"
                         />
+                        </div>
                       </a>
                     );
                   })}

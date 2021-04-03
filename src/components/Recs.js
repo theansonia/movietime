@@ -20,19 +20,23 @@ const Recs = ({ title, pic }) => {
       </Link>
       <Link style={{ textDecoration: "none" }} to={`/moviedetails/${title}`}>
         {pic !== "https://image.tmdb.org/t/p/w500/null" ? (
+          <div id='recposterdiv'>
           <img
             id="recposter"
             style={{ borderRadius: "30px" }}
             src={pic}
             alt={`Movie poster for ${title}`}
           />
+          </div>
         ) : (
+          <div id='recposterdiv'>
           <img
             id="recposter"
             style={{ borderRadius: "30px" }}
             src="https://image.tmdb.org/t/p/w500///tfNuePdHrP9fp6K2VTJwHKKJf8C.jpg"
             alt="back up movie poster cinema pardiso"
           />
+          </div>
         )}
       </Link>
     </div>

@@ -35,10 +35,92 @@ body {
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
 }
+
+#shinediv{
+  
+    position: relative;
+    
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+  
+}
+
+#recposterdiv{
+  position: relative;
+
+    overflow: hidden;
+}
+
+#recposterdiv:before{
+
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100px;
+    width: 70px;
+    height: 100%;
+    background: rgba(255,255,255, 0.3);
+    transform: skewX(-30deg);
+    animation-name: slide;
+    animation-duration: 7s;
+    animation-timing-function: ease-in-out;
+    animation-delay: .3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.13) 77%,
+        rgba(255, 255, 255, 0.5) 92%,
+        rgba(255, 255, 255, 0.0) 100%
+      );
+    }
+
+#shinediv:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100px;
+  width: 70px;
+  height: 100%;
+  background: rgba(255,255,255, 0.3);
+  transform: skewX(-30deg);
+  animation-name: slide;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-delay: .3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  background: linear-gradient(
+      to right, 
+      rgba(255, 255, 255, 0.13) 0%,
+      rgba(255, 255, 255, 0.13) 77%,
+      rgba(255, 255, 255, 0.5) 92%,
+      rgba(255, 255, 255, 0.0) 100%
+    );
+  }
+
+
+  @keyframes slide {
+    0% {
+      left: -100;
+      top: 0;
+    }
+    50% {
+      left: 120px;
+      top: 0px;
+    }
+    100% {
+      left: 290px;
+      top: 0;
+    }
+  }
 #logo {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   // flex: 0 0 auto;
+  border-radius: 75%;
 }
 @media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   #beat {
@@ -391,6 +473,7 @@ input {
   margin-left: 0.25rem;
   margin-right: 0.5rem;
 }
+
 
 #details {
   display: flex;
