@@ -50,11 +50,14 @@ body {
     width: 3rem;
     height: 3rem;
     overflow: hidden;
+    border-radius: 75%;
+
   
 }
 
 #recposterdiv{
   position: relative;
+  border-radius: 3px;
 }
 
 #recposterdiv:before{
