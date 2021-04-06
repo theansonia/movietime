@@ -643,7 +643,12 @@ input {
   font-weight: 300;
 }
 
-@media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+@media only screen and (min-device-width: 1280px) and (orientation: portrait)   and (-webkit-min-device-pixel-ratio: 2.0),
+only screen and (   min--moz-device-pixel-ratio: 2.0),
+only screen and (     -o-min-device-pixel-ratio: 2.0/1),
+only screen and (        min-device-pixel-ratio: 2.0),
+only screen and (                min-resolution: 227dpi),
+only screen and (                min-resolution: 2.0dppx){ 
   #searchbar {
     margin: 0 auto;
     padding-right: 0;
@@ -673,7 +678,7 @@ input {
   }
 
   #recposter {
-    width: 6.5rem;
+    width: 8.2em;
     padding: 0.25rem;
     justify-items: center;
     border-radius: 3px;
@@ -768,6 +773,132 @@ input {
   // padding-left: .5rem;
   // margin-left: 1rem;
 }
+
+
+// @media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+//   #searchbar {
+//     margin: 0 auto;
+//     padding-right: 0;
+//   }
+
+//   #beat {
+//     left: 40.5%;
+//   }
+//   #searchbtn {
+//     left: 46.5%;
+//   }
+//   .toggle__box {
+//     transform: scale(1);
+//   }
+
+//   #navbar {
+//     font-size: 1rem;
+//   }
+
+//   #filmbutton {
+//     font-size: 1rem;
+//   }
+
+//   #tvbutton {
+//     font-size: 1rem;
+//   }
+
+//   #recposter {
+//     width: 8.2em;
+//     padding: 0.25rem;
+//     justify-items: center;
+//     border-radius: 3px;
+//     &:hover {
+//       box-shadow: 3px 3px 5px 6px #ccc;
+//     }
+//   }
+
+//   #recs {
+//     display: inline-grid;
+//     justify-content: center;
+//     align-items: center;
+//     margin: 0 auto;
+//   }
+//   #rectitle {
+//     // margin: 0;
+//     margin-top: 0.75em;
+//     // margin: 0 auto;
+//     font-size: 0.5rem;
+//     text-align: center;
+//     z-index: 1000000000;
+//     width: 90%;
+
+//     &:hover {
+//       z-index: 1000;
+//     }
+//   }
+
+//   .moviecontainer {
+//     width: 100%;
+//     margin: 0 auto;
+//     margin-top: 1rem;
+//     // margin-left: -1rem;
+//   }
+// }
+// #poster {
+//   width: 12em;
+//   margin-right: 1rem;
+//   margin-left: 0.25rem;
+// }
+
+// #title {
+//   font-size: 1rem;
+// }
+
+// #overview {
+//   overflow: scroll;
+//   margin-bottom: 0.15em;
+//   font-size: 3em;
+//   text-align: left;
+//   overflow: hidden;
+//   padding-right: 0.1rem;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 6;
+//   -webkit-box-orient: vertical;
+// }
+
+// #detailposter {
+//   width: 18rem;
+// }
+
+// input {
+//   font-size: 1.5rem;
+//   // margin: 5rem;
+//   // margin-left: 1rem;
+// }
+
+// ::placeholder {
+//   font-size: 0.75rem;
+//   padding-left: 0.5rem;
+// }
+
+// #x {
+//   position: relative;
+//   left: 88%;
+//   padding-top: 1.5%;
+//   background-color: none;
+// }
+
+// #search {
+//   position: relative;
+//   color: #495057;
+//   // font-size: 1rem;
+//   padding: 0;
+//   // padding-left: 48px;
+//   height: 4.125rem;
+//   line-height: 1.5rem;
+//   height: 4rem;
+//   width: 100%;
+//   font-size: 1.6rem;
+//   margin: 0 auto;
+//   // padding-left: .5rem;
+//   // margin-left: 1rem;
+// }
 
 @media only screen and (min-device-width: 770px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   #searchbtn {
