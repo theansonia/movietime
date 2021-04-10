@@ -380,7 +380,7 @@ body {
   position: fixed;
   transition: top 0.2s;
   top: 80%;
-  left: 42.25%;
+  left: 40%;
   pointer-events: all;
   z-index: 18;
   overflow: visible;
@@ -389,6 +389,15 @@ body {
   &:hover {
     cursor: pointer;
   }
+
+//   @media
+//   only screen and (-webkit-min-device-pixel-ratio: 1),
+//   only screen and (   min--moz-device-pixel-ratio: 1),
+//   only screen and (     -o-min-device-pixel-ratio: 1/1),
+//   only screen and (        min-device-pixel-ratio: 1) and (min-width: 375px) and (orientation: portrait) { 
+//     /* Retina styles here */
+//     left: 4%;
+// }
 }
 
 form {
@@ -643,12 +652,7 @@ input {
   font-weight: 300;
 }
 
-@media only screen and (min-device-width: 1280px) and (orientation: portrait)   and (-webkit-min-device-pixel-ratio: 2.0),
-only screen and (   min--moz-device-pixel-ratio: 2.0),
-only screen and (     -o-min-device-pixel-ratio: 2.0/1),
-only screen and (        min-device-pixel-ratio: 2.0),
-only screen and (                min-resolution: 227dpi),
-only screen and (                min-resolution: 2.0dppx){ 
+@media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) { 
   #searchbar {
     margin: 0 auto;
     padding-right: 0;
