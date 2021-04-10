@@ -145,7 +145,7 @@ const TVContainer = ({
               color={color}
               loading={isLoading}
               css={override}
-              size={60}
+              size={25}
             />
           ) : null}
         </div>

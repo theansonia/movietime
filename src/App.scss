@@ -22,9 +22,9 @@ body {
   display: flex;
   margin: 0 auto;
   position: fixed;
-  bottom: 50%;
+  top: 65%;
   z-index: 100000;
-  left: 25%;
+  left: 40%
 }
 
 #logos {
@@ -133,7 +133,7 @@ body {
 }
 @media only screen and (min-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   #beat {
-    left: 46%;
+    left: 48%;
   }
 }
 
@@ -659,10 +659,12 @@ input {
   }
 
   #beat {
-    left: 41%;
+    left: 46%;
+    top: 65%;
+
   }
   #searchbtn {
-    left: 48%;
+    left: 46%;
     top: 75%;
   }
   .toggle__box {
