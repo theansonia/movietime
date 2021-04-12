@@ -12,7 +12,6 @@ const MovieDetails = (props) => {
     params: { title },
   } = props.match;
   
-console.log(props)
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
   const [actualDetails, updateActualDetails] = useState('')

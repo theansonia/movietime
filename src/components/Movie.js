@@ -30,8 +30,6 @@ const Movie = ({
           pathname: `/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`, 
           state: { id: id } 
         }}
-      //   to={{pathname: `/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`},
-      // state: {}}
       >
         <div id="poster">
           {poster !== "https://image.tmdb.org/t/p/w500/null" &&
@@ -60,7 +58,10 @@ const Movie = ({
             marginTop: ".5em",
             color: "inherit",
           }}
-          to={`/moviedetails/${encodeURI(title)}`}
+          to={{ 
+            pathname: `/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`, 
+            state: { id: id } 
+          }}
         >
           {title ? <div id="title">{title}</div> : null}
           <div id="type">
@@ -87,7 +88,10 @@ const Movie = ({
             fontWeight: "normal",
             color: "inherit",
           }}
-          to={`/moviedetails/${title}`}
+          to={{ 
+            pathname: `/moviedetails/${title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "")}`, 
+            state: { id: id } 
+          }}
         >
           <div id="overview">{overview}</div>
         </Link>
