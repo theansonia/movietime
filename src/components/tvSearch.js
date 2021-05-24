@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
 import TVContainer from "../containers/TVContainer";
-// import API_KEY from "../apiKey";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-// import { PageContext } from "../contexts/PageContext";
+const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 const TvSearch = ({
   category,
@@ -25,7 +24,6 @@ const TvSearch = ({
   // const [hasMore, updateMore] = useState(true)
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
-  // const API_KEY = process.env.API_KEY;
 
   if (category === null) category = "a Movie or TV";
 
@@ -62,13 +60,11 @@ const TvSearch = ({
       return;
     }
     updateLoading(true);
-    // eslint-disable-next-line no-useless-escape
-    // const query = title.replace(regex, ' ');
 
     // eslint-disable-next-line no-useless-escape
     const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, "");
 
-    const URL = `https://api.themoviedb.org/3/search/tv?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=${pages}&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/tv?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`;
 
     fetch(URL)
       .then((res) => res.json())
@@ -98,7 +94,7 @@ const TvSearch = ({
 
     if (title.length > 0) return;
 
-    const URL = `https://api.themoviedb.org/3/tv/popular?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=${pages}`;
+    const URL = `https://api.themoviedb.org/3/tv/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
     fetch(URL)
       .then((res) => res.json())
       .then((data) => {

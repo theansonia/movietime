@@ -4,25 +4,23 @@ import React, { useContext, useEffect, useState } from "react";
 import Recs from "./Recs";
 import Stars from "./Stars";
 import { ThemeContext } from "../contexts/ThemeContext";
-// import API_KEY from "../apiKey";
 
 const MovieDetails = (props) => {
   // comment out for testing
   const {
     params: { title },
   } = props.match;
-  
+
   const [details, updateDetails] = useState([]);
   const [recommendations, updateRecommendations] = useState([]);
-  const [actualDetails, updateActualDetails] = useState('')
+  const [actualDetails, updateActualDetails] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [watch, updateWatch] = useState(null);
   const [providers, updateProviders] = useState([]);
 
   const { lightTheme } = useContext(ThemeContext);
   const theme = !lightTheme ? "darkmode" : "";
-
-
+  const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
   useEffect(() => {
     if (
@@ -47,46 +45,41 @@ const MovieDetails = (props) => {
     let query = title.replaceAll("%20", " ");
     query = title.replaceAll("%%20", " ");
 
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&query=${query}&page=1&include_adult=false`;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
     fetch(URL)
       .then((res) => res.json())
       .then((data) => updateDetails(data.results[0]))
       .catch((error) => console.log(error));
-      
 
-      const posterURL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US`;
+    const posterURL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US`;
 
     fetch(posterURL)
       .then((res) => res.json())
       .then((data) => updateActualDetails(data))
       .catch((error) => console.log(error));
-      
-    return () => updateDetails([]);
 
-    
+    return () => updateDetails([]);
   }, [title]);
   useEffect(() => {
     if (details === undefined) return;
 
     if (details.length === 0) return;
 
-    const URL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}/recommendations?api_key=20dd97d63497c0f0a8adb9bd9c547033&language=en-US&page=1`;
+    const URL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}/recommendations?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`;
 
     fetch(URL)
       .then((res) => res.json())
       .then((data) => updateRecommendations(data.results))
       .catch((error) => console.log(error));
 
-    const providerURL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}/watch/providers?api_key=20dd97d63497c0f0a8adb9bd9c547033`;
+    const providerURL = `https://api.themoviedb.org/3/movie/${props.history.location.state.id}/watch/providers?api_key=${REACT_APP_MOVIE_API_KEY}`;
 
     fetch(providerURL)
       .then((res) => res.json())
       .then((data) => updateWatch(data.results.US))
       .catch((error) => console.log(error));
-      
   }, [details.id]);
- 
 
   useEffect(() => {
     if (!watch) return;
@@ -194,13 +187,13 @@ const MovieDetails = (props) => {
                         rel="noreferrer"
                         target="_blank"
                       >
-                        <div id='shinediv'>
-                        <img
-                          key={`logoid - ${i}`}
-                          id="logo"
-                          src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
-                          alt="thumbnail for current provider"
-                        />
+                        <div id="shinediv">
+                          <img
+                            key={`logoid - ${i}`}
+                            id="logo"
+                            src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
+                            alt="thumbnail for current provider"
+                          />
                         </div>
                       </a>
                     );
@@ -212,9 +205,8 @@ const MovieDetails = (props) => {
             {recommendations && recommendations.length > 0 ? (
               <div>
                 {" "}
-                
                 {recommendations.map((rec, i) => {
-                  <div id="likethis">More Like This</div>
+                  <div id="likethis">More Like This</div>;
                   if (i < 5)
                     return (
                       <Recs
@@ -226,7 +218,9 @@ const MovieDetails = (props) => {
                     );
                 })}
               </div>
-            ) : <div id="likethis">No recommendations available</div>}
+            ) : (
+              <div id="likethis">No recommendations available</div>
+            )}
           </div>
         )}
       </div>
