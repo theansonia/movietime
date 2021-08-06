@@ -1,5 +1,6 @@
 # Ignore all HTML files:
 *.html
+*.json
 
 # dependencies
 /node_modules

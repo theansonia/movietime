@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
 
-$font-stack: "Source Sans Pro", sans-serif;
+$font-stack: 'Source Sans Pro', sans-serif;
 $background: #f8f9fa;
 $primary-font: #212529;
 
@@ -24,7 +24,7 @@ body {
   position: fixed;
   top: 65%;
   z-index: 100000;
-  left: 40%
+  left: 40%;
 }
 
 #logos {
@@ -32,59 +32,54 @@ body {
   // flex-wrap: wrap;
   gap: 0.25rem;
   padding-top: 0.5rem;
-  overflow-y: scroll; 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   -webkit-overflow-scrolling: touch;
-  
 }
 
-#logos::-webkit-scrollbar{
+#logos::-webkit-scrollbar {
   display: none;
 }
 
-#shinediv{
-  
-    position: relative;
-    
-    width: 3rem;
-    height: 3rem;
-    overflow: hidden;
-    border-radius: 75%;
+#shinediv {
+  position: relative;
 
-  
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  border-radius: 75%;
 }
 
-#recposterdiv{
+#recposterdiv {
   position: relative;
   border-radius: 3px;
 }
 
-#recposterdiv:before{
-
+#recposterdiv:before {
   content: '';
   position: absolute;
   top: 5%;
   left: -100px;
   width: 70px;
   height: 97%;
-  background: rgba(255,255,255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
   transform: skewX(-30deg);
   animation-name: slide;
   animation-duration: 7s;
   animation-timing-function: ease-in-out;
-  animation-delay: .3s;
+  animation-delay: 0.3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   z-index: 99999999999999999999;
   background: linear-gradient(
-      to right, 
-      rgba(255, 255, 255, 0.13) 0%,
-      rgba(255, 255, 255, 0.13) 77%,
-      rgba(255, 255, 255, 0.5) 92%,
-      rgba(255, 255, 255, 0.0) 100%
-    );
-    }
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
 
 #shinediv:before {
   content: '';
@@ -93,38 +88,37 @@ body {
   left: -100px;
   width: 70px;
   height: 100%;
-  background: rgba(255,255,255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
   transform: skewX(-30deg);
   animation-name: slide;
   animation-duration: 7s;
   animation-timing-function: ease-in-out;
-  animation-delay: .3s;
+  animation-delay: 0.3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   background: linear-gradient(
-      to right, 
-      rgba(255, 255, 255, 0.13) 0%,
-      rgba(255, 255, 255, 0.13) 77%,
-      rgba(255, 255, 255, 0.5) 92%,
-      rgba(255, 255, 255, 0.0) 100%
-    );
-  }
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
 
-
-  @keyframes slide {
-    0% {
-      left: -100;
-      top: 0;
-    }
-    50% {
-      left: 120px;
-      top: 0px;
-    }
-    100% {
-      left: 290px;
-      top: 0;
-    }
+@keyframes slide {
+  0% {
+    left: -100;
+    top: 0;
   }
+  50% {
+    left: 120px;
+    top: 0px;
+  }
+  100% {
+    left: 290px;
+    top: 0;
+  }
+}
 #logo {
   width: 3rem;
   height: 3rem;
@@ -250,7 +244,7 @@ body {
 }
 
 .toggle__btn .circle:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.27rem;
   left: 0.15rem;
@@ -266,7 +260,7 @@ body {
 }
 
 .toggle__btn .checkbox:checked + .circle:before {
-  content: "";
+  content: '';
   left: 1.5rem;
   background-color: #6c757d;
 }
@@ -390,14 +384,14 @@ body {
     cursor: pointer;
   }
 
-//   @media
-//   only screen and (-webkit-min-device-pixel-ratio: 1),
-//   only screen and (   min--moz-device-pixel-ratio: 1),
-//   only screen and (     -o-min-device-pixel-ratio: 1/1),
-//   only screen and (        min-device-pixel-ratio: 1) and (min-width: 375px) and (orientation: portrait) { 
-//     /* Retina styles here */
-//     left: 4%;
-// }
+  //   @media
+  //   only screen and (-webkit-min-device-pixel-ratio: 1),
+  //   only screen and (   min--moz-device-pixel-ratio: 1),
+  //   only screen and (     -o-min-device-pixel-ratio: 1/1),
+  //   only screen and (        min-device-pixel-ratio: 1) and (min-width: 375px) and (orientation: portrait) {
+  //     /* Retina styles here */
+  //     left: 4%;
+  // }
 }
 
 form {
@@ -491,7 +485,6 @@ input {
   margin-left: 0.25rem;
   margin-right: 0.5rem;
 }
-
 
 #details {
   display: flex;
@@ -605,7 +598,7 @@ input {
   font-weight: bold;
   text-align: left;
   align-self: flex-start;
-  margin-left: .75rem;
+  margin-left: 0.75rem;
   text-decoration: underline;
 }
 
@@ -652,7 +645,7 @@ input {
   font-weight: 300;
 }
 
-@media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) { 
+@media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
   #searchbar {
     margin: 0 auto;
     padding-right: 0;
@@ -661,7 +654,6 @@ input {
   #beat {
     left: 46%;
     top: 65%;
-
   }
   #searchbtn {
     left: 46%;
@@ -779,7 +771,6 @@ input {
   // padding-left: .5rem;
   // margin-left: 1rem;
 }
-
 
 // @media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
 //   #searchbar {
