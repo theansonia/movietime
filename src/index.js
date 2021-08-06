@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom'
 import './app/App.scss'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
-import ScrollToTop from './components/ScrollToTop'
-import ThemeContextProvider from './contexts/ThemeContext'
-import StateContextProvider from './contexts/stateContext'
+import ScrollToTop from './app/features/components/ScrollToTop'
+import ThemeContextProvider from './app/contexts/ThemeContext'
 import { Provider } from 'react-redux'
 import store from './app/store'
 import App from './app/App'
@@ -17,12 +16,10 @@ ReactDOM.render(
       <ScrollToTop />
 
       <ThemeContextProvider>
-        <StateContextProvider>
-          {/* <PageContextProvider> */}
+        {/* <PageContextProvider> */}
 
-          <App />
-          {/* </PageContextProvider> */}
-        </StateContextProvider>
+        <App />
+        {/* </PageContextProvider> */}
       </ThemeContextProvider>
 
       {/* </React.StrictMode> */}
