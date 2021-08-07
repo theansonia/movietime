@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSearchStatus } from '../../appSlices/searchStatusSlice'
+import { setQuery } from '../../appSlices/querySlice'
 
-const SearchButton = ({ updateSearchStatus, updateTitle, updatePages }) => {
-  const category = useSelector((state) => state.category)
+const SearchButton = ({ updatePages }) => {
+  const category = useSelector((state) => state.category.value)
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -24,8 +27,8 @@ const SearchButton = ({ updateSearchStatus, updateTitle, updatePages }) => {
               justifyContent: 'center',
             }}
             onClick={() => {
-              updateSearchStatus(true)
-              updateTitle('')
+              dispatch(setSearchStatus(true))
+              dispatch(setQuery(''))
               updatePages(1)
             }}
           >
@@ -112,8 +115,8 @@ const SearchButton = ({ updateSearchStatus, updateTitle, updatePages }) => {
       ) : (
         <div
           onClick={() => {
-            updateSearchStatus(true)
-            updateTitle('')
+            dispatch(setSearchStatus(true))
+            dispatch(setQuery(''))
             updatePages(1)
           }}
           style={{

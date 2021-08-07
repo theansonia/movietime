@@ -41,8 +41,6 @@ const MovieDetails = (props) => {
     ) {
       return
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // let query = name.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g,"");
 
     let query = title.replaceAll('%20', ' ')
     query = title.replaceAll('%%20', ' ')

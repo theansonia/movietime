@@ -1,66 +1,58 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import changeCategory from '../../../actionCreators/changeCategory'
+import { changeCategory } from '../../appSlices/categorySlice'
+import { setQuery } from '../../appSlices/querySlice'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import TVContainer from '../containers/TVContainer'
-
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`
 
-const TvSearch = ({
-  searchStatus,
-  updateSearchStatus,
-  title,
-  updateTitle,
-  pages,
-  updatePages,
-}) => {
+const TvSearch = ({ pages, updatePages }) => {
   const [tvResults, updateTvResults] = useState([])
   const [hasMore, updateHasMore] = useState(false)
   const [isLoading, updateLoading] = useState(true)
   const { lightTheme } = useContext(ThemeContext)
   const theme = !lightTheme ? 'darkmode' : ''
-  const category = useSelector((state) => state.category)
-
+  const category = useSelector((state) => state.category.value)
+  const query = useSelector((state) => state.query.value)
   const dispatch = useDispatch()
-  if (category === null) dispatch(changeCategory('a Movie or TV Show'))
+  if (category === null) dispatch(changeCategory('TV'))
 
   useEffect(() => {
     updateTvResults([])
-  }, [title])
+  }, [query])
 
   useEffect(() => {
     if (
-      title === ' ' ||
-      title === '.' ||
-      title === '/' ||
-      title === '$' ||
-      title === '%' ||
-      title === '#' ||
-      title === '&' ||
-      title === '+' ||
-      title === '#' ||
-      title === '?' ||
-      title === '+' ||
-      title === '#'
+      query === ' ' ||
+      query === '.' ||
+      query === '/' ||
+      query === '$' ||
+      query === '%' ||
+      query === '#' ||
+      query === '&' ||
+      query === '+' ||
+      query === '#' ||
+      query === '+' ||
+      query === '#'
     ) {
-      updateTitle('')
+      dispatch(setQuery(''))
       return
     }
 
-    if (title === '`') {
-      updateTitle("'")
+    if (query === '`') {
+      dispatch(setQuery("'"))
       return
     }
 
-    if (title.length === 0) {
+    if (query.length === 0) {
       updateTvResults([])
       return
     }
     updateLoading(true)
 
     // eslint-disable-next-line no-useless-escape
-    const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
 
     const URL = `https://api.themoviedb.org/3/search/tv?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`
 
@@ -80,17 +72,17 @@ const TvSearch = ({
         updateLoading(false)
       })
       .catch((error) => console.log(error))
-  }, [category, title, pages])
+  }, [category, query, pages])
 
   useEffect(() => {
-    if (title === ' ') {
-      updateTitle('')
+    if (query === ' ') {
+      dispatch(setQuery(''))
       return
     }
 
     updateLoading(true)
 
-    if (title.length > 0) return
+    if (query.length > 0) return
 
     const URL = `https://api.themoviedb.org/3/tv/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`
     fetch(URL)
@@ -109,16 +101,12 @@ const TvSearch = ({
         updateLoading(false)
       })
       .catch((error) => console.log(error))
-  }, [title, pages])
+  }, [query, pages])
 
   return (
     <div id='scrollablediv' className={'' + theme}>
       <TVContainer
         tvResults={tvResults}
-        updateSearchStatus={updateSearchStatus}
-        updateTitle={updateTitle}
-        title={title}
-        searchStatus={searchStatus}
         updatePages={updatePages}
         pages={pages}
         hasMore={hasMore}

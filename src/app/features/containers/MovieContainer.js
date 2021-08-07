@@ -14,10 +14,6 @@ const override = css`
 
 const MovieContainer = ({
   movieResults,
-  searchStatus,
-  updateSearchStatus,
-  updateTitle,
-  title,
   pages,
   updatePages,
   hasMore,
@@ -27,9 +23,9 @@ const MovieContainer = ({
   // const [color, updateColor] = useState('#6c757d')
   const color = '#6c757d'
   const category = useSelector((state) => state.category)
+  const query = useSelector((state) => state.query.value)
   // const { lightTheme } = useContext(ThemeContext)
   // const theme = !lightTheme ? 'darkmode' : ''
-
   const lastMovie = useCallback(
     (node) => {
       if (isLoading) return
@@ -58,20 +54,14 @@ const MovieContainer = ({
   // })
 
   useEffect(() => {
-    movieResults.sort((a, b) => (a.popularity > b.popularity ? 1 : -1))
-  }, [movieResults, title])
+    movieResults.sort((a, b) => (a.popularity < b.popularity ? 1 : -1))
+  }, [movieResults, query])
 
   return (
     <>
-      <SearchBar
-        searchStatus={searchStatus}
-        updateSearchStatus={updateSearchStatus}
-        updateTitle={updateTitle}
-        title={title}
-        updatePages={updatePages}
-      />
+      <SearchBar updatePages={updatePages} />
 
-      {!title ? (
+      {!query ? (
         <div id='trending'>Featured {tempCategory}</div>
       ) : (
         <div id='trending'>Results</div>
@@ -102,8 +92,6 @@ const MovieContainer = ({
                       }
                       rating={Math.round(movie.vote_average / 2)}
                       reviews={movie.vote_count}
-                      searchStatus={searchStatus}
-                      updateSearchStatus={updateSearchStatus}
                       type={movie.media_type}
                     />
                   </div>
@@ -129,8 +117,6 @@ const MovieContainer = ({
                       }
                       rating={Math.round(movie.vote_average / 2)}
                       reviews={movie.vote_count}
-                      searchStatus={searchStatus}
-                      updateSearchStatus={updateSearchStatus}
                       type={movie.media_type}
                     />
                   </div>

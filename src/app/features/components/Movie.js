@@ -3,7 +3,8 @@ import React from 'react'
 import Stars from './Stars'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import changeCategory from '../../../actionCreators/changeCategory'
+import { changeCategory } from '../../appSlices/categorySlice'
+import { setSearchStatus } from '../../appSlices/searchStatusSlice'
 
 const Movie = ({
   title,
@@ -14,7 +15,6 @@ const Movie = ({
   reviews,
   type,
   aired,
-  updateSearchStatus,
   id,
 }) => {
   const dispatch = useDispatch()
@@ -23,8 +23,8 @@ const Movie = ({
     <div id='movies'>
       <Link
         onClick={() => {
-          updateSearchStatus(false)
-          dispatch(changeCategory(type ? type : 'movie'))
+          dispatch(setSearchStatus(false))
+          dispatch(changeCategory(null))
         }}
         style={{ textDecoration: 'none' }}
         // eslint-disable-next-line no-useless-escape
@@ -52,8 +52,8 @@ const Movie = ({
       <div id='details'>
         <Link
           onClick={() => {
-            updateSearchStatus(false)
-            dispatch(changeCategory(type))
+            dispatch(setSearchStatus(false))
+            dispatch(changeCategory(null))
           }}
           style={{
             textDecoration: 'none',
@@ -86,7 +86,7 @@ const Movie = ({
         {aired ? <div id='release'>First Aired {aired}</div> : null}
         <Link
           onClick={() => {
-            updateSearchStatus(false)
+            dispatch(setSearchStatus(false))
             dispatch(changeCategory(null))
           }}
           style={{
@@ -113,7 +113,6 @@ const Movie = ({
           </div>
         ) : null}
       </div>
-      {/* </Router> */}
     </div>
   )
 }

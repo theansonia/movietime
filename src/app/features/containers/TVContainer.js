@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Show from '../components/Show'
 import SearchBar from '../components/SearchBar'
 import BeatLoader from 'react-spinners/BeatLoader'
@@ -14,22 +14,12 @@ const override = css`
   z-index: 100000;
 `
 
-const TVContainer = ({
-  tvResults,
-  searchStatus,
-  updateSearchStatus,
-  updateTitle,
-  title,
-  pages,
-  updatePages,
-  hasMore,
-  isLoading,
-}) => {
+const TVContainer = ({ tvResults, pages, updatePages, hasMore, isLoading }) => {
   const observer = useRef()
   // eslint-disable-next-line no-unused-vars
   const [color, updateColor] = useState('#6c757d')
   const category = useSelector((state) => state.tempCategory)
-
+  const query = useSelector((state) => state.query.value)
   const lastShow = useCallback(
     (node) => {
       if (isLoading) return
@@ -51,18 +41,14 @@ const TVContainer = ({
   } else if (category === 'Movie') {
     tempCategory = 'Movies'
   }
-
+  useEffect(() => {
+    tvResults.sort((a, b) => (a.popularity < b.popularity ? 1 : -1))
+  }, [tvResults, query])
   return (
     <div>
-      <SearchBar
-        searchStatus={searchStatus}
-        updateSearchStatus={updateSearchStatus}
-        updateTitle={updateTitle}
-        title={title}
-        updatePages={updatePages}
-      />
+      <SearchBar updatePages={updatePages} />
 
-      {!title ? (
+      {!query ? (
         <div id='trending'>Featured {tempCategory}</div>
       ) : (
         <div id='trending'>Results</div>
@@ -93,8 +79,6 @@ const TVContainer = ({
                       }
                       rating={Math.round(movie.vote_average / 2)}
                       reviews={movie.vote_count}
-                      searchStatus={searchStatus}
-                      updateSearchStatus={updateSearchStatus}
                       type={movie.media_type}
                     />
                   </div>
@@ -120,8 +104,6 @@ const TVContainer = ({
                       }
                       rating={Math.round(movie.vote_average / 2)}
                       reviews={movie.vote_count}
-                      searchStatus={searchStatus}
-                      updateSearchStatus={updateSearchStatus}
                       type={movie.media_type}
                     />
                   </div>

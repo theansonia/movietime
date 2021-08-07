@@ -1,20 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import changeCategory from '../../../actionCreators/changeCategory'
+import { changeCategory } from '../../appSlices/categorySlice'
+import { setQuery } from '../../appSlices/querySlice'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import MovieContainer from '../containers/MovieContainer'
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`
 
-const Search = ({
-  searchStatus,
-  updateSearchStatus,
-  title,
-  updateTitle,
-  pages,
-  updatePages,
-}) => {
+const Search = ({ pages, updatePages }) => {
   const [movieResults, updateMovieResults] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [hasMore, updateHasMore] = useState(false)
@@ -22,46 +16,48 @@ const Search = ({
   const { lightTheme } = useContext(ThemeContext)
   const theme = !lightTheme ? 'darkmode' : ''
 
-  const category = useSelector((state) => state.category)
+  const category = useSelector((state) => state.category.value)
+  const query = useSelector((state) => state.query.value)
+
   const dispatch = useDispatch()
   if (category === null) dispatch(changeCategory('movie'))
 
   useEffect(() => {
     updateMovieResults([])
-  }, [title])
+  }, [query])
 
   useEffect(() => {
     if (
-      title === ' ' ||
-      title === '.' ||
-      title === '/' ||
-      title === '$' ||
-      title === '%' ||
-      title === '#' ||
-      title === '&' ||
-      title === '+' ||
-      title === '#' ||
-      title === '?' ||
-      title === '+' ||
-      title === '#'
+      query === ' ' ||
+      query === '.' ||
+      query === '/' ||
+      query === '$' ||
+      query === '%' ||
+      query === '#' ||
+      query === '&' ||
+      query === '+' ||
+      query === '#' ||
+      query === '+' ||
+      query === '#'
     ) {
-      updateTitle('')
+      dispatch(setQuery(''))
       return
     }
 
-    if (title === '`') {
-      updateTitle("'")
+    if (query === '`') {
+      dispatch(setQuery("'"))
       return
     }
 
-    if (title.length === 0 || category === 'TV') {
+    if (query.length === 0 || category === 'TV') {
       updateMovieResults([])
       return
     }
     updateLoading(true)
 
     // eslint-disable-next-line no-useless-escape
-    const query = title.replaceAll(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    // query = query.replaceAll(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    // const query = testTitle
 
     const URL = `https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`
     fetch(URL)
@@ -81,16 +77,16 @@ const Search = ({
         // storeMovieData(data)
       })
       .catch((error) => console.log(error))
-  }, [category, title, pages])
+  }, [category, query, pages])
 
   useEffect(() => {
-    if (title === ' ') {
-      updateTitle('')
+    if (query === ' ') {
+      dispatch(setQuery(''))
       return
     }
     updateLoading(true)
 
-    if (title.length > 0) return
+    if (query.length > 0) return
     // if (title === undefined || title.length === 0) updateMovieResults([]);
 
     const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`
@@ -110,16 +106,12 @@ const Search = ({
         updateLoading(false)
       })
       .catch((error) => console.log(error))
-  }, [title, pages])
+  }, [query, pages])
 
   return (
     <div className={'' + theme}>
       <MovieContainer
         movieResults={movieResults}
-        updateSearchStatus={updateSearchStatus}
-        updateTitle={updateTitle}
-        title={title}
-        searchStatus={searchStatus}
         updatePages={updatePages}
         pages={pages}
         hasMore={hasMore}

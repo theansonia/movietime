@@ -1,22 +1,29 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import changeCategory from '../../../actionCreators/changeCategory'
+import { changeCategory } from '../../appSlices/categorySlice'
+import { setQuery } from '../../appSlices/querySlice'
 
-const SearchBar = ({ updateTitle, searchStatus, title, updatePages }) => {
-  const category = useSelector((state) => state.category)
+const SearchBar = ({ updatePages }) => {
+  const category = useSelector((state) => state.category.value)
+  const searchStatus = useSelector((state) => state.searchStatus.value)
+  const query = useSelector((state) => state.query.value)
+
   const dispatch = useDispatch()
+
   useEffect(() => {
     if (category === null) dispatch(changeCategory('a Movie or TV Show'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category])
   return (
     <>
-      {searchStatus ? (
+      {searchStatus && (
         <div id='searchbar'>
           <div
             id='x'
             onClick={() => {
-              updateTitle('')
+              setQuery('')
+
+              dispatch(setQuery(''))
               updatePages(1)
             }}
           >
@@ -46,12 +53,15 @@ const SearchBar = ({ updateTitle, searchStatus, title, updatePages }) => {
               list='movie'
               placeholder={`Search for ${category}`}
               autoFocus
-              onChange={(e) => updateTitle(e.target.value)}
-              value={title}
+              onChange={(e) => {
+                setQuery(e.target.value)
+                dispatch(setQuery(e.target.value))
+              }}
+              value={query}
             />
           </form>
         </div>
-      ) : null}
+      )}
     </>
   )
 }

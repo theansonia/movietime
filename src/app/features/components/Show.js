@@ -2,24 +2,17 @@ import React from 'react'
 import Stars from './Stars'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import changeCategory from '../../../actionCreators/changeCategory'
+import { setSearchStatus } from '../../appSlices/searchStatusSlice'
+import { changeCategory } from '../../appSlices/categorySlice'
 
-const Show = ({
-  name,
-  poster,
-  overview,
-  release,
-  rating,
-  reviews,
-  updateSearchStatus,
-}) => {
+const Show = ({ name, poster, overview, release, rating, reviews }) => {
   const dispatch = useDispatch()
 
   return (
     <div id='movies'>
       <Link
         onClick={() => {
-          updateSearchStatus(false)
+          dispatch(setSearchStatus(false))
           dispatch(changeCategory(null))
         }}
         style={{ textDecoration: 'none' }}
@@ -43,7 +36,7 @@ const Show = ({
       <div id='details'>
         <Link
           onClick={() => {
-            updateSearchStatus(false)
+            dispatch(setSearchStatus(false))
             dispatch(changeCategory(null))
           }}
           style={{
@@ -61,7 +54,7 @@ const Show = ({
         {release ? <div id='release'>First Aired {release}</div> : null}
         <Link
           onClick={() => {
-            updateSearchStatus(false)
+            dispatch(setSearchStatus(false))
             dispatch(changeCategory(null))
           }}
           style={{

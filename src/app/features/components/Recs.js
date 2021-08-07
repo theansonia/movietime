@@ -2,10 +2,10 @@
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const Recs = ({ title, pic, id }) => {
-  const category = useSelector((state) => state.category)
+const Recs = ({ pic, id }) => {
+  const category = useSelector((state) => state.category.value)
+  const title = useSelector((state) => state.title.value)
   const topFunction = () => {
-    console.log('hey')
     window.scrollTo(0, 0)
   }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const TVRecs = ({ name, pic }) => {
   return (
-    <div id="recs">
+    <div id='recs'>
       <Link
         style={{
           textDecoration: 'none',
@@ -16,26 +16,26 @@ const TVRecs = ({ name, pic }) => {
         }}
         to={`/details/${name}`}
       >
-        {name ? <div id="rectitle">{name}</div> : null}
+        {name ? <div id='rectitle'>{name}</div> : null}
       </Link>
 
       <Link style={{ textDecoration: 'none' }} to={`/details/${name}`}>
         {pic !== 'https://image.tmdb.org/t/p/w500/null' ? (
-          <div id="recposterdiv">
+          <div id='recposterdiv'>
             <img
               style={{ borderRadius: '30px' }}
-              id="recposter"
+              id='recposter'
               src={pic}
               alt={`Movie poster for ${name}`}
             />
           </div>
         ) : (
-          <div id="recposterdiv">
+          <div id='recposterdiv'>
             <img
-              id="recposter"
+              id='recposter'
               style={{ borderRadius: '30px' }}
-              src="https://image.tmdb.org/t/p/w500///lyTCCuymqg8egIaQXZAY5vE4MB0.jpg"
-              alt="back up movie poster cinema pardiso"
+              src='https://image.tmdb.org/t/p/w500///lyTCCuymqg8egIaQXZAY5vE4MB0.jpg'
+              alt='back up movie poster cinema pardiso'
             />
           </div>
         )}

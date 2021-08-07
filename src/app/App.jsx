@@ -8,37 +8,35 @@ import MovieDetails from './features/components/MovieDetails'
 import ThemeContextProvider from './contexts/ThemeContext'
 import SearchButton from './features/components/SearchButton'
 import { useDispatch, useSelector } from 'react-redux'
-import changeCategory from '../actionCreators/changeCategory'
 import ToggleTheme from './features/components/toggleTheme/ToggleTheme'
 import TrendingSearch from './features/components/TrendingSearch'
-
-function App() {
-  const [searchStatus, updateSearchStatus] = useState(false)
-  const [title, updateTitle] = useState('')
+import { setSearchStatus } from './appSlices/searchStatusSlice'
+import { changeCategory } from './appSlices/categorySlice'
+import { setQuery } from './appSlices/querySlice'
+export default function App() {
+  const query = useSelector((state) => state.query.value)
   const [pages, updatePages] = useState(1)
-  const category = useSelector((state) => state.category)
+
   const dispatch = useDispatch()
 
   return (
     <ThemeContextProvider>
-      {/* <PageContextProvider > */}
       <>
-        {/* <header></header> */}
         <div id='navbar'>
           <Link
             to='/home'
             id='homebutton'
             onClick={() => {
-              updateSearchStatus(false)
-              updateTitle('')
+              dispatch(setSearchStatus(false))
+              dispatch(setQuery(''))
               updatePages(1)
             }}
           >
             <div
               data-testid='homebtn'
               onClick={() => {
-                updateSearchStatus(false)
-                // dispatch(changeCategory(null))
+                dispatch(setSearchStatus(false))
+                dispatch(changeCategory(null))
                 updatePages(1)
               }}
             >
@@ -73,9 +71,9 @@ function App() {
             to={'/movies'}
             className='option'
             onClick={() => {
-              updateSearchStatus(false)
+              dispatch(setSearchStatus(false))
               dispatch(changeCategory('Movie'))
-              updateTitle('')
+              dispatch(setQuery(''))
               updatePages(1)
             }}
           >
@@ -86,9 +84,9 @@ function App() {
             to={'/shows'}
             className='option'
             onClick={() => {
-              updateSearchStatus(false)
+              dispatch(setSearchStatus(false))
               dispatch(changeCategory('TV'))
-              updateTitle('')
+              dispatch(setQuery(''))
               updatePages(1)
             }}
           >
@@ -99,35 +97,13 @@ function App() {
 
         <Switch>
           <Route path='/movies'>
-            <Search
-              category={category}
-              searchStatus={searchStatus}
-              title={title}
-              updateTitle={updateTitle}
-              updateSearchStatus={updateSearchStatus}
-              updatePages={updatePages}
-              pages={pages}
-            />
+            <Search updatePages={updatePages} pages={pages} />
           </Route>
           <Route path='/shows'>
-            <TvSearch
-              searchStatus={searchStatus}
-              title={title}
-              updateTitle={updateTitle}
-              updateSearchStatus={updateSearchStatus}
-              updatePages={updatePages}
-              pages={pages}
-            />
+            <TvSearch updatePages={updatePages} pages={pages} />
           </Route>
           <Route path='/home'>
-            <TrendingSearch
-              searchStatus={searchStatus}
-              title={title}
-              updateTitle={updateTitle}
-              updateSearchStatus={updateSearchStatus}
-              updatePages={updatePages}
-              pages={pages}
-            />
+            <TrendingSearch updatePages={updatePages} pages={pages} />
           </Route>
           <Route path={'/details/:name'} component={Details} />
           <Route path={'/moviedetails/:title'} component={MovieDetails} />
@@ -136,17 +112,8 @@ function App() {
           <Redirect to='/home' />
         </Route>
 
-        <SearchButton
-          searchStatus={searchStatus}
-          updateSearchStatus={updateSearchStatus}
-          updateTitle={updateTitle}
-          updatePages={updatePages}
-          pages={pages}
-        />
+        <SearchButton updatePages={updatePages} pages={pages} />
       </>
-      {/* </PageContextProvider> */}
     </ThemeContextProvider>
   )
 }
-
-export default App
