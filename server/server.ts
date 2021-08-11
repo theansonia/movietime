@@ -17,7 +17,7 @@ app.use('/*', function (req, res, next) {
 });
 
 // serves index.html at root endpoint
-app.get('/', (req, res) =>
+app.get('/*', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
 
