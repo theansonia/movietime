@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable no-console */
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = express_1.default();
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT, 10) || 3000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.static('build'));
