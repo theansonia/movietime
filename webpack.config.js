@@ -14,7 +14,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     compress: true,

@@ -9,6 +9,7 @@ import TVDetails from './features/components/Details';
 import Navbar from './features/components/Navbar';
 
 export default function App(): JSX.Element {
+  console.log(`We are in ${process.env.NODE_ENV}`);
   return (
     <>
       <Navbar />
