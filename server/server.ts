@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
 import express from 'express';
 import path from 'path';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
-const PORT = 3000;
+const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;
 
 app.use(express.json());
 
