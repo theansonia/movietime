@@ -7,6 +7,7 @@ import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import TVContainer from '../../containers/TVContainer';
+import { fetchContent, fetchTrending } from '../../../utils/fetchDetails';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
@@ -77,31 +78,13 @@ export const TvSearch: FunctionComponent = () => {
     }
     dispatch(updateLoading(true));
 
-    // eslint-disable-next-line no-useless-escape
-    // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
-
-    const URL = `https://api.themoviedb.org/3/search/tv?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: TvData) => {
-        updateTvResults((prevResults: TVPrevResults) => {
-          const newResults = data.results.filter((result) => {
-            if (result.name.includes('%')) {
-              result.name = result.name.replaceAll('%', ' ');
-            }
-            return result;
-          });
-          // const resultResults = sortResults(newResults);
-          const finalResults = newResults.sort((a, b) =>
-            a.popularity < b.popularity ? 1 : -1
-          );
-          return [...prevResults, ...finalResults];
-        });
-        dispatch(updateHasMore(data.results.length > 0));
-        dispatch(updateLoading(false));
-      })
-      .catch((error) => console.log(error));
+    fetchContent(query, 'tv', pages).then((data) => {
+      updateTvResults((prev) => {
+        return [...prev, ...data];
+      });
+      dispatch(updateHasMore(data.length > 0));
+      dispatch(updateLoading(false));
+    });
   }, [category, query, pages, dispatch]);
 
   useEffect(() => {
@@ -113,27 +96,13 @@ export const TvSearch: FunctionComponent = () => {
     dispatch(updateLoading(true));
 
     if (query.length > 0) return;
-
-    const URL = `https://api.themoviedb.org/3/tv/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: TvData) => {
-        updateTvResults((prevResults: TVPrevResults) => {
-          const newResults = data.results.filter((result) => {
-            if (result.name.includes('%')) {
-              result.name = result.name.replaceAll('%', ' ');
-            }
-            return result;
-          });
-          const finalResults = newResults.sort((a, b) =>
-            a.popularity < b.popularity ? 1 : -1
-          );
-          return [...prevResults, ...finalResults];
-        });
-        dispatch(updateHasMore(data.results.length > 0));
-        dispatch(updateLoading(false));
-      })
-      .catch((error) => console.log(error));
+    fetchTrending('tv', pages).then((resultResults) => {
+      updateTvResults((prevResults: TVPrevResults) => {
+        return [...prevResults, ...resultResults];
+      });
+      dispatch(updateHasMore(resultResults.length > 0));
+      dispatch(updateLoading(false));
+    });
   }, [query, pages, dispatch]);
 
   return (

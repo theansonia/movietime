@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+$font-stack: 'Source Sans Pro', sans-serif;
+$background: #f8f9fa;
+$primary-font: #212529;
+
+#navbar {
+  display: grid;
+  grid-template-columns: [home] 1rem [film] 5rem [shows] 5rem [signin] 5rem [toggle] 5rem [end];
+  place-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 400;
+  gap: 5rem;
+  width: 100%;
+}
+
+#filmbutton {
+  font-size: 0.65rem;
+}
+
+#tvbutton {
+  font-size: 0.65rem;
+}
+
+#signin {
+  font-size: 0.65rem;
+  margin-bottom: 1rem;
+  &:hover {
+    cursor: pointer;
+    color: none;
+  }
+}
+
+#homebtn {
+  width: 2em;
+  margin-top: 0.3rem;
+  // margin-right: 5em;
+  // margin-right: 1.5em;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#homepath {
+  &:hover {
+    fill: darken(#adb5bd, 18%);
+  }
+}
+
+.option {
+  font-size: 0.5rem;
+  color: $background;
+  text-decoration: none;
+  // margin-right: .5em;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #adb5bd;
+  }
+  @media (min-width: 600px) {
+    font-size: 1.15rem;
+  }
+}
+
+// #arrow {
+//   display: grid;
+//   padding-top: 3rem;
+// }

@@ -6,7 +6,8 @@ import SearchButton from './features/components/searchbutton/SearchButton';
 import TrendingSearch from './features/components/search/TrendingSearch';
 import { TvSearch } from './features/components/search/tvSearch';
 import TVDetails from './features/components/Details';
-import Navbar from './features/components/Navbar';
+import Navbar from './features/components/navbar/Navbar';
+import Registration from './features/components/signup/Registration';
 
 export default function App(): JSX.Element {
   console.log(`We are in ${process.env.NODE_ENV}`);
@@ -16,21 +17,27 @@ export default function App(): JSX.Element {
       <Switch>
         <Route path='/movies'>
           <Search />
+          <SearchButton />
         </Route>
         <Route path='/shows'>
           <TvSearch />
+          <SearchButton />
         </Route>
         <Route path='/home'>
           <TrendingSearch />
+          <SearchButton />
+        </Route>
+        <Route path='/registration'>
+          <Registration />
         </Route>
         <Route path={'/tvdetails/:name'} component={TVDetails} />
         <Route path={'/moviedetails/:title'} component={MovieDetails} />
+        <SearchButton />
       </Switch>
       <Route exact path='/'>
         <Redirect to='/home' />
+        <SearchButton />
       </Route>
-
-      <SearchButton />
     </>
   );
 }

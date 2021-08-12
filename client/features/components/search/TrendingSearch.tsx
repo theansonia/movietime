@@ -11,6 +11,7 @@ import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import { updateMovieData } from './searchMoviesSlice';
 import MovieContainer from '../../containers/MovieContainer';
+import { fetchContent, fetchTrending } from '../../../utils/fetchDetails';
 // import { updateMovieData } from './searchMoviesSlice';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -18,6 +19,7 @@ interface DataResults {
   page: number;
   total_pages: number;
   total_results: number;
+  media_type?: string;
   results: {
     adult: boolean;
     backdrop_path: string;
@@ -33,7 +35,8 @@ interface DataResults {
     name: string;
     video: boolean;
     vote_average: number;
-    media_type: MediaType;
+    vote_count?: number;
+    media_type?: MediaType;
   }[];
 }
 
@@ -93,39 +96,21 @@ const TrendingSearch: FunctionComponent = () => {
     }
     dispatch(updateLoading(true));
 
-    // eslint-disable-next-line no-useless-escape
-    // const query = title.replace(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
-
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false&`;
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: DataResults) => {
-        updateMovieResults((prevResults: MoviePrevResults) => {
-          const newResults = data.results.filter((result) => {
-            if (result.media_type === 'movie' && result.title.includes('%')) {
-              result.title = result.title.replaceAll('%', ' ');
-            } else if (
-              result.media_type === 'tv' &&
-              result.name.includes('%')
-            ) {
-              result.name = result.name.replaceAll('%', ' ');
-            }
-            return result;
-          });
-          const resultResults = sortResults(newResults);
-          return [
-            ...prevResults,
-            ...resultResults.filter((res) => {
-              // filters out actors etc
-              if (res.media_type === 'tv' || res.media_type === 'movie')
-                return res;
-            }),
-          ];
-        });
-        dispatch(updateHasMore(data.results.length > 0));
-        dispatch(updateLoading(false));
-      })
-      .catch((error) => console.log(error));
+    fetchContent(query, 'multi', pages).then((data) => {
+      updateMovieResults((prevResults) => {
+        return [
+          ...prevResults,
+          ...data.filter((res) => {
+            // filters out actors etc
+            if (res.media_type === 'tv' || res.media_type === 'movie')
+              return res;
+          }),
+        ];
+      });
+      dispatch(updateHasMore(data.length > 0));
+      dispatch(updateLoading(false));
+    });
+    //   .catch((error) => console.log(error));
   }, [category, query, pages, dispatch]);
 
   useEffect(() => {
@@ -137,33 +122,15 @@ const TrendingSearch: FunctionComponent = () => {
 
     if (query.length > 0) return;
 
-    const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: DataResults) => {
-        updateMovieResults((prevResults: MoviePrevResults) => {
-          const newResults = data.results.filter((result) => {
-            if (result.media_type === 'movie' && result.title.includes('%')) {
-              result.title = result.title.replaceAll('%', ' ');
-            } else if (
-              result.media_type === 'tv' &&
-              result.name.includes('%')
-            ) {
-              result.name = result.name.replaceAll('%', ' ');
-            }
-            return result;
-          });
-          const resultResults = sortResults(newResults);
-          return [...prevResults, ...resultResults];
-        });
-        dispatch(updateHasMore(data.results.length > 0));
-        dispatch(updateLoading(false));
-      })
-      .catch((error) => console.log(error));
+    fetchTrending('multi', pages).then((resultResults) => {
+      updateMovieResults((prevResults: MoviePrevResults) => {
+        return [...prevResults, ...resultResults];
+      });
+      dispatch(updateHasMore(resultResults.length > 0));
+      dispatch(updateLoading(false));
+    });
   }, [query, pages, dispatch]);
 
-  // console.log(movieResults);
   return (
     <div className={theme}>
       <MovieContainer

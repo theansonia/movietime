@@ -1,22 +1,32 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { handleKeyPress } from '../../utils/handleKeyPress';
-import { changeCategory } from '../../appSlices/categorySlice';
-import { updatePages } from '../../appSlices/pagesSlice';
-import { setQuery } from '../../appSlices/querySlice';
-import { setSearchStatus } from '../../appSlices/searchStatusSlice';
-import { setValue } from './search/searchSlices/valueSlice';
-import ToggleTheme from './toggleTheme/ToggleTheme';
+import { Link, useHistory } from 'react-router-dom';
+import { handleKeyPress } from '../../../utils/handleKeyPress';
+import { changeCategory } from '../../../appSlices/categorySlice';
+import { updatePages } from '../../../appSlices/pagesSlice';
+import { setQuery } from '../../../appSlices/querySlice';
+import { setSearchStatus } from '../../../appSlices/searchStatusSlice';
+import { setValue } from '../search/searchSlices/valueSlice';
+import ToggleTheme from '../toggleTheme/ToggleTheme';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
+import './Navbar.scss';
 const Navbar: FunctionComponent = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setValue(''));
     dispatch(updatePages(1));
     dispatch(setSearchStatus(false));
+  };
+
+  const handleHover = () => {
+    setIsHovered(!isHovered);
   };
   return (
     <div id='navbar'>
@@ -85,6 +95,28 @@ const Navbar: FunctionComponent = () => {
       >
         <div>TV Shows</div>
       </Link>
+
+      <div>
+        <div
+          id='signin'
+          className='option'
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
+          style={{ marginTop: '1rem' }}
+          onClick={() => {
+            history.push('./registration');
+          }}
+        >
+          Sign In
+          {!isHovered ? (
+            <ArrowDropDownIcon
+              style={{ position: 'absolute', top: '1.25rem' }}
+            />
+          ) : (
+            <ArrowDropUpIcon style={{ position: 'absolute', top: '1.25rem' }} />
+          )}
+        </div>
+      </div>
       <ToggleTheme />
     </div>
   );

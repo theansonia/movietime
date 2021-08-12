@@ -20,6 +20,7 @@ export type MoviePrevResults = {
   first_air_date?: string;
   US?: 'US';
 }[];
+
 export const sortResults = (
   incomingResultsArray: MoviePrevResults
 ): MoviePrevResults => {

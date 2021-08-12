@@ -9,6 +9,7 @@ import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import MovieContainer from '../../containers/MovieContainer';
+import { fetchContent, fetchTrending } from '../../../utils/fetchDetails';
 // import { updateMovieData } from './searchMoviesSlice';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -18,6 +19,7 @@ export interface DataResults {
   total_pages: number;
   total_results: number;
   original_language: string;
+  media_type?: string;
   US: string;
   results: {
     adult: boolean;
@@ -34,6 +36,8 @@ export interface DataResults {
     title: string;
     video: boolean;
     vote_average: number;
+    media_type?: string;
+    vote_count?: number;
   }[];
 }
 
@@ -81,33 +85,16 @@ const Search: FunctionComponent = () => {
       updateMovieResults([]);
       return;
     }
+
     dispatch(updateLoading(true));
 
-    // eslint-disable-next-line no-useless-escape
-    // query = query.replaceAll(/[.,/#!$%\^&\*;:{}=\-_`~()]/g, '')
-    // const query = testTitle
-
-    const URL = `https://api.themoviedb.org/3/search/movie?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`;
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: DataResults) => {
-        updateMovieResults((prevResults: MoviePrevResults) => {
-          const newResults = data.results.filter((result) => {
-            if (result.title.includes('%')) {
-              result.title = result.title.replaceAll('%', ' ');
-            }
-            return result;
-          });
-          const finalResults = newResults.sort((a, b) =>
-            a.popularity < b.popularity ? 1 : -1
-          );
-          return [...prevResults, ...finalResults];
-        });
-        dispatch(updateHasMore(data.results.length > 0));
-        dispatch(updateLoading(false));
-        // storeMovieData(data)
-      })
-      .catch((error) => console.log(error));
+    fetchContent(query, 'movie', pages).then((data) => {
+      updateMovieResults((prev) => {
+        return [...prev, ...data];
+      });
+      dispatch(updateHasMore(data.length > 0));
+      dispatch(updateLoading(false));
+    });
   }, [category, query, pages, dispatch]);
 
   useEffect(() => {
@@ -118,30 +105,14 @@ const Search: FunctionComponent = () => {
     dispatch(updateLoading(true));
 
     if (query.length > 0) return;
-    // if (title === undefined || title.length === 0) updateMovieResults([]);
 
-    const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: DataResults) => {
-        updateMovieResults((prevResults: MoviePrevResults) => {
-          const newResults = data.results.filter(
-            (result: { title: string }) => {
-              if (result.title.includes('%')) {
-                result.title = result.title.replaceAll('%', ' ');
-              }
-              return result;
-            }
-          );
-          const finalResults = newResults.sort((a, b) =>
-            a.popularity < b.popularity ? 1 : -1
-          );
-          return [...prevResults, ...finalResults];
-        });
-        dispatch(updateHasMore(data.results.length > 0));
-        dispatch(updateLoading(false));
-      })
-      .catch((error) => console.log(error));
+    fetchTrending('movie', pages).then((resultResults) => {
+      updateMovieResults((prevResults: MoviePrevResults) => {
+        return [...prevResults, ...resultResults];
+      });
+      dispatch(updateHasMore(resultResults.length > 0));
+      dispatch(updateLoading(false));
+    });
   }, [query, pages, dispatch]);
 
   return (

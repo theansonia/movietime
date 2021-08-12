@@ -399,6 +399,7 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   pointer-events: all;
   z-index: 18;
   overflow: visible;
+  margin: 0;
   // -webkit-appearance: button;
 
   &:hover {
@@ -682,18 +683,6 @@ input {
   }
   .toggle__box {
     transform: scale(1);
-  }
-
-  #navbar {
-    font-size: 1rem;
-  }
-
-  #filmbutton {
-    font-size: 1rem;
-  }
-
-  #tvbutton {
-    font-size: 1rem;
   }
 
   #recposter {
@@ -1077,8 +1066,8 @@ input {
   }
 
   #searchbtn {
-    left: 48%;
-    top: 90%;
+    left: 45%;
+    top: 80%;
   }
 
   #x {

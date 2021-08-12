@@ -18,12 +18,7 @@ const override = css`
 
 const TVContainer = ({ tvResults }) => {
   const dispatch = useDispatch();
-  const [color, updateColor] = useState('#6c757d');
-  // const category = useSelector((state) => state.category.value);
   const query = useSelector((state: RootState) => state.query.value);
-  const hasMore = useSelector((state: RootState) => state.hasMore.value);
-  const pages = useSelector((state: RootState) => state.pages.value);
-  const isLoading = useSelector((state: RootState) => state.isLoading.value);
   const lastShow = useScroll();
 
   return (

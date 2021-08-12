@@ -9,8 +9,8 @@ import Recs from './Recs';
 import Stars from './Stars';
 import { RootState } from '../../reducer';
 import { Details } from '../../types';
-import { DataResults } from './search/Search';
 import { MoviePrevResults } from '../../utils/sortResults';
+import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchDetails';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 interface PropsInterface extends RouteComponentProps<{ title: string }> {
@@ -67,66 +67,28 @@ const MovieDetails: FunctionComponent<RouteComponentProps> = (
   } = props.match;
 
   const [type] = useState(state.type ? state.type : 'movie');
-
-  const [details, updateDetails] = useState([] as unknown as Details);
+  const [details, updateDetails] = useState(([] as unknown) as Details);
   const [recommendations, updateRecommendations] = useState(
-    [] as unknown as MoviePrevResults
+    ([] as unknown) as MoviePrevResults
   );
   const [watch, updateWatch] = useState<Watch | null>(null);
-  const [providers, updateProviders] = useState([] as unknown as string[][]);
+  const [providers, updateProviders] = useState(([] as unknown) as string[][]);
   const theme = useSelector((state: RootState) => state.theme.value);
 
   useEffect(() => {
-    if (
-      title === ' ' ||
-      title === '.' ||
-      title === '/' ||
-      title === '$' ||
-      title === '%' ||
-      title === '#' ||
-      title === '&' ||
-      title === '+' ||
-      title === '#' ||
-      title === '?' ||
-      title === '+' ||
-      title === '#'
-    ) {
-      return;
-    }
+    fetchDetails(title).then((data) => updateDetails(data.results[0]));
 
-    let query = title.replaceAll('%20', ' ');
-    query = title.replaceAll('%%20', ' ');
-
-    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: SingleResult) => updateDetails(data.results[0]))
-      .catch((error) => console.log(error));
-
-    return () => updateDetails([] as unknown as Details);
+    return () => updateDetails(([] as unknown) as Details);
   }, [title]);
 
   useEffect(() => {
     if (details === undefined) return;
-
     if (details.length === 0) return;
 
-    const URL = `https://api.themoviedb.org/3/${type}/${details.id}/recommendations?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data: DataResults) => updateRecommendations(data.results))
-      .catch((error) => console.log(error));
-
-    const providerURL = `https://api.themoviedb.org/3/${type}/${details.id}/watch/providers?api_key=${REACT_APP_MOVIE_API_KEY}`;
-
-    fetch(providerURL)
-      .then((res) => res.json())
-      .then((data: DataResults) => {
-        updateWatch(data.results['US']);
-      })
-      .catch((error) => console.log(error));
+    fetchProvidersAndRecs(type, details.id).then((data) => {
+      updateRecommendations(data[0].results);
+      updateWatch(data[1].results['US']);
+    });
     // may need to add id back to details.id
   }, [details, type]);
 
