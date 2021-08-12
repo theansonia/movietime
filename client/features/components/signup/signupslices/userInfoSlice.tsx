@@ -6,6 +6,7 @@ export interface UserInfo {
     password?: string;
     username?: string;
     id?: number | null;
+    userinfo?: any;
   };
 }
 

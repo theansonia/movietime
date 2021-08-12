@@ -1,6 +1,4 @@
-import { SingleTVResult } from 'client/types';
-import { DataResults } from '../../../../codesmith/jobhunt/takehomes/movie-search-app/src/types';
-import { MoviePrevResults, sortResults } from './sortResults';
+import { sortResults } from './sortResults';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
