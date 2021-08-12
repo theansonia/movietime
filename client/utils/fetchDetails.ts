@@ -63,7 +63,11 @@ export const fetchProvidersAndRecs = async (
   }
 };
 
-export const fetchContent = async (query, type, pages) => {
+export const fetchContent = async (
+  query: string,
+  type: string,
+  pages: number
+) => {
   const URI = `https://api.themoviedb.org/3/search/${type}?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`;
 
   const URL = encodeURI(URI);
@@ -73,14 +77,17 @@ export const fetchContent = async (query, type, pages) => {
     const data = await results.json();
     const newResults = await data.results.filter(
       (result: { title: string; name: string; vote_count: number }) => {
-        if (result.title && result.title.includes('%')) {
-          result.title = result.title.replaceAll('%', ' ');
-        } else if (result.name && result.name.includes('%')) {
-          result.name = result.name.replaceAll('%', ' ');
-        } else if (result.vote_count > 50) return result;
+        if (type === 'multi') {
+          if (result.title && result.title.includes('%')) {
+            result.title = result.title.replaceAll('%', ' ');
+          } else if (result.name && result.name.includes('%')) {
+            result.name = result.name.replaceAll('%', ' ');
+          }
+        }
+        if (result.vote_count > 50) return result;
       }
     );
-    const resultResults = sortResults(data.results);
+    const resultResults = sortResults(newResults);
     return resultResults;
   } catch {
     throw Error('fetch failed while fetching query results');
@@ -90,7 +97,7 @@ export const fetchContent = async (query, type, pages) => {
 };
 
 export const fetchTrending = async (type: string, pages: number) => {
-  let URI;
+  let URI: string;
   if (type === 'multi') {
     URI = `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
   } else {
