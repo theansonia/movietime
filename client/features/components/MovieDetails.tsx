@@ -10,7 +10,7 @@ import Stars from './Stars';
 import { RootState } from '../../reducer';
 import { Details } from '../../types';
 import { MoviePrevResults } from '../../utils/sortResults';
-import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchDetails';
+import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchData';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 interface PropsInterface extends RouteComponentProps<{ title: string }> {

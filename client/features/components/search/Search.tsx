@@ -9,7 +9,7 @@ import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import MovieContainer from '../../containers/MovieContainer';
-import { fetchContent, fetchTrending } from '../../../utils/fetchDetails';
+import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 // import { updateMovieData } from './searchMoviesSlice';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -47,6 +47,7 @@ const Search: FunctionComponent = () => {
   const pages = useSelector((state: RootState) => state.pages.value);
   const category = useSelector((state: RootState) => state.category.value);
   const query = useSelector((state: RootState) => state.query.value);
+  const isLoading = useSelector((state: RootState) => state.isLoading.value);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   // const movieData = useSelector((state: RootState) => state.movieData);
 
@@ -59,42 +60,22 @@ const Search: FunctionComponent = () => {
   }, [query]);
 
   useEffect(() => {
-    if (
-      query === ' ' ||
-      query === '.' ||
-      query === '/' ||
-      query === '$' ||
-      query === '%' ||
-      query === '#' ||
-      query === '&' ||
-      query === '+' ||
-      query === '#' ||
-      query === '+' ||
-      query === '#'
-    ) {
-      dispatch(setQuery(''));
-      return;
-    }
+    if (!isLoading) {
+      if (query.length === 0 || category === 'TV') {
+        updateMovieResults([]);
+        return;
+      }
 
-    if (query === '`') {
-      dispatch(setQuery("'"));
-      return;
-    }
+      dispatch(updateLoading(true));
 
-    if (query.length === 0 || category === 'TV') {
-      updateMovieResults([]);
-      return;
-    }
-
-    dispatch(updateLoading(true));
-
-    fetchContent(query, 'movie', pages).then((data) => {
-      updateMovieResults((prev) => {
-        return [...prev, ...data];
+      fetchContent(query, 'movie', pages).then((data) => {
+        updateMovieResults((prev) => {
+          return [...prev, ...data];
+        });
+        dispatch(updateHasMore(data.length > 0));
+        dispatch(updateLoading(false));
       });
-      dispatch(updateHasMore(data.length > 0));
-      dispatch(updateLoading(false));
-    });
+    }
   }, [category, query, pages, dispatch]);
 
   useEffect(() => {
@@ -102,17 +83,20 @@ const Search: FunctionComponent = () => {
       dispatch(setQuery(''));
       return;
     }
-    dispatch(updateLoading(true));
 
-    if (query.length > 0) return;
+    if (!isLoading) {
+      dispatch(updateLoading(true));
 
-    fetchTrending('movie', pages).then((resultResults) => {
-      updateMovieResults((prevResults: MoviePrevResults) => {
-        return [...prevResults, ...resultResults];
+      if (query.length > 0) return;
+
+      fetchTrending('movie', pages).then((resultResults) => {
+        updateMovieResults((prevResults: MoviePrevResults) => {
+          return [...prevResults, ...resultResults];
+        });
+        dispatch(updateHasMore(resultResults.length > 0));
+        dispatch(updateLoading(false));
       });
-      dispatch(updateHasMore(resultResults.length > 0));
-      dispatch(updateLoading(false));
-    });
+    }
   }, [query, pages, dispatch]);
 
   return (

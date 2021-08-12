@@ -97,25 +97,26 @@ const Navbar: FunctionComponent = () => {
       </Link>
 
       <div>
-        <div
-          id='signin'
-          className='option'
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHover}
-          style={{ marginTop: '1rem' }}
-          onClick={() => {
-            history.push('./registration');
-          }}
-        >
-          Sign In
-          {!isHovered ? (
-            <ArrowDropDownIcon
-              style={{ position: 'absolute', top: '1.25rem' }}
-            />
-          ) : (
-            <ArrowDropUpIcon style={{ position: 'absolute', top: '1.25rem' }} />
-          )}
-        </div>
+        <Link to='/registration'>
+          <div
+            id='signin'
+            className='option'
+            onMouseEnter={handleHover}
+            onMouseLeave={handleHover}
+            style={{ marginTop: '1rem' }}
+          >
+            Sign In
+            {!isHovered ? (
+              <ArrowDropDownIcon
+                style={{ position: 'absolute', top: '1.25rem' }}
+              />
+            ) : (
+              <ArrowDropUpIcon
+                style={{ position: 'absolute', top: '1.25rem' }}
+              />
+            )}
+          </div>
+        </Link>
       </div>
       <ToggleTheme />
     </div>

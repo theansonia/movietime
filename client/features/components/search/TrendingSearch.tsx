@@ -11,7 +11,7 @@ import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import { updateMovieData } from './searchMoviesSlice';
 import MovieContainer from '../../containers/MovieContainer';
-import { fetchContent, fetchTrending } from '../../../utils/fetchDetails';
+import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 // import { updateMovieData } from './searchMoviesSlice';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -50,7 +50,9 @@ const TrendingSearch: FunctionComponent = () => {
   const pages = useSelector((state: RootState) => state.pages.value);
   const theme = useSelector((state: RootState) => state.theme.value);
   const query = useSelector((state: RootState) => state.query.value);
+  const isLoading = useSelector((state: RootState) => state.isLoading.value);
   const [movieResults, updateMovieResults] = useState([]);
+
   // const movieData = useSelector((state: RootState) => state.movieData.data);
   const dispatch = useDispatch();
 
@@ -67,50 +69,29 @@ const TrendingSearch: FunctionComponent = () => {
   }, [query]);
 
   useEffect(() => {
-    if (
-      query === ' ' ||
-      query === '.' ||
-      query === '/' ||
-      query === '$' ||
-      query === '%' ||
-      query === '#' ||
-      query === '&' ||
-      query === '+' ||
-      query === '#' ||
-      query === '?' ||
-      query === '+' ||
-      query === '#'
-    ) {
-      dispatch(setQuery(''));
-      return;
-    }
-
-    if (query === '`') {
-      dispatch(setQuery("'"));
-      return;
-    }
-
     if (query.length === 0 || category === 'TV') {
       updateMovieResults([]);
       return;
     }
-    dispatch(updateLoading(true));
 
-    fetchContent(query, 'multi', pages).then((data) => {
-      updateMovieResults((prevResults) => {
-        return [
-          ...prevResults,
-          ...data.filter((res) => {
-            // filters out actors etc
-            if (res.media_type === 'tv' || res.media_type === 'movie')
-              return res;
-          }),
-        ];
+    if (!isLoading) {
+      dispatch(updateLoading(true));
+
+      fetchContent(query, 'multi', pages).then((data) => {
+        updateMovieResults((prevResults) => {
+          return [
+            ...prevResults,
+            ...data.filter((res) => {
+              // filters out actors etc
+              if (res.media_type === 'tv' || res.media_type === 'movie')
+                return res;
+            }),
+          ];
+        });
+        dispatch(updateHasMore(data.length > 0));
+        dispatch(updateLoading(false));
       });
-      dispatch(updateHasMore(data.length > 0));
-      dispatch(updateLoading(false));
-    });
-    //   .catch((error) => console.log(error));
+    }
   }, [category, query, pages, dispatch]);
 
   useEffect(() => {
@@ -118,17 +99,20 @@ const TrendingSearch: FunctionComponent = () => {
       dispatch(setQuery(''));
       return;
     }
-    dispatch(updateLoading(true));
 
-    if (query.length > 0) return;
+    if (!isLoading) {
+      dispatch(updateLoading(true));
 
-    fetchTrending('multi', pages).then((resultResults) => {
-      updateMovieResults((prevResults: MoviePrevResults) => {
-        return [...prevResults, ...resultResults];
+      if (query.length > 0) return;
+
+      fetchTrending('multi', pages).then((resultResults) => {
+        updateMovieResults((prevResults: MoviePrevResults) => {
+          return [...prevResults, ...resultResults];
+        });
+        dispatch(updateHasMore(resultResults.length > 0));
+        dispatch(updateLoading(false));
       });
-      dispatch(updateHasMore(resultResults.length > 0));
-      dispatch(updateLoading(false));
-    });
+    }
   }, [query, pages, dispatch]);
 
   return (

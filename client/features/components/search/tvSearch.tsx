@@ -7,7 +7,7 @@ import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import TVContainer from '../../containers/TVContainer';
-import { fetchContent, fetchTrending } from '../../../utils/fetchDetails';
+import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
@@ -41,7 +41,7 @@ export const TvSearch: FunctionComponent = () => {
   const category = useSelector((state: RootState) => state.category.value);
   const query = useSelector((state: RootState) => state.query.value);
   const pages = useSelector((state: RootState) => state.pages.value);
-
+  const isLoading = useSelector((state: RootState) => state.isLoading.value);
   const dispatch = useDispatch();
   if (category === null) dispatch(changeCategory('TV'));
 
@@ -50,41 +50,22 @@ export const TvSearch: FunctionComponent = () => {
   }, [query]);
 
   useEffect(() => {
-    if (
-      query === ' ' ||
-      query === '.' ||
-      query === '/' ||
-      query === '$' ||
-      query === '%' ||
-      query === '#' ||
-      query === '&' ||
-      query === '+' ||
-      query === '#' ||
-      query === '+' ||
-      query === '#'
-    ) {
-      dispatch(setQuery(''));
-      return;
-    }
-
-    if (query === '`') {
-      dispatch(setQuery("'"));
-      return;
-    }
-
     if (query.length === 0) {
       updateTvResults([]);
       return;
     }
-    dispatch(updateLoading(true));
 
-    fetchContent(query, 'tv', pages).then((data) => {
-      updateTvResults((prev) => {
-        return [...prev, ...data];
+    if (!isLoading) {
+      dispatch(updateLoading(true));
+
+      fetchContent(query, 'tv', pages).then((data) => {
+        updateTvResults((prev) => {
+          return [...prev, ...data];
+        });
+        dispatch(updateHasMore(data.length > 0));
+        dispatch(updateLoading(false));
       });
-      dispatch(updateHasMore(data.length > 0));
-      dispatch(updateLoading(false));
-    });
+    }
   }, [category, query, pages, dispatch]);
 
   useEffect(() => {
@@ -93,16 +74,18 @@ export const TvSearch: FunctionComponent = () => {
       return;
     }
 
-    dispatch(updateLoading(true));
+    if (!isLoading) {
+      dispatch(updateLoading(true));
 
-    if (query.length > 0) return;
-    fetchTrending('tv', pages).then((resultResults) => {
-      updateTvResults((prevResults: TVPrevResults) => {
-        return [...prevResults, ...resultResults];
+      if (query.length > 0) return;
+      fetchTrending('tv', pages).then((resultResults) => {
+        updateTvResults((prevResults: TVPrevResults) => {
+          return [...prevResults, ...resultResults];
+        });
+        dispatch(updateHasMore(resultResults.length > 0));
+        dispatch(updateLoading(false));
       });
-      dispatch(updateHasMore(resultResults.length > 0));
-      dispatch(updateLoading(false));
-    });
+    }
   }, [query, pages, dispatch]);
 
   return (

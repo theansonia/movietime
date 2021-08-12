@@ -12,7 +12,7 @@ import { Provider, Watch } from './MovieDetails';
 import { TVPrevResults } from './search/tvSearch';
 import Stars from './Stars';
 import TVRecs from './TVRecs';
-import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchDetails';
+import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchData';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 

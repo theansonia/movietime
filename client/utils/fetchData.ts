@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { sortResults } from './sortResults';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -82,7 +83,7 @@ export const fetchContent = async (
             result.name = result.name.replaceAll('%', ' ');
           }
         }
-        if (result.vote_count > 50) return result;
+        if (result.vote_count > 10) return result;
       }
     );
     const resultResults = sortResults(newResults);
@@ -111,7 +112,7 @@ export const fetchTrending = async (type: string, pages: number) => {
         result.title = result.title.replaceAll('%', ' ');
       } else if (result.media_type === 'tv' && result.name.includes('%')) {
         result.name = result.name.replaceAll('%', ' ');
-      } else if (result.vote_count > 50) return result;
+      } else if (result.vote_count > 10) return result;
     });
     const resultResults = sortResults(newResults);
 
