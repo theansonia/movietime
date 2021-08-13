@@ -1,25 +1,21 @@
-import { RootState } from 'client/reducer';
-import {
-  FormEventHandler,
-  FunctionComponent,
-  SyntheticEvent,
-  useState,
-} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { useUserContext } from '../../../contexts/UserContext';
+import { FunctionComponent, SyntheticEvent, useState } from 'react';
+
 import { setUserInfo } from './signupslices/userInfoSlice';
 
 export interface EmailProps {
-  setNewUser(e: boolean): any;
+  setNewUser(newUser: boolean): any;
 }
 
 export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
-  const [value, setValue] = useState('');
   const dispatch = useDispatch();
+  const { setUserDetails, email } = useUserContext();
 
   const handleEmailEntered = () => {
     setNewUser(true);
-    dispatch(setUserInfo({ email: value }));
+    dispatch(setUserInfo({ email: email }));
+    setUserDetails({ email: email });
   };
   return (
     <div id='loginwrapper'>
@@ -42,8 +38,8 @@ export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
             className='input'
             placeholder='Email address'
             type='text'
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={email}
+            onChange={(e) => setUserDetails({ email: e.target.value })}
           />
           <span onClick={handleEmailEntered}>
             <button type='button' id='getstartedbtn'>

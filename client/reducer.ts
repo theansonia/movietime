@@ -9,6 +9,8 @@ import lightThemeReducer from './features/components/toggleTheme/toggleThemeSlic
 import movieDataReducer from './features/components/search/searchMoviesSlice';
 import valueReducer from './features/components/search/searchSlices/valueSlice';
 import userInfoReducer from './features/components/signup/signupslices/userInfoSlice';
+import loginReducer from './features/components/signup/signupslices/loginSlice';
+
 export const rootReducer = combineReducers({
   category: categoryReducer,
   searchStatus: searchStatusReducer,
@@ -20,6 +22,7 @@ export const rootReducer = combineReducers({
   movieData: movieDataReducer,
   value: valueReducer,
   userinfo: userInfoReducer,
+  isLoggedIn: loginReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

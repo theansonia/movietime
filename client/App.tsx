@@ -14,6 +14,7 @@ export default function App(): JSX.Element {
   return (
     <>
       <Navbar />
+
       <Switch>
         <Route path='/movies'>
           <Search />
@@ -27,9 +28,11 @@ export default function App(): JSX.Element {
           <TrendingSearch />
           <SearchButton />
         </Route>
+
         <Route path='/registration'>
           <Registration />
         </Route>
+
         <Route path={'/tvdetails/:name'} component={TVDetails} />
         <Route path={'/moviedetails/:title'} component={MovieDetails} />
         <SearchButton />

@@ -1,21 +1,49 @@
-import { RootState } from 'client/reducer';
-import { FunctionComponent, SyntheticEvent, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { EmailProps } from './Email';
+import { useUserContext } from '../../../contexts/UserContext';
 import { setUserInfo } from './signupslices/userInfoSlice';
+import { setLoginStatus } from './signupslices/loginSlice';
+import { useEffect } from 'react';
 
 export const Signup = () => {
-  const { email } = useSelector((state: RootState) => state.userinfo.userinfo);
-  const [temp, setTempPw] = useState('');
+  const { email, password, username } = useUserContext();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { setUserDetails } = useUserContext();
+
+  useEffect(() => {
+    const username = document.getElementById('usernameinput');
+    if (username) username.focus();
+  }, [username]);
 
   const handleSubmitOrClick = () => {
     // fetch and auth etc but for now let's just log them in and save to state and checking auth etc.
-    dispatch(setUserInfo({ email: email, password: temp }));
+    dispatch(
+      setUserInfo({
+        email: email,
+        password: password,
+        username:
+          username.split(' ')[0][0].toUpperCase() +
+          username.split(' ')[0].substring(1) +
+          ' ' +
+          username.split(' ')[1][0].toUpperCase() +
+          username.split(' ')[1].substring(1),
+      })
+    );
+    setUserDetails({
+      email: email[0].toUpperCase() + email.substring(1),
+      password: password,
+      username:
+        username.split(' ')[0][0].toUpperCase() +
+        username.split(' ')[0].substring(1) +
+        ' ' +
+        username.split(' ')[1][0].toUpperCase() +
+        username.split(' ')[1].substring(1),
+    });
+    dispatch(setLoginStatus(true));
     history.push('./home');
   };
+
   return (
     <div id='signupwrapper'>
       <h1 id='header1'>Create a password to start your account</h1>
@@ -27,7 +55,30 @@ export const Signup = () => {
         className='emailform'
         onSubmit={(e) => {
           e.preventDefault();
-
+          handleSubmitOrClick();
+        }}
+      >
+        <div id='emailandpwwrapper'>
+          <input
+            className='emailpwinput'
+            id='usernameinput'
+            placeholder={username ? username : 'First and Last Name'}
+            type='text'
+            value={username ? username : ''}
+            onChange={(e) =>
+              setUserDetails({
+                email: email,
+                password: password,
+                username: e.target.value,
+              })
+            }
+          />
+        </div>
+      </form>
+      <form
+        className='emailform'
+        onSubmit={(e) => {
+          e.preventDefault();
           handleSubmitOrClick();
         }}
       >
@@ -37,7 +88,13 @@ export const Signup = () => {
             placeholder={email ? email : 'Email'}
             type='text'
             value={email}
-            onChange={(e) => dispatch(setUserInfo({ email: e.target.value }))}
+            onChange={(e) =>
+              setUserDetails({
+                email: e.target.value,
+                password: password,
+                username: username,
+              })
+            }
           />
         </div>
       </form>
@@ -53,8 +110,14 @@ export const Signup = () => {
             className='emailpwinput'
             placeholder='Add a password'
             type='password'
-            value={temp}
-            onChange={(e) => setTempPw(e.target.value)}
+            value={password ? password : ''}
+            onChange={(e) =>
+              setUserDetails({
+                email: email,
+                password: e.target.value,
+                username: username,
+              })
+            }
           />
         </div>
         <div id='btndivider'>

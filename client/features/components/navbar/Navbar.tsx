@@ -1,6 +1,9 @@
 import { FunctionComponent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import { handleKeyPress } from '../../../utils/handleKeyPress';
 import { changeCategory } from '../../../appSlices/categorySlice';
 import { updatePages } from '../../../appSlices/pagesSlice';
@@ -8,16 +11,18 @@ import { setQuery } from '../../../appSlices/querySlice';
 import { setSearchStatus } from '../../../appSlices/searchStatusSlice';
 import { setValue } from '../search/searchSlices/valueSlice';
 import ToggleTheme from '../toggleTheme/ToggleTheme';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-
 import './Navbar.scss';
+import { useUserContext } from '../../../contexts/UserContext';
+import { RootState } from 'client/reducer';
+
 const Navbar: FunctionComponent = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const userDetails = useUserContext();
+  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
 
   const [isHovered, setIsHovered] = useState(false);
 
+  console.log(userDetails);
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setValue(''));
@@ -28,6 +33,7 @@ const Navbar: FunctionComponent = () => {
   const handleHover = () => {
     setIsHovered(!isHovered);
   };
+
   return (
     <div id='navbar'>
       <Link to='/home' id='homebutton'>
@@ -103,17 +109,20 @@ const Navbar: FunctionComponent = () => {
             className='option'
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
-            style={{ marginTop: '1rem' }}
+            style={{ marginTop: '.15rem' }}
           >
-            Sign In
+            {isLoggedIn ? (
+              <FaceRoundedIcon style={{ position: 'relative', top: '.5rem' }} />
+            ) : (
+              `Sign In`
+            )}
+
             {!isHovered ? (
               <ArrowDropDownIcon
-                style={{ position: 'absolute', top: '1.25rem' }}
+                style={{ position: 'relative', top: '.5rem' }}
               />
             ) : (
-              <ArrowDropUpIcon
-                style={{ position: 'absolute', top: '1.25rem' }}
-              />
+              <ArrowDropUpIcon style={{ position: 'relative', top: '.5rem' }} />
             )}
           </div>
         </Link>

@@ -6,13 +6,17 @@ import './styles/App.scss';
 import store from './store';
 import App from './App';
 import { ScrollToTop } from './hooks/ScrollToTop';
+import { UserProvider } from './contexts/UserContext';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       {/* <React.StrictMode> */}
+
       <ScrollToTop />
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
       {/* </React.StrictMode> */}
     </Router>
   </Provider>,
