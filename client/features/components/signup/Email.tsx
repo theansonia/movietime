@@ -13,6 +13,16 @@ export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
   const { setUserDetails, email } = useUserContext();
 
   const handleEmailEntered = () => {
+    if (email === '') {
+      const input = (document.getElementsByName(
+        'email'
+      ) as unknown) as HTMLInputElement;
+      input[0].placeholder = 'Please enter a proper email address';
+      const addCSS = document.createElement('style');
+      addCSS.innerHTML = '::placeholder { color: red; }';
+      input[0].append(addCSS);
+      return;
+    }
     setNewUser(true);
     dispatch(setUserInfo({ email: email }));
     setUserDetails({ email: email });
@@ -21,7 +31,6 @@ export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
     <div id='loginwrapper'>
       <h1 id='header1'>Search movies, TV shows, and more. </h1>
       <h2 id='header2'>Link anywhere. Cancel anytime.</h2>
-
       <form
         className='emailform'
         onSubmit={(e: SyntheticEvent) => {
@@ -36,6 +45,7 @@ export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
         <div id='inputwrapper'>
           <input
             className='input'
+            name='email'
             placeholder='Email address'
             type='text'
             value={email}

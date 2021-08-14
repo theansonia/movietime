@@ -30,7 +30,7 @@ const Movie: FunctionComponent<MovieProps> = ({
         style={{ textDecoration: 'none' }}
         // eslint-disable-next-line no-useless-escape
         to={{
-          pathname: `/moviedetails/${title.replace(
+          pathname: `/details/${title.replace(
             /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
             ''
           )}`,
@@ -65,7 +65,7 @@ const Movie: FunctionComponent<MovieProps> = ({
             color: 'inherit',
           }}
           to={{
-            pathname: `/moviedetails/${title.replace(
+            pathname: `/details/${title.replace(
               /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
               ''
             )}`,
@@ -98,7 +98,7 @@ const Movie: FunctionComponent<MovieProps> = ({
             color: 'inherit',
           }}
           to={{
-            pathname: `/moviedetails/${title.replace(
+            pathname: `/details/${title.replace(
               /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
               ''
             )}`,

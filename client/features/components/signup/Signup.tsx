@@ -17,28 +17,32 @@ export const Signup = () => {
   }, [username]);
 
   const handleSubmitOrClick = () => {
+    let name: string;
     // fetch and auth etc but for now let's just log them in and save to state and checking auth etc.
+    if (!username) {
+      name = '';
+    } else if (username.split(' ').length < 2) {
+      name = username;
+    } else {
+      name =
+        username.split(' ')[0][0].toUpperCase() +
+        username.split(' ')[0].substring(1) +
+        ' ' +
+        username.split(' ')[1][0].toUpperCase() +
+        username.split(' ')[1].substring(1);
+    }
+
     dispatch(
       setUserInfo({
         email: email,
         password: password,
-        username:
-          username.split(' ')[0][0].toUpperCase() +
-          username.split(' ')[0].substring(1) +
-          ' ' +
-          username.split(' ')[1][0].toUpperCase() +
-          username.split(' ')[1].substring(1),
+        username: name,
       })
     );
     setUserDetails({
       email: email[0].toUpperCase() + email.substring(1),
       password: password,
-      username:
-        username.split(' ')[0][0].toUpperCase() +
-        username.split(' ')[0].substring(1) +
-        ' ' +
-        username.split(' ')[1][0].toUpperCase() +
-        username.split(' ')[1].substring(1),
+      username: name,
     });
     dispatch(setLoginStatus(true));
     history.push('./home');

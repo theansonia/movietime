@@ -38,11 +38,11 @@ app.get('/registration', (req, res) =>
 app.get('/shows', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
-app.get('/moviedetails/*', (req, res) =>
+app.get('/details/*', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
 
-app.get('/tvdetails/*', (req, res) =>
+app.get('/details/*', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
 

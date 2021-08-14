@@ -1,24 +1,13 @@
 /* eslint-disable no-useless-escape */
 import { FunctionComponent } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { MovieRecsProps } from '../../../types/index';
-// import { setQuery } from '../../appSlices/querySlice';
-import { RootState } from '../../reducer';
-
-interface MovieRecsProps {
+interface RecProps {
   title: string;
   pic: string;
   id: number | string;
 }
 
-const Recs: FunctionComponent<MovieRecsProps> = ({
-  title,
-  pic,
-  id,
-}: MovieRecsProps) => {
-  const query = useSelector((state: RootState): string => state.query.value);
-
+const Recs: FunctionComponent<RecProps> = ({ title, pic, id }: RecProps) => {
   return (
     <div id='recs'>
       <Link
@@ -32,7 +21,7 @@ const Recs: FunctionComponent<MovieRecsProps> = ({
           zIndex: 100000000000,
         }}
         to={{
-          pathname: `/moviedetails/${title.replace(
+          pathname: `/details/${title.replace(
             /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
             ''
           )}`,
@@ -44,7 +33,7 @@ const Recs: FunctionComponent<MovieRecsProps> = ({
       <Link
         style={{ textDecoration: 'none' }}
         to={{
-          pathname: `/moviedetails/${title.replace(
+          pathname: `/details/${title.replace(
             /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
             ''
           )}`,
@@ -63,7 +52,7 @@ const Recs: FunctionComponent<MovieRecsProps> = ({
               id='recposter'
               style={{ borderRadius: '30px' }}
               src={pic}
-              alt={`Movie poster for ${query}`}
+              alt={`Movie poster for ${title}`}
             />
           </div>
         ) : (

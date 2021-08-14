@@ -31,11 +31,11 @@ const Show: FunctionComponent<TVProps> = ({
         style={{ textDecoration: 'none' }}
         // eslint-disable-next-line no-useless-escape
         to={{
-          pathname: `/tvdetails/${name.replace(
+          pathname: `/details/${name.replace(
             /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
             ''
           )}`,
-          state: { id: id, name: name },
+          state: { id: id, title: name, type: 'tv' },
         }}
       >
         <div id='poster'>
@@ -67,11 +67,11 @@ const Show: FunctionComponent<TVProps> = ({
             color: 'inherit',
           }}
           to={{
-            pathname: `/tvdetails/${name.replace(
+            pathname: `/details/${name.replace(
               /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
               ''
             )}`,
-            state: { id: id, name: name },
+            state: { id: id, title: name, type: 'tv' },
           }}
         >
           {name ? <div id='title'>{name}</div> : null}
@@ -90,12 +90,12 @@ const Show: FunctionComponent<TVProps> = ({
             color: 'inherit',
           }}
           to={{
-            pathname: `/tvdetails/${name.replace(
+            pathname: `/details/${name.replace(
               // eslint-disable-next-line no-useless-escape
               /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
               ''
             )}`,
-            state: { id: id, name: name },
+            state: { id: id, title: name, type: 'tv' },
           }}
         >
           <div id='overview'>{overview}</div>

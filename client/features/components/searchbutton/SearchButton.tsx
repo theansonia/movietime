@@ -10,7 +10,6 @@ const SearchButton: FunctionComponent = () => {
   // const [whereTo, setWhereTo] = useState('home');
   const category = useSelector((state: RootState) => state.category.value);
   const handleClick = useHandleSearchClick();
-
   return (
     <>
       {category === null ? (

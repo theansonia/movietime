@@ -17,12 +17,9 @@ import { RootState } from 'client/reducer';
 
 const Navbar: FunctionComponent = () => {
   const dispatch = useDispatch();
-  const userDetails = useUserContext();
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
-
   const [isHovered, setIsHovered] = useState(false);
 
-  console.log(userDetails);
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setValue(''));
@@ -99,34 +96,35 @@ const Navbar: FunctionComponent = () => {
         role='button'
         tabIndex={0}
       >
-        <div>TV Shows</div>
+        <div>TV</div>
       </Link>
 
-      <div>
-        <Link to='/registration'>
-          <div
-            id='signin'
-            className='option'
-            onMouseEnter={handleHover}
-            onMouseLeave={handleHover}
-            style={{ marginTop: '.15rem' }}
-          >
-            {isLoggedIn ? (
-              <FaceRoundedIcon style={{ position: 'relative', top: '.5rem' }} />
-            ) : (
-              `Sign In`
-            )}
+      <div
+        className='signin'
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHover}
+      >
+        {isLoggedIn ? (
+          <FaceRoundedIcon id='profile' style={{ position: 'relative' }} />
+        ) : (
+          <Link to='/registration'>
+            <div className='signin'>Sign In</div>
+          </Link>
+        )}
 
-            {!isHovered ? (
-              <ArrowDropDownIcon
-                style={{ position: 'relative', top: '.5rem' }}
-              />
-            ) : (
-              <ArrowDropUpIcon style={{ position: 'relative', top: '.5rem' }} />
-            )}
-          </div>
-        </Link>
+        {!isHovered ? (
+          <ArrowDropDownIcon
+            style={{ position: 'relative', bottom: '.1rem', width: '1rem' }}
+            id='arrow'
+          />
+        ) : (
+          <ArrowDropUpIcon
+            style={{ position: 'relative', bottom: '.25rem', width: '1rem' }}
+            id='arrow'
+          />
+        )}
       </div>
+
       <ToggleTheme />
     </div>
   );
