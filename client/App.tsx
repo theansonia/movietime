@@ -1,4 +1,10 @@
-import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  Redirect,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 import './styles/App.scss';
 import Search from './features/components/search/Search';
 import Details from './features/components/Details';
@@ -7,10 +13,51 @@ import TrendingSearch from './features/components/search/TrendingSearch';
 import { TvSearch } from './features/components/search/tvSearch';
 import Navbar from './features/components/navbar/Navbar';
 import Registration from './features/components/signup/Registration';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './reducer';
+import { setSearchStatus } from './appSlices/searchStatusSlice';
 
 export default function App(): JSX.Element {
-  console.log(`We are in ${process.env.NODE_ENV}`);
+  const searchButton = useRef();
+  const history = useHistory();
   const { pathname } = useLocation();
+  const searchStatus = useSelector(
+    (state: RootState) => state.searchStatus.value
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.addEventListener('click', () => {
+      if (document.activeElement !== searchButton.current) {
+        setTimeout(() => {
+          dispatch(setSearchStatus(false));
+          const input = (document.getElementsByName(
+            'search'
+          ) as unknown) as HTMLInputElement;
+
+          if (pathname !== '/registration') {
+            if (input.length > 0) {
+              input[0].value = '';
+            }
+          }
+        }, 0);
+        const input = (document.getElementsByName(
+          'search'
+        ) as unknown) as HTMLInputElement;
+        if (pathname !== '/registration') {
+          if (input.length > 0) {
+            input[0].value = '';
+          }
+        }
+      } else {
+        dispatch(setSearchStatus(true));
+        const searchicon = document.getElementById('searchicon');
+      }
+    });
+  }, [history, searchStatus]);
+
+  console.log(`We are in ${process.env.NODE_ENV}`);
 
   return (
     <>
@@ -34,7 +81,7 @@ export default function App(): JSX.Element {
       <Route exact path='/'>
         <Redirect to='/home' />
       </Route>
-      {pathname !== '/registration' && <SearchButton />}
+      {pathname !== '/registration' && <SearchButton ref={searchButton} />}
     </>
   );
 }

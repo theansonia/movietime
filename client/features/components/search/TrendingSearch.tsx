@@ -51,10 +51,20 @@ const TrendingSearch: FunctionComponent = () => {
   const theme = useSelector((state: RootState) => state.theme.value);
   const query = useSelector((state: RootState) => state.query.value);
   const isLoading = useSelector((state: RootState) => state.isLoading.value);
+  const searchStatus = useSelector(
+    (state: RootState) => state.searchStatus.value
+  );
   const [movieResults, updateMovieResults] = useState([]);
 
   // const movieData = useSelector((state: RootState) => state.movieData.data);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (searchStatus) {
+      const input = document.getElementsByName('search');
+      input[0].focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (category === null) dispatch(changeCategory('Movies and TV Show'));

@@ -139,6 +139,7 @@ body {
 .darkmode {
   background-color: $primary-font;
   color: #f8f9fa;
+  height: 100%;
 
   canvas {
     background-color: #212529;
@@ -155,9 +156,6 @@ body {
   }
 
   #root {
-    background-color: #212529;
-  }
-  #somediv {
     background-color: #212529;
   }
 
@@ -178,13 +176,18 @@ body {
     -moz-box-shadow: 0 10px 40px #adb5bd, 0 0 0 20px #212529;
     color: $background;
     border: 3px solid #adb5bd;
+    :placeholder {
+      color: #f8f9fa;
+    }
   }
-  ::placeholder {
-    color: #f8f9fa;
-  }
+
   #xpath {
     fill: #f8f9fa;
   }
+}
+
+div {
+  text-decoration: none;
 }
 
 input[type='search']::-webkit-search-decoration,
@@ -235,12 +238,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   width: 100%;
 }
 
-#searchpath {
-  &:hover {
-    fill: darken(#6c757d, 15%);
-  }
-}
-
 #trending {
   display: flex;
   align-items: center;
@@ -267,109 +264,15 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
 #xpath {
   fill: #495057;
 }
-#searchbtn {
-  width: 3.5em;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  position: fixed;
-  transition: top 0.2s;
-  top: 80%;
-  left: 42.5%;
-  pointer-events: all;
-  z-index: 18;
-  overflow: visible;
-  margin: 0;
-  // -webkit-appearance: button;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  //   @media
-  //   only screen and (-webkit-min-device-pixel-ratio: 1),
-  //   only screen and (   min--moz-device-pixel-ratio: 1),
-  //   only screen and (     -o-min-device-pixel-ratio: 1/1),
-  //   only screen and (        min-device-pixel-ratio: 1) and (min-width: 375px) and (orientation: portrait) {
-  //     /* Retina styles here */
-  //     left: 4%;
-  // }
-}
-
-form {
-  width: 100%;
-  // margin-top: 1rem;
-  font-size: 2rem;
-  padding-right: 1rem;
-}
-
-#searchbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -webkit-text-size-adjust: 100%;
-  // margin-bottom: 12rem;
-  margin: 0 auto;
-  padding-right: 0.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  // margin-right: 1rem;
-  width: 95%;
-  // background-color: blue;
-  &:after,
-  :before {
-    box-sizing: border-box;
-  }
-}
-
-input {
-  text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
-  display: inline-block;
-  text-align: start;
-  appearance: auto;
-  cursor: text;
-  font-size: 0.5rem;
-  caret-color: #495057;
-  text-indent: 0.75rem;
-  &:focus {
-    outline-color: #495057;
-  }
-}
-
-::placeholder {
-  color: #495057;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 0.5rem;
-  text-indent: 0.4rem;
-}
-
-#search {
-  position: relative;
-  // font-size: 1rem;
-  padding: 0 26px;
-  // padding-left: 48px;
-  background-color: darken(#e9ecef, 10%);
-  height: 4.125rem;
-  line-height: 1.5rem;
-  // border: none;
-  height: 4rem;
-  // width: 100%;
-  border-radius: 30px;
-  font-size: 1.8rem;
-  margin: 0 auto;
-  // margin-right: 0.5rem;
-  box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
-  -webkit-box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
-  -moz-box-shadow: 0 10px 40px #343a40, 0 0 0 20px #f8f9fa;
-
-  &:after,
-  :before {
-    box-sizing: border-box;
-    border-bottom: 2px solid #f8f9fa;
-  }
-}
+//   @media
+//   only screen and (-webkit-min-device-pixel-ratio: 1),
+//   only screen and (   min--moz-device-pixel-ratio: 1),
+//   only screen and (     -o-min-device-pixel-ratio: 1/1),
+//   only screen and (        min-device-pixel-ratio: 1) and (min-width: 375px) and (orientation: portrait) {
+//     /* Retina styles here */
+//     left: 4%;
+// }
 
 #movies {
   // min-width: 8rem;

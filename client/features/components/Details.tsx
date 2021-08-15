@@ -11,6 +11,7 @@ import { RootState } from '../../reducer';
 import { Details } from '../../types';
 import { MoviePrevResults } from '../../utils/sortResults';
 import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchData';
+import { handleMovieOrShowClick } from '../../utils/handleMovieOrShowClick';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 interface PropsInterface extends RouteComponentProps<{ title: string }> {
@@ -94,9 +95,10 @@ const Details: FunctionComponent<RouteComponentProps> = (
 
   useEffect(() => {
     if (!watch) return;
+    handleMovieOrShowClick();
     const options = Object.keys(watch).filter((key) => {
       if (key !== 'link') return key;
-    });
+    }, []);
 
     const arrayOfProviderInfo = [
       ...new Set(

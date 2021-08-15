@@ -1,11 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Show from '../components/Show';
-import SearchBar from '../components/SearchBar';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { css } from '@emotion/core';
 import { setQuery } from '../../appSlices/querySlice';
-import { updatePages } from '../../appSlices/pagesSlice';
 import { useScroll } from '../../hooks/useScroll';
 import { RootState } from 'client/reducer';
 
@@ -23,7 +20,6 @@ const TVContainer = ({ tvResults }) => {
 
   return (
     <div>
-      <SearchBar state={'TV'} />
       {!query ? (
         <div id='trending'>Featured TV Shows</div>
       ) : (
