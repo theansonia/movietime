@@ -69,7 +69,7 @@
     background: darken(#e9ecef, 20%);
     outline: 0.2px dashed #495057;
     width: 60%;
-    margin-left: 8.5rem;
+    margin-left: 7.75rem;
     caret-color: #495057;
     // animation: createSearchBar 0.5s;
     border-radius: 30px;
@@ -84,7 +84,7 @@
     text-align: start;
     appearance: auto;
     cursor: text;
-    font-size: 1rem;
+    font-size: 16px;
     // text-indent: 0.5rem;
     // padding: 0 26px;
     line-height: 1.5rem;
@@ -125,8 +125,12 @@
 
 form {
   width: 100%;
-  font-size: 2rem;
+  font-size: 16px;
   padding-right: 1rem;
+  @media (min-width: 600px) {
+    // left: 80%;
+    font-size: 2rem;
+  }
 }
 
 ::placeholder {
