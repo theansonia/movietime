@@ -49,22 +49,23 @@ export const Signup = () => {
   };
 
   return (
-    <div id='signupwrapper'>
-      <h1 id='header1'>Create a password to start your account</h1>
-      <p id='header2' style={{ fontSize: '.4rem' }}>
-        Just a few more steps and you're done! We hate paperwork, too.
-      </p>
-
-      <form
-        className='emailform'
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmitOrClick();
-        }}
-      >
-        <div id='emailandpwwrapper'>
+    <div className='loginwrapper' id='signupwrapper'>
+      <div id='headerwrapper'>
+        <h1 id='signupheader1'>Create a password to start your account</h1>
+        <p id='signuppar' style={{ fontSize: '.4rem' }}>
+          Just a few more steps and you're done! We hate paperwork, too.
+        </p>
+      </div>
+      <div className='emailandpwwrapper'>
+        <form
+          className='emailform'
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmitOrClick();
+          }}
+        >
           <input
-            className='emailpwinput'
+            className='nfText'
             id='usernameinput'
             placeholder={username ? username : 'First and Last Name'}
             type='text'
@@ -77,19 +78,18 @@ export const Signup = () => {
               })
             }
           />
-        </div>
-      </form>
-      <form
-        className='emailform'
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmitOrClick();
-        }}
-      >
-        <div id='emailandpwwrapper'>
+        </form>
+        <form
+          className='emailform'
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmitOrClick();
+          }}
+        >
           <input
-            className='emailpwinput'
+            className='nfText'
             placeholder={email ? email : 'Email'}
+            id='emailinput'
             type='text'
             value={email}
             onChange={(e) =>
@@ -100,20 +100,19 @@ export const Signup = () => {
               })
             }
           />
-        </div>
-      </form>
-      <form
-        className='emailform'
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmitOrClick();
-        }}
-      >
-        <div id='emailandpwwrapper'>
+        </form>
+        <form
+          className='emailform'
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmitOrClick();
+          }}
+        >
           <input
-            className='emailpwinput'
+            className='nfText'
             placeholder='Add a password'
             type='password'
+            id='passwordinput'
             value={password ? password : ''}
             onChange={(e) =>
               setUserDetails({
@@ -123,17 +122,17 @@ export const Signup = () => {
               })
             }
           />
-        </div>
-        <div id='btndivider'>
-          <button
-            type='button'
-            id='getstartedbtn'
-            onClick={handleSubmitOrClick}
-          >
-            Sign Up!
-          </button>
-        </div>
-      </form>
+        </form>
+
+        <button
+          type='button'
+          id='btndivider'
+          className='signin-button '
+          onClick={handleSubmitOrClick}
+        >
+          Sign Up!
+        </button>
+      </div>
     </div>
   );
 };

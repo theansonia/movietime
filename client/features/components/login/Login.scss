@@ -1,0 +1,533 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+$font-stack: 'Source Sans Pro', sans-serif;
+$background: rgb(33, 37, 41);
+$font: rgb(167, 161, 161, 0.5);
+$primary-font: #f8f9fa;
+
+#signin-body {
+  background-color: $background;
+  max-width: 20rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  @media (min-width: 600px) {
+    max-width: 20rem;
+    min-height: 100%;
+    margin: 0 auto -236px;
+    background-color: transparent;
+  }
+}
+
+label {
+  position: relative;
+  font-size: 0.25rem !important;
+  color: $font;
+  bottom: 3.65rem;
+  margin-left: 1rem;
+}
+
+#signin-content {
+  -webkit-border-radius: 6px;
+
+  margin: 0 auto;
+
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 0 30px;
+  width: 80%;
+  background-color: $background;
+  align-items: center;
+  @media (min-width: 600px) {
+    width: 100%;
+    margin: 2rem auto;
+  }
+}
+
+#signin-form {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  min-height: 100%;
+  padding: 0px 0 30px;
+  width: 86%;
+  @media (min-width: 600px) {
+    margin: 0 auto;
+  }
+}
+
+#signin-main {
+  color: $primary-font;
+  font-weight: 700;
+  // margin: 0 auto;
+  padding: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  width: 86%;
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0px 0 30px;
+  width: fit-content;
+  margin-top: 8rem;
+  @media (min-width: 600px) {
+    margin: 0 auto;
+    align-self: flex-start;
+  }
+}
+
+.signin-form-container {
+  max-width: 100%;
+  @media (min-width: 600px) {
+    margin: 0 auto;
+  }
+}
+
+.input-placement {
+  position: relative;
+}
+
+.signin-button {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 24px 0 12px;
+  height: 2rem;
+  width: 100%;
+  background: #ef7763;
+}
+
+#newsignup-container {
+  display: flex;
+  align-items: space-between;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#signin-container {
+  display: flex;
+  align-items: space-between;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 4rem;
+}
+.signup-now {
+  color: $font;
+  font-size: 0.5rem;
+  font-weight: 500;
+  // margin-top: 0.5rem;
+}
+
+a {
+  color: $primary-font;
+  // background-color: transparent;
+  text-decoration: none;
+  // align-self: center;
+  font-size: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+#email-controls {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 0;
+  position: relative;
+}
+.nfText {
+  background: darken(#e9ecef, 70%);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 0;
+  color: $font;
+  height: 50px;
+  line-height: 50px;
+  padding: 16px 20px 0;
+  height: 48px;
+  padding: 10px 10px 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: solid 1px #8c8c8c;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  display: block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 10px 11px;
+  height: 2rem;
+  caret-color: $font;
+  // padding-left: 1rem;
+  &::placeholder {
+    text-indent: -0.5rem;
+    color: $font;
+  }
+}
+
+.nfText:invalid .nfText:valid {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#userId {
+  margin: 0;
+  -webkit-writing-mode: horizontal-tb !important;
+  writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0 0 0.5rem 0;
+  font: 400 13.3333px Arial;
+  // padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.loginwrapper {
+  color: $primary-font;
+  margin: 2rem auto;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 0 30px;
+  width: 100%;
+  background-color: $background;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  @media (min-width: 600px) {
+    // min-height: 50vh;
+    height: 70vh;
+    width: 32rem;
+  }
+}
+::placeholder {
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.5rem;
+  text-indent: 0.4rem;
+}
+
+#log {
+  position: relative;
+  // display: flex;
+  // flex-direction: column;
+  padding: 2.3rem 0;
+  max-width: 59rem;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+  font-size: 3.125rem;
+  min-height: 72.5vh;
+  height: 100vw;
+  @media (min-width: 600px) {
+    min-height: 74.4vh;
+  }
+}
+
+#initialcontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  text-align: center;
+  @media (min-width: 600px) {
+    min-width: 48rem;
+  }
+}
+#header1 {
+  max-width: 30rem;
+  font-size: 1.5rem;
+  margin: 0 auto;
+  text-align: center;
+  @media (min-width: 600px) {
+    font-size: 3rem;
+  }
+}
+
+#header2 {
+  max-width: 30rem;
+  margin: 0 auto;
+  font-size: 1rem;
+  font-weight: 400;
+  @media (min-width: 600px) {
+    font-size: 3rem;
+  }
+}
+
+.emailform {
+  padding-top: 0.85rem auto;
+  margin: 0 auto;
+  max-width: 59rem;
+  font-size: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  height: 2rem;
+}
+
+#header3 {
+  padding-bottom: 20px;
+  font-size: 8px;
+  text-align: center;
+  font-weight: 300;
+  @media (min-width: 600px) {
+    font-size: 0.5em;
+  }
+}
+
+#inputwrapper {
+  max-height: 2.5rem;
+  margin-top: 2rem;
+  min-width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emailandpwwrapper {
+  max-height: 2.5rem;
+  margin-top: 4rem;
+  min-width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#btndivider {
+  // margin-top: 2rem;
+  width: 4rem;
+  min-height: 2rem !important;
+  align-self: center;
+}
+
+#email {
+  width: 13rem;
+}
+
+::placeholder {
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.5rem;
+  text-indent: 0.4rem;
+}
+
+.emailpwinput {
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: start;
+  appearance: auto;
+  cursor: text;
+  font-size: 0.5rem;
+  caret-color: #495057;
+  text-indent: 0.75rem;
+  height: 2rem;
+  width: 15rem;
+  padding: 10px 0 10px 0;
+  &:focus {
+    outline-color: #495057;
+    color: #495057;
+  }
+}
+#getstartedbtn {
+  position: relative;
+  border: 1px solid #333;
+  align-items: flex-end;
+  font-size: 0.5rem;
+  height: 1.9rem;
+  bottom: 0.15rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.password-toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: $font;
+  font-size: 14px;
+  border: 0;
+  background: 0 0;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -moz-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  height: 50px;
+  padding: 0 12px;
+  position: fixed;
+  bottom: 18.4rem;
+  left: 57%;
+  display: none;
+  z-index: 10;
+  &:hover {
+    cursor: pointer;
+  }
+  &::after {
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+.regdivider {
+  max-width: 20rem;
+  min-height: 100%;
+  margin: 0 auto -236px;
+  background-color: transparent;
+
+  @media (min-width: 600px) {
+    margin-top: 7.5rem;
+  }
+}
+
+#signupheader1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  // margin-top: -4rem;
+  align-self: center;
+  text-align: center;
+}
+#signuppar {
+  width: fit-content;
+  font-size: xx-small;
+  text-align: center;
+}
+
+#signupwrapper {
+  display: flex;
+  min-height: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  @media (min-width: 600px) {
+    // width: 32rem;
+  }
+}
+
+#usernameinput {
+  // margin-bottom: 3rem;
+}
+
+#emailinput {
+  // margin-top: 3rem;
+}
+#emailinput {
+  // margin-top: 6rem;
+}
+
+#headerwrapper {
+  margin-bottom: 3rem;
+}

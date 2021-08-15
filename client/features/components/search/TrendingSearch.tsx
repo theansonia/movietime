@@ -126,11 +126,13 @@ const TrendingSearch: FunctionComponent = () => {
   }, [query, pages, dispatch]);
 
   return (
-    <div className={theme}>
-      <MovieContainer
-        movieResults={movieResults}
-        featuring={'Movies and TV Show'}
-      />
+    <div className='divdivider'>
+      <div className={theme}>
+        <MovieContainer
+          movieResults={movieResults}
+          featuring={'Movies and TV Show'}
+        />
+      </div>
     </div>
   );
 };

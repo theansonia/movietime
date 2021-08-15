@@ -100,8 +100,10 @@ const Search: FunctionComponent = () => {
   }, [query, pages, dispatch]);
 
   return (
-    <div className={`'' + ${theme}`}>
-      <MovieContainer movieResults={movieResults} featuring={'Movie'} />
+    <div className='divdivider'>
+      <div className={`'' + ${theme}`}>
+        <MovieContainer movieResults={movieResults} featuring={'Movie'} />
+      </div>
     </div>
   );
 };

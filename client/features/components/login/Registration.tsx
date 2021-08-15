@@ -12,8 +12,10 @@ const Registration: FunctionComponent<LoginProps> = () => {
   const theme = useSelector((state: RootState) => state.theme.value);
 
   return (
-    <div className={`'' + ${theme}`}>
-      {!newUser ? <Email setNewUser={setNewUser} /> : <Signup />}
+    <div className='divdivider regdivider'>
+      <div className={`'' + ${theme}`}>
+        {!newUser ? <Email setNewUser={setNewUser} /> : <Signup />}
+      </div>
     </div>
   );
 };

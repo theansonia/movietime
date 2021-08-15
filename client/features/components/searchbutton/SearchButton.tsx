@@ -63,12 +63,7 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
     <>
       {category === null ? (
         <div
-          id='somediv'
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          id='search-btn-container'
           onClick={() => {
             handleClick();
             history.push('/home');
@@ -102,51 +97,49 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
       ) : (
         <div
           onClick={handleClick}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
           onKeyPress={(e) => handleKeyPress(e)}
           role='button'
           tabIndex={0}
-          className='searchbtn'
+          id='search-btn-container'
+          // className='searchbtn'
         >
-          <input
-            id='searchbtn'
-            list='movie'
-            name='search'
-            placeholder={`Search for ${localCategory}s`}
-            onChange={(e) => dispatch(setValue(e.target.value))}
-            type='search'
-            value={debouncedQuery}
-            onFocus={handleFocus}
-            onBlur={() => dispatch(setSearchStatus(false))}
-            onSubmit={(e: SyntheticEvent) => {
-              e.preventDefault();
-              const { value } = e.target[0] as HTMLTextAreaElement;
-              dispatch(setQuery(value));
-            }}
-            ref={ref}
-          />
-          {!searchStatus && (
-            <SearchSharpIcon id='searchicon' style={{ position: 'fixed' }} />
-          )}
-
-          {query && searchStatus && (
-            <ClearIcon
-              id='clear'
-              onClick={() => {
-                dispatch(setQuery(''));
-                dispatch(setValue(''));
-                dispatch(updatePages(1));
-                dispatch(setSearchStatus(true));
+          <div id='wrapper'>
+            <input
+              id='searchbtn'
+              list='movie'
+              name='search'
+              placeholder={`Search for ${localCategory}s`}
+              onChange={(e) => dispatch(setValue(e.target.value))}
+              type='search'
+              value={debouncedQuery}
+              onFocus={handleFocus}
+              onBlur={() => dispatch(setSearchStatus(false))}
+              onSubmit={(e: SyntheticEvent) => {
+                e.preventDefault();
+                const { value } = e.target[0] as HTMLTextAreaElement;
+                dispatch(setQuery(value));
               }}
-              onKeyDown={(e) => handleKeyPress(e)}
-              role='button'
-              tabIndex={0}
+              ref={ref}
             />
-          )}
+            {!searchStatus && (
+              <SearchSharpIcon id='searchicon' style={{ position: 'fixed' }} />
+            )}
+
+            {query && searchStatus && (
+              <ClearIcon
+                id='clear'
+                onClick={() => {
+                  dispatch(setQuery(''));
+                  dispatch(setValue(''));
+                  dispatch(updatePages(1));
+                  dispatch(setSearchStatus(true));
+                }}
+                onKeyDown={(e) => handleKeyPress(e)}
+                role='button'
+                tabIndex={0}
+              />
+            )}
+          </div>
         </div>
       )}
     </>

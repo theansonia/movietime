@@ -13,6 +13,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    fallback: {
+      util: require.resolve('util/'),
+    },
   },
   mode: process.env.NODE_ENV,
   devServer: {

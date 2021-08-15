@@ -34,7 +34,9 @@ app.get('/movies', (req, res) =>
 app.get('/registration', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
-
+app.get('/signin', (req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
 app.get('/shows', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );

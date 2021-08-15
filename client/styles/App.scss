@@ -248,7 +248,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   margin-left: 1rem;
   text-decoration: underline;
   font-weight: bold;
-  // margin-top: 1rem;
 }
 
 #x {
@@ -500,7 +499,9 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   .moviecontainer {
     width: 100%;
     margin: 0 auto;
-    margin-top: 1rem;
+    margin-top: 4rem;
+    position: relative;
+    top: 4rem;
     // margin-left: -1rem;
   }
 }
@@ -743,5 +744,12 @@ input {
     display: -webkit-box;
     -webkit-line-clamp: 9;
     -webkit-box-orient: vertical;
+  }
+}
+
+.divdivider {
+  margin-top: 3rem;
+  @media (min-width: 600px) {
+    margin-top: 4rem;
   }
 }

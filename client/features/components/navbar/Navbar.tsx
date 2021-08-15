@@ -107,7 +107,7 @@ const Navbar: FunctionComponent = () => {
         {isLoggedIn ? (
           <FaceRoundedIcon id='profile' style={{ position: 'relative' }} />
         ) : (
-          <Link to='/registration'>
+          <Link to='/signin'>
             <div className='signin'>Sign In</div>
           </Link>
         )}

@@ -89,8 +89,10 @@ export const TvSearch: FunctionComponent = () => {
   }, [query, pages, dispatch]);
 
   return (
-    <div id='scrollablediv' className={theme}>
-      <TVContainer tvResults={tvResults} />
+    <div className='divdivider'>
+      <div id='scrollablediv' className={theme}>
+        <TVContainer tvResults={tvResults} />
+      </div>
     </div>
   );
 };

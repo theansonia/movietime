@@ -1,13 +1,14 @@
 .searchbtn {
   display: flex;
-  margin: 0;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
 }
 
-#somediv {
+#search-btn-container {
   background-color: #212529;
-  margin: 0 auto;
+  margin: 0;
+  display: flex;
 }
 
 #searchpath {
@@ -36,7 +37,7 @@
   // right: 48%;
   pointer-events: all;
   overflow: visible;
-  margin: 0;
+  margin: 0 auto;
   -webkit-appearance: button;
   width: 3.5rem;
   height: 3.5rem;
@@ -46,10 +47,11 @@
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+  // padding: 0;
   -webkit-transition: all 0.8s ease;
   transition: all 0.8s ease;
   // animation: createSearchBar 0.5s;
-  background: linear-gradient(#495057, darken(#e9ecef, 10%));
+  background: darken(#e9ecef, 10%);
 
   &:after,
   :before {
@@ -91,11 +93,13 @@
     @media (min-width: 600px) {
       font-size: 1.5rem;
       margin: 0 auto;
+      // padding: 0;
     }
 
     &::placeholder {
       opacity: 1;
-      text-indent: -0.5rem;
+      // text-indent: -0.5rem;
+      color: #495057;
       font-size: 16px;
     }
   }
@@ -126,7 +130,7 @@
 form {
   width: 100%;
   font-size: 16px;
-  padding-right: 1rem;
+  // padding-right: 1rem;
   @media (min-width: 600px) {
     // left: 80%;
     font-size: 2rem;
@@ -139,4 +143,11 @@ form {
   text-overflow: ellipsis;
   font-size: 16px;
   // text-indent: 0.4rem;
+}
+
+#wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }

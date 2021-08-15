@@ -12,13 +12,15 @@ import SearchButton from './features/components/searchbutton/SearchButton';
 import TrendingSearch from './features/components/search/TrendingSearch';
 import { TvSearch } from './features/components/search/tvSearch';
 import Navbar from './features/components/navbar/Navbar';
-import Registration from './features/components/signup/Registration';
-import { useEffect, useRef } from 'react';
+import Registration from './features/components/login/Registration';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './reducer';
 import { setSearchStatus } from './appSlices/searchStatusSlice';
+import Signin from './features/components/login/Siginin';
 
 export default function App(): JSX.Element {
+  const [pathOk, setPathOk] = useState(true);
   const searchButton = useRef();
   const history = useHistory();
   const { pathname } = useLocation();
@@ -26,6 +28,17 @@ export default function App(): JSX.Element {
     (state: RootState) => state.searchStatus.value
   );
   const dispatch = useDispatch();
+
+  console.log(pathOk);
+  useEffect(() => {
+    if (pathname === '/registration') {
+      setPathOk(false);
+    } else if (pathname === '/signin') {
+      setPathOk(false);
+    } else {
+      setPathOk(true);
+    }
+  });
 
   useEffect(() => {
     document.addEventListener('click', () => {
@@ -76,12 +89,15 @@ export default function App(): JSX.Element {
         <Route path='/registration'>
           <Registration />
         </Route>
+        <Route path='/signin'>
+          <Signin />
+        </Route>
         <Route path={'/details/:title'} component={Details} />
       </Switch>
       <Route exact path='/'>
         <Redirect to='/home' />
       </Route>
-      {pathname !== '/registration' && <SearchButton ref={searchButton} />}
+      {pathOk && <SearchButton ref={searchButton} />}
     </>
   );
 }

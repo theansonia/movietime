@@ -6,24 +6,26 @@ $primary-font: #212529;
 
 #navbar {
   background-color: #212529;
-  height: 4rem;
+  height: 2rem;
+  position: fixed;
+  top: 0;
   // display: grid;
   // grid-template-columns: [home] 1fr [film] 1fr [shows] 10fr [signin] 10fr [toggle] 10fr [end];
   display: flex;
-  place-items: center;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-size: 0.5rem;
   font-weight: 400;
   min-width: 100%;
   z-index: 14;
-  padding-right: 0.25rem;
-  padding-left: 1rem;
-  gap: 0.5rem; // font-size: 0.95rem;
+  // padding-right: 0.25rem;
+  // padding-left: 1rem;
+  // gap: 0.5rem; // font-size: 0.95rem;
+
   @media (min-width: 600px) {
-    height: 6rem;
+    height: 4rem;
     font-size: 1rem;
-    gap: 5rem;
+    // gap: 5rem;
   }
 }
 
@@ -69,7 +71,7 @@ $primary-font: #212529;
 
 #homebtn {
   width: 2em;
-  margin-left: -1.5rem;
+  // margin-left: -1.5rem;
   &:hover {
     cursor: pointer;
   }
