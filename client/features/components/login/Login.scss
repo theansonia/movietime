@@ -28,9 +28,7 @@ label {
 
 #signin-content {
   -webkit-border-radius: 6px;
-
   margin: 0 auto;
-
   -moz-border-radius: 6px;
   border-radius: 6px;
   -webkit-box-sizing: border-box;
@@ -55,7 +53,7 @@ label {
   align-items: center;
   @media (min-width: 600px) {
     width: 100%;
-    margin: 2rem auto;
+    // margin: 2rem auto;
   }
 }
 
@@ -173,6 +171,9 @@ label {
   justify-content: flex-start;
   gap: 0.5rem;
   margin-top: 4rem;
+  @media (min-width: 600px) {
+    margin-top: 2.5rem;
+  }
 }
 .signup-now {
   color: $font;
@@ -295,6 +296,9 @@ a {
     // min-height: 50vh;
     height: 70vh;
     width: 32rem;
+    margin: 0 auto;
+    margin-left: -6rem;
+    padding: 0;
   }
 }
 ::placeholder {
@@ -464,10 +468,14 @@ a {
   height: 50px;
   padding: 0 12px;
   position: fixed;
-  bottom: 18.4rem;
+  bottom: 13rem;
   left: 57%;
   display: none;
   z-index: 10;
+  @media (min-width: 600px) {
+    bottom: 18.9rem;
+    left: 52%;
+  }
   &:hover {
     cursor: pointer;
   }
@@ -514,6 +522,7 @@ a {
   border-radius: 0;
   @media (min-width: 600px) {
     // width: 32rem;
+    margin-left: -6rem;
   }
 }
 
