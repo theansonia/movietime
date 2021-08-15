@@ -19,6 +19,15 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
     (state: RootState) => state.searchStatus.value
   );
 
+  useEffect(() => {
+    document.addEventListener(
+      'focusout',
+      (e) => {
+        setSearchStatus(false);
+      },
+      true
+    );
+  }, []);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const [localCategory, setLocalCategory] = useState('');
