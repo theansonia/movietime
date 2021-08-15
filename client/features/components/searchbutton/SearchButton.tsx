@@ -19,15 +19,16 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
     (state: RootState) => state.searchStatus.value
   );
 
-  useEffect(() => {
-    document.addEventListener(
-      'focusout',
-      (e) => {
-        setSearchStatus(false);
-      },
-      true
-    );
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener(
+  //     'focusout',
+  //     (e) => {
+  //       console.log(e);
+  //       setSearchStatus(false);
+  //     },
+  //     true
+  //   );
+  // }, []);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const [localCategory, setLocalCategory] = useState('');
@@ -36,6 +37,7 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
   const query = useSelector((state: RootState) => state.query.value);
   const handleClick = useHandleSearchClick();
   const history = useHistory();
+
   const handleFocus = () => {
     setSearchStatus(true);
     if (!category) {
@@ -84,7 +86,13 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
             onChange={(e) => dispatch(setValue(e.target.value))}
             value={debouncedQuery}
             onFocus={handleFocus}
+            onBlur={() => dispatch(setSearchStatus(false))}
             ref={ref}
+            onSubmit={(e: SyntheticEvent) => {
+              e.preventDefault();
+              const { value } = e.target[0] as HTMLTextAreaElement;
+              dispatch(setQuery(value));
+            }}
           />
 
           {!searchStatus && (
@@ -113,6 +121,7 @@ const SearchButton = forwardRef<HTMLInputElement>((props, ref) => {
             type='search'
             value={debouncedQuery}
             onFocus={handleFocus}
+            onBlur={() => dispatch(setSearchStatus(false))}
             onSubmit={(e: SyntheticEvent) => {
               e.preventDefault();
               const { value } = e.target[0] as HTMLTextAreaElement;
