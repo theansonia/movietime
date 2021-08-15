@@ -20,7 +20,7 @@ import { setSearchStatus } from './appSlices/searchStatusSlice';
 import Signin from './features/components/login/Siginin';
 
 export default function App(): JSX.Element {
-  const [pathOk, setPathOk] = useState(true);
+  const [badPathsForSearch] = useState(['registration', 'signin']);
   const searchButton = useRef();
   const history = useHistory();
   const { pathname } = useLocation();
@@ -28,17 +28,6 @@ export default function App(): JSX.Element {
     (state: RootState) => state.searchStatus.value
   );
   const dispatch = useDispatch();
-
-  console.log(pathOk);
-  useEffect(() => {
-    if (pathname === '/registration') {
-      setPathOk(false);
-    } else if (pathname === '/signin') {
-      setPathOk(false);
-    } else {
-      setPathOk(true);
-    }
-  });
 
   useEffect(() => {
     document.addEventListener('click', () => {
@@ -97,7 +86,9 @@ export default function App(): JSX.Element {
       <Route exact path='/'>
         <Redirect to='/home' />
       </Route>
-      {pathOk && <SearchButton ref={searchButton} />}
+      {!badPathsForSearch.some((v) => pathname.includes(v)) && (
+        <SearchButton ref={searchButton} />
+      )}
     </>
   );
 }
