@@ -11,7 +11,7 @@
     "start": "cross-env NODE_ENV=production nodemon ./server/server.ts",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development webpack serve --open --hot & nodemon ./server/server.ts",
-    "postinstall": "tsc"
+    
   },
   "author": "Anson Avellar",
   "license": "ISC",
