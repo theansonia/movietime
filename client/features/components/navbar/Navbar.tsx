@@ -19,7 +19,9 @@ const Navbar: FunctionComponent = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [isHovered, setIsHovered] = useState(false);
+  const { userDetails } = useUserContext();
 
+  console.log(userDetails.first_name);
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setValue(''));
@@ -103,6 +105,7 @@ const Navbar: FunctionComponent = () => {
         className='signin'
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}
+        title={userDetails.first_name}
       >
         {isLoggedIn ? (
           <FaceRoundedIcon id='profile' style={{ position: 'relative' }} />

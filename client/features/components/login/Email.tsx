@@ -1,23 +1,25 @@
 import { useDispatch } from 'react-redux';
 import isEmail from 'validator/lib/isEmail';
-import { FunctionComponent, SyntheticEvent, useState } from 'react';
-import { useUserContext } from '../../../contexts/UserContext';
-import { setUserInfo } from './signupslices/userInfoSlice';
+import { FunctionComponent, SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 export interface EmailProps {
   setNewUser(newUser: boolean): any;
+  setEmail(email: string): void;
+  email: string;
 }
 
-export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
+export const Email: FunctionComponent<EmailProps> = ({
+  setNewUser,
+  setEmail,
+  email,
+}) => {
   const dispatch = useDispatch();
-  const { setUserDetails, email } = useUserContext();
 
   const handleEmailEntered = () => {
     if (isEmail(email)) {
       setNewUser(true);
-      dispatch(setUserInfo({ email: email }));
-      setUserDetails({ email: email });
+      setEmail(email);
     } else {
       const input = (document.getElementsByName(
         'email'
@@ -56,7 +58,7 @@ export const Email: FunctionComponent<EmailProps> = ({ setNewUser }) => {
             placeholder='Email address'
             type='email'
             value={email}
-            onChange={(e) => setUserDetails({ email: e.target.value })}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <span onClick={handleEmailEntered}>
             <button type='button' id='getstartedbtn' className='signin-button'>

@@ -1,12 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useUserContext } from '../../../contexts/UserContext';
-import { setUserInfo } from './signupslices/userInfoSlice';
 import { setLoginStatus } from './signupslices/loginSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { fetchUser } from '../../../utils/fetchUser';
+import { deconstructUsername } from '../../../utils/deconstructUsername';
 
-export const Signup = () => {
-  const { email, password, username } = useUserContext();
+export const Signup = ({ email, setEmail }) => {
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+
   const dispatch = useDispatch();
   const history = useHistory();
   const { setUserDetails } = useUserContext();
@@ -16,35 +19,16 @@ export const Signup = () => {
     if (username) username.focus();
   }, [username]);
 
-  const handleSubmitOrClick = () => {
-    let name: string;
+  const handleSubmitOrClick = async () => {
     // fetch and auth etc but for now let's just log them in and save to state and checking auth etc.
-    if (!username) {
-      name = '';
-    } else if (username.split(' ').length < 2) {
-      name = username;
-    } else {
-      name =
-        username.split(' ')[0][0].toUpperCase() +
-        username.split(' ')[0].substring(1) +
-        ' ' +
-        username.split(' ')[1][0].toUpperCase() +
-        username.split(' ')[1].substring(1);
-    }
 
-    dispatch(
-      setUserInfo({
-        email: email,
-        password: password,
-        username: name,
-      })
-    );
-    setUserDetails({
-      email: email[0].toUpperCase() + email.substring(1),
-      password: password,
-      username: name,
-    });
+    const [firstName, lastName] = deconstructUsername(username);
+
+    const userData = await fetchUser(email, password, firstName, lastName);
+
+    setUserDetails(userData);
     dispatch(setLoginStatus(true));
+
     history.push('./home');
   };
 
@@ -70,13 +54,7 @@ export const Signup = () => {
             placeholder={username ? username : 'First and Last Name'}
             type='text'
             value={username ? username : ''}
-            onChange={(e) =>
-              setUserDetails({
-                email: email,
-                password: password,
-                username: e.target.value,
-              })
-            }
+            onChange={(e) => setUsername(e.target.value)}
           />
         </form>
         <form
@@ -92,13 +70,7 @@ export const Signup = () => {
             id='emailinput'
             type='text'
             value={email}
-            onChange={(e) =>
-              setUserDetails({
-                email: e.target.value,
-                password: password,
-                username: username,
-              })
-            }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </form>
         <form
@@ -114,13 +86,7 @@ export const Signup = () => {
             type='password'
             id='passwordinput'
             value={password ? password : ''}
-            onChange={(e) =>
-              setUserDetails({
-                email: email,
-                password: e.target.value,
-                username: username,
-              })
-            }
+            onChange={(e) => setPassword(e.target.value)}
           />
         </form>
 

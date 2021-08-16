@@ -2,7 +2,15 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
+const userRouter = require('./routes/user');
 
+declare global {
+  namespace Express {
+    interface Request {
+      user?: Record<string, any>;
+    }
+  }
+}
 dotenv.config();
 const app = express();
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;
@@ -22,6 +30,17 @@ app.use('/*', function (req, res, next) {
 app.get('/', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
+
+app.use('/user', userRouter);
+app.get('/user', (req: express.Request, res, next) => {
+  if (!req.user) {
+    console.log('error ocurred');
+    res.status(300).send('no user found');
+  } else {
+    console.log('no error');
+    res.status(200).json(req.user);
+  }
+});
 
 app.get('/home', (req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))

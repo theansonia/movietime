@@ -9,12 +9,17 @@ export interface LoginProps {}
 
 const Registration: FunctionComponent<LoginProps> = () => {
   const [newUser, setNewUser] = useState(false);
+  const [email, setEmail] = useState('');
   const theme = useSelector((state: RootState) => state.theme.value);
 
   return (
     <div className='divdivider regdivider'>
       <div className={`'' + ${theme}`}>
-        {!newUser ? <Email setNewUser={setNewUser} /> : <Signup />}
+        {!newUser ? (
+          <Email setNewUser={setNewUser} email={email} setEmail={setEmail} />
+        ) : (
+          <Signup email={email} setEmail={setEmail} />
+        )}
       </div>
     </div>
   );

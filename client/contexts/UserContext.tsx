@@ -1,34 +1,29 @@
 import { createContext, useContext, useState } from 'react';
 
-export const user = {
-  email: '',
-  password: '',
-  username: '',
-  id: 0,
-};
+export const user = {};
 
 export interface UserInfoContextTypes {
-  email?: string | null;
-  password?: string | null;
-  username?: string | null;
-  id?: null | number;
+  userDetails: {
+    first_name: string;
+    last_name: string;
+    password: string;
+    username?: string;
+    email: string;
+  };
   setUserDetails?: ({}) => void;
 }
 export const UserContext = createContext<UserInfoContextTypes>({
-  email: '',
-  password: '',
-  username: '',
-  id: null,
+  userDetails: { first_name: '', last_name: '', password: '', email: '' },
   setUserDetails: ({}) => console.warn('No Set User Provider'),
 });
 
 export const UserProvider = ({ children }) => {
-  const [userDetails, setUserDetails] = useState<UserInfoContextTypes | {}>(
+  const [userDetails, setUserDetails] = useState<UserInfoContextTypes | any>(
     user
   );
 
   return (
-    <UserContext.Provider value={{ ...userDetails, setUserDetails }}>
+    <UserContext.Provider value={{ userDetails, setUserDetails }}>
       {children}
     </UserContext.Provider>
   );
