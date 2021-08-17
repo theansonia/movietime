@@ -78,9 +78,7 @@ export default function App(): JSX.Element {
         <Route path='/registration'>
           <Registration />
         </Route>
-        <Route path='/signin'>
-          <Signin />
-        </Route>
+        <Route path='/signin' component={Signin} />
         <Route path={'/details/:title'} component={Details} />
       </Switch>
       <Route exact path='/'>

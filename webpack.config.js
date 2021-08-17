@@ -30,6 +30,8 @@ module.exports = {
       '/movies': 'http://localhost:3000/',
       '/shows': 'http://localhost:3000/',
       '/home': 'http://localhost:3000/',
+      '/signin': 'http://localhost:3000/',
+      '/user': 'http://localhost:3000/',
     },
   },
   module: {

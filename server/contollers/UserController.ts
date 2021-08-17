@@ -42,14 +42,15 @@ const userController: userControllerType = {
   },
 
   getUser: (req, res, next) => {
-    const { first_name, last_name, email, password } = req.body;
+    const { email, password } = req.body;
+
     const getQuery = `
       SELECT * 
       FROM users
-      WHERE username = $1
+      WHERE email = $1 AND password = $2
     `;
     // SELECT movie_id FROM Favorites WHERE user_id = ?
-    const queryParams = [first_name, last_name, email, password];
+    const queryParams = [email, password];
     db.query(getQuery, queryParams)
       .then((data: any) => {
         res.locals.userObj = data.rows[0];

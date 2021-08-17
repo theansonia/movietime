@@ -6,7 +6,7 @@ $primary-font: #212529;
 
 #navbar {
   background-color: #212529;
-  height: 2rem;
+  height: 3rem;
   position: fixed;
   top: 0;
   // display: grid;
@@ -14,7 +14,7 @@ $primary-font: #212529;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 0.5rem;
+  font-size: 1.5rem;
   font-weight: 400;
   min-width: 100%;
   z-index: 14;
@@ -30,14 +30,14 @@ $primary-font: #212529;
 }
 
 #filmbutton {
-  font-size: 0.15rem !important;
+  // font-size: 0.15rem !important;
   @media (min-width: 600px) {
     font-size: 1rem !important;
   }
 }
 
 #tvbutton {
-  font-size: 0.15rem !important;
+  // font-size: 0.15rem !important;
   @media (min-width: 600px) {
     font-size: 1rem !important;
   }
@@ -46,10 +46,10 @@ $primary-font: #212529;
 .signin {
   // margin-bottom: 1rem;
   display: flex !important;
-  font-size: 0.15rem !important;
+  font-size: 1rem;
   color: $background;
   text-decoration: none !important;
-  margin-top: 0.215rem;
+  margin-top: 0.05rem;
 
   &:hover {
     cursor: pointer;
@@ -86,7 +86,7 @@ $primary-font: #212529;
 .option {
   color: $background;
   text-decoration: none;
-  font-size: 0.15;
+  font-size: 1rem;
   // margin-right: .5em;
   &:hover {
     text-decoration: underline;
@@ -102,13 +102,6 @@ $primary-font: #212529;
   @media (min-width: 600px) {
     bottom: none;
     top: 0.225rem;
-    width: 2rem;
-  }
-}
-#profile {
-  @media (min-width: 600px) {
-    bottom: none;
-    top: 0.2rem;
     width: 2rem;
   }
 }
@@ -192,7 +185,60 @@ $primary-font: #212529;
 }
 
 .theme-icon {
-  margin-top: 0.25rem;
+  margin-bottom: 0.15rem;
   width: 0.75rem;
   height: 0.75rem;
+  @media (min-width: 600px) {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+}
+// avatar styles
+
+@mixin avatar($size) {
+  width: $size;
+  height: $size;
+  background-color: $background;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+
+  .initials {
+    position: relative;
+    top: $size * 0.15;
+    font-size: $size * 0.5;
+    line-height: $size * 0.5;
+    color: $primary-font;
+    font-weight: bold;
+  }
+}
+
+.avatar-circle {
+  @include avatar(2rem);
+}
+.avatar-circle-sm {
+  @include avatar(1rem);
+}
+.avatar-circle-lg {
+  @include avatar(3rem);
+}
+.avatar-circle {
+  width: 2rem;
+  height: 2rem;
+  background-color: $background;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.initials {
+  position: relative;
+  top: 0.5rem; /* 25% of parent */
+  font-size: 1rem; /* 50% of parent */
+  line-height: 1rem; /* 50% of parent */
+  color: $primary-font;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
 }

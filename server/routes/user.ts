@@ -9,7 +9,7 @@ router.post(
   '/get',
   // verifyController.verifyUser,
   userController.getUser,
-  (req, res) => {
+  (_req, res) => {
     res.status(200).json(res.locals.userObj);
   }
 );
@@ -27,7 +27,7 @@ router.post(
 // );
 
 // create new user
-router.post('/create', userController.addUser, (req, res) => {
+router.post('/create', userController.addUser, (_req, res) => {
   res.status(200).json(res.locals.newUser);
 });
 

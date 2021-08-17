@@ -2,6 +2,7 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
+import cors from 'cors';
 const userRouter = require('./routes/user');
 
 declare global {
@@ -13,6 +14,7 @@ declare global {
 }
 dotenv.config();
 const app = express();
+app.use(cors());
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;
 
 app.use(express.json());
@@ -21,67 +23,59 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('build'));
 
-app.use('/*', function (req, res, next) {
+app.use('/*', function (_req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
+app.get('/home', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
+
+app.get('/signin', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
+
+app.get('/movies', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
+
+app.get('/registration', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
+
+app.get('/shows', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
+app.get('/details/*', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
+
+app.get('/details/*', (_req, res) =>
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+);
 // serves index.html at root endpoint
-app.get('/', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-
-app.use('/user', userRouter);
-app.get('/user', (req: express.Request, res, next) => {
-  if (!req.user) {
-    console.log('error ocurred');
-    res.status(300).send('no user found');
-  } else {
-    console.log('no error');
-    res.status(200).json(req.user);
-  }
-});
-
-app.get('/home', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-
-app.get('/movies', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-
-app.get('/registration', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-app.get('/signin', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-app.get('/shows', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-app.get('/details/*', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
-);
-
-app.get('/details/*', (req, res) =>
+app.get('/', (_req, res) =>
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
 );
 
 /* route handlers */
+app.use('/signin', userRouter);
 
+// app.use('/signin', userRouter);
 /* catch all */
 
-app.use('*', (req, res) => res.status(404).send('Oops! Wrong page!'));
+app.use('*', (_req, res) => res.status(404).send('Oops! Wrong page!'));
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global error handler */
 app.use(
   (
     err: express.ErrorRequestHandler,
-    req: express.Request,
+    _req: express.Request,
     res: express.Response,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    next: express.NextFunction
+    _next: express.NextFunction
   ) => {
     console.log('got and error', err);
     const defaultErr = {

@@ -1,26 +1,33 @@
-import { FunctionComponent, useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { FunctionComponent, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { handleShowClick } from '../../../utils/handleShowClick';
+import { useUserContext } from '../../../contexts/UserContext';
+import { fetchUser } from '../../../utils/fetchUser';
+import { setLoginStatus } from './signupslices/loginSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'client/reducer';
 export interface SigninProps {}
 
 const Signin: FunctionComponent<SigninProps> = () => {
+  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [label, setLabel] = useState('SHOW');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setUserDetails } = useUserContext();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleShowClick = () => {
-    if (label === 'SHOW') {
-      setLabel('HIDE');
-      const pw = (document.getElementsByName(
-        'password'
-      ) as unknown) as HTMLInputElement;
-      pw[0].type = 'text';
-    } else {
-      setLabel('SHOW');
-      const pw = (document.getElementsByName(
-        'password'
-      ) as unknown) as HTMLInputElement;
-      pw[0].type = 'password';
-    }
+  useEffect(() => {
+    if (isLoggedIn) history.push('/home');
+  }, []);
+
+  const handleSubmitOrClick = async () => {
+    history.push('./home');
+    const userData = await fetchUser(email, password);
+    setUserDetails(userData);
+    dispatch(setLoginStatus(true));
   };
+
   return (
     <div className='divdivider regdivider'>
       <div id='signin-body'>
@@ -37,6 +44,8 @@ const Signin: FunctionComponent<SigninProps> = () => {
                       id='userId'
                       className='nfText'
                       placeholder='Email address'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className='signin-form-container'>
@@ -49,6 +58,8 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           autoComplete='password'
                           className='nfText'
                           placeholder='Password'
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
                           onFocus={() => {
                             const show = document.getElementById(
                               'signin-password-toggle'
@@ -69,14 +80,18 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           type='button'
                           title='Show password'
                           className='password-toggle'
-                          onClick={handleShowClick}
+                          onClick={() => setLabel(handleShowClick(label))}
                         >
                           {label}
                         </button>
                       </div>
                     </div>
                   </div>
-                  <button type='submit' className='signin-button'>
+                  <button
+                    type='button'
+                    className='signin-button'
+                    onClick={handleSubmitOrClick}
+                  >
                     Sign In
                   </button>
                 </div>

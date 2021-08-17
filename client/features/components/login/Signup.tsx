@@ -1,18 +1,25 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useUserContext } from '../../../contexts/UserContext';
 import { setLoginStatus } from './signupslices/loginSlice';
 import { useEffect, useState } from 'react';
-import { fetchUser } from '../../../utils/fetchUser';
+import { createUser } from '../../../utils/fetchUser';
 import { deconstructUsername } from '../../../utils/deconstructUsername';
+import { handleShowClick } from '../../../utils/handleShowClick';
+import { RootState } from 'client/reducer';
 
 export const Signup = ({ email, setEmail }) => {
+  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-
+  const [label, setLabel] = useState('SHOW');
+  const { setUserDetails } = useUserContext();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { setUserDetails } = useUserContext();
+
+  useEffect(() => {
+    if (isLoggedIn) history.push('/home');
+  }, []);
 
   useEffect(() => {
     const username = document.getElementById('usernameinput');
@@ -24,11 +31,10 @@ export const Signup = ({ email, setEmail }) => {
 
     const [firstName, lastName] = deconstructUsername(username);
 
-    const userData = await fetchUser(email, password, firstName, lastName);
+    const userData = await createUser(email, password, firstName, lastName);
 
     setUserDetails(userData);
     dispatch(setLoginStatus(true));
-
     history.push('./home');
   };
 
@@ -80,14 +86,30 @@ export const Signup = ({ email, setEmail }) => {
             handleSubmitOrClick();
           }}
         >
-          <input
-            className='nfText'
-            placeholder='Add a password'
-            type='password'
-            id='passwordinput'
-            value={password ? password : ''}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div id='password-control'>
+            <input
+              className='nfText'
+              placeholder='Add a password'
+              type='password'
+              id='passwordinput'
+              name='password'
+              value={password ? password : ''}
+              onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => {
+                const show = document.getElementById('signup-password-toggle');
+                show.style.display = 'block';
+              }}
+            />
+            <button
+              id='signup-password-toggle'
+              type='button'
+              title='Show password'
+              className='password-toggle'
+              onClick={() => setLabel(handleShowClick(label))}
+            >
+              {label}
+            </button>
+          </div>
         </form>
 
         <button

@@ -488,6 +488,13 @@ a {
     position: absolute;
   }
 }
+#signup-password-toggle {
+  @media (min-width: 600px) {
+    position: relative;
+    bottom: 2rem;
+    left: 9rem;
+  }
+}
 
 .regdivider {
   max-width: 20rem;
@@ -535,6 +542,7 @@ a {
 #passwordinput {
   @media (min-width: 600px) {
     width: 12rem;
+    margin-top: 2rem;
   }
 }
 

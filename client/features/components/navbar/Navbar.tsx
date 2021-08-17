@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -14,14 +14,14 @@ import ToggleTheme from '../toggleTheme/ToggleTheme';
 import './Navbar.scss';
 import { useUserContext } from '../../../contexts/UserContext';
 import { RootState } from 'client/reducer';
+import AvatarCircle from './AvatarCircle';
 
-const Navbar: FunctionComponent = () => {
+const Navbar = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [isHovered, setIsHovered] = useState(false);
   const { userDetails } = useUserContext();
 
-  console.log(userDetails.first_name);
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setValue(''));
@@ -108,8 +108,9 @@ const Navbar: FunctionComponent = () => {
         title={userDetails.first_name}
       >
         {isLoggedIn ? (
-          <FaceRoundedIcon id='profile' style={{ position: 'relative' }} />
+          <AvatarCircle initial={userDetails.first_name[0]} />
         ) : (
+          // <FaceRoundedIcon id='profile' style={{ position: 'relative' }} />
           <Link to='/signin'>
             <div className='signin'>Sign In</div>
           </Link>

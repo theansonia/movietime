@@ -34,7 +34,7 @@
   position: fixed;
   transition: all 0.8s ease;
   top: 80%;
-  // right: 48%;
+  left: 11rem;
   pointer-events: all;
   overflow: visible;
   margin: 0 auto;
@@ -52,7 +52,10 @@
   transition: all 0.8s ease;
   // animation: createSearchBar 0.5s;
   background: darken(#e9ecef, 10%);
-
+  @media (min-width: 600px) {
+    left: 45%;
+    // padding: 0;
+  }
   &:after,
   :before {
     box-sizing: border-box;
