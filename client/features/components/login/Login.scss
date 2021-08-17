@@ -7,12 +7,12 @@ $primary-font: #f8f9fa;
 
 #signin-body {
   background-color: $background;
-  max-width: 20rem;
-  min-height: 100vh;
+  max-width: 100%;
+  height: 90vh;
   margin: 0 auto;
   @media (min-width: 600px) {
     max-width: 32rem;
-    min-height: 100%;
+    height: 100%;
     margin: 0 auto -236px;
     background-color: transparent;
   }
@@ -83,14 +83,49 @@ label {
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  min-height: 100%;
+  padding: 0px 0 30px;
+  width: 12rem;
+  height: 2.5rem;
+  @media (min-width: 600px) {
+    padding: 0;
+    height: 2.5rem;
+    width: 12rem;
+  }
+}
+
+.signup-form {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  height: 100% !important;
   padding: 0px 0 30px;
   width: 86%;
   @media (min-width: 600px) {
     padding: 0;
   }
 }
-
 #signin-main {
   color: $primary-font;
   font-weight: 700;
@@ -141,7 +176,30 @@ label {
   }
 }
 
+.signup-form-container {
+  max-width: 100%;
+  display: flex;
+  min-height: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0;
+  margin-top: 4rem !important;
+  gap: 2rem;
+  @media (min-width: 600px) {
+    // width: 32rem;
+    text-align: center;
+    // margin-left: -6rem;
+    // margin: 0 auto;
+  }
+}
 .input-placement {
+  position: relative;
+  gap: 2rem;
+}
+
+#input-placement {
   position: relative;
 }
 
@@ -170,16 +228,24 @@ label {
   align-items: space-between;
   justify-content: flex-start;
   gap: 0.5rem;
-  margin-top: 4rem;
+
   @media (min-width: 600px) {
     margin-top: 2.5rem;
+    margin-top: 4rem;
   }
 }
 .signup-now {
   color: $font;
-  font-size: 0.5rem;
+  font-size: 1rem;
   font-weight: 500;
   // margin-top: 0.5rem;
+  @media (min-width: 600px) {
+    font-size: 0.75rem;
+  }
+}
+#click-signup {
+  color: $primary-font;
+  margin-left: 0.5rem;
 }
 
 a {
@@ -192,12 +258,22 @@ a {
   padding: 0;
 }
 
-#email-controls {
+#email-control {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   border: 0;
   position: relative;
+  margin-bottom: 2rem;
+}
+
+#password-control {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 0;
+  position: relative;
+  margin-bottom: 2rem;
 }
 .nfText {
   background: darken(#e9ecef, 70%);
@@ -208,14 +284,12 @@ a {
   color: $font;
   height: 50px;
   line-height: 50px;
-  padding: 16px 20px 0;
   height: 48px;
-  padding: 10px 10px 0;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 1.2rem;
   border: solid 1px #8c8c8c;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -224,13 +298,22 @@ a {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 100%;
-  padding: 10px 11px;
-  height: 2rem;
+  padding: 0 0 0 8px;
+  height: 3rem;
   caret-color: $font;
+
+  @media (min-width: 600px) {
+    // min-height: 50vh;
+    height: 2rem;
+    // width: 100%;
+    font-size: 1rem;
+
+    padding: 10px 11px;
+  }
   // padding-left: 1rem;
   &::placeholder {
     text-indent: -0.5rem;
+    font-size: 1rem;
     color: $font;
   }
 }
@@ -262,11 +345,14 @@ a {
   border-width: 2px;
   border-style: inset;
   border-image: initial;
+  width: 12rem;
 }
 
 .loginwrapper {
   color: $primary-font;
-  margin: 2rem auto;
+  margin: 0 auto;
+  margin-right: 4rem;
+  margin-top: 6rem;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -285,20 +371,18 @@ a {
   -moz-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-height: 100%;
-  padding: 20px 0 30px;
   width: 100%;
   background-color: $background;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
+  height: 70vh;
+  padding: 0;
   @media (min-width: 600px) {
     // min-height: 50vh;
+    align-items: center;
+    justify-content: flex-start;
     height: 70vh;
     width: 32rem;
     margin: 0 auto;
     margin-left: -6rem;
-    padding: 0;
   }
 }
 ::placeholder {
@@ -328,22 +412,28 @@ a {
 }
 
 #initialcontent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 1rem;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  margin-top: 25%;
   @media (min-width: 600px) {
-    min-width: 48rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    text-align: center;
+    margin-top: 5%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 #header1 {
-  max-width: 30rem;
-  font-size: 1.5rem;
+  max-width: 90%;
   margin: 0 auto;
+  font-size: 2rem;
   text-align: center;
   @media (min-width: 600px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
@@ -352,22 +442,97 @@ a {
   margin: 0 auto;
   font-size: 1rem;
   font-weight: 400;
+  text-align: center;
   @media (min-width: 600px) {
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 }
 
 .emailform {
-  padding-top: 0.85rem auto;
-  margin: 0 auto;
-  max-width: 59rem;
-  font-size: none;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  margin: 0 auto;
+  // align-items: center;
+  min-height: 100%;
+  padding: 0px 0 30px;
+  // width: 86%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  max-width: 75%;
+  height: 3rem;
+  margin-bottom: 1rem;
+  @media (min-width: 600px) {
+    height: 2rem;
+    max-width: 60%;
+  }
+}
+
+#signup-container {
+  background-color: $background;
+  max-width: 20rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  color: $primary-font;
+  margin: 2rem auto;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 0 30px;
+  width: 100%;
+  background-color: $background;
   align-items: center;
-  justify-content: center;
-  max-width: 90%;
-  height: 2rem;
+  justify-content: flex-start;
+  height: 100vh;
+
+  @media (min-width: 600px) {
+    // max-width: 32rem;
+    min-height: 100%;
+    margin: 0 auto -236px;
+    background-color: transparent;
+    height: 70vh;
+    width: 32rem;
+    // margin: 0 auto;
+    // padding: 0;
+  }
 }
 
 #header3 {
@@ -375,6 +540,7 @@ a {
   font-size: 8px;
   text-align: center;
   font-weight: 300;
+  font-size: 0.8rem;
   @media (min-width: 600px) {
     font-size: 0.5em;
   }
@@ -402,9 +568,13 @@ a {
 
 #btndivider {
   // margin-top: 2rem;
-  width: 4rem;
-  min-height: 2rem !important;
-  align-self: center;
+  width: 75%;
+  height: 2.5rem;
+  @media (min-width: 600px) {
+    height: 2rem !important;
+    align-self: center;
+    width: 60%;
+  }
 }
 
 #email {
@@ -442,10 +612,12 @@ a {
   border: 1px solid #333;
   align-items: flex-end;
   font-size: 0.5rem;
-  height: 1.9rem;
+  height: 50px;
+  width: 13rem;
   bottom: 0.15rem;
   &:hover {
     cursor: pointer;
+    height: 50px;
   }
 }
 
@@ -513,6 +685,7 @@ a {
   // margin-top: -4rem;
   align-self: center;
   text-align: center;
+  color: $primary-font;
   @media (min-width: 600px) {
     text-align: center;
   }
@@ -522,6 +695,7 @@ a {
   text-align: center;
   align-self: center;
   margin: 0;
+  color: $primary-font;
 }
 
 #signupwrapper {
@@ -539,23 +713,23 @@ a {
   }
 }
 
-#passwordinput {
-  @media (min-width: 600px) {
-    width: 12rem;
-    margin-top: 2rem;
-  }
-}
+// #passwordinput {
+//   @media (min-width: 600px) {
+//     width: 12rem;
+//     margin-top: 2rem;
+//   }
+// }
 
-#emailinput {
-  @media (min-width: 600px) {
-    width: 12rem;
-  }
-}
-#usernameinput {
-  @media (min-width: 600px) {
-    width: 12rem;
-  }
-}
+// #emailinput {
+//   @media (min-width: 600px) {
+//     width: 12rem;
+//   }
+// }
+// #usernameinput {
+//   @media (min-width: 600px) {
+//     width: 12rem;
+//   }
+// }
 
 #headerwrapper {
   margin-bottom: 3rem;
@@ -564,4 +738,20 @@ a {
     align-self: center;
     margin-top: -6rem;
   }
+}
+
+#badpassword {
+  color: red;
+  font-size: xx-small;
+  align-self: center;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  @media (min-width: 600px) {
+    width: 20rem;
+  }
+}
+
+#headerwrap {
+  margin-bottom: 2rem;
 }

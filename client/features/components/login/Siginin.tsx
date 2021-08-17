@@ -35,18 +35,18 @@ const Signin: FunctionComponent<SigninProps> = () => {
         <div id='signin-content'>
           <div id='signin-form'>
             <h1 id='signin-main'>Sign In</h1>
-
             <div id='signin-form-container'>
               <div id='input-placement'>
                 <form
                   className='signin-form'
-                  method='post'
                   onSubmit={(e) => {
                     e.preventDefault();
                     handleSubmitOrClick();
                   }}
+                  style={{ width: '12rem', marginBottom: '1rem' }}
+                  method='post'
                 >
-                  <div id='email-controls'>
+                  <div id='email-control'>
                     <input
                       type='text'
                       name='userId'
@@ -55,6 +55,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
                       placeholder='Email address'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      style={{ width: '12rem' }}
                     />
                   </div>
                 </form>
@@ -62,11 +63,12 @@ const Signin: FunctionComponent<SigninProps> = () => {
                   <div className='input-placement'>
                     <form
                       className='signin-form'
-                      method='post'
                       onSubmit={(e) => {
                         e.preventDefault();
                         handleSubmitOrClick();
                       }}
+                      style={{ width: '12rem' }}
+                      method='post'
                     >
                       <div id='password-control'>
                         <input
@@ -87,6 +89,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           onSubmit={() => {
                             handleSubmitOrClick();
                           }}
+                          style={{ width: '12rem' }}
                           // onBlur={(e) => {
                           //   if (e.target.id === 'signin-password-toggle') return;
                           //   const show = document.getElementById(
@@ -121,7 +124,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
             </div>
             <div id='newsignup-container'>
               <div className='signup-now'>New to Watchr?</div>
-              <Link id='click-signup' to='/registration'>
+              <Link className='signup-now' id='click-signup' to='/registration'>
                 Sign up now.
               </Link>
             </div>
