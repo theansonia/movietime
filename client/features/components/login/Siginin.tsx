@@ -23,7 +23,8 @@ const Signin: FunctionComponent<SigninProps> = () => {
 
   const handleSubmitOrClick = async () => {
     history.push('./home');
-    const userData = await fetchUser(email, password);
+    const data = { email, password };
+    const userData = await fetchUser(data, 'get');
     setUserDetails(userData);
     dispatch(setLoginStatus(true));
   };
@@ -34,9 +35,17 @@ const Signin: FunctionComponent<SigninProps> = () => {
         <div id='signin-content'>
           <div id='signin-form'>
             <h1 id='signin-main'>Sign In</h1>
-            <form id='signin-form' method='post'>
-              <div id='signin-form-container'>
-                <div id='input-placement'>
+
+            <div id='signin-form-container'>
+              <div id='input-placement'>
+                <form
+                  className='signin-form'
+                  method='post'
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmitOrClick();
+                  }}
+                >
                   <div id='email-controls'>
                     <input
                       type='text'
@@ -48,8 +57,17 @@ const Signin: FunctionComponent<SigninProps> = () => {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className='signin-form-container'>
-                    <div className='input-placement'>
+                </form>
+                <div className='signin-form-container'>
+                  <div className='input-placement'>
+                    <form
+                      className='signin-form'
+                      method='post'
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        handleSubmitOrClick();
+                      }}
+                    >
                       <div id='password-control'>
                         <input
                           type='password'
@@ -65,6 +83,9 @@ const Signin: FunctionComponent<SigninProps> = () => {
                               'signin-password-toggle'
                             );
                             show.style.display = 'block';
+                          }}
+                          onSubmit={() => {
+                            handleSubmitOrClick();
                           }}
                           // onBlur={(e) => {
                           //   if (e.target.id === 'signin-password-toggle') return;
@@ -85,24 +106,25 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           {label}
                         </button>
                       </div>
-                    </div>
+                    </form>
                   </div>
-                  <button
-                    type='button'
-                    className='signin-button'
-                    onClick={handleSubmitOrClick}
-                  >
-                    Sign In
-                  </button>
                 </div>
+
+                <button
+                  type='button'
+                  className='signin-button'
+                  onClick={handleSubmitOrClick}
+                >
+                  Sign In
+                </button>
               </div>
-              <div id='newsignup-container'>
-                <div className='signup-now'>New to Watchr?</div>
-                <Link id='click-signup' to='/registration'>
-                  Sign up now.
-                </Link>
-              </div>
-            </form>
+            </div>
+            <div id='newsignup-container'>
+              <div className='signup-now'>New to Watchr?</div>
+              <Link id='click-signup' to='/registration'>
+                Sign up now.
+              </Link>
+            </div>
           </div>
         </div>
       </div>

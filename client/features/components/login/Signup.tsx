@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { useUserContext } from '../../../contexts/UserContext';
 import { setLoginStatus } from './signupslices/loginSlice';
 import { useEffect, useState } from 'react';
-import { createUser } from '../../../utils/fetchUser';
+import { fetchUser } from '../../../utils/fetchUser';
 import { deconstructUsername } from '../../../utils/deconstructUsername';
 import { handleShowClick } from '../../../utils/handleShowClick';
 import { RootState } from 'client/reducer';
@@ -29,9 +29,9 @@ export const Signup = ({ email, setEmail }) => {
   const handleSubmitOrClick = async () => {
     // fetch and auth etc but for now let's just log them in and save to state and checking auth etc.
 
-    const [firstName, lastName] = deconstructUsername(username);
-
-    const userData = await createUser(email, password, firstName, lastName);
+    const [first_name, last_name] = deconstructUsername(username);
+    const data = { email, password, first_name, last_name };
+    const userData = await fetchUser(data, 'create');
 
     setUserDetails(userData);
     dispatch(setLoginStatus(true));

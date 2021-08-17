@@ -51,6 +51,7 @@ const userController: userControllerType = {
     `;
     // SELECT movie_id FROM Favorites WHERE user_id = ?
     const queryParams = [email, password];
+
     db.query(getQuery, queryParams)
       .then((data: any) => {
         res.locals.userObj = data.rows[0];
