@@ -57,6 +57,37 @@ label {
   }
 }
 
+#signup-content {
+  -webkit-border-radius: 6px;
+  margin: 8rem auto;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 0 30px;
+  width: 80%;
+  background-color: $background;
+  align-items: center;
+  @media (min-width: 600px) {
+    width: 100%;
+    // margin: 2rem auto;
+    margin: 0 auto;
+  }
+}
 .signin-form {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -160,8 +191,11 @@ label {
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100%;
-  padding: 0px 0 30px;
+  // padding: 0px 0 30px;
+  margin: 0 auto;
   width: fit-content;
+  margin-bottom: 1rem;
+  // margin-left: 4rem;
   margin-top: 8rem;
   @media (min-width: 600px) {
     margin: 0 auto;
@@ -181,12 +215,12 @@ label {
   display: flex;
   min-height: 100%;
   margin: 0 auto;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   border-radius: 0;
   margin-top: 4rem !important;
   gap: 2rem;
+  align-items: center;
+  justify-content: center;
   @media (min-width: 600px) {
     // width: 32rem;
     text-align: center;
@@ -196,7 +230,9 @@ label {
 }
 .input-placement {
   position: relative;
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
 }
 
 #input-placement {
@@ -218,7 +254,7 @@ label {
 #newsignup-container {
   display: flex;
   align-items: space-between;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
@@ -264,7 +300,6 @@ a {
   border-radius: 4px;
   border: 0;
   position: relative;
-  margin-bottom: 2rem;
 }
 
 #password-control {
@@ -276,11 +311,10 @@ a {
   margin-bottom: 2rem;
 }
 .nfText {
-  background: darken(#e9ecef, 70%);
+  background-color: darken(#e9ecef, 70%);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  border: 0;
   color: $font;
   height: 50px;
   line-height: 50px;
@@ -343,7 +377,6 @@ a {
   font: 400 13.3333px Arial;
   // padding: 1px 2px;
   border-width: 2px;
-  border-style: inset;
   border-image: initial;
   width: 12rem;
 }
@@ -483,11 +516,16 @@ a {
   // justify-content: center;
   max-width: 75%;
   height: 3rem;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
   @media (min-width: 600px) {
     height: 2rem;
     max-width: 60%;
   }
+}
+
+#email-form,
+#username-form {
+  margin-bottom: 0.5rem;
 }
 
 #signup-container {
@@ -496,7 +534,7 @@ a {
   min-height: 100vh;
   margin: 0 auto;
   color: $primary-font;
-  margin: 2rem auto;
+  // margin: 2rem auto;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -514,13 +552,14 @@ a {
   -moz-box-orient: vertical;
   -moz-box-direction: normal;
   -ms-flex-direction: column;
+
   flex-direction: column;
   min-height: 100%;
   padding: 20px 0 30px;
   width: 100%;
   background-color: $background;
-  align-items: center;
-  justify-content: flex-start;
+  // align-items: center;
+  // justify-content: flex-start;
   height: 100vh;
 
   @media (min-width: 600px) {
@@ -568,11 +607,11 @@ a {
 
 #btndivider {
   // margin-top: 2rem;
+  margin: 0.5rem 0 0 0;
   width: 75%;
   height: 2.5rem;
   @media (min-width: 600px) {
     height: 2rem !important;
-    align-self: center;
     width: 60%;
   }
 }
@@ -660,14 +699,26 @@ a {
     position: absolute;
   }
 }
+
 #signup-password-toggle {
+  top: 25rem;
+  left: 15rem;
   @media (min-width: 600px) {
-    position: relative;
-    bottom: 2rem;
-    left: 9rem;
+    // position: relative;
+    top: 21.75rem;
+    left: 35.5rem;
   }
 }
 
+#signin-password-toggle {
+  top: 16.35rem;
+  left: 15rem;
+  @media (min-width: 600px) {
+    // position: relative;
+    top: 15.5rem;
+    left: 35.5rem;
+  }
+}
 .regdivider {
   max-width: 20rem;
   min-height: 100%;
@@ -724,10 +775,10 @@ a {
 //   @media (min-width: 600px) {
 //     width: 12rem;
 //   }
-// }
+// // }
 // #usernameinput {
+//   margin-bottom: 1rem;
 //   @media (min-width: 600px) {
-//     width: 12rem;
 //   }
 // }
 
@@ -742,16 +793,18 @@ a {
 
 #badpassword {
   color: red;
-  font-size: xx-small;
+  font-size: small;
   align-self: center;
-  margin: 0 auto;
+  margin: 0.5rem 0 0 0;
   position: relative;
   text-align: center;
+  width: 95%;
   @media (min-width: 600px) {
-    width: 20rem;
+    margin: 0.5rem 0 0 0;
+    font-size: xx-small;
   }
 }
 
 #headerwrap {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }

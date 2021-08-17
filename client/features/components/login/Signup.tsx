@@ -87,7 +87,7 @@ export const Signup = ({ email, setEmail }) => {
   return (
     <div className='divdivider regdivider'>
       <div id='signup-container'>
-        <div id='signin-content'>
+        <div id='signup-content'>
           <div id='signup-form'>
             <div id='headerwrap'>
               <h1 id='signupheader1'>
@@ -105,6 +105,7 @@ export const Signup = ({ email, setEmail }) => {
                     e.preventDefault();
                     handleSubmitOrClick();
                   }}
+                  id='email-form'
                 >
                   <div id='email-control'>
                     <input
@@ -123,11 +124,12 @@ export const Signup = ({ email, setEmail }) => {
                     e.preventDefault();
                     handleSubmitOrClick();
                   }}
+                  id='username-form'
                 >
                   <div id='email-controls'>
                     <input
                       type='text'
-                      name='userId'
+                      // name='userId'
                       id='emailinput'
                       className='nfText'
                       placeholder='Email address'
@@ -142,6 +144,7 @@ export const Signup = ({ email, setEmail }) => {
                     e.preventDefault();
                     handleSubmitOrClick();
                   }}
+                  id='password-form'
                 >
                   <div id='email-control'>
                     <input
@@ -165,6 +168,7 @@ export const Signup = ({ email, setEmail }) => {
                       title='Show password'
                       className='password-toggle'
                       onClick={() => setLabel(handleShowClick(label))}
+                      style={{ marginLeft: label === 'HIDE' ? '.5rem' : '0' }}
                     >
                       {label}
                     </button>
@@ -173,7 +177,6 @@ export const Signup = ({ email, setEmail }) => {
               </div>
             </div>
           </div>
-
           <button
             type='button'
             id='btndivider'
@@ -191,44 +194,5 @@ export const Signup = ({ email, setEmail }) => {
         </div>
       </div>
     </div>
-    // <div className='loginwrapper' id='signupwrapper'>
-    //   <div id='headerwrapper'>
-    //     <h1 id='signupheader1'>Create a password to start your account</h1>
-
-    //   </div>
-    //   <div className='emailandpwwrapper'>
-    //     <form
-    //       className='emailform'
-    //       onSubmit={(e) => {
-    //         e.preventDefault();
-    //         handleSubmitOrClick();
-    //       }}
-    //     >
-
-    //     </form>
-    //     <form
-    //       className='emailform'
-    //       onSubmit={(e) => {
-    //         e.preventDefault();
-    //         handleSubmitOrClick();
-    //       }}
-    //     >
-
-    //     </form>
-    //     <form
-    //       className='emailform'
-    //       onSubmit={(e) => {
-    //         e.preventDefault();
-    //         handleSubmitOrClick();
-    //       }}
-    //     >
-    //       <div id='password-control'>
-
-    //       </div>
-    //     </form>
-
-    //   </div>
-
-    // </div>
   );
 };

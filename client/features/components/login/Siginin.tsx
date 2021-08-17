@@ -105,6 +105,9 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           title='Show password'
                           className='password-toggle'
                           onClick={() => setLabel(handleShowClick(label))}
+                          style={{
+                            marginLeft: label === 'HIDE' ? '.5rem' : '0',
+                          }}
                         >
                           {label}
                         </button>
