@@ -99,11 +99,10 @@ export async function refreshUser() {
   let token = getCookie('token');
   if (!token) {
     token = localStorage.getItem('token');
-    if (token && !isTokenExpired(token)) {
-      const decoded = decode<MyToken>(token);
-      const response = await refresh(decoded);
-
-      return response;
-    }
+  }
+  if (token && !isTokenExpired(token)) {
+    const decoded = decode<MyToken>(token);
+    const response = await refresh(decoded);
+    return response;
   }
 }

@@ -40,8 +40,6 @@ export default function App(): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
     const doRefresh = async () => {
       const response = await refreshUser();
       setUserDetails(response.user);

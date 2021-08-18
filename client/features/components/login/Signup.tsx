@@ -1,17 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import validator from 'validator';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import { useUserContext } from '../../../contexts/UserContext';
-import { setLoginStatus } from './signupslices/loginSlice';
 import { useEffect, useState } from 'react';
 import { deconstructUsername } from '../../../utils/deconstructUsername';
 import { handleShowClick } from '../../../utils/handleShowClick';
-import { RootState } from 'client/reducer';
-import { finishAuthentication, signup } from '../../../utils/AuthService';
+import {
+  finishAuthentication,
+  isAuthenticated,
+  signup,
+} from '../../../utils/AuthService';
 
 export const Signup = ({ email, setEmail }) => {
-  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [label, setLabel] = useState('SHOW');
@@ -22,7 +23,7 @@ export const Signup = ({ email, setEmail }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (isLoggedIn) history.push('/home');
+    if (isAuthenticated()) history.push('/home');
   }, []);
 
   useEffect(() => {
@@ -86,7 +87,7 @@ export const Signup = ({ email, setEmail }) => {
       return;
     }
     setUserDetails(data);
-    dispatch(setLoginStatus(true));
+
     history.push('./home');
   };
 

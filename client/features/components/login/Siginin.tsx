@@ -2,10 +2,7 @@ import { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { handleShowClick } from '../../../utils/handleShowClick';
 import { useUserContext } from '../../../contexts/UserContext';
-import { fetchUser } from '../../../utils/fetchUser';
-import { setLoginStatus } from './signupslices/loginSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'client/reducer';
+import { useDispatch } from 'react-redux';
 import {
   finishAuthentication,
   isAuthenticated,
@@ -14,7 +11,6 @@ import {
 export interface SigninProps {}
 
 const Signin: FunctionComponent<SigninProps> = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [label, setLabel] = useState('SHOW');
   const { userDetails } = useUserContext();
   // const [password, setPassword] = useState('');
@@ -43,7 +39,6 @@ const Signin: FunctionComponent<SigninProps> = () => {
     if (user) {
       setUserDetails(user);
     }
-    dispatch(setLoginStatus(true));
   };
 
   return (

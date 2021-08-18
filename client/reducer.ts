@@ -8,7 +8,6 @@ import loadingReducer from './features/containers/containerSlices/isLoadingSlice
 import lightThemeReducer from './features/components/toggleTheme/toggleThemeSlice';
 import movieDataReducer from './features/components/search/searchMoviesSlice';
 import valueReducer from './features/components/search/searchSlices/valueSlice';
-import loginReducer from './features/components/login/signupslices/loginSlice';
 
 export const rootReducer = combineReducers({
   category: categoryReducer,
@@ -20,8 +19,6 @@ export const rootReducer = combineReducers({
   theme: lightThemeReducer,
   movieData: movieDataReducer,
   value: valueReducer,
-
-  isLoggedIn: loginReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

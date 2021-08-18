@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import { Popover } from 'antd';
+import 'antd/dist/antd.css';
 import { handleKeyPress } from '../../../utils/handleKeyPress';
 import { changeCategory } from '../../../appSlices/categorySlice';
 import { updatePages } from '../../../appSlices/pagesSlice';
@@ -12,16 +14,19 @@ import { setValue } from '../search/searchSlices/valueSlice';
 import ToggleTheme from '../toggleTheme/ToggleTheme';
 import './Navbar.scss';
 import { useUserContext } from '../../../contexts/UserContext';
-import { RootState } from 'client/reducer';
 import AvatarCircle from './AvatarCircle';
 import { isAuthenticated, logout } from '../../../utils/AuthService';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [visible, setVisible] = useState(true);
   const { userDetails } = useUserContext();
 
+  useEffect(() => {
+    setLoggedIn(isAuthenticated());
+  }, [userDetails]);
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setValue(''));
@@ -34,7 +39,12 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
+    setVisible(false);
     logout();
+  };
+
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
   };
   return (
     <div id='navbar'>
@@ -119,18 +129,46 @@ const Navbar = () => {
           </Link>
         )}
 
-        {!isHovered ? (
+        {!isHovered && isAuthenticated() ? (
           <ArrowDropDownIcon
             style={{ position: 'relative', bottom: '.1rem', width: '1rem' }}
             id='arrow'
           />
         ) : (
           <>
-            <ArrowDropUpIcon
-              style={{ position: 'relative', bottom: '.25rem', width: '1rem' }}
-              id='arrow'
-            />
-            {isAuthenticated() && <div onClick={handleLogOut}>logout</div>}
+            {loggedIn && isAuthenticated() && (
+              <div
+                style={{
+                  // marginLeft: buttonWidth,
+                  clear: 'both',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <Popover
+                  placement='bottom'
+                  title={`${userDetails.first_name} ${userDetails.last_name}`}
+                  content={
+                    <div className='popover-content'>
+                      <p id='popover-logout' onClick={handleLogOut}>
+                        Logout
+                      </p>
+                    </div>
+                  }
+                  trigger='hover'
+                  visible={visible}
+                  onVisibleChange={handleVisibleChange}
+                >
+                  <ArrowDropUpIcon
+                    style={{
+                      position: 'relative',
+                      bottom: '.25rem',
+                      width: '1rem',
+                    }}
+                    id='arrow'
+                  />
+                </Popover>
+              </div>
+            )}
           </>
         )}
       </div>

@@ -242,3 +242,17 @@ $primary-font: #212529;
   font-family: 'Courier New', monospace;
   font-weight: bold;
 }
+
+// .popover-content {
+//   position: relative;
+//   left: 65%;
+// }
+
+#popover-logout {
+  font-weight: 800;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(173, 181, 189, 0.25);
+  }
+}
