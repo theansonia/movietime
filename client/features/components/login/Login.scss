@@ -59,7 +59,7 @@ label {
 
 #signup-content {
   -webkit-border-radius: 6px;
-  margin: 8rem auto;
+  margin: 1rem auto;
   -moz-border-radius: 6px;
   border-radius: 6px;
   -webkit-box-sizing: border-box;
@@ -270,18 +270,35 @@ label {
     margin-top: 4rem;
   }
 }
+
+#email-signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 600px) {
+    // margin-top: 2.5rem;
+    // margin-top: 4rem;
+  }
+}
+
 .signup-now {
   color: $font;
   font-size: 1rem;
   font-weight: 500;
-  // margin-top: 0.5rem;
+  margin: 0;
   @media (min-width: 600px) {
     font-size: 0.75rem;
   }
 }
+
 #click-signup {
   color: $primary-font;
+  font-size: 1rem;
   margin-left: 0.5rem;
+  @media (min-width: 600px) {
+    font-size: 0.75rem;
+  }
 }
 
 a {
@@ -522,6 +539,39 @@ a {
     max-width: 60%;
   }
 }
+.email-signup-form {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 8rem;
+  max-height: 8rem;
+  @media (min-width: 600px) {
+    max-width: 60%;
+    max-height: 6rem;
+    min-height: 6rem;
+  }
+}
 
 #email-form,
 #username-form {
@@ -534,10 +584,8 @@ a {
   min-height: 100vh;
   margin: 0 auto;
   color: $primary-font;
-  // margin: 2rem auto;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
+  margin: 50% auto;
+
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -560,7 +608,7 @@ a {
   background-color: $background;
   // align-items: center;
   // justify-content: flex-start;
-  height: 100vh;
+  // height: 100vh;
 
   @media (min-width: 600px) {
     // max-width: 32rem;
@@ -569,6 +617,9 @@ a {
     background-color: transparent;
     height: 70vh;
     width: 32rem;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
     // margin: 0 auto;
     // padding: 0;
   }

@@ -5,11 +5,10 @@ import isStrongPassword from 'validator/lib/isStrongPassword';
 import { useUserContext } from '../../../contexts/UserContext';
 import { setLoginStatus } from './signupslices/loginSlice';
 import { useEffect, useState } from 'react';
-import { fetchUser } from '../../../utils/fetchUser';
 import { deconstructUsername } from '../../../utils/deconstructUsername';
 import { handleShowClick } from '../../../utils/handleShowClick';
 import { RootState } from 'client/reducer';
-import { finishAuthentication } from '../../../utils/AuthService';
+import { finishAuthentication, signup } from '../../../utils/AuthService';
 
 export const Signup = ({ email, setEmail }) => {
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
@@ -78,7 +77,8 @@ export const Signup = ({ email, setEmail }) => {
     }
     const [first_name, last_name] = deconstructUsername(username);
     const data = { email, password, first_name, last_name };
-    const response = await fetchUser(data, 'create');
+    const response = await signup(data);
+
     if (response) {
       finishAuthentication(response);
     } else {
@@ -174,7 +174,7 @@ export const Signup = ({ email, setEmail }) => {
                       title='Show password'
                       className='password-toggle'
                       onClick={() => setLabel(handleShowClick(label))}
-                      style={{ marginLeft: label === 'HIDE' ? '.5rem' : '0' }}
+                      // style={{ marginLeft: label === 'HIDE' ? '.5rem' : '0' }}
                     >
                       {label}
                     </button>
@@ -197,6 +197,7 @@ export const Signup = ({ email, setEmail }) => {
               lowercase letter, 1 symbol and 1 number
             </div>
           )}
+          {signupError && <div>{signupError}</div>}
         </div>
       </div>
     </div>

@@ -15,6 +15,16 @@ router.post(
   }
 );
 
+router.post(
+  '/refresh',
+  // verifyController.verifyUser,
+  userController.refreshUser,
+  (_req, res) => {
+    const token = res.locals.token;
+    res.status(200).json({ user: res.locals.userObj, token });
+  }
+);
+
 // router.post(
 //   '/auth',
 //   userController.getFBUser,

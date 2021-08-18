@@ -1,8 +1,10 @@
 import decode from 'jwt-decode';
 export interface MyToken {
-  name: string;
+  email: string;
+  first_name: string;
+  last_name?: string;
   exp: number;
-  scope: any;
+  scope?: any;
   // whatever else is in the JWT.
 }
 export const getTokenExpirationDate = (token) => {

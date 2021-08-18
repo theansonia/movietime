@@ -1,9 +1,8 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import { handleKeyPress } from '../../../utils/handleKeyPress';
 import { changeCategory } from '../../../appSlices/categorySlice';
 import { updatePages } from '../../../appSlices/pagesSlice';
@@ -15,10 +14,11 @@ import './Navbar.scss';
 import { useUserContext } from '../../../contexts/UserContext';
 import { RootState } from 'client/reducer';
 import AvatarCircle from './AvatarCircle';
+import { isAuthenticated, logout } from '../../../utils/AuthService';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
+  const history = useHistory();
   const [isHovered, setIsHovered] = useState(false);
   const { userDetails } = useUserContext();
 
@@ -33,6 +33,9 @@ const Navbar = () => {
     setIsHovered(!isHovered);
   };
 
+  const handleLogOut = () => {
+    logout();
+  };
   return (
     <div id='navbar'>
       <Link to='/home' id='homebutton'>
@@ -107,7 +110,7 @@ const Navbar = () => {
         onMouseLeave={handleHover}
         title={userDetails.first_name}
       >
-        {isLoggedIn ? (
+        {isAuthenticated() && userDetails.first_name ? (
           <AvatarCircle initial={userDetails.first_name[0]} />
         ) : (
           // <FaceRoundedIcon id='profile' style={{ position: 'relative' }} />
@@ -122,10 +125,13 @@ const Navbar = () => {
             id='arrow'
           />
         ) : (
-          <ArrowDropUpIcon
-            style={{ position: 'relative', bottom: '.25rem', width: '1rem' }}
-            id='arrow'
-          />
+          <>
+            <ArrowDropUpIcon
+              style={{ position: 'relative', bottom: '.25rem', width: '1rem' }}
+              id='arrow'
+            />
+            {isAuthenticated() && <div onClick={handleLogOut}>logout</div>}
+          </>
         )}
       </div>
 

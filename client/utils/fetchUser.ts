@@ -1,3 +1,4 @@
+import { getToken, isAuthenticated } from './AuthService';
 import { checkBrowser } from './checkBrowser';
 
 export type User = {
@@ -14,28 +15,30 @@ interface UserData {
 export const fetchUser = (
   data: {
     email: string;
-    password: string;
+    password?: string;
     first_name?: string;
     last_name?: string;
   },
-  endpoint: string
+  endpoint: string,
+  options: RequestInit
 ): Promise<UserData> => {
-  const fetchUserData = async (data: {
-    email: string;
-    password: string;
-    first_name?: string;
-    last_name?: string;
-  }) => {
+  const fetchUserData = async () => {
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    if (isAuthenticated()) {
+      headers['Authorization'] = 'Bearer ' + getToken();
+    }
+
     try {
       const response = await fetch(`/signin/${endpoint}`, {
-        method: 'POST',
-        cache: 'no-cache',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
+        // method: 'POST',
+        // cache: 'no-cache',
+        // mode: 'cors',
+        headers,
+        ...options, // body data type must match "Content-Type" header
       });
       const userData = await response.json();
       return userData;
@@ -47,6 +50,6 @@ export const fetchUser = (
     }
   };
 
-  const user = fetchUserData(data);
+  const user = fetchUserData();
   return user;
 };

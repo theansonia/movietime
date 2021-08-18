@@ -6,7 +6,11 @@ import { fetchUser } from '../../../utils/fetchUser';
 import { setLoginStatus } from './signupslices/loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'client/reducer';
-import { finishAuthentication } from '../../../utils/AuthService';
+import {
+  finishAuthentication,
+  isAuthenticated,
+  login,
+} from '../../../utils/AuthService';
 export interface SigninProps {}
 
 const Signin: FunctionComponent<SigninProps> = () => {
@@ -20,7 +24,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (isLoggedIn) history.push('/home');
+    if (isAuthenticated()) history.push('/home');
   }, []);
 
   const handleSubmitOrClick = async () => {
@@ -28,7 +32,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
     const password = userDetails.password;
     const data = { email, password };
     history.push('./home');
-    const { user, token } = await fetchUser(data, 'get');
+    const { user, token } = await login(data);
 
     if (token) {
       finishAuthentication(token);
@@ -128,9 +132,9 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           title='Show password'
                           className='password-toggle'
                           onClick={() => setLabel(handleShowClick(label))}
-                          style={{
-                            marginLeft: label === 'HIDE' ? '.5rem' : '0',
-                          }}
+                          // style={{
+                          //   marginLeft: label === 'HIDE' ? '.5rem' : '0',
+                          // }}
                         >
                           {label}
                         </button>

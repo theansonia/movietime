@@ -44,7 +44,7 @@ export const Email: FunctionComponent<EmailProps> = ({
       </div>
 
       <form
-        className='emailform'
+        className='email-signup-form'
         onSubmit={(e: SyntheticEvent) => {
           e.preventDefault();
           handleEmailEntered();
@@ -67,7 +67,7 @@ export const Email: FunctionComponent<EmailProps> = ({
           </span>
         </div>
       </form>
-      <div id='signin-container'>
+      <div id='email-signup-container'>
         <div className='signup-now'>Already a Watchr?</div>
         <Link id='click-signup' to='/signin'>
           Sign in here.

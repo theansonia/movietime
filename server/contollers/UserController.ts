@@ -1,8 +1,8 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import db from '../models/UserModel';
-import createToken from '../utils/token';
-
+import { createToken } from '../utils/token';
+import { createRefreshToken } from '../utils/token';
 interface userControllerType {
   addUser: (
     req: express.Request,
@@ -11,6 +11,11 @@ interface userControllerType {
   ) => void;
 
   getUser: (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => void;
+  refreshUser: (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
@@ -39,14 +44,20 @@ const userController: userControllerType = {
     RETURNING *
   `;
     let { first_name, last_name, email, password } = req.body;
-    hashPassword(password, (err, hash) => {
+    hashPassword(password, (err: any, hash: any) => {
       if (err) throw err;
       password = hash;
       const queryParams = [first_name, last_name, email, password];
       db.query(postQuery, queryParams)
         .then(async (data: any) => {
-          const token = await createToken(data.rows[0]);
-          res.locals.newUser = { token: token };
+          const token = await createToken({ first_name, last_name, email });
+          const refreshToken = await createRefreshToken({
+            first_name,
+            last_name,
+            email,
+          });
+          res.locals.newUser = { token: refreshToken };
+          res.cookie('token', token);
           return next();
         })
         .catch((err: any) => {
@@ -75,7 +86,12 @@ const userController: userControllerType = {
         email,
         username,
       } = result.rows[0];
-      const token = await createToken(result.rows[0]);
+      const token = await createToken({ first_name, last_name, email });
+      const refreshToken = await createRefreshToken({
+        first_name,
+        last_name,
+        email,
+      });
       bcrypt
         .compare(password, result.rows[0].password)
         .then((res) => {
@@ -86,11 +102,49 @@ const userController: userControllerType = {
             email: email,
             username: username,
           };
-          response.locals.token = token;
+          response.locals.token = refreshToken;
+          response.cookie('token', token);
 
           return next();
         })
         .catch((err) => next({ error: err.message }));
+    });
+  },
+
+  refreshUser: (req, response, next) => {
+    let { email } = req.body;
+
+    const getQuery = `
+      SELECT user_id, first_name, last_name, email, username
+      FROM users
+      WHERE email = $1
+    `;
+    // SELECT movie_id FROM Favorites WHERE user_id = ?
+    const queryParams = [email];
+
+    db.query(getQuery, queryParams).then(async (result: any) => {
+      const {
+        user_id,
+        first_name,
+        last_name,
+        email,
+        username,
+      } = result.rows[0];
+      const token = await createToken({ first_name, last_name, email });
+
+      try {
+        response.locals.userObj = {
+          user_id: user_id,
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          username: username,
+        };
+        response.cookie('token', token);
+        return next();
+      } catch (err) {
+        next({ error: err.message });
+      }
     });
   },
 };
