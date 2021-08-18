@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { handleShowClick } from '../../../utils/handleShowClick';
 import { useUserContext } from '../../../contexts/UserContext';
@@ -6,13 +6,15 @@ import { fetchUser } from '../../../utils/fetchUser';
 import { setLoginStatus } from './signupslices/loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'client/reducer';
+import { finishAuthentication } from '../../../utils/AuthService';
 export interface SigninProps {}
 
 const Signin: FunctionComponent<SigninProps> = () => {
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
   const [label, setLabel] = useState('SHOW');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { userDetails } = useUserContext();
+  // const [password, setPassword] = useState('');
+  const [signupError, setSignUpError] = useState('');
   const { setUserDetails } = useUserContext();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,10 +24,21 @@ const Signin: FunctionComponent<SigninProps> = () => {
   }, []);
 
   const handleSubmitOrClick = async () => {
-    history.push('./home');
+    const email = userDetails.email;
+    const password = userDetails.password;
     const data = { email, password };
-    const userData = await fetchUser(data, 'get');
-    setUserDetails(userData);
+    history.push('./home');
+    const { user, token } = await fetchUser(data, 'get');
+
+    if (token) {
+      finishAuthentication(token);
+    } else {
+      setSignUpError('some kind of error');
+      return;
+    }
+    if (user) {
+      setUserDetails(user);
+    }
     dispatch(setLoginStatus(true));
   };
 
@@ -49,12 +62,17 @@ const Signin: FunctionComponent<SigninProps> = () => {
                   <div id='email-control'>
                     <input
                       type='text'
-                      name='userId'
+                      name='email'
                       id='userId'
                       className='nfText'
                       placeholder='Email address'
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={userDetails.email || ''}
+                      onChange={(e) =>
+                        setUserDetails({
+                          [e.target.name]: e.target.value,
+                          password: userDetails.password,
+                        })
+                      }
                       style={{ width: '12rem' }}
                     />
                   </div>
@@ -78,8 +96,13 @@ const Signin: FunctionComponent<SigninProps> = () => {
                           autoComplete='password'
                           className='nfText'
                           placeholder='Password'
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
+                          value={userDetails.password || ''}
+                          onChange={(e) =>
+                            setUserDetails({
+                              [e.target.name]: e.target.value,
+                              email: userDetails.email,
+                            })
+                          }
                           onFocus={() => {
                             const show = document.getElementById(
                               'signin-password-toggle'

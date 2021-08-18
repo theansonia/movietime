@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './reducer';
 import { setSearchStatus } from './appSlices/searchStatusSlice';
 import Signin from './features/components/login/Siginin';
+import { getTokenExpirationDate } from './utils/jwtHelper';
 
 export default function App(): JSX.Element {
   const [badPathsForSearch] = useState(['registration', 'signin']);

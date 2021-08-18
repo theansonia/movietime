@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import validator from 'validator';
 import isStrongPassword from 'validator/lib/isStrongPassword';
-
 import { useUserContext } from '../../../contexts/UserContext';
 import { setLoginStatus } from './signupslices/loginSlice';
 import { useEffect, useState } from 'react';
@@ -10,6 +9,7 @@ import { fetchUser } from '../../../utils/fetchUser';
 import { deconstructUsername } from '../../../utils/deconstructUsername';
 import { handleShowClick } from '../../../utils/handleShowClick';
 import { RootState } from 'client/reducer';
+import { finishAuthentication } from '../../../utils/AuthService';
 
 export const Signup = ({ email, setEmail }) => {
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn.value);
@@ -17,6 +17,7 @@ export const Signup = ({ email, setEmail }) => {
   const [username, setUsername] = useState('');
   const [label, setLabel] = useState('SHOW');
   const [badPassword, setBadPassword] = useState(false);
+  const [signupError, setSignUpError] = useState('');
   const { setUserDetails } = useUserContext();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -77,9 +78,14 @@ export const Signup = ({ email, setEmail }) => {
     }
     const [first_name, last_name] = deconstructUsername(username);
     const data = { email, password, first_name, last_name };
-    const userData = await fetchUser(data, 'create');
-
-    setUserDetails(userData);
+    const response = await fetchUser(data, 'create');
+    if (response) {
+      finishAuthentication(response);
+    } else {
+      setSignUpError('some kind of error');
+      return;
+    }
+    setUserDetails(data);
     dispatch(setLoginStatus(true));
     history.push('./home');
   };

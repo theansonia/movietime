@@ -10,7 +10,8 @@ router.post(
   // verifyController.verifyUser,
   userController.getUser,
   (_req, res) => {
-    res.status(200).json(res.locals.userObj);
+    const token = res.locals.token;
+    res.status(200).json({ user: res.locals.userObj, token });
   }
 );
 

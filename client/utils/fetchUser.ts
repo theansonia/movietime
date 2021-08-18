@@ -1,5 +1,16 @@
 import { checkBrowser } from './checkBrowser';
 
+export type User = {
+  user: {};
+};
+export type Token = {
+  token: {};
+};
+
+interface UserData {
+  user: {};
+  token: { Token };
+}
 export const fetchUser = (
   data: {
     email: string;
@@ -8,7 +19,7 @@ export const fetchUser = (
     last_name?: string;
   },
   endpoint: string
-): {} => {
+): Promise<UserData> => {
   const fetchUserData = async (data: {
     email: string;
     password: string;
