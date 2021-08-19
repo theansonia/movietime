@@ -47,15 +47,6 @@ export const Signup = ({ email, setEmail }) => {
       return;
     }
 
-    console.log(
-      isStrongPassword(password, {
-        minLength: 8,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-    );
     if (
       !isStrongPassword(password, {
         minLength: 8,

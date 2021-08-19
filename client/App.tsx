@@ -42,7 +42,8 @@ export default function App(): JSX.Element {
   useEffect(() => {
     const doRefresh = async () => {
       const response = await refreshUser();
-      setUserDetails(response.user);
+      if (response) setUserDetails(response.user);
+      else return;
     };
 
     doRefresh();

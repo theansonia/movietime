@@ -13,31 +13,33 @@ export interface SigninProps {}
 const Signin: FunctionComponent<SigninProps> = () => {
   const [label, setLabel] = useState('SHOW');
   const { userDetails } = useUserContext();
-  // const [password, setPassword] = useState('');
-  const [signupError, setSignUpError] = useState('');
+  const [signupError, setSignUpError] = useState(null);
   const { setUserDetails } = useUserContext();
-  const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
     if (isAuthenticated()) history.push('/home');
   }, []);
 
+  console.log(signupError);
   const handleSubmitOrClick = async () => {
     const email = userDetails.email;
     const password = userDetails.password;
     const data = { email, password };
-    history.push('./home');
-    const { user, token } = await login(data);
 
-    if (token) {
-      finishAuthentication(token);
+    // const { user, token } = await login(data);
+    const response = await login(data);
+    // console.log(response);
+    if (response.token) {
+      finishAuthentication(response.token);
     } else {
-      setSignUpError('some kind of error');
-      return;
+      console.log(response);
+      setSignUpError(response);
     }
-    if (user) {
-      setUserDetails(user);
+    if (response.user) {
+      history.push('./home');
+      setUserDetails(response.user);
+      setSignUpError(null);
     }
   };
 
@@ -154,6 +156,22 @@ const Signin: FunctionComponent<SigninProps> = () => {
               </Link>
             </div>
           </div>
+          {signupError && (
+            <div
+              // id='newsignup-container'
+              style={{
+                backgroundColor: '#faba3e',
+                color: 'white',
+                padding: '10px 20px',
+                borderRadius: '4px',
+                fontSize: '14px',
+                margin: ' 24px 0 12px',
+                width: '12rem',
+              }}
+            >
+              <div>Incorrect password. Please try again!</div>
+            </div>
+          )}
         </div>
       </div>
     </div>

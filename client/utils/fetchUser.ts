@@ -1,4 +1,4 @@
-import { getToken, isAuthenticated } from './AuthService';
+import { checkStatus, getToken, isAuthenticated } from './AuthService';
 import { checkBrowser } from './checkBrowser';
 
 export type User = {
@@ -10,7 +10,7 @@ export type Token = {
 
 interface UserData {
   user: {};
-  token: { Token };
+  token: { Token: any };
 }
 export const fetchUser = (
   data: {
@@ -40,8 +40,15 @@ export const fetchUser = (
         headers,
         ...options, // body data type must match "Content-Type" header
       });
-      const userData = await response.json();
-      return userData;
+
+      const status = await checkStatus(response);
+
+      if (status instanceof Error === false) {
+        const userData = await response.json();
+        return userData;
+      } else {
+        return status;
+      }
     } catch (err) {
       // catches errors both in fetch and response.json
       console.log('error creating and fetching user details', err);

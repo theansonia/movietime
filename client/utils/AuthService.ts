@@ -65,10 +65,7 @@ export const logout = () => {
   deleteCookie('token');
 };
 
-export const _checkStatus = (response: {
-  status: number;
-  statusText: string;
-}) => {
+export const checkStatus = (response: Response) => {
   // raises an error in case response status is not a success
   if (response.status >= 200 && response.status < 300) {
     return response;

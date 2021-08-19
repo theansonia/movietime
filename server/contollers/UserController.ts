@@ -95,17 +95,21 @@ const userController: userControllerType = {
       bcrypt
         .compare(password, result.rows[0].password)
         .then((res) => {
-          response.locals.userObj = {
-            user_id: user_id,
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            username: username,
-          };
-          response.locals.token = refreshToken;
-          response.cookie('token', token);
-
-          return next();
+          if (res) {
+            response.locals.userObj = {
+              user_id: user_id,
+              first_name: first_name,
+              last_name: last_name,
+              email: email,
+              username: username,
+            };
+            response.locals.token = refreshToken;
+            response.cookie('token', token);
+            return next();
+          } else {
+            response.status(401).send('The password does not match');
+            // return next();
+          }
         })
         .catch((err) => next({ error: err.message }));
     });

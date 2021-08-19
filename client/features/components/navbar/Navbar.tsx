@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   const handleVisibleChange = (visible) => {
-    setVisible(visible);
+    setVisible(!visible);
   };
   return (
     <div id='navbar'>
