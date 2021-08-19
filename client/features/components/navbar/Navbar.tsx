@@ -24,7 +24,6 @@ const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const { userDetails } = useUserContext();
 
-  console.log(loggedIn);
   useEffect(() => {
     setLoggedIn(isAuthenticated());
   }, [userDetails]);
@@ -35,17 +34,16 @@ const Navbar = () => {
     dispatch(setSearchStatus(false));
   };
 
-  const handleHover = () => {
-    setIsHovered(!isHovered);
-  };
+  // const handleHover = () => {
+  //   setIsHovered(!isHovered);
+  // };
 
   const handleLogOut = () => {
-    setVisible(false);
     setLoggedIn(false);
     logout();
   };
 
-  const handleVisibleChange = (visible) => {
+  const handleVisibleChange = (visible: boolean) => {
     setVisible(!visible);
   };
   return (
@@ -118,8 +116,12 @@ const Navbar = () => {
 
       <div
         className='signin'
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHover}
+        onMouseEnter={() => {
+          setIsHovered(true);
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+        }}
       >
         {isAuthenticated() && userDetails.first_name ? (
           <AvatarCircle initial={userDetails.first_name[0]} />

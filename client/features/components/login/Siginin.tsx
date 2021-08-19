@@ -36,9 +36,9 @@ const Signin: FunctionComponent<SigninProps> = () => {
       setSignUpError(response);
     }
     if (response.user) {
+      setSignUpError(null);
       history.push('./home');
       setUserDetails(response.user);
-      setSignUpError(null);
     }
   };
 
