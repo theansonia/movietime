@@ -258,8 +258,8 @@ label {
 }
 
 #signin-button-container {
-  margin: 12px 0 0px;
-  width: 12rem;
+  margin: 12px 0 0px 15px;
+  width: 2rem;
   height: 0px;
   @media (min-width: 600px) {
     margin: 12px 0 0px;
@@ -383,7 +383,7 @@ a {
     // width: 100%;
     font-size: 1rem;
 
-    padding: 10px 11px;
+    // padding: 10px 11px;
   }
   // padding-left: 1rem;
   &::placeholder {
@@ -420,6 +420,10 @@ a {
   border-width: 2px;
   border-image: initial;
   width: 12rem;
+
+  @media (min-width: 600px) {
+    padding-top: 11px;
+  }
 }
 
 .loginwrapper {
@@ -465,6 +469,7 @@ a {
   text-overflow: ellipsis;
   font-size: 0.5rem;
   text-indent: 0.4rem;
+  line-height: 1rem;
 }
 
 #log {
@@ -802,7 +807,7 @@ a {
   position: relative;
   left: 8rem;
   @media (min-width: 600px) {
-    bottom: 2rem;
+    bottom: 1.9rem;
     left: 9rem;
   }
 }

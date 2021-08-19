@@ -138,7 +138,11 @@ const Signin: FunctionComponent<SigninProps> = () => {
                   </div>
                 </div>
                 <div id='signin-button-container' onClick={handleSubmitOrClick}>
-                  <button type='button' className='signin-button'>
+                  <button
+                    type='button'
+                    className='signin-button'
+                    id='signin-button'
+                  >
                     Sign In
                   </button>
                 </div>

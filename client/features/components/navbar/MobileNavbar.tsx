@@ -40,7 +40,7 @@ export const MobileNavbar = () => {
 
   useEffect(() => {
     if (pathname === '/signin') {
-      dispatch(changeCategory('Movies and TV Show'));
+      dispatch(changeCategory(null));
     }
   }, [pathname]);
 
