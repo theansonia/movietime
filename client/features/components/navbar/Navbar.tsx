@@ -24,6 +24,7 @@ const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const { userDetails } = useUserContext();
 
+  console.log(loggedIn);
   useEffect(() => {
     setLoggedIn(isAuthenticated());
   }, [userDetails]);
@@ -40,6 +41,7 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     setVisible(false);
+    setLoggedIn(false);
     logout();
   };
 
@@ -118,7 +120,6 @@ const Navbar = () => {
         className='signin'
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}
-        title={userDetails.first_name}
       >
         {isAuthenticated() && userDetails.first_name ? (
           <AvatarCircle initial={userDetails.first_name[0]} />

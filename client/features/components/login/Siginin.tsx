@@ -33,7 +33,6 @@ const Signin: FunctionComponent<SigninProps> = () => {
     if (response.token) {
       finishAuthentication(response.token);
     } else {
-      console.log(response);
       setSignUpError(response);
     }
     if (response.user) {
