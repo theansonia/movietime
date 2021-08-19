@@ -256,3 +256,7 @@ $primary-font: #212529;
     background-color: rgba(173, 181, 189, 0.25);
   }
 }
+
+.grow-left > * {
+  direction: ltr;
+}

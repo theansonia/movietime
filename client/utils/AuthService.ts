@@ -97,7 +97,8 @@ export async function refreshUser() {
   if (!token) {
     token = localStorage.getItem('token');
   }
-  if (token && !isTokenExpired(token)) {
+
+  if (token) {
     const decoded = decode<MyToken>(token);
     const response = await refresh(decoded);
     return response;

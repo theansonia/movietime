@@ -23,7 +23,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
 
   console.log(signupError);
   const handleSubmitOrClick = async () => {
-    const email = userDetails.email;
+    const email = userDetails.email.toLowerCase();
     const password = userDetails.password;
     const data = { email, password };
 

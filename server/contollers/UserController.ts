@@ -79,6 +79,7 @@ const userController: userControllerType = {
     const queryParams = [email];
 
     db.query(getQuery, queryParams).then(async (result: any) => {
+      console.log(result.rows[0]);
       const {
         user_id,
         first_name,

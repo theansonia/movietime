@@ -20,6 +20,7 @@ import { RootState } from './reducer';
 import { setSearchStatus } from './appSlices/searchStatusSlice';
 import Signin from './features/components/login/Siginin';
 import { isTokenExpired, MyToken } from './utils/jwtHelper';
+
 import {
   deleteCookie,
   getCookie,
@@ -27,10 +28,14 @@ import {
   refreshUser,
 } from './utils/AuthService';
 import { useUserContext } from './contexts/UserContext';
+import { handleShowClick } from './utils/handleShowClick';
+import { MobileNavbar } from './features/components/navbar/MobileNavbar';
 
 export default function App(): JSX.Element {
   const { setUserDetails } = useUserContext();
   const [badPathsForSearch] = useState(['registration', 'signin']);
+  const [windowDimension, setWindowDimension] = useState(null);
+  const [isMobile, setIsMobile] = useState(windowDimension <= 640);
   const searchButton = useRef();
   const history = useHistory();
   const { pathname } = useLocation();
@@ -40,6 +45,12 @@ export default function App(): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setWindowDimension(window.innerWidth);
+    if (windowDimension <= 640) setIsMobile(true);
+    else setIsMobile(false);
+    const handleResize = () => {
+      setWindowDimension(window.innerWidth);
+    };
     const doRefresh = async () => {
       const response = await refreshUser();
       if (response) setUserDetails(response.user);
@@ -47,9 +58,16 @@ export default function App(): JSX.Element {
     };
 
     doRefresh();
+    window.addEventListener('resize', handleResize);
 
-    return;
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (windowDimension <= 640) setIsMobile(true);
+    else setIsMobile(false);
+  }, [windowDimension]);
+
   useEffect(() => {
     document.addEventListener('click', () => {
       if (document.activeElement !== searchButton.current) {
@@ -84,7 +102,7 @@ export default function App(): JSX.Element {
 
   return (
     <>
-      <Navbar />
+      {!isMobile ? <Navbar /> : <MobileNavbar />}
 
       <Switch>
         <Route path='/movies'>
@@ -105,7 +123,7 @@ export default function App(): JSX.Element {
       <Route exact path='/'>
         <Redirect to='/home' />
       </Route>
-      {!badPathsForSearch.some((v) => pathname.includes(v)) && (
+      {!badPathsForSearch.some((v) => pathname.includes(v)) && !isMobile && (
         <SearchButton ref={searchButton} />
       )}
     </>

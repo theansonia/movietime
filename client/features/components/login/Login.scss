@@ -245,10 +245,15 @@ label {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 700;
-  margin: 24px 0 12px;
-  height: 2rem;
-  width: 100%;
+  margin: 24px 0 0 12px;
+  width: 12rem;
+  height: 50px;
+  color: $primary-font;
   background: #ef7763;
+  @media (min-width: 600px) {
+    margin: 12px 0 12px;
+    width: 100%;
+  }
 }
 
 #newsignup-container {
@@ -482,6 +487,7 @@ a {
   margin: 0 auto;
   font-size: 2rem;
   text-align: center;
+  color: $primary-font;
   @media (min-width: 600px) {
     font-size: 2rem;
   }
@@ -493,6 +499,7 @@ a {
   font-size: 1rem;
   font-weight: 400;
   text-align: center;
+  color: $primary-font;
   @media (min-width: 600px) {
     font-size: 1.5rem;
   }
@@ -631,6 +638,7 @@ a {
   text-align: center;
   font-weight: 300;
   font-size: 0.8rem;
+  color: $primary-font;
   @media (min-width: 600px) {
     font-size: 0.5em;
   }
@@ -700,14 +708,18 @@ a {
 #getstartedbtn {
   position: relative;
   border: 1px solid #333;
-  align-items: flex-end;
+  // align-items: flex-end;
   font-size: 0.5rem;
   height: 50px;
   width: 13rem;
   bottom: 0.15rem;
+  margin: 0 auto;
+  margin-top: 01rem;
+  color: $primary-font;
   &:hover {
     cursor: pointer;
     height: 50px;
+    margin: 0 auto;
   }
 }
 
@@ -752,22 +764,27 @@ a {
 }
 
 #signup-password-toggle {
-  top: 25rem;
-  left: 15rem;
+  position: relative;
+  bottom: 3rem;
+  left: 8rem;
   @media (min-width: 600px) {
     // position: relative;
-    top: 21.5rem;
-    left: 35.7rem;
+    bottom: 2rem;
+    left: 9rem;
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 #signin-password-toggle {
-  top: 16.35rem;
-  left: 15rem;
+  bottom: 3rem;
+  position: relative;
+  left: 8rem;
   @media (min-width: 600px) {
-    // position: relative;
-    top: 14.9rem;
-    left: 35.5rem;
+    bottom: 2rem;
+    left: 9rem;
   }
 }
 .regdivider {

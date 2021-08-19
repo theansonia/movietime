@@ -38,7 +38,6 @@ export const Signup = ({ email, setEmail }) => {
       const input = (document.getElementById(
         'emailinput'
       ) as unknown) as HTMLInputElement;
-      console.log(input);
       input.placeholder = 'Please enter a proper email address';
       const addCSS = document.createElement('style');
       addCSS.innerHTML = '::placeholder { color: red; }';
@@ -91,7 +90,7 @@ export const Signup = ({ email, setEmail }) => {
               <h1 id='signupheader1'>
                 Create a password to start your account
               </h1>
-              <p id='signuppar' style={{ fontSize: '.4rem' }}>
+              <p id='signuppar'>
                 Just a few more steps and you're done! We hate paperwork, too.
               </p>
             </div>
@@ -132,7 +131,7 @@ export const Signup = ({ email, setEmail }) => {
                       className='nfText'
                       placeholder='Email address'
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value.toLowerCase())}
                     />
                   </div>
                 </form>
