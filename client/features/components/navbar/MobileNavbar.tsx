@@ -40,9 +40,10 @@ export const MobileNavbar = () => {
 
   useEffect(() => {
     if (pathname === '/signin') {
-      dispatch(changeCategory(null));
+      dispatch(changeCategory('Movies and TV Show'));
     }
   }, [pathname]);
+
   useEffect(() => {
     if (isAuthenticated()) {
       setTitle(<Title>{`${userDetails.first_name}`}</Title>);

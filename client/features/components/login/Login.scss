@@ -205,9 +205,10 @@ label {
 
 .signin-form-container {
   max-width: 100%;
-  @media (min-width: 600px) {
-    margin: 0 auto;
-  }
+  margin: 0 auto;
+  // @media (min-width: 600px) {
+  //   margin: 0 auto;
+  // }
 }
 
 .signup-form-container {
@@ -245,13 +246,23 @@ label {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 700;
-  margin: 24px 0 0 12px;
+  margin: 24px 0 12px;
   width: 12rem;
   height: 50px;
   color: $primary-font;
   background: #ef7763;
   @media (min-width: 600px) {
     margin: 12px 0 12px;
+    width: 100%;
+  }
+}
+
+#signin-button-container {
+  margin: 12px 0 0px;
+  width: 12rem;
+  height: 0px;
+  @media (min-width: 600px) {
+    margin: 12px 0 0px;
     width: 100%;
   }
 }
@@ -291,12 +302,20 @@ label {
   color: $font;
   font-size: 1rem;
   font-weight: 500;
-  margin: 0;
+  margin: 8rem 0 0 0;
   @media (min-width: 600px) {
     font-size: 0.75rem;
+    margin: 2rem 0 0 0;
   }
 }
 
+#alreadwatchr {
+  margin: 0;
+  @media (min-width: 600px) {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+}
 #click-signup {
   color: $primary-font;
   font-size: 1rem;

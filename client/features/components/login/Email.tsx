@@ -68,7 +68,9 @@ export const Email: FunctionComponent<EmailProps> = ({
         </div>
       </form>
       <div id='email-signup-container'>
-        <div className='signup-now'>Already a Watchr?</div>
+        <div className='signup-now' id='alreadwatchr'>
+          Already a Watchr?
+        </div>
         <Link id='click-signup' to='/signin'>
           Sign in here.
         </Link>

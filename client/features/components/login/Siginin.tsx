@@ -21,15 +21,14 @@ const Signin: FunctionComponent<SigninProps> = () => {
     if (isAuthenticated()) history.push('/home');
   }, []);
 
-  console.log(signupError);
   const handleSubmitOrClick = async () => {
     const email = userDetails.email.toLowerCase();
     const password = userDetails.password;
     const data = { email, password };
-
     // const { user, token } = await login(data);
+
     const response = await login(data);
-    // console.log(response);
+
     if (response.token) {
       finishAuthentication(response.token);
     } else {
@@ -77,7 +76,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
                     />
                   </div>
                 </form>
-                <div className='signin-form-container'>
+                <div className='signin-form-container' id='password-container'>
                   <div className='input-placement'>
                     <form
                       className='signin-form'
@@ -138,14 +137,11 @@ const Signin: FunctionComponent<SigninProps> = () => {
                     </form>
                   </div>
                 </div>
-
-                <button
-                  type='button'
-                  className='signin-button'
-                  onClick={handleSubmitOrClick}
-                >
-                  Sign In
-                </button>
+                <div id='signin-button-container' onClick={handleSubmitOrClick}>
+                  <button type='button' className='signin-button'>
+                    Sign In
+                  </button>
+                </div>
               </div>
             </div>
             <div id='newsignup-container'>
