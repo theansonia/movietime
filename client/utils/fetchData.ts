@@ -27,7 +27,7 @@ export const fetchDetails = async (query: RequestInfo) => {
   const uri = `https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
   const URL = encodeURI(uri);
-  console.log(process.env.REACT_APP_MOVIE_API_KEY, process.env.SECRET_KEY);
+
   try {
     const response = await fetch(URL);
     const data = await response.json();
@@ -105,7 +105,7 @@ export const fetchTrending = async (type: string, pages: number) => {
     URI = `https://api.themoviedb.org/3/${type}/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
   }
   const URL = encodeURI(URI);
-
+  console.log(process.env.REACT_APP_MOVIE_API_KEY, process.env.SECRET_KEY);
   try {
     const res = await fetch(URL);
     const data = await res.json();
