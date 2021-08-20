@@ -21,7 +21,6 @@ export function createToken(user) {
   // if (user.admin) {
   //   scope = 'admin';
   // }
-  console.log(process.env.SECRET_KEY);
   // Sign the JWT
   return jwt.sign(
     {

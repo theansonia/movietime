@@ -1,9 +1,8 @@
 import { sortResults } from './sortResults';
+// import dotenv from 'dotenv';
+// dotenv.config();
 
-let REACT_APP_MOVIE_API_KEY;
-if (process.env.NODE_ENV !== 'production') {
-  REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-}
+const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
 export interface Result {
   poster_path?: string;
@@ -99,13 +98,14 @@ export const fetchContent = async (
 
 export const fetchTrending = async (type: string, pages: number) => {
   let URI: string;
+  console.log(REACT_APP_MOVIE_API_KEY, process.env);
   if (type === 'multi') {
     URI = `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
   } else {
     URI = `https://api.themoviedb.org/3/${type}/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
   }
   const URL = encodeURI(URI);
-  console.log(process.env);
+
   try {
     const res = await fetch(URL);
     const data = await res.json();

@@ -12,11 +12,6 @@ import MovieContainer from '../../containers/MovieContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 import { useHistory } from 'react-router';
 // import { updateMovieData } from './searchMoviesSlice';
-
-let REACT_APP_MOVIE_API_KEY;
-if (process.env.NODE_ENV !== 'production') {
-  REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-}
 export interface DataResults {
   poster_path: string;
   page: number;

@@ -12,11 +12,6 @@ import { Details } from '../../types';
 import { MoviePrevResults } from '../../utils/sortResults';
 import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchData';
 import { handleMovieOrShowClick } from '../../utils/handleMovieOrShowClick';
-
-let REACT_APP_MOVIE_API_KEY;
-if (process.env.NODE_ENV !== 'production') {
-  REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-}
 interface PropsInterface extends RouteComponentProps<{ title: string }> {
   location: RouteProps['location'];
   children: RouteProps['children'];

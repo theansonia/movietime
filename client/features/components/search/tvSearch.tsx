@@ -10,11 +10,6 @@ import TVContainer from '../../containers/TVContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 import { useHistory } from 'react-router';
 
-let REACT_APP_MOVIE_API_KEY;
-if (process.env.NODE_ENV !== 'production') {
-  REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-}
-
 export type TVPrevResults = {
   adult?: boolean;
   backdrop_path?: string;
