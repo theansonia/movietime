@@ -16,7 +16,7 @@ export const doAuthentication = (
   },
   endpoint: string
 ) => {
-  return fetchUser(values, `/${endpoint}`, {
+  return fetchUser(values, `${endpoint}`, {
     method: 'POST',
     body: JSON.stringify(values),
   });
@@ -59,9 +59,11 @@ export const isAdmin = () => {
 export const finishAuthentication = (token: {}) => {
   localStorage.setItem('token', JSON.stringify(token));
 };
+
 export const logout = () => {
   // Clear user token and profile data from localStorage
   localStorage.removeItem('token');
+  console.log('here');
   deleteCookie('token');
   sessionStorage.removeItem('state');
 };
@@ -93,15 +95,22 @@ export function deleteCookie(name: string) {
   }
 }
 
-export async function refreshUser() {
-  let token = getCookie('token');
-  if (!token) {
-    token = localStorage.getItem('token');
-  }
+export const refreshUser = async () => {
+  let response;
 
-  if (token) {
-    const decoded = decode<MyToken>(token);
-    const response = await refresh(decoded);
+  try {
+    let token = await getCookie('token');
+    if (!token) {
+      token = await localStorage.getItem('token');
+    }
+
+    if (token) {
+      const decoded = decode<MyToken>(token);
+      response = await refresh(decoded);
+      return response;
+    }
+  } catch {
     return response;
+  } finally {
   }
-}
+};

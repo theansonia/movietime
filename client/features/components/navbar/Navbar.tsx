@@ -73,6 +73,7 @@ const Navbar = () => {
   return (
     <LaptopNavbar>
       <FirstNavContainer>
+        <Watchr>WATCHR</Watchr>
         <Link to='/home' id='homebutton'>
           <div
             data-testid='homebtn'
@@ -231,17 +232,23 @@ const LaptopNavbar = styled.div`
   z-index: 99;
   place-items: center;
 `;
+const Watchr = styled.div`
+  color: #ef7763;
+  font-weight: bold;
+  justify-self: flex-start;
+  font-size: 2rem;
+`;
 const FirstNavContainer = styled.div`
   display: flex;
   place-items: center;
-  gap: 1rem;
+  gap: 2rem;
   justify-self: flex-start;
   margin-left: 4rem;
 `;
 const SecondNavContainer = styled.div`
   position: relative;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   place-items: center;
   justify-self: flex-end;
   margin-right: 3.5rem;

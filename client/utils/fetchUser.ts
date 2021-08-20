@@ -42,7 +42,6 @@ export const fetchUser = (
       });
 
       const status = await checkStatus(response);
-
       if (status instanceof Error === false) {
         const userData = await response.json();
         return userData;

@@ -15,6 +15,7 @@ import { handleKeyPress } from '../../../utils/handleKeyPress';
 import './Navbar.scss';
 import { MobileSearch } from '../searchbutton/MobileSearch';
 import { RootState } from 'client/reducer';
+import { setLightTheme } from '../toggleTheme/toggleThemeSlice';
 
 export interface MobileNavbarProps {}
 
@@ -37,12 +38,22 @@ export const MobileNavbar = () => {
   const category = useSelector((state: RootState) => state.category.value);
   const { userDetails } = useUserContext();
   const history = useHistory();
+  const theme = useSelector((state: RootState) => state.theme.value);
+  const [localTheme, setLocalTheme] = useState(null);
 
   useEffect(() => {
     if (pathname === '/signin') {
       dispatch(changeCategory(null));
     }
   }, [pathname]);
+
+  useEffect(() => {
+    if (theme === 'lightmode') {
+      setLocalTheme('darkmode');
+    } else {
+      setLocalTheme('lightmode');
+    }
+  }, [theme]);
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -139,6 +150,12 @@ export const MobileNavbar = () => {
           marginTop: '2.5rem',
         }}
         className='drawer'
+        footer='WATCHR'
+        footerStyle={{
+          color: '#ef7763',
+          fontSize: '1.5rem',
+          fontWeight: 'bold',
+        }}
       >
         {isAuthenticated() ? (
           <Item
@@ -216,6 +233,24 @@ export const MobileNavbar = () => {
         >
           TV
         </Item>
+        <Item
+          onClick={() => {
+            handleClose();
+            dispatch(setLightTheme(localTheme));
+          }}
+          onKeyDown={handleKeyPress}
+          role='button'
+          tabIndex={5}
+          key='5'
+          title='theme'
+          category={category}
+          // style={{ color: 'blue' }}
+          style={{
+            color: theme === 'darkmode' ? '#49eafe' : '#212529',
+          }}
+        >
+          {theme === 'lightmode' ? 'Dark Mode' : 'Light Mode'}
+        </Item>
       </Drawer>
     </MobileWrapper>
   );
@@ -248,7 +283,6 @@ const Item = styled.p<{ category: string; title: string }>`
   font-size: 1rem;
   margin: 0;
   padding: 0;
-
   &:hover {
     background-color: #adb5bd;
   }

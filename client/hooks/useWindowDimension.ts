@@ -16,17 +16,11 @@ export const useWindowDimension = () => {
     const handleResize = () => {
       setWindowDimension(window.innerWidth);
     };
-    const doRefresh = async () => {
-      const response = await refreshUser();
-      if (response) setUserDetails(response.user);
-      else return;
-    };
 
-    doRefresh();
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
-  });
+  }, [window.innerWidth]);
 
   useEffect(() => {
     if (windowDimension <= 640) setIsMobile(true);

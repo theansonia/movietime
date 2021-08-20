@@ -24,12 +24,12 @@ export const Email: FunctionComponent<EmailProps> = ({
       const input = (document.getElementsByName(
         'email'
       ) as unknown) as HTMLInputElement;
-      console.log(input);
-      input[0].placeholder = 'Please enter a proper email address';
+      const i = (input[0] as unknown) as HTMLInputElement;
+      i.placeholder = 'Please enter a proper email address';
       const addCSS = document.createElement('style');
       addCSS.innerHTML = '::placeholder { color: red; }';
-      input[0].append(addCSS);
-      input[0].value = '';
+      i.append(addCSS);
+      i.value = '';
       return;
     }
   };

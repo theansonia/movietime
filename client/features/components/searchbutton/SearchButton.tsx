@@ -61,7 +61,7 @@ export const SearchButton: React.SFC<SearchProps> = ({
 };
 
 const SearchBox = styled.input<{ isOpen: boolean }>`
-  width: ${(p) => (p.isOpen ? '100%' : '4rem')};
+  width: ${(p) => (p.isOpen ? '150%' : '4rem')};
   transition: all 0.75s;
   background-color: #f8f9fa;
   border-radius: 6px;
@@ -74,12 +74,15 @@ const SearchBox = styled.input<{ isOpen: boolean }>`
     font-size: xx-small;
     margin: 0;
     text-indent: 0px;
+  
+   
   }
-  :-ms-input-placeholder {
+  ::-ms-input-placeholder {
      color: #212529;
      font-size: xx-small;
      margin: 0;
      text-indent: 0px;
+     
   }
 }
 `;

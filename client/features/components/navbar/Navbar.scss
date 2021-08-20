@@ -235,3 +235,7 @@ $primary-font: #212529;
 .grow-left > * {
   direction: ltr;
 }
+
+.ant-drawer-body {
+  margin-top: -1rem;
+}

@@ -77,7 +77,6 @@ export const Signup = ({ email, setEmail }) => {
       return;
     }
     setUserDetails(data);
-
     history.push('./home');
   };
 
