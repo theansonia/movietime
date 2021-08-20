@@ -13,47 +13,48 @@ export const useLocationHistory = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    history.listen((location) => {
+    history.listen(async (location) => {
       if (history.action === 'PUSH') {
         setLocationKeys([location.key]);
       }
 
       if (history.action === 'POP') {
-        const state = JSON.parse(sessionStorage.getItem('state'));
+        const state = await JSON.parse(sessionStorage.getItem('state'));
+        resetState(state);
         setPersistentState(state);
-
         if (locationKeys[1] === location.key) {
           setLocationKeys(([_, ...keys]) => keys);
 
           // Handle forward event
         } else {
           setLocationKeys((keys) => [location.key, ...keys]);
-
           // Handle back event
         }
       }
     });
   }, [locationKeys]);
 
-  useEffect(() => {
-    if (persistentState) {
-      if (persistentState.query) dispatch(setQuery(persistentState.query));
-      if (persistentState.hasMore)
-        dispatch(updateHasMore(persistentState.hasMore));
-      if (persistentState.pages)
-        dispatch(updatePages(persistentState.pages.value));
-      if (persistentState.category)
-        dispatch(updatePages(persistentState.category.value));
-      if (persistentState.isLoading)
+  const resetState = (state: {
+    query: string;
+    hasMore: { value: boolean };
+    pages: { value: number };
+    category: { value: number };
+    isLoading: { value: number };
+    theme: { value: number };
+    movieData: number;
+    value: { value: number };
+  }) => {
+    if (state) {
+      if (state.query) dispatch(setQuery(state.query));
+      if (state.hasMore) dispatch(updateHasMore(persistentState.hasMore));
+      if (state.pages) dispatch(updatePages(persistentState.pages.value));
+      if (state.category) dispatch(updatePages(persistentState.category.value));
+      if (state.isLoading)
         dispatch(updatePages(persistentState.isLoading.value));
-      if (persistentState.theme)
-        dispatch(updatePages(persistentState.theme.value));
-      if (persistentState.movieData)
-        dispatch(updatePages(persistentState.movieData));
-      if (persistentState.value)
-        dispatch(updatePages(persistentState.value.value));
+      if (state.theme) dispatch(updatePages(persistentState.theme.value));
+      if (state.movieData) dispatch(updatePages(persistentState.movieData));
+      if (state.value) dispatch(updatePages(persistentState.value.value));
     }
-  }, [persistentState]);
-
-  return [persistentState, setPersistentState];
+    return persistentState;
+  };
 };

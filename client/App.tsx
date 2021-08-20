@@ -44,7 +44,7 @@ export default function App(): JSX.Element {
     (state: RootState) => state.searchStatus.value
   );
   const dispatch = useDispatch();
-  const [retrievedState] = useLocationHistory();
+  const persistentState = useLocationHistory();
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);
