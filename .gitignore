@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 .envnode_modules
 .env
-settings.ts
 settings
+settings.ts
