@@ -55,6 +55,7 @@ const TrendingSearch: FunctionComponent = () => {
   const searchStatus = useSelector(
     (state: RootState) => state.searchStatus.value
   );
+  const state = useSelector((state: RootState) => state);
   const [movieResults, updateMovieResults] = useState([]);
   const history = useHistory();
   // const movieData = useSelector((state: RootState) => state.movieData.data);

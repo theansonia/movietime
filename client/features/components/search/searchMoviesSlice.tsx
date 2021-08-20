@@ -50,7 +50,7 @@ export const searchMoviesSlice = createSlice({
       state,
       action: PayloadAction<InitialMovieDataState[]>
     ) => {
-      state.data = action.payload;
+      return { data: action.payload };
     },
   },
 });

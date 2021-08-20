@@ -21,11 +21,11 @@ const Movie: FunctionComponent<MovieProps> = ({
 }: MovieProps) => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state);
+
   return (
     <div id='movies'>
       <Link
         onClick={() => {
-          sessionStorage.setItem('state', JSON.stringify(state));
           dispatch(setSearchStatus(false));
           dispatch(changeCategory(null));
         }}
@@ -55,8 +55,6 @@ const Movie: FunctionComponent<MovieProps> = ({
       <div id='details'>
         <Link
           onClick={() => {
-            sessionStorage.setItem('state', JSON.stringify(state));
-
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
           }}
@@ -91,8 +89,6 @@ const Movie: FunctionComponent<MovieProps> = ({
         {aired ? <div id='release'>First Aired {aired}</div> : null}
         <Link
           onClick={() => {
-            sessionStorage.setItem('state', JSON.stringify(state));
-
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
           }}

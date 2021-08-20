@@ -2,7 +2,7 @@ export type Category = null | 'movie' | 'TV' | 'Movie' | 'Movies and TV Show';
 export type Query = string;
 export type SearchStatus = boolean;
 export type Theme = 'lightmode' | 'darkmode';
-export interface InitialMovieDataState {
+export interface InitialMovieDataState extends DataResults {
   readonly data: MovieData[];
   genre_ids: number[];
   original_language: string;

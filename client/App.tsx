@@ -31,6 +31,7 @@ import { handleShowClick } from './utils/handleShowClick';
 import { MobileNavbar } from './features/components/navbar/MobileNavbar';
 import { ScrollToTop } from './hooks/ScrollToTop';
 import { useLocationHistory } from './hooks/useLocationHistory';
+import { useUnload } from './hooks/useUnload';
 
 export default function App(): JSX.Element {
   const { setUserDetails } = useUserContext();
@@ -45,6 +46,18 @@ export default function App(): JSX.Element {
   );
   const dispatch = useDispatch();
   const persistentState = useLocationHistory();
+
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', function (e) {
+  //     // Cancel the event
+  //     e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+  //     // Chrome requires returnValue to be set
+
+  //     const state = sessionStorage.getItem('state');
+  //     if (state) localStorage.setItem('state', state);
+  //     e.returnValue = '';
+  //   });
+  // }, []);
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);
@@ -81,7 +94,8 @@ export default function App(): JSX.Element {
 
           if (pathname !== '/registration') {
             if (input.length > 0) {
-              input[0].value = '';
+              const i = (input[0] as unknown) as HTMLInputElement;
+              i.value = '';
             }
           }
         }, 0);
@@ -90,7 +104,8 @@ export default function App(): JSX.Element {
         ) as unknown) as HTMLInputElement;
         if (pathname !== '/registration') {
           if (input.length > 0) {
-            input[0].value = '';
+            const i = (input[0] as unknown) as HTMLInputElement;
+            i.value = '';
           }
         }
       } else {
