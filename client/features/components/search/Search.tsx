@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MoviePrevResults } from '../../../utils/sortResults';
-import { changeCategory } from '../../../appSlices/categorySlice';
-import { setQuery } from '../../../appSlices/querySlice';
+import { changeCategory } from '../search/searchSlices/categorySlice';
+import { setQuery } from '../search/searchSlices/querySlice';
 import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
@@ -44,7 +44,7 @@ export interface DataResults {
 
 const Search: FunctionComponent = () => {
   const [movieResults, updateMovieResults] = useState([]);
-  const theme = useSelector((state: RootState) => state.theme.value);
+
   const pages = useSelector((state: RootState) => state.pages.value);
   const category = useSelector((state: RootState) => state.category.value);
   const query = useSelector((state: RootState) => state.query.value);
@@ -106,9 +106,7 @@ const Search: FunctionComponent = () => {
 
   return (
     <div className='divdivider'>
-      <div className={`'' + ${theme}`}>
-        <MovieContainer movieResults={movieResults} featuring={'Movie'} />
-      </div>
+      <MovieContainer movieResults={movieResults} featuring={'Movie'} />
     </div>
   );
 };

@@ -5,15 +5,18 @@ $background: #f8f9fa;
 $primary-font: #212529;
 
 html,
-body {
+body,
+#root,
+.darkmode,
+.lightmode {
   height: 100%;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   padding: 0;
   font-family: $font-stack;
   overflow-x: hidden;
   overscroll-behavior-y: none;
-  display: block;
+  // display: block;
   font-size: 1rem;
   background-color: $background;
 }

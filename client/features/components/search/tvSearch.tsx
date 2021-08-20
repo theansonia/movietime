@@ -1,8 +1,8 @@
 import { useState, useEffect, FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SingleTVResult } from '../../../types';
-import { changeCategory } from '../../../appSlices/categorySlice';
-import { setQuery } from '../../../appSlices/querySlice';
+import { changeCategory } from '../search/searchSlices/categorySlice';
+import { setQuery } from '../search/searchSlices/querySlice';
 import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
@@ -38,7 +38,7 @@ export interface TvData {
 
 export const TvSearch: FunctionComponent = () => {
   const [tvResults, updateTvResults] = useState([]);
-  const theme = useSelector((state: RootState) => state.theme.value);
+
   const category = useSelector((state: RootState) => state.category.value);
   const query = useSelector((state: RootState) => state.query.value);
   const pages = useSelector((state: RootState) => state.pages.value);
@@ -96,9 +96,7 @@ export const TvSearch: FunctionComponent = () => {
 
   return (
     <div className='divdivider'>
-      <div id='scrollablediv' className={theme}>
-        <TVContainer tvResults={tvResults} />
-      </div>
+      <TVContainer tvResults={tvResults} />
     </div>
   );
 };

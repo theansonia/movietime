@@ -4,7 +4,7 @@ import Stars from './Stars';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSearchStatus } from '../../appSlices/searchStatusSlice';
-import { changeCategory } from '../../appSlices/categorySlice';
+import { changeCategory } from '../components/search/searchSlices/categorySlice';
 import { MovieProps } from '../../types';
 export interface TVProps extends MovieProps {
   name: string;

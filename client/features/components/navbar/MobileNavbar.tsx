@@ -10,7 +10,7 @@ import { setQuery } from '../search/searchSlices/querySlice';
 import { setValue } from '../search/searchSlices/valueSlice';
 import { updatePages } from '../../../appSlices/pagesSlice';
 import { setSearchStatus } from '../../../appSlices/searchStatusSlice';
-import { changeCategory } from '../../../appSlices/categorySlice';
+import { changeCategory } from '../search/searchSlices/categorySlice';
 import { handleKeyPress } from '../../../utils/handleKeyPress';
 import './Navbar.scss';
 import { MobileSearch } from '../searchbutton/MobileSearch';

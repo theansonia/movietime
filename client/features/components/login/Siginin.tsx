@@ -1,4 +1,4 @@
-import { FunctionComponent, SyntheticEvent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { handleShowClick } from '../../../utils/handleShowClick';
 import { useUserContext } from '../../../contexts/UserContext';
@@ -8,6 +8,8 @@ import {
   isAuthenticated,
   login,
 } from '../../../utils/AuthService';
+import { setQuery } from '../search/searchSlices/querySlice';
+import { setValue } from '../search/searchSlices/valueSlice';
 export interface SigninProps {}
 
 const Signin: FunctionComponent<SigninProps> = () => {
@@ -16,6 +18,7 @@ const Signin: FunctionComponent<SigninProps> = () => {
   const [signupError, setSignUpError] = useState(null);
   const { setUserDetails } = useUserContext();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAuthenticated()) history.push('/home');

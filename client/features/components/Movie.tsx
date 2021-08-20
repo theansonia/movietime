@@ -2,7 +2,7 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeCategory } from '../../appSlices/categorySlice';
+import { changeCategory } from '../components/search/searchSlices/categorySlice';
 import { setSearchStatus } from '../../appSlices/searchStatusSlice';
 import Stars from './Stars';
 import { MovieProps } from '../../types';

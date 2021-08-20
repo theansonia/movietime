@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import categoryReducer from './appSlices/categorySlice';
+import categoryReducer from '../client/features/components/search/searchSlices/categorySlice';
 import searchStatusReducer from './appSlices/searchStatusSlice';
-import queryReducer from './appSlices/querySlice';
+import queryReducer from '../client/features/components/search/searchSlices/querySlice';
 import hasMoreReducer from './features/containers/containerSlices/hasMoreSlice';
 import pagesReducer from './appSlices/pagesSlice';
 import loadingReducer from './features/containers/containerSlices/isLoadingSlice';
 import lightThemeReducer from './features/components/toggleTheme/toggleThemeSlice';
-import movieDataReducer from './features/components/search/searchMoviesSlice';
+import movieDataReducer from './features/components/search/searchSlices/searchMoviesSlice';
 import valueReducer from './features/components/search/searchSlices/valueSlice';
 
 export const rootReducer = combineReducers({

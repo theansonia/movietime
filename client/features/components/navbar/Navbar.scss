@@ -4,31 +4,6 @@ $font-stack: 'Source Sans Pro', sans-serif;
 $background: #f8f9fa;
 $primary-font: #212529;
 
-#navbar {
-  background-color: #212529;
-  height: 3rem;
-  position: fixed;
-  top: 0;
-  // display: grid;
-  // grid-template-columns: [home] 1fr [film] 1fr [shows] 10fr [signin] 10fr [toggle] 10fr [end];
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 400;
-  min-width: 100%;
-  z-index: 14;
-  // padding-right: 0.25rem;
-  // padding-left: 1rem;
-  // gap: 0.5rem; // font-size: 0.95rem;
-
-  @media (min-width: 600px) {
-    height: 4rem;
-    font-size: 1rem;
-    // gap: 5rem;
-  }
-}
-
 #filmbutton {
   // font-size: 0.15rem !important;
   @media (min-width: 600px) {

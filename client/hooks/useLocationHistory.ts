@@ -7,7 +7,7 @@ import { updateHasMore } from '../../client/features/containers/containerSlices/
 import { updatePages } from '../appSlices/pagesSlice';
 import { updateLoading } from '../../client/features/containers/containerSlices/isLoadingSlice';
 import { setLightTheme } from '../../client/features/components/toggleTheme/toggleThemeSlice';
-import { updateMovieData } from '../../client/features/components/search/searchMoviesSlice';
+import { updateMovieData } from '../features/components/search/searchSlices/searchMoviesSlice';
 import { setValue } from '../../client/features/components/search/searchSlices/valueSlice';
 import { changeCategory } from '../../client/features/components/search/searchSlices/categorySlice';
 import { RootState } from 'client/reducer';

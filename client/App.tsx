@@ -5,11 +5,10 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-
 import './styles/App.scss';
 import Search from './features/components/search/Search';
 import Details from './features/components/Details';
-import SearchButton from './features/components/searchbutton/SearchButton';
+import SearchButton from './features/components/searchbutton/SearchButton(OLD DONT USE)';
 import TrendingSearch from './features/components/search/TrendingSearch';
 import { TvSearch } from './features/components/search/tvSearch';
 import Navbar from './features/components/navbar/Navbar';
@@ -19,25 +18,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './reducer';
 import { setSearchStatus } from './appSlices/searchStatusSlice';
 import Signin from './features/components/login/Siginin';
-import { isTokenExpired, MyToken } from './utils/jwtHelper';
-import {
-  deleteCookie,
-  getCookie,
-  refresh,
-  refreshUser,
-} from './utils/AuthService';
-import { useUserContext } from './contexts/UserContext';
-import { handleShowClick } from './utils/handleShowClick';
 import { MobileNavbar } from './features/components/navbar/MobileNavbar';
 import { ScrollToTop } from './hooks/ScrollToTop';
-import { useLocationHistory } from './hooks/useLocationHistory';
-import { useUnload } from './hooks/useUnload';
+import { useWindowDimension } from './hooks/useWindowDimension';
+// import { useLocationHistory } from './hooks/useLocationHistory';
+// import { useUnload } from './hooks/useUnload';
 
 export default function App(): JSX.Element {
-  const { setUserDetails } = useUserContext();
+  const theme = useSelector((state: RootState) => state.theme.value);
   const [badPathsForSearch] = useState(['registration', 'signin']);
-  const [windowDimension, setWindowDimension] = useState(null);
-  const [isMobile, setIsMobile] = useState(windowDimension <= 640);
+  const [isMobile, setIsMobile] = useWindowDimension();
   const searchButton = useRef();
   const history = useHistory();
   const { pathname } = useLocation();
@@ -46,42 +36,6 @@ export default function App(): JSX.Element {
   );
   const dispatch = useDispatch();
   // const persistentState = useLocationHistory();
-
-  // useEffect(() => {
-  //   window.addEventListener('beforeunload', function (e) {
-  //     // Cancel the event
-  //     e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-  //     // Chrome requires returnValue to be set
-
-  //     const state = sessionStorage.getItem('state');
-  //     if (state) localStorage.setItem('state', state);
-  //     e.returnValue = '';
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    setWindowDimension(window.innerWidth);
-    if (windowDimension <= 640) setIsMobile(true);
-    else setIsMobile(false);
-    const handleResize = () => {
-      setWindowDimension(window.innerWidth);
-    };
-    const doRefresh = async () => {
-      const response = await refreshUser();
-      if (response) setUserDetails(response.user);
-      else return;
-    };
-
-    doRefresh();
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (windowDimension <= 640) setIsMobile(true);
-    else setIsMobile(false);
-  }, [windowDimension]);
 
   useEffect(() => {
     document.addEventListener('click', () => {
@@ -116,7 +70,7 @@ export default function App(): JSX.Element {
   }, [history, searchStatus]);
 
   return (
-    <>
+    <div className={theme}>
       <ScrollToTop />
       {!isMobile ? <Navbar /> : <MobileNavbar />}
 
@@ -139,9 +93,9 @@ export default function App(): JSX.Element {
       <Route exact path='/'>
         <Redirect to='/home' />
       </Route>
-      {!badPathsForSearch.some((v) => pathname.includes(v)) && !isMobile && (
+      {/* {!badPathsForSearch.some((v) => pathname.includes(v)) && !isMobile && (
         <SearchButton ref={searchButton} />
-      )}
-    </>
+      )} */}
+    </div>
   );
 }

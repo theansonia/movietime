@@ -3,13 +3,13 @@ import { FunctionComponent } from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MoviePrevResults, sortResults } from '../../../utils/sortResults';
-import { changeCategory } from '../../../appSlices/categorySlice';
+import { changeCategory } from '../search/searchSlices/categorySlice';
 // import { MovieResults } from '../../../types';
-import { setQuery } from '../../../appSlices/querySlice';
+import { setQuery } from '../search/searchSlices/querySlice';
 import { RootState } from '../../../reducer';
 import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
-import { updateMovieData } from './searchMoviesSlice';
+import { updateMovieData } from './searchSlices/searchMoviesSlice';
 import MovieContainer from '../../containers/MovieContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 import { useHistory } from 'react-router';
@@ -49,7 +49,7 @@ export enum MediaType {
 const TrendingSearch: FunctionComponent = () => {
   const category = useSelector((state: RootState) => state.category.value);
   const pages = useSelector((state: RootState) => state.pages.value);
-  const theme = useSelector((state: RootState) => state.theme.value);
+
   const query = useSelector((state: RootState) => state.query.value);
   const isLoading = useSelector((state: RootState) => state.isLoading.value);
   const searchStatus = useSelector(
@@ -130,12 +130,10 @@ const TrendingSearch: FunctionComponent = () => {
 
   return (
     <div className='divdivider'>
-      <div className={theme}>
-        <MovieContainer
-          movieResults={movieResults}
-          featuring={'Movies and TV Show'}
-        />
-      </div>
+      <MovieContainer
+        movieResults={movieResults}
+        featuring={'Movies and TV Show'}
+      />
     </div>
   );
 };

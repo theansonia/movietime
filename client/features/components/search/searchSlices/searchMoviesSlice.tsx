@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DataResults, MovieData } from '../../../types';
+import { DataResults, MovieData } from '../../../../types';
 
 export interface InitialMovieDataState extends DataResults {
   data: MovieData[];
