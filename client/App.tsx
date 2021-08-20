@@ -45,7 +45,7 @@ export default function App(): JSX.Element {
     (state: RootState) => state.searchStatus.value
   );
   const dispatch = useDispatch();
-  const persistentState = useLocationHistory();
+  // const persistentState = useLocationHistory();
 
   // useEffect(() => {
   //   window.addEventListener('beforeunload', function (e) {
