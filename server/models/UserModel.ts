@@ -1,9 +1,9 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 dotenv.config();
-const variables = require('../../settings.ts');
+import { postgres } from '../../settings';
 
-const myURI = variables.postgres;
+const myURI = postgres;
 const URI = process.env.postgres || myURI;
 
 const pool = new Pool({

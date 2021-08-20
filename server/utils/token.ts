@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
-const jwt = require('jsonwebtoken');
-const variables = require('../../settings.ts');
-const createGravatarUrl = require('./createGravatar');
+import jwt from 'jsonwebtoken';
+import { SECRET_KEY } from '../../settings';
+// import createGravatarUrl from './createGravatar';
 
 dotenv.config();
 
-const possibleSecret = variables.SECRET_KEY;
+const possibleSecret = SECRET_KEY;
 const secret = process.env.SECRET_KEY || possibleSecret;
 
 export function createToken(user) {
