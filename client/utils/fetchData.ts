@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { sortResults } from './sortResults';
 
 let REACT_APP_MOVIE_API_KEY;
@@ -6,7 +5,6 @@ if (process.env.NODE_ENV !== 'production') {
   REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 }
 
-console.log(REACT_APP_MOVIE_API_KEY);
 export interface Result {
   poster_path?: string;
   id?: number;
@@ -29,7 +27,7 @@ export const fetchDetails = async (query: RequestInfo) => {
   const uri = `https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
   const URL = encodeURI(uri);
-
+  console.log(process.env.REACT_APP_MOVIE_API_KEY, process.env.SECRET_KEY);
   try {
     const response = await fetch(URL);
     const data = await response.json();

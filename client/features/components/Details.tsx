@@ -157,7 +157,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
             )}
           </div>
           <div id='detaildetails'>
-            {details.title ? <div id='detailtitle'>{details.title}</div> : null}
+            <div id='detailtitle'>{details.title ? details.title : title}</div>
             {details.release_date ? (
               <div id='detailrelease'>{`${
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
