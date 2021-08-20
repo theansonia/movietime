@@ -21,6 +21,30 @@ body,
   background-color: $background;
 }
 
+#overview {
+  margin-bottom: 0.15em;
+  text-align: left;
+  --max-lines: 3;
+  position: relative;
+  max-height: calc(var(--lh) * var(--max-lines));
+  overflow: hidden;
+  padding-right: 0.1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 0.15em;
+  text-align: left;
+  margin-bottom: 0.15em;
+  @media (min-width: 600px) {
+    --max-lines: 4;
+    -webkit-line-clamp: 4;
+    max-height: calc(var(--lh) * var(--max-lines));
+  }
+}
+
 #beat {
   display: flex;
   margin: 0 auto;
@@ -298,14 +322,15 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   }
 }
 
-#details {
+#detailswrapper {
   display: flex;
   font-size: 0.25rem;
   flex-direction: column;
+  min-width: 100%;
   // padding-right: .65em;
-  margin: 0;
-  justify-content: flex-start;
-  max-height: 450px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 #title {
@@ -333,20 +358,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   color: darken(#adb5bd, 5%);
   margin-bottom: 0.25em;
   font-size: 1rem;
-}
-
-#overview {
-  overflow: scroll;
-  margin-bottom: 0.15em;
-  text-align: left;
-  --max-lines: 5;
-  position: relative;
-  max-height: calc(var(--lh) * var(--max-lines));
-  overflow: hidden;
-  padding-right: 0.1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
 }
 
 #rating {
@@ -399,6 +410,7 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
 #detailposter {
   width: 24rem;
   margin: 1rem 0.5rem;
+  margin-bottom: 0;
   @media (min-width: 600px) {
     width: 28rem;
   }
@@ -412,19 +424,27 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
 }
 
 #detailtitle {
-  font-size: 1.6em;
-  margin-bottom: 0.5em;
+  font-size: 2rem;
   font-weight: bold;
-  margin-top: 0.5em;
+  @media (min-width: 600px) {
+    font-size: 1rem;
+  }
 }
 
 #detailoverview {
   margin-bottom: 0.5em;
+  font-size: 1rem;
+  @media (min-width: 600px) {
+    font-size: 0.875rem;
+  }
 }
 
 #detailrelease {
   color: darken(#adb5bd, 5%);
-  margin-bottom: 0.5em;
+  font-size: 1rem;
+  @media (min-width: 600px) {
+    font-size: 0.875rem;
+  }
 }
 
 #likethis {
@@ -433,6 +453,12 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   text-align: left;
   align-self: flex-start;
   text-decoration: underline;
+  margin-left: 0.75rem;
+  margin-bottom: 1rem;
+  @media (min-width: 600px) {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
 }
 
 #recs {
@@ -557,18 +583,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   margin-left: 0.25rem;
 }
 
-#overview {
-  overflow: scroll;
-  margin-bottom: 0.15em;
-  font-size: 3em;
-  text-align: left;
-  overflow: hidden;
-  padding-right: 0.1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-}
-
 input {
   font-size: 0.5rem;
   // margin: 5rem;
@@ -630,14 +644,6 @@ input {
     width: 100%;
     margin: 0;
     margin-top: 1rem;
-  }
-
-  #overview {
-    font-size: 1.5rem;
-    padding-right: 0.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
   }
 }
 // tablet?
@@ -760,19 +766,6 @@ input {
   #x {
     left: 97%;
     padding-bottom: 0.5%;
-  }
-  #overview {
-    overflow: scroll;
-    margin-bottom: 0.15em;
-    text-align: left;
-    --max-lines: 5;
-    position: relative;
-    max-height: calc(var(--lh) * var(--max-lines));
-    overflow: hidden;
-    padding-right: 0.1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 9;
-    -webkit-box-orient: vertical;
   }
 }
 

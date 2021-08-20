@@ -137,7 +137,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
   return (
     <div className='divdivider'>
       {!details ? null : (
-        <div id='detail'>
+        <div id='detailswrapper'>
           <div id='detailposterwrapper'>
             {`https://image.tmdb.org/t/p/w500/${details.backdrop_path}` !==
               'https://image.tmdb.org/t/p/w500/null' &&

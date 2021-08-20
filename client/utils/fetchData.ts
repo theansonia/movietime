@@ -5,6 +5,8 @@ let REACT_APP_MOVIE_API_KEY;
 if (process.env.NODE_ENV !== 'production') {
   REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 }
+
+console.log(REACT_APP_MOVIE_API_KEY);
 export interface Result {
   poster_path?: string;
   id?: number;
