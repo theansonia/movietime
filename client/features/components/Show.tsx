@@ -24,7 +24,7 @@ const Show: FunctionComponent<TVProps> = ({
   const dispatch = useDispatch();
 
   return (
-    <div id='movies'>
+    <div className='movies'>
       <Link
         onClick={() => {
           dispatch(setSearchStatus(false));

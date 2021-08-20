@@ -276,13 +276,16 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
 //     left: 4%;
 // }
 
-#movies {
+.movies {
   // min-width: 8rem;
   display: flex;
   align-items: center;
   align-content: flex-start;
   width: 100%;
-  gap: 0.5rem;
+  gap: 10rem;
+  @media (min-width: 600px) {
+    gap: 0.5rem;
+  }
 }
 
 .poster {
@@ -604,12 +607,6 @@ input {
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
-  }
-
-  #movies {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
   }
 }
 // tablet?

@@ -23,7 +23,7 @@ const Movie: FunctionComponent<MovieProps> = ({
   const state = useSelector((state: RootState) => state);
 
   return (
-    <div id='movies'>
+    <div className='movies'>
       <Link
         onClick={() => {
           dispatch(setSearchStatus(false));

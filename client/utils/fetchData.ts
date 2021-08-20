@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { sortResults } from './sortResults';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-
+console.log(process.env);
 export interface Result {
   poster_path?: string;
   id?: number;
