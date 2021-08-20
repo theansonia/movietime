@@ -39,13 +39,17 @@ const Movie: FunctionComponent<MovieProps> = ({
           state: { id: id, type: type },
         }}
       >
-        <div id='poster'>
+        <div className='poster'>
           {poster !== 'https://image.tmdb.org/t/p/w500/null' &&
           poster !== 'https://image.tmdb.org/t/p/w500/undefined' ? (
-            <img id='poster' src={poster} alt={`Movie poster for ${title}`} />
+            <img
+              className='poster'
+              src={poster}
+              alt={`Movie poster for ${title}`}
+            />
           ) : (
             <img
-              id='poster'
+              className='poster'
               src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
               alt='back up movie poster cinema pardiso'
             />

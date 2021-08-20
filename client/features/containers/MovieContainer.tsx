@@ -39,7 +39,7 @@ const MovieContainer: FunctionComponent<MovieContainerProps> = ({
           movieResults.map((movie, index) => {
             if (movieResults.length === index + 1) {
               return (
-                <div key={`moviekey-${index}`} id='movies' ref={lastMovie}>
+                <div key={`moviekey-${movie.id}`} id='movies' ref={lastMovie}>
                   <Movie
                     key={`moviekeyinner-${movie.id}`}
                     id={movie.id}

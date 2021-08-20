@@ -282,11 +282,12 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   align-items: center;
   align-content: flex-start;
   width: 100%;
+  gap: 0.5rem;
 }
 
-#poster {
+.poster {
   align-items: center;
-  width: 8em;
+  width: 12rem;
   justify-content: center;
   margin-left: 0.25rem;
   margin-right: 0.5rem;

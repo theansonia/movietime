@@ -44,10 +44,14 @@ const Show: FunctionComponent<TVProps> = ({
           state: { id: id, title: name, type: 'tv' },
         }}
       >
-        <div id='poster'>
+        <div className='poster'>
           {poster !== 'https://image.tmdb.org/t/p/w500/null' &&
           poster !== 'https://image.tmdb.org/t/p/w500/undefined' ? (
-            <img id='poster' src={poster} alt={`TV poster for ${name}`} />
+            <img
+              className='poster'
+              src={poster}
+              alt={`TV poster for ${name}`}
+            />
           ) : (
             <img
               id='poster'

@@ -148,7 +148,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
                 />
               ) : (
                 <img
-                  id='poster'
+                  className='poster'
                   src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
                   alt='back up movie poster cinema pardiso'
                 />

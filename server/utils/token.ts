@@ -1,12 +1,17 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { SECRET_KEY } from '../../settings';
+
 // import createGravatarUrl from './createGravatar';
 
 dotenv.config();
 
-const possibleSecret = SECRET_KEY;
-const secret = process.env.SECRET_KEY || possibleSecret;
+let secret: string;
+if (process.env.NODE_ENV === 'production') {
+  secret = process.env.SECRET_KEY;
+} else {
+  const variables = require('../../settings');
+  secret = variables.SECRET_KEY;
+}
 
 export function createToken(user) {
   // let scope;

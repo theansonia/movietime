@@ -1,10 +1,14 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 dotenv.config();
-import { postgres } from '../../settings';
 
-const myURI = postgres;
-const URI = process.env.postgres || myURI;
+let URI: string;
+if (process.env.NODE_ENV === 'production') {
+  URI = process.env.postgres;
+} else {
+  const variables = require('../../settings');
+  URI = variables.postgres;
+}
 
 const pool = new Pool({
   connectionString: URI,
