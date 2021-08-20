@@ -1,8 +1,6 @@
 export type Category = null | 'movie' | 'TV' | 'Movie' | 'Movies and TV Show';
 export type Query = string;
 export type SearchStatus = boolean;
-export type HasMore = boolean;
-export type Pages = number;
 export type Theme = 'lightmode' | 'darkmode';
 export interface InitialMovieDataState {
   readonly data: MovieData[];
@@ -127,6 +125,7 @@ export interface DataResults {
     video: boolean;
     vote_average: number;
   }[];
+
   readonly data: MovieData[];
   genre_ids: number[];
   original_title: string;
@@ -141,4 +140,65 @@ export interface DataResults {
   title: string;
   popularity: number;
   media_type: string;
+}
+
+export interface PersistentState {
+  category?: any;
+  searchStatus?: HasMore;
+  query?: Category;
+  hasMore?: HasMore;
+  pages?: Pages;
+  isLoading?: IsLoading;
+  theme?: any;
+  movieData?: any;
+  value?: any;
+}
+export interface IsLoading {
+  value?: any;
+}
+
+export interface Value {
+  value?: string;
+}
+export interface Cat {
+  value?: Category;
+}
+export interface HasMore {
+  value?: boolean;
+}
+
+export interface MovieData {
+  data?: Datum[];
+}
+
+export interface Datum {
+  backdrop_path?: null | string;
+  first_air_date?: Date;
+  genre_ids?: number[];
+  id?: number;
+  media_type?: MediaType;
+  name?: string;
+  origin_country?: OriginCountry[];
+  original_language?: OriginalLanguage;
+  original_name?: string;
+  overview?: string;
+  popularity?: number;
+  poster_path?: string;
+  vote_average?: number;
+  vote_count?: number;
+  adult?: boolean;
+  original_title?: string;
+  release_date?: Date;
+  title?: string;
+  video?: boolean;
+}
+
+export enum OriginCountry {
+  CA = 'CA',
+  Jp = 'JP',
+  Us = 'US',
+}
+
+export interface Pages {
+  value?: number;
 }

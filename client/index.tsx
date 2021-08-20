@@ -5,7 +5,7 @@ import './styles/App.scss';
 // import reportWebVitals from './reportWebVitals';
 import store from './store';
 import App from './App';
-import { ScrollToTop } from './hooks/ScrollToTop';
+// import { ScrollToTop } from './hooks/ScrollToTop';
 import { UserProvider } from './contexts/UserContext';
 
 ReactDOM.render(
@@ -13,7 +13,7 @@ ReactDOM.render(
     <Router>
       {/* <React.StrictMode> */}
 
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <UserProvider>
         <App />
       </UserProvider>

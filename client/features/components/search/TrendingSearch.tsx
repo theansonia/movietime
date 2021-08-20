@@ -12,6 +12,7 @@ import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import { updateMovieData } from './searchMoviesSlice';
 import MovieContainer from '../../containers/MovieContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
+import { useHistory } from 'react-router';
 // import { updateMovieData } from './searchMoviesSlice';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -55,7 +56,7 @@ const TrendingSearch: FunctionComponent = () => {
     (state: RootState) => state.searchStatus.value
   );
   const [movieResults, updateMovieResults] = useState([]);
-
+  const history = useHistory();
   // const movieData = useSelector((state: RootState) => state.movieData.data);
   const dispatch = useDispatch();
 
@@ -67,7 +68,8 @@ const TrendingSearch: FunctionComponent = () => {
   }, []);
 
   useEffect(() => {
-    if (category === null) dispatch(changeCategory('Movies and TV Show'));
+    if (category === null && history.action !== 'POP')
+      dispatch(changeCategory('Movies and TV Show'));
   }, [category, dispatch]);
 
   useEffect(() => {

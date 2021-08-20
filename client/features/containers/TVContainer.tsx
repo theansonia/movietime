@@ -5,6 +5,10 @@ import { css } from '@emotion/core';
 import { setQuery } from '../../appSlices/querySlice';
 import { useScroll } from '../../hooks/useScroll';
 import { RootState } from 'client/reducer';
+import { useHistory } from 'react-router';
+import { useEffect, useState } from 'react';
+import { updatePages } from '../../appSlices/pagesSlice';
+import { handleScrollPosition } from '../../utils/handleScrollPosition';
 
 const override = css`
   display: flex;
@@ -14,9 +18,19 @@ const override = css`
 `;
 
 const TVContainer = ({ tvResults }) => {
+  const [scrollPosition, setScrollPosition] = useState(window.pageYOffset);
   const dispatch = useDispatch();
   const query = useSelector((state: RootState) => state.query.value);
+  const [tempQuery, setTempQuery] = useState(query);
+  const pages = useSelector((state: RootState) => state.pages.value);
   const lastShow = useScroll();
+  const history = useHistory();
+
+  // useEffect(() => {
+  //   if (history.action === 'POP') {
+  //     handleScrollPosition();
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -36,7 +50,7 @@ const TVContainer = ({ tvResults }) => {
                     key={`showkey-${index}`}
                     id='movies'
                     ref={lastShow}
-                    onClick={() => dispatch(setQuery(movie.name))}
+                    // onClick={() => dispatch(setQuery(movie.name))}
                   >
                     <Show
                       key={`showkeyinner-${movie.id}`}
@@ -57,6 +71,7 @@ const TVContainer = ({ tvResults }) => {
                       rating={Math.round(movie.vote_average / 2)}
                       reviews={movie.vote_count}
                       type={movie.media_type}
+                      tempQuery={tempQuery}
                     />
                   </div>
                 );
@@ -65,7 +80,7 @@ const TVContainer = ({ tvResults }) => {
                   <div
                     key={`keyout--${index}`}
                     id='movies'
-                    onClick={() => dispatch(setQuery(movie.name))}
+                    // onClick={() => dispatch(setQuery(movie.name))}
                   >
                     <Show
                       key={movie.id + 'moviekeyinnerbutouter'}
@@ -86,6 +101,7 @@ const TVContainer = ({ tvResults }) => {
                       rating={Math.round(movie.vote_average / 2)}
                       reviews={movie.vote_count}
                       type={movie.media_type}
+                      tempQuery={tempQuery}
                     />
                   </div>
                 );

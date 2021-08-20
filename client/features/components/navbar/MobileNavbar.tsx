@@ -93,19 +93,20 @@ export const MobileNavbar = () => {
   };
 
   const onSearchFocus = () => {
-    setSearchStatus(true);
     if (!category || category === 'Movies and TV Show') {
       history.push('/home');
-      dispatch(setQuery(''));
-      dispatch(setValue(''));
-      dispatch(updatePages(1));
-      dispatch(setSearchStatus(true));
     }
     setOpen(true);
+    dispatch(setSearchStatus(true));
+    dispatch(setQuery(''));
+    dispatch(setValue(''));
+    dispatch(updatePages(1));
+    dispatch(setSearchStatus(true));
   };
 
   const onSearchBlur = () => {
     setOpen(false);
+    dispatch(setSearchStatus(false));
   };
 
   return (
@@ -237,6 +238,7 @@ const MobileWrapper = styled.div`
   align-items: center;
   background-color: #212529;
   color: #f8f9fa;
+  z-index: 9999999999999;
 `;
 
 const Item = styled.p<{ category: string; title: string }>`

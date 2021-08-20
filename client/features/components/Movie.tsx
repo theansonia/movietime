@@ -1,11 +1,12 @@
 /* eslint-disable no-useless-escape */
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from '../../appSlices/categorySlice';
 import { setSearchStatus } from '../../appSlices/searchStatusSlice';
 import Stars from './Stars';
 import { MovieProps } from '../../types';
+import { RootState } from 'client/reducer';
 
 const Movie: FunctionComponent<MovieProps> = ({
   title,
@@ -19,11 +20,12 @@ const Movie: FunctionComponent<MovieProps> = ({
   id,
 }: MovieProps) => {
   const dispatch = useDispatch();
-
+  const state = useSelector((state: RootState) => state);
   return (
     <div id='movies'>
       <Link
         onClick={() => {
+          sessionStorage.setItem('state', JSON.stringify(state));
           dispatch(setSearchStatus(false));
           dispatch(changeCategory(null));
         }}
@@ -53,6 +55,8 @@ const Movie: FunctionComponent<MovieProps> = ({
       <div id='details'>
         <Link
           onClick={() => {
+            sessionStorage.setItem('state', JSON.stringify(state));
+
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
           }}
@@ -87,6 +91,8 @@ const Movie: FunctionComponent<MovieProps> = ({
         {aired ? <div id='release'>First Aired {aired}</div> : null}
         <Link
           onClick={() => {
+            sessionStorage.setItem('state', JSON.stringify(state));
+
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
           }}

@@ -23,6 +23,7 @@ const MovieContainer: FunctionComponent<MovieContainerProps> = ({
   featuring,
 }) => {
   const query = useSelector((state: RootState) => state.query.value);
+
   const lastMovie = useScroll();
 
   return (

@@ -8,6 +8,7 @@ import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import TVContainer from '../../containers/TVContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
+import { useHistory } from 'react-router';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 
@@ -43,7 +44,12 @@ export const TvSearch: FunctionComponent = () => {
   const pages = useSelector((state: RootState) => state.pages.value);
   const isLoading = useSelector((state: RootState) => state.isLoading.value);
   const dispatch = useDispatch();
-  if (category === null) dispatch(changeCategory('TV'));
+  const history = useHistory();
+
+  useEffect(() => {
+    if (category === null && history.action !== 'POP')
+      dispatch(changeCategory('TV'));
+  }, []);
 
   useEffect(() => {
     updateTvResults([]);

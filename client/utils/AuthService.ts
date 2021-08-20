@@ -63,6 +63,7 @@ export const logout = () => {
   // Clear user token and profile data from localStorage
   localStorage.removeItem('token');
   deleteCookie('token');
+  sessionStorage.removeItem('state');
 };
 
 export const checkStatus = (response: Response) => {

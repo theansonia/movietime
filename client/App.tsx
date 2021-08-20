@@ -20,7 +20,6 @@ import { RootState } from './reducer';
 import { setSearchStatus } from './appSlices/searchStatusSlice';
 import Signin from './features/components/login/Siginin';
 import { isTokenExpired, MyToken } from './utils/jwtHelper';
-
 import {
   deleteCookie,
   getCookie,
@@ -30,6 +29,8 @@ import {
 import { useUserContext } from './contexts/UserContext';
 import { handleShowClick } from './utils/handleShowClick';
 import { MobileNavbar } from './features/components/navbar/MobileNavbar';
+import { ScrollToTop } from './hooks/ScrollToTop';
+import { useLocationHistory } from './hooks/useLocationHistory';
 
 export default function App(): JSX.Element {
   const { setUserDetails } = useUserContext();
@@ -43,6 +44,7 @@ export default function App(): JSX.Element {
     (state: RootState) => state.searchStatus.value
   );
   const dispatch = useDispatch();
+  const [retrievedState] = useLocationHistory();
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);
@@ -98,10 +100,9 @@ export default function App(): JSX.Element {
     });
   }, [history, searchStatus]);
 
-  console.log(`We are in ${process.env.NODE_ENV}`);
-
   return (
     <>
+      <ScrollToTop />
       {!isMobile ? <Navbar /> : <MobileNavbar />}
 
       <Switch>

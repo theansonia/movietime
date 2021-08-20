@@ -10,6 +10,7 @@ import { updateHasMore } from '../../containers/containerSlices/hasMoreSlice';
 import { updateLoading } from '../../containers/containerSlices/isLoadingSlice';
 import MovieContainer from '../../containers/MovieContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
+import { useHistory } from 'react-router';
 // import { updateMovieData } from './searchMoviesSlice';
 
 const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -48,12 +49,16 @@ const Search: FunctionComponent = () => {
   const category = useSelector((state: RootState) => state.category.value);
   const query = useSelector((state: RootState) => state.query.value);
   const isLoading = useSelector((state: RootState) => state.isLoading.value);
+  const history = useHistory();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   // const movieData = useSelector((state: RootState) => state.movieData);
 
   const dispatch = useDispatch();
 
-  if (category === null) dispatch(changeCategory('movie'));
+  useEffect(() => {
+    if (category === null && history.action !== 'POP')
+      dispatch(changeCategory('movie'));
+  }, []);
 
   useEffect(() => {
     updateMovieResults([]);
@@ -76,7 +81,7 @@ const Search: FunctionComponent = () => {
         dispatch(updateLoading(false));
       });
     }
-  }, [category, query, pages, dispatch]);
+  }, [category, query, pages]);
 
   useEffect(() => {
     if (query === ' ') {
@@ -97,7 +102,7 @@ const Search: FunctionComponent = () => {
         dispatch(updateLoading(false));
       });
     }
-  }, [query, pages, dispatch]);
+  }, [query, pages]);
 
   return (
     <div className='divdivider'>

@@ -8,6 +8,7 @@ import { changeCategory } from '../../appSlices/categorySlice';
 import { MovieProps } from '../../types';
 export interface TVProps extends MovieProps {
   name: string;
+  tempQuery: string;
 }
 
 const Show: FunctionComponent<TVProps> = ({
@@ -18,6 +19,7 @@ const Show: FunctionComponent<TVProps> = ({
   rating,
   reviews,
   id,
+  tempQuery,
 }: TVProps) => {
   const dispatch = useDispatch();
 
@@ -27,6 +29,10 @@ const Show: FunctionComponent<TVProps> = ({
         onClick={() => {
           dispatch(setSearchStatus(false));
           dispatch(changeCategory(null));
+          sessionStorage.setItem(
+            'scrollPosition',
+            JSON.stringify(window.scrollY)
+          );
         }}
         style={{ textDecoration: 'none' }}
         // eslint-disable-next-line no-useless-escape
@@ -57,6 +63,10 @@ const Show: FunctionComponent<TVProps> = ({
           onClick={() => {
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
+            sessionStorage.setItem(
+              'scrollPosition',
+              JSON.stringify(window.pageYOffset)
+            );
           }}
           style={{
             textDecoration: 'none',
@@ -71,7 +81,7 @@ const Show: FunctionComponent<TVProps> = ({
               /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
               ''
             )}`,
-            state: { id: id, title: name, type: 'tv' },
+            state: { id: id, title: name, type: 'tv', tempQuery: tempQuery },
           }}
         >
           {name ? <div id='title'>{name}</div> : null}
@@ -81,6 +91,10 @@ const Show: FunctionComponent<TVProps> = ({
           onClick={() => {
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
+            sessionStorage.setItem(
+              'scrollPosition',
+              JSON.stringify(window.pageYOffset)
+            );
           }}
           style={{
             textDecoration: 'none',
@@ -95,7 +109,7 @@ const Show: FunctionComponent<TVProps> = ({
               /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
               ''
             )}`,
-            state: { id: id, title: name, type: 'tv' },
+            state: { id: id, title: name, type: 'tv', tempQuery: tempQuery },
           }}
         >
           <div id='overview'>{overview}</div>
