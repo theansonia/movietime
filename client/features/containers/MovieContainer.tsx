@@ -64,7 +64,7 @@ const MovieContainer: FunctionComponent<MovieContainerProps> = ({
               );
             } else {
               return (
-                <div key={`moviekeyagain-${index}`} id='movies'>
+                <div key={`moviekeyagain-${index}`} className='movies'>
                   <Movie
                     key={movie.id + 'moviekeyinnerbutouter'}
                     id={movie.id}

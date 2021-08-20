@@ -15,7 +15,10 @@ import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 import { useHistory } from 'react-router';
 // import { updateMovieData } from './searchMoviesSlice';
 
-const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+let REACT_APP_MOVIE_API_KEY;
+if (process.env.NODE_ENV !== 'production') {
+  REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+}
 interface DataResults {
   page: number;
   total_pages: number;

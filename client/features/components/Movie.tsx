@@ -23,13 +23,19 @@ const Movie: FunctionComponent<MovieProps> = ({
   const state = useSelector((state: RootState) => state);
 
   return (
-    <div className='movies'>
+    <>
       <Link
         onClick={() => {
           dispatch(setSearchStatus(false));
           dispatch(changeCategory(null));
         }}
-        style={{ textDecoration: 'none' }}
+        style={{
+          textDecoration: 'none',
+          fontSize: '1.4em',
+          marginBottom: '.5em',
+          fontWeight: 'normal',
+          color: 'inherit',
+        }}
         // eslint-disable-next-line no-useless-escape
         to={{
           pathname: `/details/${title.replace(
@@ -38,6 +44,7 @@ const Movie: FunctionComponent<MovieProps> = ({
           )}`,
           state: { id: id, type: type },
         }}
+        id='contentlink'
       >
         <div className='poster'>
           {poster !== 'https://image.tmdb.org/t/p/w500/null' &&
@@ -55,9 +62,9 @@ const Movie: FunctionComponent<MovieProps> = ({
             />
           )}
         </div>
-      </Link>
-      <div id='details'>
-        <Link
+
+        <div id='details'>
+          {/* <Link
           onClick={() => {
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
@@ -77,7 +84,7 @@ const Movie: FunctionComponent<MovieProps> = ({
             )}`,
             state: { id: id, type: type },
           }}
-        >
+        > */}
           {title ? <div id='title'>{title}</div> : null}
           <div id='type'>
             {type && type.length === 2 ? type.toUpperCase() : null}
@@ -87,11 +94,11 @@ const Movie: FunctionComponent<MovieProps> = ({
               ? type[0].toUpperCase() + type.substring(1)
               : null}
           </div>
-        </Link>
+          {/* </Link> */}
 
-        {release ? <div id='release'>Premiered {release}</div> : null}
-        {aired ? <div id='release'>First Aired {aired}</div> : null}
-        <Link
+          {release ? <div id='release'>Premiered {release}</div> : null}
+          {aired ? <div id='release'>First Aired {aired}</div> : null}
+          {/* <Link
           onClick={() => {
             dispatch(setSearchStatus(false));
             dispatch(changeCategory(null));
@@ -110,17 +117,22 @@ const Movie: FunctionComponent<MovieProps> = ({
             )}`,
             state: { id: id, type: type },
           }}
-        >
+        > */}
           <div id='overview'>{overview}</div>
-        </Link>
+          {/* </Link> */}
 
-        {rating ? (
-          <div id='rating'>
-            {rating ? <Stars rating={rating} reviews={reviews} /> : 'No Rating'}
-          </div>
-        ) : null}
-      </div>
-    </div>
+          {rating ? (
+            <div id='rating'>
+              {rating ? (
+                <Stars rating={rating} reviews={reviews} />
+              ) : (
+                'No Rating'
+              )}
+            </div>
+          ) : null}
+        </div>
+      </Link>
+    </>
   );
 };
 

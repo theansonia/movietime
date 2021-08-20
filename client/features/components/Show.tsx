@@ -24,8 +24,9 @@ const Show: FunctionComponent<TVProps> = ({
   const dispatch = useDispatch();
 
   return (
-    <div className='movies'>
+    <>
       <Link
+        id='contentlink'
         onClick={() => {
           dispatch(setSearchStatus(false));
           dispatch(changeCategory(null));
@@ -60,71 +61,26 @@ const Show: FunctionComponent<TVProps> = ({
             />
           )}
         </div>
-      </Link>
 
-      <div id='details'>
-        <Link
-          onClick={() => {
-            dispatch(setSearchStatus(false));
-            dispatch(changeCategory(null));
-            sessionStorage.setItem(
-              'scrollPosition',
-              JSON.stringify(window.pageYOffset)
-            );
-          }}
-          style={{
-            textDecoration: 'none',
-            fontSize: '1em',
-            marginBottom: '.5em',
-            fontWeight: 'bold',
-            marginTop: '.5em',
-            color: 'inherit',
-          }}
-          to={{
-            pathname: `/details/${name.replace(
-              /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
-              ''
-            )}`,
-            state: { id: id, title: name, type: 'tv', tempQuery: tempQuery },
-          }}
-        >
+        <div id='details'>
           {name ? <div id='title'>{name}</div> : null}
-        </Link>
-        {release ? <div id='release'>First Aired {release}</div> : null}
-        <Link
-          onClick={() => {
-            dispatch(setSearchStatus(false));
-            dispatch(changeCategory(null));
-            sessionStorage.setItem(
-              'scrollPosition',
-              JSON.stringify(window.pageYOffset)
-            );
-          }}
-          style={{
-            textDecoration: 'none',
-            fontSize: '1.4em',
-            marginBottom: '.5em',
-            fontWeight: 'normal',
-            color: 'inherit',
-          }}
-          to={{
-            pathname: `/details/${name.replace(
-              // eslint-disable-next-line no-useless-escape
-              /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
-              ''
-            )}`,
-            state: { id: id, title: name, type: 'tv', tempQuery: tempQuery },
-          }}
-        >
+
+          {release ? <div id='release'>First Aired {release}</div> : null}
+
           <div id='overview'>{overview}</div>
-        </Link>
-        {rating ? (
-          <div id='rating'>
-            {rating ? <Stars rating={rating} reviews={reviews} /> : 'No Rating'}
-          </div>
-        ) : null}
-      </div>
-    </div>
+
+          {rating ? (
+            <div id='rating'>
+              {rating ? (
+                <Stars rating={rating} reviews={reviews} />
+              ) : (
+                'No Rating'
+              )}
+            </div>
+          ) : null}
+        </div>
+      </Link>
+    </>
   );
 };
 

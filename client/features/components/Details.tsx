@@ -13,7 +13,10 @@ import { MoviePrevResults } from '../../utils/sortResults';
 import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchData';
 import { handleMovieOrShowClick } from '../../utils/handleMovieOrShowClick';
 
-const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+let REACT_APP_MOVIE_API_KEY;
+if (process.env.NODE_ENV !== 'production') {
+  REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+}
 interface PropsInterface extends RouteComponentProps<{ title: string }> {
   location: RouteProps['location'];
   children: RouteProps['children'];
@@ -133,109 +136,104 @@ const Details: FunctionComponent<RouteComponentProps> = (
 
   return (
     <div className='divdivider'>
-      <div>
-        {!details ? null : (
-          <div id='detail'>
-            <div id='detailposter'>
-              {`https://image.tmdb.org/t/p/w500/${details.poster_path}` !==
-                'https://image.tmdb.org/t/p/w500/null' &&
-              `https://image.tmdb.org/t/p/w500/${details.poster_path}` !==
-                'https://image.tmdb.org/t/p/w500/undefined' ? (
-                <img
-                  id='detailposter'
-                  src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
-                  alt={`Movie poster for ${title}`}
-                />
-              ) : (
-                <img
-                  className='poster'
-                  src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
-                  alt='back up movie poster cinema pardiso'
-                />
-              )}
-            </div>
-            <div id='detaildetails'>
-              {details.title ? (
-                <div id='detailtitle'>{details.title}</div>
-              ) : null}
-              {details.release_date ? (
-                <div id='detailrelease'>{`${
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                  details.release_date.split('-')[0]
-                }`}</div>
-              ) : null}
-              {details.overview ? (
-                <div id='detailoverview'>{details.overview}</div>
-              ) : null}
-              {Math.round(details.vote_average / 2) ? (
-                <div id='detailrating'>
-                  {Math.round(details.vote_average / 2) ? (
-                    <Stars
-                      rating={Math.round(details.vote_average / 2)}
-                      reviews={details.vote_count}
-                    />
-                  ) : (
-                    'No Rating'
-                  )}
-                </div>
-              ) : null}
-              {!watch ? null : (
-                <a
-                  id='providers'
-                  rel='noreferrer'
-                  href={`${watch.link}`}
-                  target='_blank'
-                >
-                  Where to Watch
-                </a>
-              )}
-              {providers ? (
-                <div id='logos'>
-                  {providers.map((logo, i) => {
-                    return (
-                      <a
-                        href={logo[1]}
-                        key={`logoid - ${logo.toString()} + ${i + 1} `}
-                        rel='noreferrer'
-                        target='_blank'
-                      >
-                        <div id='shinediv'>
-                          <img
-                            key={`logoid - ${i}`}
-                            id='logo'
-                            src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
-                            alt='thumbnail for current provider'
-                          />
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              ) : null}
-            </div>
-
-            {recommendations && recommendations.length > 0 ? (
-              <div>
-                {' '}
-                {recommendations.map((rec, i) => {
-                  <div id='likethis'>More Like This</div>;
-                  if (i < 5)
-                    return (
-                      <Recs
-                        key={`recskey-${i}`}
-                        id={rec.id}
-                        title={rec.title || rec.name}
-                        pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
-                      />
-                    );
-                })}
-              </div>
+      {!details ? null : (
+        <div id='detail'>
+          <div id='detailposterwrapper'>
+            {`https://image.tmdb.org/t/p/w500/${details.backdrop_path}` !==
+              'https://image.tmdb.org/t/p/w500/null' &&
+            `https://image.tmdb.org/t/p/w500/${details.backdrop_path}` !==
+              'https://image.tmdb.org/t/p/w500/undefined' ? (
+              <img
+                id='detailposter'
+                src={`https://image.tmdb.org/t/p/w500/${details.backdrop_path}`}
+                alt={`Movie poster for ${title}`}
+              />
             ) : (
-              <div id='likethis'>No recommendations available</div>
+              <img
+                id='detailposter'
+                src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
+                alt='back up movie poster cinema pardiso'
+              />
             )}
           </div>
-        )}
-      </div>
+          <div id='detaildetails'>
+            {details.title ? <div id='detailtitle'>{details.title}</div> : null}
+            {details.release_date ? (
+              <div id='detailrelease'>{`${
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                details.release_date.split('-')[0]
+              }`}</div>
+            ) : null}
+            {details.overview ? (
+              <div id='detailoverview'>{details.overview}</div>
+            ) : null}
+            {Math.round(details.vote_average / 2) ? (
+              <div id='detailrating'>
+                {Math.round(details.vote_average / 2) ? (
+                  <Stars
+                    rating={Math.round(details.vote_average / 2)}
+                    reviews={details.vote_count}
+                  />
+                ) : (
+                  'No Rating'
+                )}
+              </div>
+            ) : null}
+            {!watch ? null : (
+              <a
+                id='providers'
+                rel='noreferrer'
+                href={`${watch.link}`}
+                target='_blank'
+              >
+                Where to Watch
+              </a>
+            )}
+            {providers ? (
+              <div id='logos'>
+                {providers.map((logo, i) => {
+                  return (
+                    <a
+                      href={logo[1]}
+                      key={`logoid - ${logo.toString()} + ${i + 1} `}
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      <div id='shinediv'>
+                        <img
+                          key={`logoid - ${i}`}
+                          id='logo'
+                          src={`https://image.tmdb.org/t/p/w500/${logo[0]}`}
+                          alt='thumbnail for current provider'
+                        />
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            ) : null}
+          </div>
+
+          {recommendations && recommendations.length > 0 ? (
+            <div>
+              <div id='likethis'>More Like This</div>
+              {recommendations.map((rec, i) => {
+                if (i < 5)
+                  return (
+                    <Recs
+                      key={`recskey-${i}`}
+                      id={rec.id}
+                      title={rec.title || rec.name}
+                      pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
+                    />
+                  );
+              })}
+            </div>
+          ) : (
+            <div id='likethis'>No recommendations available</div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

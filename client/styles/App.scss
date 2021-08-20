@@ -219,10 +219,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   margin: 0;
 }
 
-.container {
-  width: 100%;
-}
-
 .stars {
   min-width: 100%;
 }
@@ -239,6 +235,9 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   margin-top: 1rem;
   overflow: hidden;
   width: 100%;
+  @media (min-width: 600px) {
+    gap: 0.5rem;
+  }
 }
 
 #trending {
@@ -290,10 +289,13 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
 
 .poster {
   align-items: center;
-  width: 12rem;
+  width: 10rem;
   justify-content: center;
   margin-left: 0.25rem;
   margin-right: 0.5rem;
+  @media (min-width: 600px) {
+    width: 12rem;
+  }
 }
 
 #details {
@@ -310,12 +312,27 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   // font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 0.1rem;
+  font-size: 1.5rem;
   // line-height: 2rem;
+  @media (min-width: 600px) {
+    font-size: 2rem;
+  }
 }
 
+#contentlink {
+  text-decoration: none;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #release {
   color: darken(#adb5bd, 5%);
   margin-bottom: 0.25em;
+  font-size: 1rem;
 }
 
 #overview {
@@ -336,10 +353,15 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   display: flex;
   justify-content: flex-start;
   margin-top: 0.25em;
+  // font-size: 1rem;
 }
 
 #reviews {
   margin-left: 0.5rem;
+  font-size: 1rem;
+  @media (min-width: 600px) {
+    font-size: 0.75rem;
+  }
   // min-width: 100px;
 }
 
@@ -375,14 +397,16 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
 }
 
 #detailposter {
-  width: 14rem;
-  margin-left: -0.1rem;
-  margin-top: 0.5rem;
+  width: 24rem;
+  margin: 1rem 0.5rem;
+  @media (min-width: 600px) {
+    width: 28rem;
+  }
 }
 
 #detaildetails {
   text-align: start;
-  margin: 0.75em;
+  margin: 2rem;
   text-decoration: none;
   max-width: 97%;
 }
@@ -408,7 +432,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   font-weight: bold;
   text-align: left;
   align-self: flex-start;
-  margin-left: 0.75rem;
   text-decoration: underline;
 }
 
@@ -430,6 +453,17 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   &:hover {
     box-shadow: 3px 3px 5px 6px #ccc;
   }
+  @media (min-width: 600px) {
+    width: 11rem;
+  }
+  // #recposter {
+  //   width: 24rem;
+  //   padding: 0.25rem;
+  //   border-radius: 3px;
+  //   &:hover {
+  //     box-shadow: 3px 3px 5px 6px #ccc;
+  //   }
+  // }
 }
 
 #rectitle {
@@ -453,6 +487,7 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   text-decoration: underline;
   margin-bottom: 0.25rem;
   font-weight: 300;
+  font-size: 1rem;
 }
 
 @media screen and (min-device-width: 1440px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
@@ -473,15 +508,18 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
     transform: scale(1);
   }
 
-  #recposter {
-    width: 8.2em;
-    padding: 0.25rem;
-    justify-items: center;
-    border-radius: 3px;
-    &:hover {
-      box-shadow: 3px 3px 5px 6px #ccc;
-    }
-  }
+  // #recposter {
+  //   width: 8.2rem;
+  //   padding: 0.25rem;
+  //   justify-items: center;
+  //   border-radius: 3px;
+  //   &:hover {
+  //     box-shadow: 3px 3px 5px 6px #ccc;
+  //   }
+  //   @media (min-width: 600px) {
+  //     width: 2rem;
+  //   }
+  // }
 
   #recs {
     display: inline-grid;
@@ -503,23 +541,20 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
     }
   }
 
-  .moviecontainer {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 4rem;
-    position: relative;
-    top: 4rem;
-    // margin-left: -1rem;
-  }
+  // .moviecontainer {
+  //   width: 100%;
+  //   margin: 0 auto;
+  //   margin-top: 4rem;
+  //   position: relative;
+  //   top: 4rem;
+
+  //   // margin-left: -1rem;
+  // }
 }
 #poster {
   width: 12em;
   margin-right: 1rem;
   margin-left: 0.25rem;
-}
-
-#title {
-  font-size: 1rem;
 }
 
 #overview {
@@ -532,10 +567,6 @@ input.hide-clear[type='search']::-webkit-search-results-decoration {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
-}
-
-#detailposter {
-  width: 18rem;
 }
 
 input {
@@ -581,14 +612,14 @@ input {
     width: 12rem;
   }
 
-  #recposter {
-    width: 24rem;
-    padding: 0.25rem;
-    border-radius: 3px;
-    &:hover {
-      box-shadow: 3px 3px 5px 6px #ccc;
-    }
-  }
+  // #recposter {
+  //   width: 24rem;
+  //   padding: 0.25rem;
+  //   border-radius: 3px;
+  //   &:hover {
+  //     box-shadow: 3px 3px 5px 6px #ccc;
+  //   }
+  // }
 
   #rectitle {
     font-size: 3rem;
@@ -618,15 +649,15 @@ input {
     margin: 0 auto;
   }
 
-  #recposter {
-    width: 8.2rem;
-    position: relative;
-    border-radius: 3px;
-    padding: 0.25rem;
-  }
-  #rectitle {
-    width: 95%;
-  }
+  // #recposter {
+  //   width: 8.2rem;
+  //   position: relative;
+  //   border-radius: 3px;
+  //   padding: 0.25rem;
+  // }
+  // #rectitle {
+  //   width: 95%;
+  // }
 
   #searchbtn {
     // left: 46.25%;
@@ -644,13 +675,13 @@ input {
     margin-left: 6.5rem;
   }
 
-  #recposter {
-    width: 12rem;
-    position: relative;
-    margin: auto;
-    border-radius: 3px;
-    padding: 0.25rem;
-  }
+  // #recposter {
+  //   width: 12rem;
+  //   position: relative;
+  //   margin: auto;
+  //   border-radius: 3px;
+  //   padding: 0.25rem;
+  // }
 
   #rectitle {
     font-size: 1rem;
@@ -663,9 +694,9 @@ input {
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
-  #recposter {
-    width: 95%;
-  }
+  // #recposter {
+  //   width: 95%;
+  // }
   #rectitle {
     width: 28rem;
   }
@@ -676,12 +707,12 @@ input {
     display: flex;
   }
 
-  #recposter {
-    width: 20rem;
-    position: relative;
-    margin: auto;
-    border-radius: 3px;
-  }
+  // #recposter {
+  //   width: 20rem;
+  //   position: relative;
+  //   margin: auto;
+  //   border-radius: 3px;
+  // }
 
   #rectitle {
     width: 16rem;
@@ -707,9 +738,6 @@ input {
     height: auto;
   }
 
-  #detailposter {
-    width: 24rem;
-  }
   .moviecontainer {
     align-items: flex-start;
   }
@@ -717,12 +745,12 @@ input {
     margin: 0 auto;
     padding: 0.5rem;
   }
-  #recposter {
-    width: 19.2rem;
-    position: relative;
-    margin: auto;
-    border-radius: 3px;
-  }
+  // #recposter {
+  //   width: 19.2rem;
+  //   position: relative;
+  //   margin: auto;
+  //   border-radius: 3px;
+  // }
 
   #searchbtn {
     left: 45%;

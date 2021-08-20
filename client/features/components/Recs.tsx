@@ -29,17 +29,7 @@ const Recs: FunctionComponent<RecProps> = ({ title, pic, id }: RecProps) => {
         }}
       >
         {title ? <div id='rectitle'>{title}</div> : null}
-      </Link>
-      <Link
-        style={{ textDecoration: 'none' }}
-        to={{
-          pathname: `/details/${title.replace(
-            /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
-            ''
-          )}`,
-          state: { id: id, title: title },
-        }}
-      >
+
         {pic !== 'https://image.tmdb.org/t/p/w500/null' ? (
           <div
             id='recposterdiv'
