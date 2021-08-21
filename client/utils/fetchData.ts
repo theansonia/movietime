@@ -1,10 +1,15 @@
 import { sortResults } from './sortResults';
-import { REACT_APP_MOVIE_API_KEY } from '../../server/server';
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      REACT_APP_MOVIE_API_KEY: string;
+      NODE_ENV: 'development' | 'production';
+    }
+  }
+}
 
-// let REACT_APP_MOVIE_API_KEY: string;
-// if (process.env.NODE_ENV !== 'production') {
-//   REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-// }
+const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+
 export interface Result {
   poster_path?: string;
   id?: number;
@@ -106,6 +111,7 @@ export const fetchTrending = async (type: string, pages: number) => {
   }
   const URL = encodeURI(URI);
 
+  console.log(process.env);
   try {
     const res = await fetch(URL);
     const data = await res.json();

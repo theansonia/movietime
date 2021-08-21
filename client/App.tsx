@@ -22,6 +22,7 @@ export default function App(): JSX.Element {
   const [isMobile, setIsMobile] = useWindowDimension();
   // const persistentState = useLocationHistory();
 
+  console.log(`We are in ${process.env.NODE_ENV}`);
   return (
     <div className={theme}>
       <ScrollToTop />
