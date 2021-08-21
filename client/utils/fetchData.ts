@@ -1,14 +1,12 @@
 import { sortResults } from './sortResults';
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      API_KEY: string;
-      NODE_ENV: 'development' | 'production';
-    }
-  }
-}
 
-const API_KEY = `${process.env.API_KEY}`;
+let API_KEY;
+
+if (process.env.NODE_ENV === 'production') {
+  API_KEY = '20dd97d63497c0f0a8adb9bd9c547033';
+} else {
+  API_KEY = `${process.env.API_KEY}`;
+}
 
 export interface Result {
   poster_path?: string;
