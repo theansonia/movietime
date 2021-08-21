@@ -58,14 +58,14 @@ const Signin: FunctionComponent<SigninProps> = () => {
                     e.preventDefault();
                     handleSubmitOrClick();
                   }}
-                  style={{ width: '12rem', marginBottom: '1rem' }}
+                  // style={{ width: '12rem', marginBottom: '1rem' }}
                   method='post'
                 >
                   <div id='email-control'>
                     <input
                       type='text'
                       name='email'
-                      id='userId'
+                      // id='userId'
                       className='nfText'
                       placeholder='Email address'
                       value={userDetails.email || ''}
@@ -79,76 +79,73 @@ const Signin: FunctionComponent<SigninProps> = () => {
                     />
                   </div>
                 </form>
-                <div className='signin-form-container' id='password-container'>
-                  <div className='input-placement'>
-                    <form
-                      className='signin-form'
-                      onSubmit={(e) => {
-                        e.preventDefault();
+
+                <form
+                  className='signin-form'
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmitOrClick();
+                  }}
+                  style={{ width: '12rem' }}
+                  method='post'
+                >
+                  <div id='password-control'>
+                    <input
+                      type='password'
+                      name='password'
+                      id='password'
+                      autoComplete='password'
+                      className='nfText'
+                      placeholder='Password'
+                      value={userDetails.password || ''}
+                      onChange={(e) =>
+                        setUserDetails({
+                          [e.target.name]: e.target.value,
+                          email: userDetails.email,
+                        })
+                      }
+                      onFocus={() => {
+                        const show = document.getElementById(
+                          'signin-password-toggle'
+                        );
+                        show.style.display = 'block';
+                      }}
+                      onSubmit={() => {
                         handleSubmitOrClick();
                       }}
                       style={{ width: '12rem' }}
-                      method='post'
-                    >
-                      <div id='password-control'>
-                        <input
-                          type='password'
-                          name='password'
-                          id='password'
-                          autoComplete='password'
-                          className='nfText'
-                          placeholder='Password'
-                          value={userDetails.password || ''}
-                          onChange={(e) =>
-                            setUserDetails({
-                              [e.target.name]: e.target.value,
-                              email: userDetails.email,
-                            })
-                          }
-                          onFocus={() => {
-                            const show = document.getElementById(
-                              'signin-password-toggle'
-                            );
-                            show.style.display = 'block';
-                          }}
-                          onSubmit={() => {
-                            handleSubmitOrClick();
-                          }}
-                          style={{ width: '12rem' }}
-                          // onBlur={(e) => {
-                          //   if (e.target.id === 'signin-password-toggle') return;
-                          //   const show = document.getElementById(
-                          //     'signin-password-toggle'
-                          //   );
-                          //   show.style.display = 'none';
-                          // }}
-                        />
+                      // onBlur={(e) => {
+                      //   if (e.target.id === 'signin-password-toggle') return;
+                      //   const show = document.getElementById(
+                      //     'signin-password-toggle'
+                      //   );
+                      //   show.style.display = 'none';
+                      // }}
+                    />
 
-                        <button
-                          id='signin-password-toggle'
-                          type='button'
-                          title='Show password'
-                          className='password-toggle'
-                          onClick={() => setLabel(handleShowClick(label))}
-                          // style={{
-                          //   marginLeft: label === 'HIDE' ? '.5rem' : '0',
-                          // }}
-                        >
-                          {label}
-                        </button>
-                      </div>
-                    </form>
+                    <button
+                      id='signin-password-toggle'
+                      type='button'
+                      title='Show password'
+                      className='password-toggle'
+                      onClick={() => setLabel(handleShowClick(label))}
+                      style={{
+                        marginLeft: label === 'HIDE' ? '1rem' : '.5rem',
+                      }}
+                    >
+                      {label}
+                    </button>
                   </div>
-                </div>
-                <div id='signin-button-container' onClick={handleSubmitOrClick}>
-                  <button
-                    type='button'
-                    className='signin-button'
-                    id='signin-button'
-                  >
-                    Sign In
-                  </button>
-                </div>
+                </form>
+
+                <button
+                  type='button'
+                  className='signin-button'
+                  id='signin-button'
+                  onClick={handleSubmitOrClick}
+                >
+                  Sign In
+                </button>
               </div>
             </div>
             <div id='newsignup-container'>

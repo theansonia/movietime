@@ -94,7 +94,7 @@ export const Signup = ({ email, setEmail }) => {
               </p>
             </div>
             <div id='signup-form-container'>
-              <div id='input-placement'>
+              <div id='signup-placement'>
                 <form
                   className='emailform'
                   onSubmit={(e) => {

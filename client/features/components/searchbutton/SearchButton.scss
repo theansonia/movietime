@@ -17,15 +17,11 @@
   }
 }
 
-#searchicon {
-  top: 82.5%;
-  // right: 51%;
+#search-icon {
+  fill: #e9ecef;
+  position: relative;
   &:hover {
     cursor: pointer;
-  }
-  @media (min-width: 600px) {
-    top: 82.7%;
-    right: 51%;
   }
 }
 #searchbtn[type='search'] {

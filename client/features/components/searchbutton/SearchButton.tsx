@@ -1,15 +1,15 @@
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useRef, useState } from 'react';
+import SearchSharpIcon from '@material-ui/icons/SearchSharp';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import { setQuery } from '../search/searchSlices/querySlice';
 import { setValue } from '../search/searchSlices/valueSlice';
-import { setSearchStatus } from '../../../appSlices/searchStatusSlice';
 import { useDebounce } from '../../../hooks/useDebounce';
 export interface SearchProps {
   isOpen: boolean;
   onSearchFocus: () => void;
-  onSearchBlur: () => void;
+  onSearchBlur: (e: SyntheticEvent) => void;
 }
 
 export const SearchButton: React.SFC<SearchProps> = ({
@@ -45,15 +45,24 @@ export const SearchButton: React.SFC<SearchProps> = ({
         placeholder='Search'
         onChange={(e) => dispatch(setValue(e.target.value))}
         value={debouncedQuery}
-        onBlur={() => {
-          dispatch(setSearchStatus(false));
-          onSearchBlur();
+        onBlur={(e) => {
+          onSearchBlur(e);
         }}
-        // ref={ref}
         onSubmit={(e: SyntheticEvent) => {
           e.preventDefault();
           const { value } = e.target[0] as HTMLTextAreaElement;
           dispatch(setQuery(value));
+        }}
+      />
+
+      <SearchSharpIcon
+        id='search-icon'
+        style={{
+          position: 'fixed',
+          left: '48.5rem',
+          top: '1.25rem',
+          width: '1rem',
+          fill: '#495057',
         }}
       />
     </Container>

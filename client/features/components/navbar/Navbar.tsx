@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -66,7 +66,7 @@ const Navbar = () => {
     dispatch(setSearchStatus(true));
   };
 
-  const onSearchBlur = () => {
+  const onSearchBlur = (e: SyntheticEvent) => {
     setOpen(false);
     dispatch(setSearchStatus(false));
   };
