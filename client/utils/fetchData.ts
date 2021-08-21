@@ -1,8 +1,10 @@
 import { sortResults } from './sortResults';
-// import dotenv from 'dotenv';
-// dotenv.config();
+import { REACT_APP_MOVIE_API_KEY } from '../App';
 
-const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+// let REACT_APP_MOVIE_API_KEY: string;
+// if (process.env.NODE_ENV !== 'production') {
+//   REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+// }
 
 export interface Result {
   poster_path?: string;
@@ -98,7 +100,6 @@ export const fetchContent = async (
 
 export const fetchTrending = async (type: string, pages: number) => {
   let URI: string;
-  console.log(REACT_APP_MOVIE_API_KEY, process.env);
   if (type === 'multi') {
     URI = `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
   } else {

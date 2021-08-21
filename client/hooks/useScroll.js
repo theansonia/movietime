@@ -31,7 +31,10 @@ export const useScroll = () => {
           dispatch(updatePages(pages + 1));
         }
       });
-      if (node) observer.current.observe(node);
+      if (node) {
+        observer.current.observe(node);
+        console.log(node);
+      }
     },
     [isLoading, hasMore]
   );

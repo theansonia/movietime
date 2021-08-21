@@ -14,6 +14,7 @@ import MovieContainer from '../../containers/MovieContainer';
 import { fetchContent, fetchTrending } from '../../../utils/fetchData';
 import { useHistory } from 'react-router';
 // import { updateMovieData } from './searchMoviesSlice';
+
 interface DataResults {
   page: number;
   total_pages: number;
