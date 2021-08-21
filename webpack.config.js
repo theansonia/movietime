@@ -80,9 +80,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed),
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      'REACT_APP_MOVIE_API_KEY ': JSON.stringify(
-        process.env.REACT_APP_MOVIE_API_KEY
-      ),
+      API_KEY: JSON.stringify(process.env.API_KEY),
       // it will automatically pick up key values from .env file
     }),
     // new webpack.DefinePlugin({

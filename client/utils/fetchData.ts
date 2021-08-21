@@ -2,13 +2,13 @@ import { sortResults } from './sortResults';
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      REACT_APP_MOVIE_API_KEY: string;
+      API_KEY: string;
       NODE_ENV: 'development' | 'production';
     }
   }
 }
 
-const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+const API_KEY = `${process.env.API_KEY}`;
 
 export interface Result {
   poster_path?: string;
@@ -29,7 +29,7 @@ export interface Result {
 }
 
 export const fetchDetails = async (query: RequestInfo) => {
-  const uri = `https://api.themoviedb.org/3/search/multi?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
+  const uri = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
   const URL = encodeURI(uri);
 
@@ -49,11 +49,11 @@ export const fetchProvidersAndRecs = async (
   type: RequestInfo,
   id: RequestInfo | number
 ) => {
-  const uri = `https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`;
+  const uri = `https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`;
 
   const URL = encodeURI(uri);
 
-  const providerURI = `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${REACT_APP_MOVIE_API_KEY}`;
+  const providerURI = `https://api.themoviedb.org/3/${type}/${id}/watch/providers?api_key=${API_KEY}`;
   const providerURL = encodeURI(providerURI);
 
   try {
@@ -74,7 +74,7 @@ export const fetchContent = async (
   type: string,
   pages: number
 ) => {
-  const URI = `https://api.themoviedb.org/3/search/${type}?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`;
+  const URI = `https://api.themoviedb.org/3/search/${type}?api_key=${API_KEY}&language=en-US&query=${query}&page=${pages}&include_adult=false`;
 
   const URL = encodeURI(URI);
 
@@ -105,9 +105,9 @@ export const fetchContent = async (
 export const fetchTrending = async (type: string, pages: number) => {
   let URI: string;
   if (type === 'multi') {
-    URI = `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
+    URI = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=${pages}`;
   } else {
-    URI = `https://api.themoviedb.org/3/${type}/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=${pages}`;
+    URI = `https://api.themoviedb.org/3/${type}/popular?api_key=${API_KEY}&language=en-US&page=${pages}`;
   }
   const URL = encodeURI(URI);
 
