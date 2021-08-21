@@ -1,11 +1,10 @@
 import { sortResults } from './sortResults';
-import { REACT_APP_MOVIE_API_KEY } from '../App';
+import { REACT_APP_MOVIE_API_KEY } from '../../server/server';
 
 // let REACT_APP_MOVIE_API_KEY: string;
 // if (process.env.NODE_ENV !== 'production') {
 //   REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
 // }
-
 export interface Result {
   poster_path?: string;
   id?: number;

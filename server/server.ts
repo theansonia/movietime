@@ -13,6 +13,10 @@ declare global {
   }
 }
 dotenv.config();
+
+const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
+export { REACT_APP_MOVIE_API_KEY };
+
 const app = express();
 app.use(cors());
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;

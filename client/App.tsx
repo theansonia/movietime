@@ -15,8 +15,6 @@ import { useWindowDimension } from './hooks/useWindowDimension';
 import { useDoRefreshUser } from './hooks/useDoRefreshUser';
 // import { useLocationHistory } from './hooks/useLocationHistory';
 // import { useUnload } from './hooks/useUnload';
-const REACT_APP_MOVIE_API_KEY = `${process.env.REACT_APP_MOVIE_API_KEY}`;
-export { REACT_APP_MOVIE_API_KEY };
 
 export default function App(): JSX.Element {
   const theme = useSelector((state: RootState) => state.theme.value);
