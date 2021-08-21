@@ -109,7 +109,6 @@ export const fetchTrending = async (type: string, pages: number) => {
   }
   const URL = encodeURI(URI);
 
-  console.log(process.env);
   try {
     const res = await fetch(URL);
     const data = await res.json();

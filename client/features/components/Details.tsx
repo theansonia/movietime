@@ -146,7 +146,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
             ) : (
               <img
                 id='detailposter'
-                src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
+                src='https://image.tmdb.org/t/p/w500/zoVeIgKzGJzpdG6Gwnr7iOYfIMU.jpg'
                 alt='back up movie poster cinema pardiso'
               />
             )}
@@ -210,19 +210,21 @@ const Details: FunctionComponent<RouteComponentProps> = (
           </div>
 
           {recommendations && recommendations.length > 0 ? (
-            <div>
+            <div id='rec-wrapper'>
               <div id='likethis'>More Like This</div>
-              {recommendations.map((rec, i) => {
-                if (i < 5)
-                  return (
-                    <Recs
-                      key={`recskey-${i}`}
-                      id={rec.id}
-                      title={rec.title || rec.name}
-                      pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
-                    />
-                  );
-              })}
+              <div id='rec-list-wrapper'>
+                {recommendations.map((rec, i) => {
+                  if (i < 5)
+                    return (
+                      <Recs
+                        key={`recskey-${i}`}
+                        id={rec.id}
+                        title={rec.title || rec.name}
+                        pic={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
+                      />
+                    );
+                })}
+              </div>
             </div>
           ) : (
             <div id='likethis'>No recommendations available</div>

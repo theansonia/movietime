@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-escape */
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 interface RecProps {
   title: string;
   pic: string;
@@ -50,7 +51,7 @@ const Recs: FunctionComponent<RecProps> = ({ title, pic, id }: RecProps) => {
             <img
               id='recposter'
               style={{ borderRadius: '30px' }}
-              src='https://image.tmdb.org/t/p/w500///tfNuePdHrP9fp6K2VTJwHKKJf8C.jpg'
+              src='https://image.tmdb.org/t/p/w500/tfNuePdHrP9fp6K2VTJwHKKJf8C.jpg'
               alt='back up movie poster cinema pardiso'
             />
           </div>
