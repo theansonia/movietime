@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Show from '../components/Show';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { css } from '@emotion/core';
-import { setQuery } from '../../appSlices/querySlice';
+import { setQuery } from '../components/search/searchSlices/querySlice';
 import { useScroll } from '../../hooks/useScroll';
 import { RootState } from 'client/reducer';
 import { useHistory } from 'react-router';

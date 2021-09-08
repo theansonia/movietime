@@ -70,10 +70,14 @@ const Navbar = () => {
     setOpen(false);
     dispatch(setSearchStatus(false));
   };
+
   return (
     <LaptopNavbar>
       <FirstNavContainer>
-        <Watchr>WATCHR</Watchr>
+        <Link to='/home'>
+          <Watchr>WATCHR</Watchr>
+        </Link>
+
         <Link to='/home' id='homebutton'>
           <div
             data-testid='homebtn'

@@ -1,4 +1,3 @@
-import { setQuery } from '../appSlices/querySlice';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +10,7 @@ import { updateMovieData } from '../features/components/search/searchSlices/sear
 import { setValue } from '../../client/features/components/search/searchSlices/valueSlice';
 import { changeCategory } from '../../client/features/components/search/searchSlices/categorySlice';
 import { RootState } from 'client/reducer';
+import { setQuery } from 'client/features/components/search/searchSlices/querySlice';
 
 export const useLocationHistory = () => {
   const [locationKeys, setLocationKeys] = useState([]);
@@ -49,7 +49,6 @@ export const useLocationHistory = () => {
   }, [locationKeys]);
 
   const resetState = (state: PersistentState) => {
-    console.log(state.movieData);
     if (state) {
       if (state.query) dispatch(setQuery(state.query));
       if (state.hasMore) dispatch(updateHasMore(state.hasMore.value));

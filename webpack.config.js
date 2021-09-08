@@ -59,7 +59,7 @@ module.exports = {
         loader: 'source-map-loader',
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: [
           'babel-loader',
           {

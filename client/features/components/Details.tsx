@@ -4,10 +4,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useEffect, useState, FunctionComponent } from 'react';
 import { RouteComponentProps, RouteProps, useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
 import Recs from './Recs';
 import Stars from './Stars';
-import { RootState } from '../../reducer';
 import { Details } from '../../types';
 import { MoviePrevResults } from '../../utils/sortResults';
 import { fetchDetails, fetchProvidersAndRecs } from '../../utils/fetchData';
@@ -131,7 +129,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
 
   return (
     <div className='divdivider'>
-      {!details ? null : (
+      {!details && (
         <div id='detailswrapper'>
           <div id='detailposterwrapper'>
             {`https://image.tmdb.org/t/p/w500/${details.backdrop_path}` !==
@@ -153,16 +151,16 @@ const Details: FunctionComponent<RouteComponentProps> = (
           </div>
           <div id='detaildetails'>
             <div id='detailtitle'>{details.title ? details.title : title}</div>
-            {details.release_date ? (
+            {details.release_date && (
               <div id='detailrelease'>{`${
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 details.release_date.split('-')[0]
               }`}</div>
-            ) : null}
-            {details.overview ? (
+            )}
+            {details.overview && (
               <div id='detailoverview'>{details.overview}</div>
-            ) : null}
-            {Math.round(details.vote_average / 2) ? (
+            )}
+            {Math.round(details.vote_average / 2) && (
               <div id='detailrating'>
                 {Math.round(details.vote_average / 2) ? (
                   <Stars
@@ -173,8 +171,8 @@ const Details: FunctionComponent<RouteComponentProps> = (
                   'No Rating'
                 )}
               </div>
-            ) : null}
-            {!watch ? null : (
+            )}
+            {!watch && (
               <a
                 id='providers'
                 rel='noreferrer'
@@ -184,7 +182,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
                 Where to Watch
               </a>
             )}
-            {providers ? (
+            {providers && (
               <div id='logos'>
                 {providers.map((logo, i) => {
                   return (
@@ -206,7 +204,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
                   );
                 })}
               </div>
-            ) : null}
+            )}
           </div>
 
           {recommendations && recommendations.length > 0 ? (

@@ -33,7 +33,6 @@ export const useScroll = () => {
       });
       if (node) {
         observer.current.observe(node);
-        console.log(node);
       }
     },
     [isLoading, hasMore]

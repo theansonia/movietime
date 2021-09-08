@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 export interface useWindowDimensionProps {}
 
 export const useWindowDimension = () => {
-  const { setUserDetails } = useUserContext();
   const [windowDimension, setWindowDimension] = useState(null);
   const [isMobile, setIsMobile] = useState(windowDimension <= 640);
 

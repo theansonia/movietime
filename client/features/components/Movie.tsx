@@ -20,7 +20,13 @@ const Movie: FunctionComponent<MovieProps> = ({
   id,
 }: MovieProps) => {
   const dispatch = useDispatch();
-  const state = useSelector((state: RootState) => state);
+
+  let hero = 'https://image.tmdb.org/t/p/w500/8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg';
+  if (
+    poster !== 'https://image.tmdb.org/t/p/w500/null' &&
+    poster !== 'https://image.tmdb.org/t/p/w500/undefined'
+  )
+    hero = poster;
 
   return (
     <>
@@ -37,91 +43,51 @@ const Movie: FunctionComponent<MovieProps> = ({
           color: 'inherit',
         }}
         // eslint-disable-next-line no-useless-escape
-        to={{
-          pathname: `/details/${title.replace(
-            /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
-            ''
-          )}`,
-          state: { id: id, type: type },
-        }}
+        to={
+          title
+            ? {
+                pathname: `/details/${title.replace(
+                  /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
+                  ''
+                )}`,
+                state: { id: id, type: type },
+              }
+            : {
+                pathname: `/home`,
+              }
+        }
         id='contentlink'
       >
         <div className='poster'>
           {poster !== 'https://image.tmdb.org/t/p/w500/null' &&
-          poster !== 'https://image.tmdb.org/t/p/w500/undefined' ? (
-            <img
-              className='poster'
-              src={poster}
-              alt={`Movie poster for ${title}`}
-            />
-          ) : (
-            <img
-              className='poster'
-              src='https://image.tmdb.org/t/p/w500//8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
-              alt='back up movie poster cinema pardiso'
-            />
-          )}
+            poster !== 'https://image.tmdb.org/t/p/w500/undefined' && (
+              <img
+                className='poster'
+                src={
+                  hero && hero.length > 0
+                    ? hero
+                    : 'https://image.tmdb.org/t/p/w500/8SRUfRUi6x4O68n0VCbDNRa6iGL.jpg'
+                }
+                alt={`Movie poster for ${title}`}
+                data-testid='thumbnail'
+              />
+            )}
         </div>
 
         <div id='details'>
-          {/* <Link
-          onClick={() => {
-            dispatch(setSearchStatus(false));
-            dispatch(changeCategory(null));
-          }}
-          style={{
-            textDecoration: 'none',
-            fontSize: '1em',
-            marginBottom: '.5em',
-            fontWeight: 'bold',
-            marginTop: '.5em',
-            color: 'inherit',
-          }}
-          to={{
-            pathname: `/details/${title.replace(
-              /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
-              ''
-            )}`,
-            state: { id: id, type: type },
-          }}
-        > */}
-          {title ? <div id='title'>{title}</div> : null}
+          {title && <div id='title'>{title}</div>}
+          <div id='type'>{type && type.length === 2 && type.toUpperCase()}</div>
           <div id='type'>
-            {type && type.length === 2 ? type.toUpperCase() : null}
+            {type &&
+              type.length > 2 &&
+              type[0].toUpperCase() + type.substring(1)}
           </div>
-          <div id='type'>
-            {type && type.length > 2
-              ? type[0].toUpperCase() + type.substring(1)
-              : null}
-          </div>
-          {/* </Link> */}
 
-          {release ? <div id='release'>Premiered {release}</div> : null}
-          {aired ? <div id='release'>First Aired {aired}</div> : null}
-          {/* <Link
-          onClick={() => {
-            dispatch(setSearchStatus(false));
-            dispatch(changeCategory(null));
-          }}
-          style={{
-            textDecoration: 'none',
-            fontSize: '1.4em',
-            marginBottom: '.5em',
-            fontWeight: 'normal',
-            color: 'inherit',
-          }}
-          to={{
-            pathname: `/details/${title.replace(
-              /[.,/#!$%\^&\*;:{}=\-_`~()]/g,
-              ''
-            )}`,
-            state: { id: id, type: type },
-          }}
-        > */}
+          {release && <div id='release'>Premiered {release}</div>}
+          {aired && <div id='release'>First Aired {aired}</div>}
           <div id='overview'>{overview}</div>
-          {/* </Link> */}
 
-          {rating ? (
+          {rating && (
             <div id='rating'>
               {rating ? (
                 <Stars rating={rating} reviews={reviews} />
@@ -129,7 +95,7 @@ const Movie: FunctionComponent<MovieProps> = ({
                 'No Rating'
               )}
             </div>
-          ) : null}
+          )}
         </div>
       </Link>
     </>
