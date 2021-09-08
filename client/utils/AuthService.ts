@@ -63,7 +63,6 @@ export const finishAuthentication = (token: {}) => {
 export const logout = () => {
   // Clear user token and profile data from localStorage
   localStorage.removeItem('token');
-  console.log('here');
   deleteCookie('token');
   sessionStorage.removeItem('state');
 };

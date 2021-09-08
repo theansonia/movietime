@@ -1,5 +1,4 @@
 export const handleShowClick = (label: string) => {
-  console.log(label);
   if (label === 'SHOW') {
     const pw = (document.getElementsByName(
       'password'

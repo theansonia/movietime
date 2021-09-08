@@ -129,7 +129,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
 
   return (
     <div className='divdivider'>
-      {!details && (
+      {details && (
         <div id='detailswrapper'>
           <div id='detailposterwrapper'>
             {`https://image.tmdb.org/t/p/w500/${details.backdrop_path}` !==
@@ -172,7 +172,7 @@ const Details: FunctionComponent<RouteComponentProps> = (
                 )}
               </div>
             )}
-            {!watch && (
+            {watch && (
               <a
                 id='providers'
                 rel='noreferrer'
